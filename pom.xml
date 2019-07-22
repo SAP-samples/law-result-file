@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.sap.support</groupId>
+		<artifactId>fnf-parent-pom</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<groupId>sap.support.glacelx.dashboard</groupId>
+	<artifactId>sap.support.glacelx.dashboard</artifactId>
+	<version>2019.1.0-SNAPSHOT</version>
+	<name>${project.artifactId}</name>
+	<description>Explain LAW XML</description>
+	<packaging>war</packaging>
+	<build>
+		<plugins></plugins>
+	</build>
+</project>
