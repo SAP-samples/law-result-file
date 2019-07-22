@@ -1,0 +1,9 @@
+<mvc:View controllerName="glacelx.glacelx.controller.Intro" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<App id="app">
+		<pages>
+			<Page id="page" title="{i18n>appTitle}">
+				<content></content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

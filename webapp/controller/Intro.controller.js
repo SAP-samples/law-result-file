@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Controller) {
 	"use strict";
 
-	return Controller.extend("glacelx.glacelx.controller.Main", {
+	return Controller.extend("glacelx.glacelx.controller.Intro", {
 		onInit: function () {
 
 		}

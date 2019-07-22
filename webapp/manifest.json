@@ -16,7 +16,6 @@
 			"version": "1.40.12"
 		}
 	},
-
 	"sap.ui": {
 		"technology": "UI5",
 		"icons": {
@@ -33,14 +32,13 @@
 			"phone": true
 		}
 	},
-
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "glacelx.glacelx.view.Main",
+			"viewName": "glacelx.glacelx.view.Intro",
 			"type": "XML",
 			"async": true,
-			"id": "Main"
+			"id": "Intro"
 		},
 		"config": {
 			"appName": "Explain LAW XML",
@@ -84,7 +82,7 @@
 				"clearControlAggregation": false
 			},
 			"routes": [{
-				"name": "RouteMain",
+				"name": "TargetMain",
 				"pattern": "RouteMain",
 				"target": ["TargetMain"]
 			}],
@@ -93,8 +91,8 @@
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewId": "Main",
-					"viewName": "Main"
+					"viewId": "Intro",
+					"viewName": "Intro"
 				}
 			}
 		}

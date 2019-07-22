@@ -1,9 +1,0 @@
-<mvc:View controllerName="glacelx.glacelx.controller.Main" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-	<App id="app">
-		<pages>
-			<Page id="page_Main" showHeader="false">
-				<content></content>
-			</Page>
-		</pages>
-	</App>
-</mvc:View>
