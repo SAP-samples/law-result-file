@@ -1,0 +1,78 @@
+<mvc:View controllerName="glacelx.glacelx.controller.part.Results"
+
+	xmlns:c="sap.ui.core"
+	xmlns:ce="sap.ui.codeeditor"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:fo="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<!-- <App>
+		<pages>
+			<Page title="Results" showNavButton="true" navButtonPress="backToSystem">
+				<content> -->
+					<l:VerticalLayout class="sapUiContentPadding equalColumns" width="100%">
+						<l:content>
+							<FlexBox id="selectedResult"
+								width="100%"
+								class="columns"
+								alignItems="Stretch"
+								>
+								<items>
+									<Panel headerText="{'lawFile>PartId'}" class="column1">
+										<fo:SimpleForm 
+														editable="false"
+														layout="ResponsiveGridLayout"
+														labelSpanXL="10" 
+														labelSpanL="10"	
+														labelSpanM="10"	
+														labelSpanS="5"	
+		
+														singleContainerFullSize="false" >
+											<fo:content>
+												<!-- already in title <Label text="System #"/>
+												<Text text="{lawFile>PartId}"/> -->
+												
+												<Label text="{i18n>result.placeholder.text}"/>
+												<Text text="{i18n>result.placeholder.value}"/>
+				
+												
+											</fo:content>
+										</fo:SimpleForm>
+									</Panel>
+									
+									<Panel headerText="{i18n>xml.headerText}" class="column2">
+											<Button text="{i18n>xml.button.top}" icon="sap-icon://sys-first-page" class="navButton"/>
+											<Button text="{i18n>xml.button.up}" icon="sap-icon://sys-prev-page" class="navButton"/>
+											<Button text="{i18n>xml.button.down}" icon="sap-icon://sys-next-page" class="navButton"/>
+											<Button text="{i18n>xml.button.bottom}" icon="sap-icon://sys-last-page" class="navButton"/>
+											<Button text="{i18n>xml.button.goto}" icon="sap-icon://sales-document" class="navButton"/>
+		
+										<ce:CodeEditor type="xml" class="wattEditorContainer"
+		value='&lt;System&gt;&#xA;
+					&lt;SystemNo&gt;000000009311319231&lt;/SystemNo&gt;&#xA;
+					&lt;InstallationNo&gt;0020270862&lt;/InstallationNo&gt;&#xA;
+					&lt;SAP_SID&gt;P01&lt;/SAP_SID&gt;&#xA;
+					&lt;Release&gt;753&lt;/Release&gt;&#xA;
+					&lt;Database&gt;ADABAS D&lt;/Database&gt;&#xA;
+													' />
+															 
+										<layoutData>
+											<FlexItemData growFactor="1" />
+										</layoutData>
+									 </Panel>
+									 
+								</items>			 
+							</FlexBox>
+						</l:content>
+					</l:VerticalLayout>
+<!--
+				</content>
+			</Page>
+		</pages>
+	</App> -->
+</mvc:View>

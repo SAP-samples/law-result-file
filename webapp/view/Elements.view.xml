@@ -1,0 +1,49 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="glacelx.glacelx.controller.Elements"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App id="Intro">
+		<pages>
+			<Page id="overview" title="{i18n>elements.page.title}" class="sapUiStdPage" showNavButton="true" navButtonText="Back" navButtonPress="onToIntro">
+				<content>
+					<!--<TileContainer id="tilesOverview" >-->
+						<StandardTile	
+							id="tileHeader"
+							icon="sap-icon://letter"
+							number="1"
+							numberUnit="{i18n>elements.tiles.header.numberUnit}" 
+							title="{i18n>elements.tiles.header.title}" />
+						<StandardTile 
+							id="tileSystems"
+							icon="sap-icon://it-system" 
+							number="{path: 'lawFile>/Systems/length', mode: 'sap.ui.model.BindingMode.OneWay'}"
+							numberUnit="{i18n>model.systems.text}"
+							title="{i18n>elements.tiles.systems.numberUnit}" 
+							press="onSystemList"/>
+						<StandardTile 
+							id="tileParts"
+							icon="sap-icon://it-instance"
+							number="{path: 'lawFile>/Parts/length', mode: 'sap.ui.model.BindingMode.OneWay'}"
+							numberUnit="{i18n>model.parts.text}"
+							title="{i18n>elements.tiles.parts.title}"
+							info="{i18n>elements.tiles.parts.info}" 
+							press="onPartPressed"/>
+						<StandardTile 
+							id="tileResults"
+							icon="sap-icon://survey"
+							number="Many"
+							numberUnit="{i18n>model.results.text}"
+							blocked="true"							
+							title="{i18n>elements.tiles.results.title}" 
+							info="{i18n>elements.tiles.results.info}" />
+						<StandardTile 
+							id="tileXml"
+							icon="sap-icon://syntax"
+							number="65.000"
+							numberUnit="{i18n>elements.tiles.xml.numberUnit}"
+							title="{i18n>elements.tiles.xml.title}" 
+							info="{i18n>elements.tiles.xml.info}" />
+					<!--</TileContainer>-->
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

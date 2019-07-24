@@ -1,0 +1,339 @@
+<mvc:View controllerName="glacelx.glacelx.controller.System"
+	xmlns:c="sap.ui.core"
+	xmlns:ce="sap.ui.codeeditor"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:fo="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f"
+	xmlns:smartForm="sap.ui.comp.smartform"
+xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{parts:['i18n>system.page.title', 'lawFile>SAP_SID'], formatter: 'jQuery.sap.formatMessage'}" 
+					showNavButton="true" navButtonPress="onSystemList" id="selectedPart">
+				<content> 
+					<l:VerticalLayout class="sapUiContentPadding equalColumns" width="100%">
+						<l:content>
+							<FlexBox 
+								width="100%"
+								class="columns"
+								alignItems="Stretch"
+								>
+								<items>
+									<Panel headerText="{i18n>system.propsSection.title.text}" class="column1">
+										<content>
+										<fo:SimpleForm 
+												editable="false"
+												layout="ResponsiveGridLayout"
+												labelSpanXL="10" 
+												labelSpanL="10"	
+												labelSpanM="10"	
+												labelSpanS="5"	
+
+												singleContainerFullSize="false" >
+											<fo:content>
+												<Label text="{i18n>all.index.text}"/>
+												<Text text="" id="sysIdx"/>
+												
+												<Label text="{i18n>model.systems.SystemNo.text}"/>
+												<Text text="{lawFile>SystemNo}"/>
+												
+												<Label text="{i18n>model.systems.InstallationNo.text}"/>
+												<Text text="{lawFile>InstallationNo}"/>
+																								
+												<Label text="{i18n>model.systems.SAP_SID.text}"/>
+												<Text text="{lawFile>SAP_SID}"/>
+					
+												<Label text="{i18n>model.systems.Status.text}" visible="{ 
+																parts: [ {path: 'lawFile>Status'} ],
+																formatter: '.formatter.exists' }" />
+												<FormattedText htmlText="{
+																parts: [ {path: 'lawFile>Status'} ],
+																formatter: '.formatter.formatStatus'
+															}" 
+														 visible="{ 
+																parts: [ {path: 'lawFile>Status'} ],
+																formatter: '.formatter.exists' }"/>
+											
+												<Label text="{i18n>model.systems.Release.text}"/>
+												<Text text="{lawFile>Release}"/>
+												
+												<Label text="{i18n>model.systems.Database.text}"/>
+												<Text text="{lawFile>Database}"/>
+											</fo:content>
+										</fo:SimpleForm>
+
+										<Title text="{i18n>system.partsSection.title.text}"/>	
+										
+										<!-- <List id="partsList2"
+											headerText="Linked result parts"
+											items="{
+												path: 'lawFile>/Parts',
+												sorter: {
+													path: 'PartId'
+												},
+												filters: [{
+													path: 'SystemNo', 
+													operator: 'EQ',
+													value1: 'placeholder' }] 
+											}">
+											<items>
+												<StandardListItem title="#{lawFile>PartId}: Client {lawFile>SAP_CLIENT}" /> 
+											</items>
+										</List> -->
+										
+										<f:GridList	id="partsList" 
+											items="{
+												path: 'lawFile>/Parts',
+												sorter: {
+													path: 'PartId'
+												},
+												filters: [{
+													path: 'SystemNo', 
+													operator: 'EQ',
+													value1: 'placeholder' }] 
+											}">
+											<CustomListItem class="sapContrast fixGrid_li" type="Navigation" press="onPartPressed">
+												<HBox>
+													<c:Icon src="sap-icon://it-instance" size="2.3rem" class="sapUiTinyMargin"/>	
+													<VBox class="sapUiTinyMargin">
+														<Title text="{lawFile>PartId}" wrapping="true" width="5rem" />
+														<Label text="{
+																parts: [ {path: 'lawFile>SAP_CLIENT'} ],
+																formatter: '.formatter.formatClient'
+															}" 
+																wrapping="true" width="5rem"/>
+													</VBox>
+												</HBox>
+											</CustomListItem>
+										</f:GridList>
+										
+										<!-- Components START -->
+										<Table id="exportTable" inset="false" growing="true" growingThreshold="20" 
+											growingScrollToLoad="true" 
+											headerText="{parts:['i18n>system.compSection.table.headerText', 'lawFile>SAP_SID'], formatter: 'jQuery.sap.formatMessage'}">
+											<!-- <headerToolbar>
+												<OverflowToolbar>
+													<ToolbarSpacer />
+													<Button icon="sap-icon://excel-attachment" press="onExport"/>
+												</OverflowToolbar> 
+											</headerToolbar> -->
+											<columns>
+												<Column>
+													<Text text="{i18n>model.systems.Components.Name.text}"/>
+												</Column>
+												<Column hAlign="End">
+													<Text text="{i18n>model.systems.Component.Release.text}"/>
+												</Column>
+												<Column hAlign="End">
+													<Text text="{i18n>model.systems.Component.PatchLevel.text}"/>
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem>
+													<cells>
+														<Text text="{i18n>system.compSection.table.col1Hl.text}"/>
+														<Text text="{i18n>system.compSection.table.col1H2.text}"/>
+														<Text text="{i18n>system.compSection.table.col1H3.text}"/>
+													</cells>
+												</ColumnListItem>
+											</items>		
+										</Table>
+										<!-- Components END -->
+										</content>
+									</Panel>
+									
+									
+									<Panel headerText="{i18n>xml.headerText}" class="column2">
+											<Button text="{i18n>xml.button.top}" icon="sap-icon://sys-first-page" class="navButton"/>
+											<Button text="{i18n>xml.button.up}" icon="sap-icon://sys-prev-page" class="navButton"/>
+											<Button text="{i18n>xml.button.down}" icon="sap-icon://sys-next-page" class="navButton"/>
+											<Button text="{i18n>xml.button.bottom}" icon="sap-icon://sys-last-page" class="navButton"/>
+											<Button text="{i18n>xml.button.goto}" icon="sap-icon://sales-document" class="navButton"/>
+
+										<ce:CodeEditor type="xml" class="wattEditorContainer"
+value='&lt;System&gt;&#xA;
+			&lt;SystemNo&gt;000000009311319231&lt;/SystemNo&gt;&#xA;
+			&lt;InstallationNo&gt;0020270862&lt;/InstallationNo&gt;&#xA;
+			&lt;SAP_SID&gt;P01&lt;/SAP_SID&gt;&#xA;
+			&lt;Release&gt;753&lt;/Release&gt;&#xA;
+			&lt;Database&gt;ADABAS D&lt;/Database&gt;&#xA;
+			&lt;Components&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;AOFTOOLS&lt;/Name&gt;&#xA;
+					&lt;Release&gt;500_700&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0006&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;					&lt;Name&gt;AOF_ATTR&lt;/Name&gt;&#xA;
+					&lt;Release&gt;0070&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0003&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;AOF_BASIC&lt;/Name&gt;&#xA;
+					&lt;Release&gt;0070&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0002&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;AOF_CHECKS&lt;/Name&gt;&#xA;
+					&lt;Release&gt;0070&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0004&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;AOF_EEC&lt;/Name&gt;&#xA;
+					&lt;Release&gt;0070&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0002&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;AOF_PRE&lt;/Name&gt;&#xA;
+					&lt;Release&gt;0070&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0002&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;AOF_STRTPT&lt;/Name&gt;&#xA;
+					&lt;Release&gt;0100&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0003&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;AOF_TOOLS&lt;/Name&gt;&#xA;
+					&lt;Release&gt;0060&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;DC_ADDON&lt;/Name&gt;&#xA;
+					&lt;Release&gt;101&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;DMIS_LOCKED&lt;/Name&gt;&#xA;
+					&lt;Release&gt;740&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;FUI_LOCKED&lt;/Name&gt;&#xA;
+					&lt;Release&gt;740&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;LMNTEST7&lt;/Name&gt;&#xA;
+					&lt;Release&gt;30D&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;MS_SUB_1&lt;/Name&gt;&#xA;
+					&lt;Release&gt;200&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;MS_SUB_2&lt;/Name&gt;&#xA;
+					&lt;Release&gt;200&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;MS_SUB_3&lt;/Name&gt;&#xA;
+					&lt;Release&gt;200&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;MS_TEST_1&lt;/Name&gt;&#xA;
+					&lt;Release&gt;100&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;MS_TEST_3&lt;/Name&gt;&#xA;
+					&lt;Release&gt;500&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0001&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;MS_TEST_5&lt;/Name&gt;&#xA;
+					&lt;Release&gt;100&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;MS_TEST_9&lt;/Name&gt;&#xA;
+					&lt;Release&gt;100&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;MS_TEST_M&lt;/Name&gt;&#xA;
+					&lt;Release&gt;200&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;MTTEST&lt;/Name&gt;&#xA;
+					&lt;Release&gt;100&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000001&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;PN_TEST1&lt;/Name&gt;&#xA;
+					&lt;Release&gt;100&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;SAP Kernel&lt;/Name&gt;&#xA;
+					&lt;Release&gt;772&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;SAP_BASIS&lt;/Name&gt;&#xA;
+					&lt;Release&gt;753&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;SAP_GWFND&lt;/Name&gt;&#xA;
+					&lt;Release&gt;753&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;SAP_UI&lt;/Name&gt;&#xA;
+					&lt;Release&gt;753&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;TEST-COMP&lt;/Name&gt;&#xA;
+					&lt;Release&gt;0068&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;TESTVIRT&lt;/Name&gt;&#xA;
+					&lt;Release&gt;732&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;TST_CP_MAN&lt;/Name&gt;&#xA;
+					&lt;Release&gt;100&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;UI_BC_DO_NOT_USE&lt;/Name&gt;&#xA;
+					&lt;Release&gt;100&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0000000000&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;VLMDEMO&lt;/Name&gt;&#xA;
+					&lt;Release&gt;VLMDEMOV10&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+				&lt;Component&gt;&#xA;
+					&lt;Name&gt;YI3_LOCKED&lt;/Name&gt;&#xA;
+					&lt;Release&gt;703&lt;/Release&gt;&#xA;
+					&lt;PatchLevel&gt;0&lt;/PatchLevel&gt;&#xA;
+				&lt;/Component&gt;&#xA;
+			&lt;/Components&gt;&#xA;
+&lt;/System&gt;&#xA;
+											' />
+													 
+										<layoutData>
+											<FlexItemData growFactor="1" />
+										</layoutData>
+									 </Panel>
+								</items>
+							</FlexBox>
+						</l:content>
+					</l:VerticalLayout>										 
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

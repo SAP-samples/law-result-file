@@ -1,1 +1,88 @@
-/* Enter your custom styles here - test commit */
+/* Enter your custom styles here */
+
+/* Grid control doesn't work properly unless it is placed on a SplitPage; 
+After adding these lines  the issue is fixed */
+
+/* copy from .sapFGridListDefault */
+/* xxx .sapMListShowSeparatorsAll { 
+	display: grid;
+	grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));
+	grid-gap:0.5rem 0.5rem;
+} */
+
+/* .sapFGridListGroup>.sapMLIB.sapMGHLI{background:none;border:none;padding-top:0.25rem;grid-column:1 / -1;width:100%} */
+/* xxx .sapMGHLI {
+	grid-column-start: 1;
+	grid-column-end: -1;
+	background-color: LightBlue;
+} */
+/* xxx .sapMListUl>.sapMLIB.sapMGHLI {
+	height: 2.2rem;
+} */
+/* xxx .sapMGHLI:before {
+  content: "Installation \00a0 ";
+} */
+
+/* Lines for equal column width of FlexBox */
+.equalColumns .columns {
+	min-height: 350px
+	margin: 0 5px 0 0;
+	padding: 10px;
+}
+
+/* .sapMFlexItemAlignAuto {
+	width="50%";
+} */
+
+.sapCEd .equalColumns .columns {
+	/* for 100% height: */
+	position: absolute;
+	top: 3rem; /* Header Height */
+    bottom: 0px; /* Footer Height */;
+}
+
+.elxPaddingRight {
+	padding-right: 3rem;
+}
+
+.ace_editor {
+	min-height: 300px;
+}
+
+.equalColumns .columns .sapMFlexItem {
+	width: 50%;
+}
+
+/* further formating  */
+/* xxx cite {
+	color: darkolivegreen;
+} */
+
+.dark {
+	padding: 5px 5px 5px 5px !important;
+	display: block;
+}
+
+
+/* for button line above XML code editor */
+.navButton {
+	margin: 0px;
+	padding: 0px;
+	padding-right: 0.1rem;
+	padding-bottom: 0.7rem;
+}
+
+/*.sapMBtnIcon {
+	font-size: small;
+}
+
+ .sapMBtnInner {
+	font-size: small;
+} */
+
+/* shrink the empty white space in the result tab page */
+/* xxx .sapMITBContent {
+	padding: 0px;
+} */
+
+

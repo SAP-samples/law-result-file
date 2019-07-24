@@ -1,0 +1,78 @@
+<mvc:View controllerName="glacelx.glacelx.controller.Systems"
+	
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+	xmlns:ce="sap.ui.codeeditor"
+	xmlns:l="sap.ui.layout" 
+	xmlns:tnt="sap.tnt" 
+	xmlns:u="sap.ui.unified"
+	xmlns:uit="sap.ui.table"
+	xmlns:f="sap.f"
+	xmlns:c="sap.ui.core"
+	xmlns="sap.m"
+
+	displayBlock="true">
+		
+	<App id="systemListApp">
+		<pages>
+			<Page id="SystemTiles" title="{i18n>model.systems.text}" showNavButton="true" navButtonPress="onToAll">
+				<content>
+						<Panel id="panelForGridList2">
+							<!-- <headerToolbar>
+								<Toolbar height="3rem">
+									<Title text="System list"/>
+								</Toolbar>
+							</headerToolbar>-->
+							<content>
+								<Toolbar>
+									<content>
+										<Title text="{i18n>systems.syslist.title}" />
+										<ToolbarSpacer/>
+										<SearchField width="15rem"/>
+									</content>
+								</Toolbar>
+								<f:GridList	id="systemList" 
+										items="{
+											path: 'lawFile>/Systems', 
+											sorter: {
+												path: 'InstallationNo',
+												descending: false,
+												group: true
+													}
+											}" 
+										growing="true"
+										growingThreshold="25"
+										growingScrollToLoad="true"
+										>
+										<CustomListItem class="sapContrast fixGrid_li" type="Navigation" press="onSystemPressed">
+											<HBox>
+												<c:Icon src="sap-icon://it-system" size="2.3rem" class="sapUiTinyMargin"/>	
+													<VBox class="sapUiTinyMargin">
+														<Title text="{lawFile>SAP_SID}" wrapping="true" />
+														<Label text="{= parseFloat(${lawFile>SystemNo}) }" wrapping="true" />
+													</VBox>
+											</HBox>
+											<!-- <customData>
+												<c:CustomData key="SystemNo" value="{lawFile>SystemNo}"/>
+											</customData> -->
+										</CustomListItem>
+								</f:GridList>
+							</content>
+						</Panel>
+						<!-- <Panel id="selectedPart" headerText="Selected Part" width="auto">
+							 <l:Grid defaultSpan="L3 M6 S12" containerQuery="true">
+						        <Label text="Sys No:" />
+						        <Input value="{lawFile>SystemNo}" />
+						        
+						        <Label text="SAP ID:" />
+						        <Input value="{lawFile>SAP_SID}" />
+							</l:Grid>
+						</Panel> -->
+
+					</content>
+			</Page>
+		</pages>
+	</App>
+	
+</mvc:View>
+

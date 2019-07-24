@@ -18,6 +18,7 @@
 	},
 	"sap.ui": {
 		"technology": "UI5",
+		"fullWidth": true,
 		"icons": {
 			"icon": "",
 			"favIcon": "",
@@ -40,12 +41,6 @@
 			"async": true,
 			"id": "Intro"
 		},
-		"config": {
-			"appName": "Explain LAW XML",
-			"fullWidth": true,
-			"icon": "sap-icon://list",
-			"sapFiori2Adaptation": true
-		},
 		"dependencies": {
 			"minUI5Version": "1.60.1",
 			"libs": {
@@ -64,12 +59,20 @@
 				"settings": {
 					"bundleName": "glacelx.glacelx.i18n.i18n"
 				}
+			},
+			"lawFile": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "./model/example.xml.json",
+				"preload": true
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -78,21 +81,89 @@
 				"async": true,
 				"viewPath": "glacelx.glacelx.view",
 				"controlAggregation": "pages",
-				"controlId": "app",
+				"controlId": "IntroView",
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"name": "TargetMain",
-				"pattern": "RouteMain",
-				"target": ["TargetMain"]
-			}],
+			"routes": [
+				{
+					"name": "intro",
+					"pattern": "",
+					"target": "Intro"
+				},
+				{
+					"name": "elements",
+					"pattern": "Elements",
+					"greedy": false,
+					"target": "Elements"
+				},
+				{
+					"name": "systems",
+					"pattern": "Systems",
+					"greedy": false,
+					"target": "Systems"
+				},
+				{
+					"name": "system",
+					"pattern": "System/{sysIndex}",
+					"greedy": false,
+					"target": "System"
+				},
+				{
+					"name": "part",
+					"pattern": "Part/{sysIndex}/{partIndex}",
+					"greedy": false,
+					"target": "Part"
+				},
+				{
+					"name": "results",
+					"pattern": "Results/{sysIndex}/{partIndex}",
+					"greedy": false,
+					"target": "Results"
+				}
+			],
 			"targets": {
-				"TargetMain": {
+				"Intro": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewId": "Intro",
+					"viewId": "intro",
 					"viewName": "Intro"
+				},
+				"Elements": {
+					"viewType": "XML",
+					"viewId": "elements",
+					"viewName": "Elements",
+					"transition": "slide",
+					"viewLevel": 1
+				},
+				"Systems": {
+					"viewType": "XML",
+					"viewId": "systems",
+					"viewName": "Systems",
+					"viewLevel": 2,
+					"transition": "slide"
+				},
+				"System": {
+					"viewType": "XML",
+					"viewId": "System",
+					"viewName": "System",
+					"viewLevel": 3
+				},
+				"Part": {
+					"viewType": "XML",
+					"viewName": "Part",
+					"viewId": "part",
+					"viewLevel": 4
+				},
+				"Results": {
+					"viewType": "XML",
+					"viewName": "Results",
+					"viewId": "results",
+					"viewLevel": 4
+				},
+				"Properties": {
+					"viewType": "XML",
+					"viewName": "Properties"
 				}
 			}
 		}
