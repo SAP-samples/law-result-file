@@ -1,5 +1,4 @@
 <mvc:View controllerName="glacelx.glacelx.controller.part.Properties"
-	
 	xmlns:c="sap.ui.core"
 	xmlns:ce="sap.ui.codeeditor"
 	xmlns:mvc="sap.ui.core.mvc" 
@@ -10,103 +9,83 @@
 	xmlns:smartForm="sap.ui.comp.smartform"
 	xmlns:smartField="sap.ui.comp.smartfield"
 	xmlns:html="http://www.w3.org/1999/xhtml">
+		<l:VerticalLayout class="sapUiContentPadding equalColumns" width="100%">
+			<l:content>
+				<FlexBox id="selectedPart"
+					width="100%"
+					class="columns"
+					alignItems="Stretch">
+					<items>
+						<Panel headerText="{parts:['i18n>properties.propsSection.title', 'PartId'], formatter: 'jQuery.sap.formatMessage'}" class="column1">
+							<fo:SimpleForm 
+											editable="false"
+											layout="ResponsiveGridLayout"
+											labelSpanXL="10" 
+											labelSpanL="10"	
+											labelSpanM="10"	
+											labelSpanS="5"	
 
-
-
-	<!-- <App>
-		<pages>
-			<Page title="Results" showNavButton="true" navButtonPress="backToSystem">
-				<content> -->
-					<l:VerticalLayout class="sapUiContentPadding equalColumns" width="100%">
-						<l:content>
-							<FlexBox id="selectedPart"
-								width="100%"
-								class="columns"
-								alignItems="Stretch"
-								>
-								<items>
-									<Panel headerText="{parts:['i18n>properties.propsSection.title', 'lawFile>PartId'], formatter: 'jQuery.sap.formatMessage'}" class="column1">
-										<fo:SimpleForm 
-														editable="false"
-														layout="ResponsiveGridLayout"
-														labelSpanXL="10" 
-														labelSpanL="10"	
-														labelSpanM="10"	
-														labelSpanS="5"	
-		
-														singleContainerFullSize="false" >
-											<fo:content>
-												<Label text="{i18n>all.index.text}"/>
-												<Text text="{i18n>all.index.text}"/>
-												
-												<Label text="{i18n>model.parts.part.partId.text}"/>
-												<Text text="{lawFile>PartId}"/>
-												
-												<Label text="{i18n>model.parts.part.genericId.text}"/>
-												<Text text="{lawFile>GenericId}"/>
-												
-												<Label text="{i18n>model.parts.part.name.text}"/>
-												<Text text="{lawFile>Name}"/>
-												
-												<Label text="{i18n>model.parts.part.status.text}"/>
-												<Text text="{lawFile>Status}"/>
-												
-												<Label text="{i18n>model.parts.part.sysNo.text}"/>
-												<Text text="{lawFile>SystemNo}"/>
-												
-												<Label text="{i18n>model.parts.part.client.text}"/>
-												<Text text="{lawFile>SAP_CLIENT}"/>
-												
-												<Label text="{i18n>model.parts.part.DefUtype.text}"/>
-												<Text text="{lawFile>DefUtype}"/>
-												
-												<Label text="{i18n>model.parts.part.Productive.text}"/>
-												<Text text="{lawFile>Productive}"/>
-												
-												<Label text="{i18n>model.parts.part.MeasNo.text}"/>
-												<Text text="{lawFile>MeasNo}"/>
-												
-												<Label text="{i18n>model.parts.part.Executor.text}"/>
-												<Text text="{lawFile>Executor}"/>
-												
-												<Label text="{i18n>model.parts.part.Date.text}"/>
-												<Text text="{lawFile>Date}"/>
-												
-												<Label text="{i18n>model.parts.part.Excluded.text}"/>
-												<Text text="{lawFile>Excluded}"/>
-												
-											</fo:content>
-										</fo:SimpleForm>
-									</Panel>
+											singleContainerFullSize="false" >
+								<fo:content>
+									<Label text="{i18n>all.index.text}"/>
+									<Text id="indexProperty"/>
 									
-									<Panel headerText="{i18n>xml.headerText}" class="column2">
-											<Button text="{i18n>xml.button.top}" icon="sap-icon://sys-first-page" class="navButton"/>
-											<Button text="{i18n>xml.button.up}" icon="sap-icon://sys-prev-page" class="navButton"/>
-											<Button text="{i18n>xml.button.down}" icon="sap-icon://sys-next-page" class="navButton"/>
-											<Button text="{i18n>xml.button.bottom}" icon="sap-icon://sys-last-page" class="navButton"/>
-											<Button text="{i18n>xml.button.goto}" icon="sap-icon://sales-document" class="navButton"/>
-		
-										<ce:CodeEditor type="xml" class="wattEditorContainer"
-		value='&lt;System&gt;&#xA;
-					&lt;SystemNo&gt;000000009311319231&lt;/SystemNo&gt;&#xA;
-					&lt;InstallationNo&gt;0020270862&lt;/InstallationNo&gt;&#xA;
-					&lt;SAP_SID&gt;P01&lt;/SAP_SID&gt;&#xA;
-					&lt;Release&gt;753&lt;/Release&gt;&#xA;
-					&lt;Database&gt;ADABAS D&lt;/Database&gt;&#xA;
-													' />
-															 
-										<layoutData>
-											<FlexItemData growFactor="1" />
-										</layoutData>
-									 </Panel>
-									 
-								</items>			 
-							</FlexBox>
-						</l:content>
-					</l:VerticalLayout>
-<!--
-				</content>
-			</Page>
-		</pages>
-	</App> -->
+									<Label text="{i18n>model.parts.part.partId.text}"/>
+									<Text text="{PartId}"/>
+									
+									<Label text="{i18n>model.parts.part.genericId.text}"/>
+									<Text text="{GenericId}"/>
+									
+									<Label text="{i18n>model.parts.part.name.text}"/>
+									<Text text="{Name}"/>
+									
+									<Label text="{i18n>model.parts.part.status.text}"/>
+									<Text text="{Status}"/>
+									
+									<Label text="{i18n>model.parts.part.sysNo.text}"/>
+									<Text text="{SystemNo}"/>
+									
+									<Label text="{i18n>model.parts.part.client.text}"/>
+									<Text text="{SAP_CLIENT}"/>
+									
+									<Label text="{i18n>model.parts.part.DefUtype.text}"/>
+									<Text text="{DefUtype}"/>
+									
+									<Label text="{i18n>model.parts.part.Productive.text}"/>
+									<Text text="{Productive}"/>
+									
+									<Label text="{i18n>model.parts.part.MeasNo.text}"/>
+									<Text text="{MeasNo}"/>
+									
+									<Label text="{i18n>model.parts.part.Executor.text}"/>
+									<Text text="{Executor}"/>
+									
+									<Label text="{i18n>model.parts.part.Date.text}"/>
+									<Text text="{Date}"/>
+									
+									<Label text="{i18n>model.parts.part.Excluded.text}"/>
+									<Text text="{Excluded}"/>
+									
+								</fo:content>
+							</fo:SimpleForm>
+						</Panel>
+						
+						<Panel headerText="{i18n>xml.headerText}" class="column2">
+								<Button text="{i18n>xml.button.top}" icon="sap-icon://sys-first-page" class="navButton"/>
+								<Button text="{i18n>xml.button.up}" icon="sap-icon://sys-prev-page" class="navButton"/>
+								<Button text="{i18n>xml.button.down}" icon="sap-icon://sys-next-page" class="navButton"/>
+								<Button text="{i18n>xml.button.bottom}" icon="sap-icon://sys-last-page" class="navButton"/>
+								<Button text="{i18n>xml.button.goto}" icon="sap-icon://sales-document" class="navButton"/>
+
+							<ce:CodeEditor id="propertiesCE" type="xml" class="wattEditorContainer"/>
+												 
+							<layoutData>
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						 </Panel>
+						 
+					</items>			 
+				</FlexBox>
+			</l:content>
+		</l:VerticalLayout>
 </mvc:View>

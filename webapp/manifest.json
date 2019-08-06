@@ -65,6 +65,9 @@
 				"settings": {},
 				"uri": "./model/example.xml.json",
 				"preload": true
+			},
+			"userXML": {
+				"type": "sap.ui.model.xml.XMLModel"
 			}
 		},
 		"resources": {

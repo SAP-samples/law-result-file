@@ -1,5 +1,4 @@
 <mvc:View controllerName="glacelx.glacelx.controller.Part"
-
 	xmlns:c="sap.ui.core"
 	xmlns:ce="sap.ui.codeeditor"
 	xmlns:mvc="sap.ui.core.mvc" 
@@ -10,7 +9,6 @@
 	xmlns:smartForm="sap.ui.comp.smartform"
 	xmlns:smartField="sap.ui.comp.smartfield"
 	xmlns:html="http://www.w3.org/1999/xhtml">
-
 	<App>
 		<pages>
 			<Page title="{i18n>part.page.titlePlaceHolder}" showNavButton="true" navButtonPress="backToSystem" id="resultPage">
@@ -20,29 +18,18 @@
 						headerBackgroundDesign="Transparent"
 						class="sapUiResponsiveContentPadding"
 						select=".onTabSelect"
-						expandable="false"
-						>
-						<!-- selectedKey="{view>/selectedTabKey}" binding="{Resume}" -->
+						expandable="false">
 						<items>
-							
 							<IconTabFilter id="resultsTab" text="{i18n>part.tab.Results.text}" key="Results">
 								<mvc:XMLView viewName="glacelx.glacelx.view.part.Results"></mvc:XMLView>
-								<!-- <Text text="Bloed"></Text> -->
 							</IconTabFilter>
-							
 							<IconTabFilter id="propertiesTab" text="{i18n>part.tab.Properties.text}" key="Properties">
 								<mvc:XMLView viewName="glacelx.glacelx.view.part.Properties"></mvc:XMLView>
 							</IconTabFilter>
-							
-							<!-- <IconTabFilter id="demoTab" text="(UI)" key="ui">
-								<<Text text="Placeholder" />
-							</IconTabFilter> -->
-							
 						</items>
 					</IconTabBar>
 				</content>
 			</Page>
 		</pages>
 	</App>
-
 </mvc:View>

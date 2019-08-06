@@ -17,7 +17,6 @@ sap.ui.define([
 		onUseExampleFile: function () {
 			var dataModel = this.getOwnerComponent().getModel("lawFile");
 			this.getView().setModel(dataModel, "lawFile");
-
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("elements");
 		},
@@ -25,54 +24,38 @@ sap.ui.define([
 		handleSelectXMLFile: function (oEvent) {
 			if (oEvent.getParameter("files") && oEvent.getParameter("files")[0]) {
 				this._oFile = oEvent.getParameter("files")[0];
-			} else {
-				// this._oView.byId("btn_ParseXMLFile").setEnabled(!this.bTrue);
 			}
 		},
 
 		handleParseXMLFile: function (oEvent) {
-			// fix; timing issue when reloading model
-
 			var that = this;
 			if (this._oFile && window.FileReader) {
 				var oFileReader = new FileReader();
 				var _oModel = this.getOwnerComponent().getModel("userXML");
-
 				oFileReader.onload = function (oEvent) {
 					var sRawXML = oEvent.target.result;
 
 					_oModel.setXML(sRawXML);
 					that._processXML(_oModel.getData());
 				};
-
 				oFileReader.readAsText(this._oFile);
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.navTo("elements");
 
 			}
-			// this._oView.byId("toolPage").setBusy(!this.bTrue);
 		},
 
 		_processXML: function (head) {
-			// startup process:
-			// spawn initial "quick" model
-			// run mapping calculations in web worker
-			// once the mapped model is done make it available and enable search/navigation
-
-			this.iOldTime = new Date().getTime();
 			this._processXMLElement(head, 0, -2);
-			this.getTimer();
 		},
 
 		_processXMLElement: function (head, lastPos, lastDepth) {
-
 			// leaf node
 			if (head.children && head.children.length === 0) {
 				head._tagLineStart = lastPos + 1;
 				head._tagLineEnd = head._tagLineStart;
 				head._tagClass = "leaf";
-				head._tagDepth = lastDepth + 1; // we do not want to return this change
-
+				head._tagDepth = lastDepth + 1; // we do not want to return this change				
 				if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Header") {
 					head._tagMetaBlockAssociationName = "Header";
 					head._tagMetaBlockAssociationHook = head.parentNode._tagMetaBlockAssociationHook;
@@ -85,8 +68,7 @@ sap.ui.define([
 				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Results") {
 					head._tagMetaBlockAssociationName = "Results";
 					head._tagMetaBlockAssociationHook = head.parentNode._tagMetaBlockAssociationHook;
-				} else {}
-
+				}
 				return {
 					lPos: head._tagLineStart,
 					lDepth: lastDepth
@@ -95,11 +77,9 @@ sap.ui.define([
 			// parent node
 			else if (head.children && head.children.length > 0) {
 				// MISSING: _tagLineEnd
-
 				head._tagLineStart = lastPos + 1;
 				head._tagDepth = lastDepth + 1;
 				head._tagClass = "parent";
-
 				// identify Measurement block
 				if (head.tagName === "Measurement" && head.parentNode.parentNode === null) {
 					head._tagMetaBlockAssociationName = "Measurement";
@@ -165,14 +145,7 @@ sap.ui.define([
 				_oCallValues.lDepth = lastDepth;
 
 				return _oCallValues;
-			} else {}
-
-		},
-
-		getTimer: function () {
-			this.new_Time = new Date().getTime();
-			var seconds_passed = this.new_Time - this.iOldTime;
+			}
 		}
-
 	});
 });

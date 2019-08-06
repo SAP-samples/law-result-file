@@ -25,25 +25,19 @@
 									<ToolbarSpacer/>
 									<SearchField width="15rem"/>
 								</content>
-							</Toolbar>
-							<f:GridList id="systemList" class="sapUxAPObjectPageSubSectionAlignContent"
-									items="{ path: 'lawFile>/Systems', 
-										 sorter: { path: 'InstallationNo', descending: false, group: true }
-										}" 
-									growing="true" growingThreshold="25" growingScrollToLoad="true" updateFinished=".onSystemUpdate">
-								<f:customLayout> 
-									<!-- Default for browser: L will be used for number of columns; 8 was a good value; alternatively use boxMinWidth="10rem"-->
-									<!-- <grid:GridBoxLayout boxesPerRowConfig="XL10 L8 M4 S1" /> -->
+							</Toolbar>							
+							<f:GridList id="systemList" growing="true" class="sapUxAPObjectPageSubSectionAlignContent"
+								items="{ path: '/Systems/System', sorter: { path: 'InstallationNo', descending: false, group: true } }" growingThreshold="25"
+								growingScrollToLoad="true" updateFinished=".onSystemUpdate">
+                                <f:customLayout>
 									<grid:GridBoxLayout boxMinWidth="10rem"  />
 								</f:customLayout>
-										  <!--  class="sapContrast FFF2 fixGrid_li" -->
-								<CustomListItem class="sapContrast noBreak"  type="Navigation" press="onSystemPressed">
-									<HBox > <!-- no line break - alignItems="Start" alignContent="Start"> -->
+								<CustomListItem class="sapContrast noBreak" type="Navigation" press="onSystemPressed">
+									<HBox>
 										<c:Icon src="sap-icon://it-system" size="2.3rem" class="sapUiTinyMargin"/>
 										<VBox class="sapUiTinyMargin">
-											<Title text="{lawFile>SAP_SID}" wrapping="true"/>
-											<Label text="{= parseFloat(${lawFile>SystemNo}) }" wrapping="true"/>
-											<!-- <Text text="path: 'lawFile>SystemNo', formatter: '.setStyle'" /> -->
+											<Title text="{SAP_SID}" wrapping="true"/>
+											<Label text="{= parseFloat(${SystemNo}) }" wrapping="true"/>
 										</VBox>
 									</HBox>
 								</CustomListItem>
