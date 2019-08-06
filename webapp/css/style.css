@@ -1,29 +1,19 @@
-/* Enter your custom styles here mmmmabx */
+/* Enter your custom styles here  */
 
 /* Grid control doesn't work properly unless it is placed on a SplitPage; 
 After adding these lines  the issue is fixed */
-
-/* test 1 */
-
-/* copy from .sapFGridListDefault */
-/* xxx .sapMListShowSeparatorsAll { 
-	display: grid;
-	grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));
-	grid-gap:0.5rem 0.5rem;
-} */
-
-/* .sapFGridListGroup>.sapMLIB.sapMGHLI{background:none;border:none;padding-top:0.25rem;grid-column:1 / -1;width:100%} */
-/* xxx .sapMGHLI {
+.lineBreak {
 	grid-column-start: 1;
-	grid-column-end: -1;
-	background-color: LightBlue;
-} */
-/* xxx .sapMListUl>.sapMLIB.sapMGHLI {
-	height: 2.2rem;
-} */
-/* xxx .sapMGHLI:before {
-  content: "Installation \00a0 ";
-} */
+	grid-column-end: -1;  
+}
+.noBreak {
+	grid-column-start: auto;
+	grid-column-end: auto;
+}
+
+/* .sapMGHLI:before {
+  content: "Inst.No. \00a0 ";
+}  */
 
 /* Lines for equal column width of FlexBox */
 .equalColumns .columns {

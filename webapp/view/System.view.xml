@@ -1,14 +1,16 @@
 <mvc:View controllerName="glacelx.glacelx.controller.System"
+	xmlns="sap.m" 
 	xmlns:c="sap.ui.core"
 	xmlns:ce="sap.ui.codeeditor"
 	xmlns:mvc="sap.ui.core.mvc" 
-	xmlns="sap.m" 
 	xmlns:fo="sap.ui.layout.form"
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.f"
 	xmlns:smartForm="sap.ui.comp.smartform"
-xmlns:smartField="sap.ui.comp.smartfield"
-	xmlns:html="http://www.w3.org/1999/xhtml">
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:grid="sap.ui.layout.cssgrid"
+	>
 	<App>
 		<pages>
 			<Page title="{parts:['i18n>system.page.title', 'lawFile>SAP_SID'], formatter: 'jQuery.sap.formatMessage'}" 
@@ -94,8 +96,13 @@ xmlns:smartField="sap.ui.comp.smartfield"
 													path: 'SystemNo', 
 													operator: 'EQ',
 													value1: 'placeholder' }] 
-											}">
-											<CustomListItem class="sapContrast fixGrid_li" type="Navigation" press="onPartPressed">
+											}" >
+											
+											<f:customLayout> 
+												<grid:GridBoxLayout boxMinWidth="10rem"  />
+											</f:customLayout>
+											
+											<CustomListItem class="sapContrast noBreak" type="Navigation" press="onPartPressed">
 												<HBox>
 													<c:Icon src="sap-icon://it-instance" size="2.3rem" class="sapUiTinyMargin"/>	
 													<VBox class="sapUiTinyMargin">

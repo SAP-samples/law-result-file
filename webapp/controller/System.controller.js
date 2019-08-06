@@ -78,13 +78,7 @@ sap.ui.define([
 			}
 		}, 
 		
-		onAfterRendering: function() {
-			/* debugger;
-			var filter1 = this.oView.byId("partsList").mBindingInfos.items.filters;
-			var aFilter = [];
-			aFilter.push(new Filter("SystemNo", FilterOperator.EQ, "000000000850176859"));
-			var oBinding = this.oView.byId("partsList").getBinding("items");
-			oBinding.filter(aFilter);	*/
+   		onAfterRendering: function() {
 		},
 		
 		onSystemList: function () {

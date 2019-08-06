@@ -13,7 +13,6 @@ sap.ui.define([
 		 * @memberOf glacelx.glacelx.view.Systems
 		 */
 		onInit: function () {
-
 		},
 		
 		onToAll: function () {
@@ -51,33 +50,30 @@ sap.ui.define([
 				SystNo: id
 			}); */
    		},
-   		
-   		onAfterRendering: function() {
-			var oSysApp = this.getAppObject(),
-				ref = oSysApp.getDomRef() && oSysApp.getDomRef().parentNode;
-			// set all parent elements to 100% height, this should be done by app developer, but just in case
-			if (ref && !ref._sapUI5HeightFixed) {
-				ref._sapUI5HeightFixed = true;
-				while (ref && ref !== document.documentElement) {
-					var $ref = jQuery(ref);
-					if ($ref.attr("data-sap-ui-root-content")) { // Shell as parent does this already
-						break;
-					}
-					if (!ref.style.height) {
-						ref.style.height = "100%";
-					}
-					ref = ref.parentNode;
-				}
-			}
-		},
-   		
+
    		getAppObject : function() {
 			var result = this.byId("systemListApp");
 			if (!result) {
 				Log.error("systemListApp object can't be found");
 			}
 			return result;
-		}
+		},
+		
+   		onAfterRendering: function() {
+   			var ul = this.getView().byId("systemList");
+   			var items = ul.getItems();
+   			for (var index in items) {
+   				items[index].addStyleClass("lineBreak");
+   			}
+		},
+   		
+   		onSystemUpdate: function() {
+   			var ul = this.getView().byId("systemList");
+   			var items = ul.getItems();
+   			for (var index in items) {
+   				items[index].addStyleClass("lineBreak");
+   			}
+		},
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered

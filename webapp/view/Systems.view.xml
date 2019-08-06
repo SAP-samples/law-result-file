@@ -1,78 +1,57 @@
-<mvc:View controllerName="glacelx.glacelx.controller.Systems"
-	
-	xmlns:mvc="sap.ui.core.mvc" 
+<mvc:View controllerName="glacelx.glacelx.controller.Systems" 
+	xmlns="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
-	xmlns:ce="sap.ui.codeeditor"
-	xmlns:l="sap.ui.layout" 
+	xmlns:ce="sap.ui.codeeditor" 
+	xmlns:l="sap.ui.layout"
 	xmlns:tnt="sap.tnt" 
-	xmlns:u="sap.ui.unified"
-	xmlns:uit="sap.ui.table"
-	xmlns:f="sap.f"
-	xmlns:c="sap.ui.core"
-	xmlns="sap.m"
-
+	xmlns:u="sap.ui.unified" 
+	xmlns:uit="sap.ui.table" 
+	xmlns:f="sap.f" 
+	xmlns:c="sap.ui.core" 
+	xmlns:grid="sap.ui.layout.cssgrid"
 	displayBlock="true">
-		
 	<App id="systemListApp">
 		<pages>
 			<Page id="SystemTiles" title="{i18n>model.systems.text}" showNavButton="true" navButtonPress="onToAll">
 				<content>
-						<Panel id="panelForGridList2">
-							<!-- <headerToolbar>
-								<Toolbar height="3rem">
-									<Title text="System list"/>
-								</Toolbar>
-							</headerToolbar>-->
-							<content>
-								<Toolbar>
-									<content>
-										<Title text="{i18n>systems.syslist.title}" />
-										<ToolbarSpacer/>
-										<SearchField width="15rem"/>
-									</content>
-								</Toolbar>
-								<f:GridList	id="systemList" 
-										items="{
-											path: 'lawFile>/Systems', 
-											sorter: {
-												path: 'InstallationNo',
-												descending: false,
-												group: true
-													}
-											}" 
-										growing="true"
-										growingThreshold="25"
-										growingScrollToLoad="true"
-										>
-										<CustomListItem class="sapContrast fixGrid_li" type="Navigation" press="onSystemPressed">
-											<HBox>
-												<c:Icon src="sap-icon://it-system" size="2.3rem" class="sapUiTinyMargin"/>	
-													<VBox class="sapUiTinyMargin">
-														<Title text="{lawFile>SAP_SID}" wrapping="true" />
-														<Label text="{= parseFloat(${lawFile>SystemNo}) }" wrapping="true" />
-													</VBox>
-											</HBox>
-											<!-- <customData>
-												<c:CustomData key="SystemNo" value="{lawFile>SystemNo}"/>
-											</customData> -->
-										</CustomListItem>
-								</f:GridList>
-							</content>
-						</Panel>
-						<!-- <Panel id="selectedPart" headerText="Selected Part" width="auto">
-							 <l:Grid defaultSpan="L3 M6 S12" containerQuery="true">
-						        <Label text="Sys No:" />
-						        <Input value="{lawFile>SystemNo}" />
-						        
-						        <Label text="SAP ID:" />
-						        <Input value="{lawFile>SAP_SID}" />
-							</l:Grid>
-						</Panel> -->
-
-					</content>
+					<!-- <Text text="{path: 'lawFile>/Systems', formatter: '.formatter.setStyle'}" /> -->
+					<Panel id="panelForGridList2">
+						<content>
+							<Toolbar>
+								<content>
+									<Title text="{i18n>systems.syslist.title}"/>
+									<Button text="{i18n>systems.button.lawCons.text}" press="onConsButton" class="sapContrast" />
+									<ToolbarSpacer/>
+									<SearchField width="15rem"/>
+								</content>
+							</Toolbar>
+							<f:GridList id="systemList" class="sapUxAPObjectPageSubSectionAlignContent"
+									items="{ path: 'lawFile>/Systems', 
+										 sorter: { path: 'InstallationNo', descending: false, group: true }
+										}" 
+									growing="true" growingThreshold="25" growingScrollToLoad="true" updateFinished=".onSystemUpdate">
+								<f:customLayout> 
+									<!-- Default for browser: L will be used for number of columns; 8 was a good value; alternatively use boxMinWidth="10rem"-->
+									<!-- <grid:GridBoxLayout boxesPerRowConfig="XL10 L8 M4 S1" /> -->
+									<grid:GridBoxLayout boxMinWidth="10rem"  />
+								</f:customLayout>
+										  <!--  class="sapContrast FFF2 fixGrid_li" -->
+								<CustomListItem class="sapContrast noBreak"  type="Navigation" press="onSystemPressed">
+									<HBox > <!-- no line break - alignItems="Start" alignContent="Start"> -->
+										<c:Icon src="sap-icon://it-system" size="2.3rem" class="sapUiTinyMargin"/>
+										<VBox class="sapUiTinyMargin">
+											<Title text="{lawFile>SAP_SID}" wrapping="true"/>
+											<Label text="{= parseFloat(${lawFile>SystemNo}) }" wrapping="true"/>
+											<!-- <Text text="path: 'lawFile>SystemNo', formatter: '.setStyle'" /> -->
+										</VBox>
+									</HBox>
+								</CustomListItem>
+							</f:GridList>
+						</content>
+					</Panel>
+				</content>
 			</Page>
 		</pages>
 	</App>
-	
 </mvc:View>
-

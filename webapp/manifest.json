@@ -127,39 +127,40 @@
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewId": "intro",
-					"viewName": "Intro"
+					"viewName": "Intro",
+					"viewLevel": 1
 				},
 				"Elements": {
 					"viewType": "XML",
 					"viewId": "elements",
 					"viewName": "Elements",
 					"transition": "slide",
-					"viewLevel": 1
+					"viewLevel": 2
 				},
 				"Systems": {
 					"viewType": "XML",
 					"viewId": "systems",
 					"viewName": "Systems",
-					"viewLevel": 2,
+					"viewLevel": 3,
 					"transition": "slide"
 				},
 				"System": {
 					"viewType": "XML",
 					"viewId": "System",
 					"viewName": "System",
-					"viewLevel": 3
+					"viewLevel": 4
 				},
 				"Part": {
 					"viewType": "XML",
 					"viewName": "Part",
 					"viewId": "part",
-					"viewLevel": 4
+					"viewLevel": 5
 				},
 				"Results": {
 					"viewType": "XML",
 					"viewName": "Results",
 					"viewId": "results",
-					"viewLevel": 4
+					"viewLevel": 5
 				},
 				"Properties": {
 					"viewType": "XML",
