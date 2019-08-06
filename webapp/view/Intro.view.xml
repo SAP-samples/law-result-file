@@ -1,42 +1,29 @@
-<mvc:View controllerName="glacelx.glacelx.controller.Intro" 
-	xmlns:mvc="sap.ui.core.mvc" 
-	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
-	xmlns:ce="sap.ui.codeeditor"
-	xmlns:l="sap.ui.layout" 
-	xmlns:tnt="sap.tnt" 
-	xmlns:u="sap.ui.unified"
-	xmlns:uit="sap.ui.table"
-	xmlns:f="sap.f"
-	xmlns:c="sap.ui.core"
-	xmlns="sap.m"
-
+<mvc:View controllerName="glacelx.glacelx.controller.Intro" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:ce="sap.ui.codeeditor" xmlns:l="sap.ui.layout"
+	xmlns:tnt="sap.tnt" xmlns:u="sap.ui.unified" xmlns:uit="sap.ui.table" xmlns:f="sap.f" xmlns:c="sap.ui.core" xmlns="sap.m"
 	displayBlock="true">
-
 	<Shell id="shell">
 		<App id="IntroView">
 			<pages>
 				<Page id="page" title="{i18n>intro.page.title}">
 					<content>
-						<FlexBox class="columns" id="blub">
+						<FlexBox class="columns">
 							<items>
-								<Panel id="sampleFile"  headerText="{i18n>intro.sampleSection.headerText}"  width="100%" class="elxPaddingRight" >
-									<Button text="{i18n>intro.sampleSection.button.start.text}" press="onUseExampleFile"/>			
+								<Panel id="sampleFile" headerText="{i18n>intro.sampleSection.headerText}" width="100%" class="elxPaddingRight">
+									<Button text="{i18n>intro.sampleSection.button.start.text}" press="onUseExampleFile"/>
 								</Panel>
-								
-								<Panel id="uploadSection"  headerText="{i18n>intro.uploadSection.panel.headerText}"  width="100%">
-									<u:FileUploader id="fileSelector" name="lawFileUpload" buttonText="{i18n>intro.uploadSection.button.filePicker.text}" uploadUrl="upload/" 
-										tooltip="{i18n>intro.uploadSection.button.filePicker.toolTip}"
-										change="handleSelectXMLFile" fileType="xml"/>
-									<Button text="{i18n>intro.uploadSection.button.reload.text}" press="handleSelectXMLFile">
-										<dragDropConfig></dragDropConfig><!-- sap.ui.core.dnd.DragDropBase -->
+								<Panel id="uploadSection" headerText="{i18n>intro.uploadSection.panel.headerText}" width="100%">
+									<u:FileUploader id="fileSelector" name="lawFileUpload" buttonText="{i18n>intro.uploadSection.button.filePicker.text}" uploadUrl="upload/"
+										tooltip="{i18n>intro.uploadSection.button.filePicker.toolTip}" change="handleSelectXMLFile" fileType="xml"/>
+									<Button text="{i18n>intro.uploadSection.button.reload.text}" press="handleParseXMLFile">
+										<dragDropConfig></dragDropConfig>
 									</Button>
 								</Panel>
 							</items>
 						</FlexBox>
-						
-						<Panel id="howTo"  headerText="{i18n>intro.panel_processDescription.headerText}"  width="100%">
+						<Panel id="howTo" headerText="{i18n>intro.panel_processDescription.headerText}" width="100%">
 							<content>
-								<FormattedText id="text1" htmlText="{i18n>intro.description.Formated.text}" />
+								<FormattedText id="text1" htmlText="{i18n>intro.description.Formated.text}"/>
 							</content>
 						</Panel>
 					</content>
