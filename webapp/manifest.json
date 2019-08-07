@@ -60,14 +60,9 @@
 					"bundleName": "glacelx.glacelx.i18n.i18n"
 				}
 			},
-			"lawFile": {
-				"type": "sap.ui.model.json.JSONModel",
-				"settings": {},
-				"uri": "./model/example.xml.json",
-				"preload": true
-			},
 			"userXML": {
-				"type": "sap.ui.model.xml.XMLModel"
+				"type": "sap.ui.model.xml.XMLModel",
+				"uri": "./model/example.xml"
 			}
 		},
 		"resources": {

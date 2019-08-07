@@ -33,10 +33,6 @@ After adding these lines  the issue is fixed */
     bottom: 0px; /* Footer Height */;
 }
 
-.elxPaddingRight {
-	padding-right: 3rem;
-}
-
 .ace_editor {
 	min-height: 300px;
 }

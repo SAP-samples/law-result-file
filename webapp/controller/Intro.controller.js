@@ -15,41 +15,42 @@ sap.ui.define([
 		},
 
 		onUseExampleFile: function () {
-			var dataModel = this.getOwnerComponent().getModel("lawFile");
-			this.getView().setModel(dataModel, "lawFile");
+			// load sample XML file and process it
+			var _oModel = this.getOwnerComponent().getModel("userXML");			
+			this._processXML(_oModel.getData());
+
+			// loading and processing of sample XML file is already done in onInit
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("elements");
 		},
 
-		handleSelectXMLFile: function (oEvent) {
+		handleSelectXMLFile: function (oEvent) {				
+			// select file 
 			if (oEvent.getParameter("files") && oEvent.getParameter("files")[0]) {
-				this._oFile = oEvent.getParameter("files")[0];
+				this._oFile = oEvent.getParameter("files")[0];					
 			}
-		},
 
-		handleParseXMLFile: function (oEvent) {
+			// upload file (previously handleParseXMLFile: function (oEvent) {
 			var that = this;
 			if (this._oFile && window.FileReader) {
 				var oFileReader = new FileReader();
 				var _oModel = this.getOwnerComponent().getModel("userXML");
-				oFileReader.onload = function (oEvent) {
-					var sRawXML = oEvent.target.result;
-
+				oFileReader.onload = function (loadEvent) {					
+					var sRawXML = loadEvent.target.result;					
 					_oModel.setXML(sRawXML);
 					that._processXML(_oModel.getData());
-				};
+				};				
 				oFileReader.readAsText(this._oFile);
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.navTo("elements");
-
-			}
+			}			
 		},
 
 		_processXML: function (head) {
 			this._processXMLElement(head, 0, -2);
 		},
 
-		_processXMLElement: function (head, lastPos, lastDepth) {
+		_processXMLElement: function (head, lastPos, lastDepth) {			
 			// leaf node
 			if (head.children && head.children.length === 0) {
 				head._tagLineStart = lastPos + 1;
