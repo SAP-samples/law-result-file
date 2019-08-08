@@ -18,6 +18,7 @@ sap.ui.define([
 			this.oRoute = this.oRouter.getRoute("system");
 			this._oModel = this.getOwnerComponent().getModel("userXML");
 			this.oView = this.getView();
+			this.iSystemsCount = this._oModel.getData().children[0]._tagMeasurementSystemsHook.childElementCount;
 			this.oView.setModel(this._oModel);
 			this.oRoute.attachMatched(this._onRouteMatched, this);
 		},
@@ -35,7 +36,7 @@ sap.ui.define([
 			var _rawSystemData = _mainModelRaw._tagMeasurementSystemsHook.children[this._sysIndex];
 
 			// bind system context to page (this is needed for displaying the title)
-			var _oPage = this.oView.byId("selectedPart");
+			var _oPage = this.oView.byId("SystemView");
 			_oPage.bindElement(this._sBindingPath);
 			
 			// set context binding for dataForm
@@ -78,7 +79,7 @@ sap.ui.define([
 		
 		_onBindingChange : function (oEvent) {
 			// No data for the binding
-			if (!this.getView().byId("selectedPart").mElementBindingContexts) {
+			if (!this.getView().byId("SystemView").mElementBindingContexts) {
 				// this.getRouter().getTargets().display("notFound");
 				Log.error("System number can`t be found");
 			}
@@ -111,9 +112,11 @@ sap.ui.define([
 
 		navToNextSystem: function() {
 			var _iSysTarget = parseInt(this._sysIndex) + 1;
-			this.oRouter.navTo("system", {
+			if (_iSysTarget <= (this.iSystemsCount - 1)) {
+				this.oRouter.navTo("system", {
 				sysIndex: _iSysTarget
-			});
+				});
+			}
 		},
 
 		navToPrevSystem: function() {
@@ -123,6 +126,13 @@ sap.ui.define([
 					sysIndex: _iSysTarget
 				});
 			}
+		},
+		
+		navToLastSystem: function() {
+			var _iSysTarget = this.iSystemsCount - 1;
+			this.oRouter.navTo("system", {
+				sysIndex: _iSysTarget
+			});
 		}
 	});
 });

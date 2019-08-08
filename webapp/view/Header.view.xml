@@ -13,7 +13,7 @@
 	<App>
 		<pages>
 			<Page title="{i18n>header.page.title}" 
-					showNavButton="true" navButtonPress="onElements" id="selectedPart">
+					showNavButton="true" navButtonPress="onElements" id="headerPage">
 				<content> 
 					<l:VerticalLayout class="sapUiContentPadding equalColumns" width="100%">
 						<l:content>
