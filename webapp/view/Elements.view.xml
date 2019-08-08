@@ -14,7 +14,8 @@
 							id="tileHeader"
 							icon="sap-icon://letter"
 							numberUnit="{i18n>elements.tiles.header.numberUnit}" 
-							title="{i18n>elements.tiles.header.title}" />
+							title="{i18n>elements.tiles.header.title}"
+							press="onToHeader"/>
 						<StandardTile 
 							id="tileSystems"
 							icon="sap-icon://it-system" 

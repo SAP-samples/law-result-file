@@ -38,6 +38,11 @@ sap.ui.define([
 			}
 		},
 
+		onToHeader: function() {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("header");
+		},
+
 		onToIntro: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("intro");

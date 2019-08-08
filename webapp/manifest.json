@@ -89,6 +89,12 @@
 					"target": "Intro"
 				},
 				{
+					"name": "header",
+					"pattern": "Header",
+					"greedy": false,
+					"target": "Header"
+				},
+				{
 					"name": "elements",
 					"pattern": "Elements",
 					"greedy": false,
@@ -134,6 +140,13 @@
 					"viewName": "Elements",
 					"transition": "slide",
 					"viewLevel": 2
+				},
+				"Header": {
+					"viewType": "XML",
+					"viewId": "header",
+					"viewName": "Header",
+					"transition": "slide",
+					"viewLevel": 3
 				},
 				"Systems": {
 					"viewType": "XML",
