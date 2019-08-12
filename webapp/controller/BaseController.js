@@ -57,6 +57,8 @@ sap.ui.define([
 
 		buildEditorContext: function(head, oCodeEditor) {
 			var _sXMAS = this.__convertModelToString(head);
+			// remove last line break (otherwise we are left with an empty last line)
+			_sXMAS = _sXMAS.slice(0, -1);
 			
 			// WARNING: This is a direct call to the ACE settings and might break
 			// if the ACE interface changes. Reference:
@@ -67,8 +69,19 @@ sap.ui.define([
 			oCodeEditor.setValue(_sXMAS);
 			oCodeEditor.setEditable(false);
 			oCodeEditor.setType("xml");
-
-			// set global model
 		},
+		
+		_getCorrespondingSystem: function(iPartIndex) {
+			var _iSysNo = this.getOwnerComponent().getModel("userXML").getProperty("/Parts/Part/" + iPartIndex + "/SystemNo");
+			var systems = this.oModel.getData().children[0]._tagMeasurementSystemsHook.children;
+			for (var i = 0; i<systems.length; ++i) {
+				if (systems[i].children[0].textContent === _iSysNo) {
+					return i;
+				}
+			}
+			
+			// if no system was found return -1
+			return -1;
+		}
 	});
 });
