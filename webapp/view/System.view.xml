@@ -97,7 +97,7 @@
 													growing="true" 
 													growingThreshold="20" 
 													growingScrollToLoad="true"
-													noDataText="No Components">
+													noDataText="{i18n>system.compSection.table.noData.text}">
 													<columns>
 														<Column>
 															<Text text="{i18n>model.systems.Components.Name.text}"/>
