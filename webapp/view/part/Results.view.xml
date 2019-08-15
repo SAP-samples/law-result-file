@@ -26,9 +26,34 @@
 											labelSpanS="5"	
 											singleContainerFullSize="false" >
 								<fo:content>
-									<Label text="{i18n>result.placeholder.text}"/>
-									<Text text="{i18n>result.placeholder.value}"/>
-									
+									<Table id="resultTable" 
+										inset="false" 										
+										growingScrollToLoad="true"
+										noDataText="{i18n>result.table.noData.text}">
+										<columns>
+											<Column>
+												<Text text="{i18n>model.result.col.GenericId.text}"/>
+											</Column>
+											<Column>
+												<Text text="{i18n>model.result.col.Unit.text}"/>
+											</Column>
+											<Column>
+												<Text text="{i18n>model.result.col.PerStart.text}"/>
+											</Column>
+											<Column>
+												<Text text="{i18n>model.result.col.PerEnd.text}"/>
+											</Column>
+											<Column>
+												<Text text="{i18n>model.result.col.Attr1.text}"/>
+											</Column>
+											<Column>
+												<Text text="{i18n>model.result.col.Attr2.text}"/>
+											</Column>
+											<Column>
+												<Text text="{i18n>model.result.col.Counter.text}"/>
+											</Column>
+										</columns>
+									</Table>									
 								</fo:content>
 							</fo:SimpleForm>
 						</Panel>
