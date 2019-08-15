@@ -71,10 +71,10 @@
 						</Panel>
 						
 						<Panel headerText="{i18n>xml.headerText}" class="column2">
-								<Button text="{i18n>xml.button.top}" icon="sap-icon://sys-first-page" class="navButton"/>
-								<Button text="{i18n>xml.button.up}" icon="sap-icon://sys-prev-page" class="navButton"/>
-								<Button text="{i18n>xml.button.down}" icon="sap-icon://sys-next-page" class="navButton"/>
-								<Button text="{i18n>xml.button.bottom}" icon="sap-icon://sys-last-page" class="navButton"/>
+								<Button text="{i18n>xml.button.top}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
+								<Button text="{i18n>xml.button.up}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>
+								<Button text="{i18n>xml.button.down}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
+								<Button text="{i18n>xml.button.bottom}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
 								<Button text="{i18n>xml.button.goto}" icon="sap-icon://sales-document" class="navButton"/>
 
 							<ce:CodeEditor id="propertiesCE" type="xml" class="wattEditorContainer"/>

@@ -53,7 +53,7 @@ sap.ui.define([
 			var iSysText = oBundle.getText("model.systems.System.text");
 			var iClientText = oBundle.getText("part.page.client.text");
 			var iPartText = oBundle.getText("part.page.title");
-
+			
 			if (_oSys) {
 				if (_iSAP_SID) {
 					sysLabel = iSysText + " " + _iSAP_SID;
