@@ -9,6 +9,7 @@ sap.ui.define([
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRoute = this.oRouter.getRoute("elements");
 			this.oRoute.attachMatched(this._onRouteMatched, this);
+			this._checkInitialModel();
 		},
 
 		_onRouteMatched: function () {
@@ -38,7 +39,7 @@ sap.ui.define([
 			}
 		},
 
-		onToHeader: function() {
+		onToHeader: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("header");
 		},

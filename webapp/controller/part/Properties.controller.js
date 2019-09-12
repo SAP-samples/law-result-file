@@ -10,6 +10,7 @@ sap.ui.define([
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.route = this.oRouter.getRoute("part");
 			this.oView = this.getView();
+			this._checkInitialModel();
 			this.oModel = this.getOwnerComponent().getModel("userXML");
 			this.route.attachMatched(this._onRouteMatched, this);
 			this.iPartsCount = this.oModel.getData().children[0]._tagMeasurementPartsHook.childElementCount;

@@ -16,33 +16,33 @@ sap.ui.define([
 			var route = oRouter.getRoute("part");
 			route.attachMatched(this._onRouteMatched, this);
 			this.oView = this.getView();
+			this._checkInitialModel();
 			this.oModel = this.getOwnerComponent().getModel("userXML");
-			
 			var tabs = this.getView().byId("iconTabBar");
 		},
-		
+
 		valueCheck: function (oEvent) {
 			var oArgs = oEvent.getParameter("arguments");
 		},
 
-		_onRouteMatched : function (oEvent) {
+		_onRouteMatched: function (oEvent) {
 			var oArgs = oEvent.getParameter("arguments");
-			
+
 			// This variable must have the name 'path' as it is checked in ManagedObject-dbg.js!! 
 			// model name will be checked, everything before '>''
 			// var path = "lawFile>/Systems(" + parseInt(oArgs.index) + ")";
-			
+
 			// create binding for System Details
 			var sysIdx = oArgs.sysIndex;
 			var partIdx = oArgs.partIndex;
 
 			// bind part properties
-			var sPath="/Parts/" + partIdx;
+			var sPath = "/Parts/" + partIdx;
 			var oForm = this.oView.byId("selectedResult");
-			oForm.bindElement( { 
-				path: sPath, 
-				model: "lawFile", 
-				events : {
+			oForm.bindElement({
+				path: sPath,
+				model: "lawFile",
+				events: {
 					change: this._onBindingChange.bind(this),
 					dataRequested: function (oEvent) {
 						this.oView.setBusy(true);
@@ -51,7 +51,7 @@ sap.ui.define([
 						this.oView.setBusy(false);
 					}
 				}
-			}); 
+			});
 			oForm = this.oView.byId("resultPage");
 
 			// navigate to part branch and extract data
@@ -62,13 +62,13 @@ sap.ui.define([
 			// build editor context
 			this.buildEditorContext(_rawSystemData, _oSysCodeEditor);
 		},
-		
-		_onBindingChange : function (oEvent) {
+
+		_onBindingChange: function (oEvent) {
 			// No data for the binding
 			if (!this.getView().byId("selectedResult").mElementBindingContexts) {
 				// this.getRouter().getTargets().display("notFound");
 				Log.error("System number can't be found");
 			}
-		} 
+		}
 	});
 });

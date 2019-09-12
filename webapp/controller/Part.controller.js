@@ -14,6 +14,7 @@ sap.ui.define([
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			var route = this.oRouter.getRoute("part");
+			this._checkInitialModel();
 			this.oModel = this.getOwnerComponent().getModel("userXML");
 			route.attachMatched(this._onRouteMatched, this);
 		},

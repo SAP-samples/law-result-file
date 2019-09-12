@@ -8,6 +8,7 @@ sap.ui.define([
 	return BaseController.extend("glacelx.glacelx.controller.Systems", {
 
 		onInit: function () {
+			this._checkInitialModel();
 			var _oModel = this.getOwnerComponent().getModel("userXML");
 			this.getView().setModel(_oModel);
 		},

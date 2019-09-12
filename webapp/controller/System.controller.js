@@ -12,10 +12,11 @@ sap.ui.define([
 
 	return BaseController.extend("glacelx.glacelx.controller.System", {
 		formatter: formatter,
-		
+
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRoute = this.oRouter.getRoute("system");
+			this._checkInitialModel();
 			this._oModel = this.getOwnerComponent().getModel("userXML");
 			this.oView = this.getView();
 			this.iSystemsCount = this._oModel.getData().children[0]._tagMeasurementSystemsHook.childElementCount;
@@ -23,7 +24,7 @@ sap.ui.define([
 			this.oRoute.attachMatched(this._onRouteMatched, this);
 		},
 
-		_onRouteMatched : function (oEvent) {
+		_onRouteMatched: function (oEvent) {
 			// check that model is not empty
 			// check if arguments are within range
 			// if any condition fails route back to start
@@ -38,14 +39,14 @@ sap.ui.define([
 			// bind system context to page (this is needed for displaying the title)
 			var _oPage = this.oView.byId("SystemView");
 			_oPage.bindElement(this._sBindingPath);
-			
+
 			// set context binding for dataForm
 			var _oAttributeForm = this.getView().byId("dataForm");
 			_oAttributeForm.bindElement(this._sBindingPath);
 			// set index field
 			var _indexField = this.oView.byId("systemIdx");
 			_indexField.setText(this._sysIndex);
-			
+
 			// set editor context
 			var _sysCodeEditor = this.byId("systemCodeEditor");
 			this.buildEditorContext(_rawSystemData, _sysCodeEditor);
@@ -66,9 +67,15 @@ sap.ui.define([
 			var sComponentBindingPath = this._sBindingPath + "/Components/Component";
 			var exportTableTemplate = new sap.m.ColumnListItem({
 				cells: [
-					new sap.m.Label({ text: "{Name}" }),
-					new sap.m.Label({ text: "{Release}" }),
-					new sap.m.Label({ text: "{PatchLevel}" })
+					new sap.m.Label({
+						text: "{Name}"
+					}),
+					new sap.m.Label({
+						text: "{Release}"
+					}),
+					new sap.m.Label({
+						text: "{PatchLevel}"
+					})
 				]
 			});
 			_exportTable.bindItems({
@@ -76,23 +83,23 @@ sap.ui.define([
 				template: exportTableTemplate
 			});
 		},
-		
-		_onBindingChange : function (oEvent) {
+
+		_onBindingChange: function (oEvent) {
 			// No data for the binding
 			if (!this.getView().byId("SystemView").mElementBindingContexts) {
 				// this.getRouter().getTargets().display("notFound");
 				Log.error("System number can`t be found");
 			}
 		},
-		
+
 		onSystemList: function () {
-			this.oRouter.navTo("systems"); 
+			this.oRouter.navTo("systems");
 		},
 
 		onPartPressed: function (oEvent) {
 			var oItem = oEvent.getSource();
 			var oContextPath = oItem.getBindingContextPath();
-			
+
 			// var sysIdx = oContext.getPath();
 			var iPartIdx = oContextPath.substr("/Parts/Part/".length);
 
@@ -104,22 +111,22 @@ sap.ui.define([
 			});
 		},
 
-		navToFirstSystem: function() {
+		navToFirstSystem: function () {
 			this.oRouter.navTo("system", {
 				sysIndex: 0
 			});
 		},
 
-		navToNextSystem: function() {
+		navToNextSystem: function () {
 			var _iSysTarget = parseInt(this._sysIndex) + 1;
 			if (_iSysTarget <= (this.iSystemsCount - 1)) {
 				this.oRouter.navTo("system", {
-				sysIndex: _iSysTarget
+					sysIndex: _iSysTarget
 				});
 			}
 		},
 
-		navToPrevSystem: function() {
+		navToPrevSystem: function () {
 			var _iSysTarget = parseInt(this._sysIndex) - 1;
 			if (_iSysTarget >= 0) {
 				this.oRouter.navTo("system", {
@@ -127,8 +134,8 @@ sap.ui.define([
 				});
 			}
 		},
-		
-		navToLastSystem: function() {
+
+		navToLastSystem: function () {
 			var _iSysTarget = this.iSystemsCount - 1;
 			this.oRouter.navTo("system", {
 				sysIndex: _iSysTarget
