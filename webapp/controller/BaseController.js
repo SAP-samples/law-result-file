@@ -74,8 +74,10 @@ sap.ui.define([
 			// WARNING: This is a direct call to the ACE settings and might break
 			// if the ACE interface changes. Reference:
 			// https://github.com/ajaxorg/ace/wiki/Configuring-Ace#session-options
+			// set maxLines to a very large numbers to prevent scroll bars
 			oCodeEditor._oEditor.setOptions({
-				firstLineNumber: head._tagLineStart
+				firstLineNumber: head._tagLineStart,
+				maxLines: 100000000
 			});
 			oCodeEditor.setValue(_sXMAS);
 			oCodeEditor.setEditable(false);

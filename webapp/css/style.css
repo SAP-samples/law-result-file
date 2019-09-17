@@ -22,6 +22,16 @@ After adding these lines  the issue is fixed */
 	padding: 10px;
 }
 
+.column2 {
+	flex-flow: column;
+	height: 100%;
+	display: flex;
+}
+
+.wattEditorContainer {
+	flex-grow: 1;
+}
+
 /* .sapMFlexItemAlignAuto {
 	width="50%";
 } */

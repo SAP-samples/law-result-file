@@ -22,7 +22,7 @@
 								class="columns"
 								alignItems="Stretch">
 								<items>
-									<Panel headerText="{i18n>system.propsSection.title.text}" class="column1">
+									<Panel headerText="{i18n>system.propsSection.title.text}">
 										<content>
 											<fo:SimpleForm 
 													id="dataForm"
@@ -94,10 +94,10 @@
 												<Title text="{i18n>system.compSection.table.headerText}"/>
 												<Table id="exportTable" 
 													inset="false" 
-													growing="true" 
-													growingThreshold="20" 
-													growingScrollToLoad="true"
-													noDataText="{i18n>system.compSection.table.noData.text}">
+													growing="false" 
+													growingScrollToLoad="false"
+													noDataText="{i18n>system.compSection.table.noData.text}"
+													class="sapUiTinyMargin">
 													<columns>
 														<Column>
 															<Text text="{i18n>model.systems.Components.Name.text}"/>
@@ -120,9 +120,6 @@
 											<Button text="{i18n>xml.button.bottom}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
 											<Button text="{i18n>xml.button.goto}" icon="sap-icon://sales-document" class="navButton"/>
 											<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="systemCodeEditor" />
-										<layoutData>
-											<FlexItemData growFactor="1" />
-										</layoutData>
 									 </Panel>
 								</items>
 							</FlexBox>
