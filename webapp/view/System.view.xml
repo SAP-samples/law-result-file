@@ -8,123 +8,118 @@
 	xmlns:f="sap.f"
 	xmlns:smartForm="sap.ui.comp.smartform"
 	xmlns:smartField="sap.ui.comp.smartfield"
-	xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:grid="sap.ui.layout.cssgrid">
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:cols="controller.layout">
 	<App>
 		<pages>
 			<Page title="{parts:['i18n>system.page.title', 'SAP_SID/text()'], formatter: 'jQuery.sap.formatMessage'}" 
 					showNavButton="true" navButtonPress="onSystemList" id="SystemView">
 				<content> 
-					<l:VerticalLayout class="sapUiContentPadding equalColumns" width="100%">
-						<l:content>
-							<FlexBox 
-								width="100%"
-								class="columns"
-								alignItems="Stretch">
-								<items>
-									<Panel headerText="{i18n>system.propsSection.title.text}">
-										<content>
-											<fo:SimpleForm 
-													id="dataForm"
-													editable="false"
-													layout="ResponsiveGridLayout"
-													labelSpanXL="10" 
-													labelSpanL="10"	
-													labelSpanM="10"	
-													labelSpanS="5"	
-													singleContainerFullSize="false">
-												<fo:content>
-													<Label text="{i18n>all.index.text}"/>
-													<Text id="systemIdx" />
-													<Label text="{i18n>model.systems.SystemNo.text}"/>
-													<Text text="{SystemNo}"/>
-													<Label text="{i18n>model.systems.InstallationNo.text}"/>
-													<Text text="{InstallationNo}"/>
-													<Label text="{i18n>model.systems.SAP_SID.text}"/>
-													<Text text="{SAP_SID}"/>
-													<Label text="{i18n>model.systems.Status.text}" visible="{ 
-																	parts: [ {path: 'Status/text()'} ],
-																	formatter: '.formatter.exists' }" />
-													<FormattedText htmlText="{
-																	parts: [ {path: 'Status/text()'} ],
-																	formatter: '.formatter.formatStatus'
-																}" 
-																visible="{ 
-																	parts: [ {path: 'Status/text()'} ],
-																	formatter: '.formatter.exists' }"/>
-												
-													<Label text="{i18n>model.systems.Release.text}"/>
-													<Text text="{Release}"/>
-													<Label text="{i18n>model.systems.Database.text}"/>
-													<Text text="{Database}"/>
-												</fo:content>
-											</fo:SimpleForm>
+					<cols:EqualWidthColumns>
+						<cols:content>
+							<Panel headerText="{i18n>system.propsSection.title.text}">
+								<content>
+									<fo:SimpleForm 
+											id="dataForm"
+											editable="false"
+											layout="ResponsiveGridLayout"
+											labelSpanXL="6" 
+											labelSpanL="6"	
+											labelSpanM="4"	
+											labelSpanS="3"
+											singleContainerFullSize="false">
+										<fo:content>
+											<Label text="{i18n>all.index.text}"/>
+											<Text id="systemIdx" />
+											<Label text="{i18n>model.systems.SystemNo.text}"/>
+											<Text text="{SystemNo}"/>
+											<Label text="{i18n>model.systems.InstallationNo.text}"/>
+											<Text text="{InstallationNo}"/>
+											<Label text="{i18n>model.systems.SAP_SID.text}"/>
+											<Text text="{SAP_SID}"/>
+											<Label	text="{i18n>model.systems.Status.text}" 
+													visible="{ 
+															parts: [ {path: 'Status/text()'} ],
+															formatter: '.formatter.exists' }" />
+											<FormattedText 
+													htmlText="{
+															parts: [ {path: 'Status/text()'} ],
+															formatter: '.formatter.formatStatus'
+														}" 
+													visible="{ 
+															parts: [ {path: 'Status/text()'} ],
+															formatter: '.formatter.exists' }"/>
+											<Label text="{i18n>model.systems.Release.text}"/>
+											<Text text="{Release}"/>
+											<Label text="{i18n>model.systems.Database.text}"/>
+											<Text text="{Database}"/>
+										</fo:content>
+									</fo:SimpleForm>
 
-											<l:VerticalLayout class="sapUiContentPadding">										
-												<Title text="{i18n>system.partsSection.title.text}"/>
-												<f:GridList	id="partsList" 
-													items="{
-														path: '/Parts/Part',
-														sorter: {
-															path: 'PartId'
-														},
-														filters: [{
-															path: 'SystemNo/text()', 
-															operator: 'EQ',
-															value1: 'placeholder' }] 
-													}" >
-													<f:customLayout> 
-														<grid:GridBoxLayout boxMinWidth="10rem"  />
-													</f:customLayout>
-													<CustomListItem class="sapContrast noBreak" type="Navigation" press="onPartPressed">
-														<HBox>
-															<c:Icon src="sap-icon://it-instance" size="2.3rem" class="sapUiTinyMargin"/>	
-															<VBox class="sapUiTinyMargin">
-																<Title text="{PartId}" wrapping="true" width="5rem" />
-																<Label text="{
-																		parts: [ {path: 'SAP_CLIENT/text()'} ],
-																		formatter: '.formatter.formatClient'
-																	}" 
-																		wrapping="true" width="5rem"/>
-															</VBox>
-														</HBox>
-													</CustomListItem>
-												</f:GridList>
-											
-												<Title text="{i18n>system.compSection.table.headerText}"/>
-												<Table id="exportTable" 
-													inset="false" 
-													growing="false" 
-													growingScrollToLoad="false"
-													noDataText="{i18n>system.compSection.table.noData.text}"
-													class="sapUiTinyMargin">
-													<columns>
-														<Column>
-															<Text text="{i18n>model.systems.Components.Name.text}"/>
-														</Column>
-														<Column hAlign="End">
-															<Text text="{i18n>model.systems.Component.Release.text}"/>
-														</Column>
-														<Column hAlign="End">
-															<Text text="{i18n>model.systems.Component.PatchLevel.text}"/>
-														</Column>
-													</columns>
-												</Table>
-											</l:VerticalLayout>
-										</content>
-									</Panel>
-									<Panel headerText="{i18n>xml.headerText}" class="column2">
-											<Button text="{i18n>xml.button.top}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
-											<Button text="{i18n>xml.button.up}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>
-											<Button text="{i18n>xml.button.down}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
-											<Button text="{i18n>xml.button.bottom}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
-											<Button text="{i18n>xml.button.goto}" icon="sap-icon://sales-document" class="navButton"/>
-											<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="systemCodeEditor" />
-									 </Panel>
-								</items>
-							</FlexBox>
-						</l:content>
-					</l:VerticalLayout>										 
+									<l:VerticalLayout class="sapUiContentPadding">										
+										<Title text="{i18n>system.partsSection.title.text}"/>
+										<f:GridList	id="partsList" 
+											items="{
+												path: '/Parts/Part',
+												sorter: {
+													path: 'PartId'
+												},
+												filters: [{
+													path: 'SystemNo/text()', 
+													operator: 'EQ',
+													value1: 'placeholder' }] 
+											}" >
+											<f:customLayout> 
+												<grid:GridBoxLayout boxMinWidth="10rem"  />
+											</f:customLayout>
+											<!-- <CustomListItem class="sapContrast noBreak " type="Navigation" press="onPartPressed"> -->
+											<CustomListItem type="Navigation" press="onPartPressed">
+												<HBox>
+													<c:Icon src="sap-icon://it-instance" size="2.3rem" class="sapUiTinyMargin"/>	
+													<VBox class="sapUiTinyMargin">
+														<Title text="{PartId}" wrapping="true" />
+														<Label text="{
+																parts: [ {path: 'SAP_CLIENT/text()'}, {path: 'GenericId/text()'} ],
+																formatter: '.formatter.formatClient'
+															}" 
+																wrapping="true"/>
+													</VBox>
+												</HBox>
+											</CustomListItem>
+										</f:GridList>
+									
+										<Title text="{i18n>system.compSection.table.headerText}"/>
+										<Table id="exportTable" 
+											inset="false" 
+											growing="false" 
+											growingScrollToLoad="false"
+											noDataText="{i18n>system.compSection.table.noData.text}"
+											class="sapUiTinyMargin">
+											<columns>
+												<Column>
+													<Text text="{i18n>model.systems.Components.Name.text}"/>
+												</Column>
+												<Column hAlign="End">
+													<Text text="{i18n>model.systems.Component.Release.text}"/>
+												</Column>
+												<Column hAlign="End">
+													<Text text="{i18n>model.systems.Component.PatchLevel.text}"/>
+												</Column>
+											</columns>
+										</Table>
+									</l:VerticalLayout>
+								</content>
+							</Panel>
+							<Panel headerText="{i18n>xml.headerText}" class="column2">
+									<Button text="{i18n>xml.button.top}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
+									<Button text="{i18n>xml.button.up}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>
+									<Button text="{i18n>xml.button.down}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
+									<Button text="{i18n>xml.button.bottom}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
+									<Button text="{i18n>xml.button.goto}" icon="sap-icon://sales-document" class="navButton"/>
+									<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="systemCodeEditor" />
+							 </Panel>
+						</cols:content>
+					</cols:EqualWidthColumns>							
 				</content>
 			</Page>
 		</pages>

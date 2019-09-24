@@ -1,5 +1,6 @@
 sap.ui.define([
 	"./BaseController",
+	"./layout/EqualWidthColumns",
 	"sap/ui/core/mvc/XMLView",
 	"sap/ui/model/resource/ResourceModel",
 	"sap/base/Log",
@@ -7,7 +8,7 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
 
-], function (BaseController, XMLView, ResourceModel, Log, formatter, Filter, FilterOperator) {
+], function (BaseController, EqualWidthColumns, XMLView, ResourceModel, Log, formatter, Filter, FilterOperator) {
 	"use strict";
 
 	return BaseController.extend("glacelx.glacelx.controller.System", {

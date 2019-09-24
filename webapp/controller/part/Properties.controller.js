@@ -1,7 +1,8 @@
 sap.ui.define([
 	"../BaseController",
-	"sap/base/Log"
-], function (BaseController, Log) {
+	"sap/base/Log",
+	".././layout/EqualWidthColumns"
+], function (BaseController, Log, EqualWidthColumns) {
 	"use strict";
 
 	return BaseController.extend("glacelx.glacelx.controller.part.Properties", {

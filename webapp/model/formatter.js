@@ -1,4 +1,3 @@
-
 sap.ui.define([ 
 	"sap/ui/model/json/JSONModel",
    "sap/ui/model/resource/ResourceModel"
@@ -8,8 +7,8 @@ sap.ui.define([
 	return {
 		
 		/** returns true if the value is not null/undefined, otherwise false */
-		exists: function (oVal) {
-			if (!oVal) {
+		exists: function (sVal) {
+			if (!sVal) {
 				return false;
 			}
 			return true;
@@ -22,8 +21,16 @@ sap.ui.define([
 		
 		*/
 		
-		formatClient: function (sClient) {
+		formatClient: function (sClient, sGenId) {
 			if (!sClient) {
+				if (sGenId) {
+					if (sGenId.toUpperCase().startsWith("PRTX")) {
+						return "Cross Client";
+					}
+					if (sGenId.toUpperCase().startsWith("PRTC")) {
+						return "Consolidation";
+					}
+				}
 				return "";
 			} 
 			return "Client " + sClient;
@@ -54,9 +61,7 @@ sap.ui.define([
 				default:
 					return sStatus + " <cite>(unknown)</cite>";
 			}
-			
-			
-			return "-->" + status;
+			// return "-->" + status;
 		},
 		
 		statusText: function (sStatus) {
@@ -72,5 +77,18 @@ sap.ui.define([
 					return sStatus;
 			}
 		},
+		
+		formatCell: function (sGenId) {
+			if (sGenId) {
+				if (sGenId.toUpperCase().startsWith("PRTX")) {
+					return "bbtn--secondary";
+				}
+				if (sGenId.toUpperCase().startsWith("PRTC")) {
+					return "bbtn--secondary";
+				}
+			}
+			return "bbtn";
+		}
+		
 	};
 });

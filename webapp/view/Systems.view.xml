@@ -1,7 +1,6 @@
 <mvc:View controllerName="glacelx.glacelx.controller.Systems" 
 	xmlns="sap.m" 
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
 	xmlns:ce="sap.ui.codeeditor" 
 	xmlns:l="sap.ui.layout"
 	xmlns:tnt="sap.tnt" 

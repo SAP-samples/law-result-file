@@ -1,4 +1,3 @@
-/* Enter your custom styles here  */
 
 /* Grid control doesn't work properly unless it is placed on a SplitPage; 
 After adding these lines  the issue is fixed */
@@ -17,9 +16,13 @@ After adding these lines  the issue is fixed */
 
 /* Lines for equal column width of FlexBox */
 .equalColumns .columns {
-	min-height: 350px
+	min-height: 350px;
 	margin: 0 5px 0 0;
 	padding: 10px;
+}
+
+.icon {
+	width: auto;
 }
 
 .column2 {
@@ -43,17 +46,9 @@ After adding these lines  the issue is fixed */
     bottom: 0px; /* Footer Height */;
 }
 
-.ace_editor {
-	min-height: 300px;
-}
 
-.equalColumns .columns .sapMFlexItem {
+/* .equalColumns .columns {
 	width: 50%;
-}
-
-/* further formating  */
-/* xxx cite {
-	color: darkolivegreen;
 } */
 
 .dark {
@@ -61,6 +56,10 @@ After adding these lines  the issue is fixed */
 	display: block;
 }
 
+/* ----- ACE Editor related setting */
+.ace_editor {
+	min-height: 300px;
+}
 
 /* for button line above XML code editor */
 .navButton {
@@ -70,17 +69,5 @@ After adding these lines  the issue is fixed */
 	padding-bottom: 0.7rem;
 }
 
-/*.sapMBtnIcon {
-	font-size: small;
-}
-
- .sapMBtnInner {
-	font-size: small;
-} */
-
-/* shrink the empty white space in the result tab page */
-/* xxx .sapMITBContent {
-	padding: 0px;
-} */
 
 
