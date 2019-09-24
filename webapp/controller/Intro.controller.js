@@ -39,10 +39,11 @@ sap.ui.define([
 					var sRawXML = loadEvent.target.result;
 					_oModel.setXML(sRawXML);
 					that._processXML(_oModel.getData());
+					var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+					oRouter.navTo("elements");
 				};
 				oFileReader.readAsText(this._oFile);
-				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-				oRouter.navTo("elements");
+
 			}
 		},
 
