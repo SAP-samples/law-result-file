@@ -1,66 +1,17 @@
 
-/* Grid control doesn't work properly unless it is placed on a SplitPage; 
-After adding these lines  the issue is fixed */
+/* used in Systems.xml to have system list via Systes.controller.js. Results in a line break for the sorter (installation number) and no line break for system list */
 .lineBreak {
 	grid-column-start: 1;
 	grid-column-end: -1;  
 }
+/* used in Systems.xml and System.xml to have no line break for system/part list */
 .noBreak {
 	grid-column-start: auto;
 	grid-column-end: auto;
 }
 
-/* .sapMGHLI:before {
-  content: "Inst.No. \00a0 ";
-}  */
-
-/* Lines for equal column width of FlexBox */
-.equalColumns .columns {
-	min-height: 350px;
-	margin: 0 5px 0 0;
-	padding: 10px;
-}
-
-.icon {
-	width: auto;
-}
-
-.column2 {
-	flex-flow: column;
-	height: 100%;
-	display: flex;
-}
-
-.wattEditorContainer {
-	flex-grow: 1;
-}
-
-/* .sapMFlexItemAlignAuto {
-	width="50%";
-} */
-
-.sapCEd .equalColumns .columns {
-	/* for 100% height: */
-	position: absolute;
-	top: 3rem; /* Header Height */
-    bottom: 0px; /* Footer Height */;
-}
-
-
-/* .equalColumns .columns {
-	width: 50%;
-} */
-
-.dark {
-	padding: 5px 5px 5px 5px !important;
-	display: block;
-}
-
-/* ----- ACE Editor related setting */
-.ace_editor {
-	min-height: 300px;
-}
-
+/* --- START --- ACE Editor related setting */
+/* -----------------------------------------*/
 /* for button line above XML code editor */
 .navButton {
 	margin: 0px;
@@ -69,5 +20,8 @@ After adding these lines  the issue is fixed */
 	padding-bottom: 0.7rem;
 }
 
+.wattEditorContainer {
+	flex-grow: 1;
+}
 
-
+/* --- END --- ACE Editor related setting */

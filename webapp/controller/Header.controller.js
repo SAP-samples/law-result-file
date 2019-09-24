@@ -2,9 +2,10 @@ sap.ui.define([
 	"./BaseController",
 	"../model/formatter",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
+	"sap/ui/model/FilterOperator",
+	"./layout/EqualWidthColumns"
 
-], function (BaseController, formatter, Filter, FilterOperator) {
+], function (BaseController, formatter, Filter, FilterOperator, EqualWidthColumns) {
 	"use strict";
 
 	return BaseController.extend("glacelx.glacelx.controller.Header", {
