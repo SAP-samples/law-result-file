@@ -8,6 +8,17 @@
 .noBreak {
 	grid-column-start: auto;
 	grid-column-end: auto;
+	border: 2px solid;
+	border-radius: 8px;
+}
+
+.lawItem {
+	border: 3px solid;
+	border-radius: 6px;
+}
+
+.elxTxt {
+	font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
 }
 
 /* --- START --- ACE Editor related setting */

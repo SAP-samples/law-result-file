@@ -13,37 +13,10 @@
 
 	<cols:EqualWidthColumns id="selectedResult">
 		<cols:content>
-			<Panel headerText="{'lawFile>PartId'}" class="sapUiNoMargin">
-				<Table id="resultTable" 
-					inset="false" 										
-					growingScrollToLoad="true"
-					noDataText="{i18n>result.table.noData.text}">
-					<columns>
-						<Column>
-							<Text text="{i18n>model.result.col.GenericId.text}"/>
-						</Column>
-						<Column>
-							<Text text="{i18n>model.result.col.Unit.text}"/>
-						</Column>
-						<Column>
-							<Text text="{i18n>model.result.col.PerStart.text}"/>
-						</Column>
-						<Column>
-							<Text text="{i18n>model.result.col.PerEnd.text}"/>
-						</Column>
-						<Column>
-							<Text text="{i18n>model.result.col.Attr1.text}"/>
-						</Column>
-						<Column>
-							<Text text="{i18n>model.result.col.Attr2.text}"/>
-						</Column>
-						<Column>
-							<Text text="{i18n>model.result.col.Counter.text}"/>
-						</Column>
-					</columns>
-				</Table>									
-			</Panel>
+			<!--  Placeholder for result lines: --> 			
+			<l:VerticalLayout id="resultList" class="sapUiNoMargin" width="100%" />
 			
+			<!--  XML Code Editor --> 			
 			<Panel headerText="{i18n>xml.headerText}" class="sapUiNoMargin">
 					<Button text="{i18n>xml.button.top}" icon="sap-icon://sys-first-page" class="navButton"/>
 					<Button text="{i18n>xml.button.up}" icon="sap-icon://sys-prev-page" class="navButton"/>

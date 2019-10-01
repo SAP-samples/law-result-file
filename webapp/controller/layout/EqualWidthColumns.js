@@ -17,7 +17,9 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 	return Control.extend("controller/layout/EqualWidthColumns", {
 		
 	    metadata : {
-	    	properties: { },
+	    	properties: { 
+	    		use		: { type: "string" } // use = 'text' results in a padding of 1 em to the right, otherwise 0
+	    	},
 	        // example: could have  "boxColor" : "string"  // the color to use for ... 
 	      
 	        defaultAggregation : "content",
@@ -28,31 +30,34 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 
 	    renderer : {
 	    	render: function(oRm, oControl) { // static function, so use the given "oControl" instance
-	        // instead of "this" in the renderer function
-	        oRm.write("<div");
-	        oRm.writeControlData(oControl);  // writes the Control ID and enables event handling - important!
-	        oRm.writeClasses();              // there is no class to write, but this enables
-	                                         // support for ColorBoxContainer.addStyleClass(...)
-			oRm.addStyle("display", "flex");                                         
-			oRm.writeStyles();
-	        oRm.write(">");
-	
-	        var aChildren = oControl.getContent();
-	        for (var i = 0; i < aChildren.length; i++) { // loop over all child Controls,
-	            // render the colored box around them
-	            oRm.write("<div");
-	            oRm.addStyle("flex", "1");
-	            oRm.addStyle("padding", "0em");
-	            // oRm.addStyle("border", "1px solid black"); // specify the border around the child - for development only
-	            oRm.writeStyles();
-	            oRm.write(">");
-	            oRm.renderControl(aChildren[i]);   // render the child Control
-	                                               // (could even be a big Control tree, but you don't need to care)
-	            oRm.write("</div>"); // end of the box around the respective child
-	        }
-	        
-	        oRm.write("</div>"); // end of the complete Control
-	    	}
+		        // instead of "this" in the renderer function
+		        oRm.write("<div");
+		        oRm.writeControlData(oControl);  // writes the Control ID and enables event handling - important!
+		        oRm.writeClasses();              // there is no class to write, but this enables
+		                                         // support for ColorBoxContainer.addStyleClass(...)
+				oRm.addStyle("display", "flex");                                         
+				oRm.writeStyles();
+		        oRm.write(">");
+		
+		        var aChildren = oControl.getContent();
+		        for (var i = 0; i < aChildren.length; i++) { // loop over all child Controls,
+		            // render the colored box around them
+		            oRm.write("<div");
+		            oRm.addStyle("flex", "1");
+		            oRm.addStyle("padding", "0em");
+		            if (oControl.getUse() && oControl.getUse().toLowerCase() === "text") {
+		            	oRm.addStyle("margin-right", "1em");
+		            }
+		            // oRm.addStyle("border", "1px solid black"); // specify the border around the child - for development only
+		            oRm.writeStyles();
+		            oRm.write(">");
+		            oRm.renderControl(aChildren[i]);   // render the child Control
+		                                               // (could even be a big Control tree, but you don't need to care)
+		            oRm.write("</div>"); // end of the box around the respective child
+		        }
+		        
+		        oRm.write("</div>"); // end of the complete Control
+		    }
 	    }, 
 	    
 	    onAfterRendering: function() {

@@ -9,17 +9,16 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	".././layout/EqualWidthColumns",
 	".././layout/ResultLine",
-	"sap/m/Label"
-], function (BaseController, JSONModel, XMLView, ResourceModel, Log, formatter, Filter, FilterOperator, EqualWidthColumns, ResultLine, Label) {
+], function (BaseController, JSONModel, XMLView, ResourceModel, Log, formatter, Filter, FilterOperator, EqualWidthColumns, ResultLine) {
 	"use strict";
 
-	return BaseController.extend("glacelx.glacelx.controller.part.Results", {
+	return BaseController.extend("glacelx.glacelx.controller.part.ResultsPrototype", {
 		onInit: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			var route = oRouter.getRoute("part");
-			route.attachMatched(this._onRouteMatched, this);
 			this.oView = this.getView();
 			this._checkInitialModel();
+			route.attachMatched(this._onRouteMatched, this);
 			this.oModel = this.getOwnerComponent().getModel("userXML");
 			var tabs = this.getView().byId("iconTabBar");
 		},
@@ -29,6 +28,7 @@ sap.ui.define([
 		},
 
 		_onRouteMatched: function (oEvent) {
+			this._checkInitialModel();
 			var oArgs = oEvent.getParameter("arguments");
 
 			// This variable must have the name 'path' as it is checked in ManagedObject-dbg.js!! 
@@ -38,10 +38,10 @@ sap.ui.define([
 			// create binding for System Details
 			var sysIdx = oArgs.sysIndex;
 			var partIdx = oArgs.partIndex;
-
+			var _resultIdx = this._getCorrespondingResultIndex(partIdx);
 			// bind part properties
-			var sPath = "/Results/Part/" + partIdx;
-			var oForm = this.oView.byId("selectedResult");
+			var sPath = "/Results/Part/" + _resultIdx;
+			var oForm = this.oView.byId("selectedResult2");
 			oForm.bindElement({
 				path: sPath,
 				model: "lawFile",
@@ -55,46 +55,42 @@ sap.ui.define([
 					}
 				}
 			});
-			// oForm = this.oView.byId("resultTable");
+			oForm = this.oView.byId("resultTable");
 
 			// navigate to part branch and extract data
 			var _mainModelRaw = this.oModel.getData().children[0];
-			var _part = _mainModelRaw._tagMeasurementResultsHook.children[partIdx];
+			var _rawSystemData = _mainModelRaw._tagMeasurementResultsHook.children[partIdx];
 			// set code editor context
-			var _oSysCodeEditor = this.oView.byId("resultsCE");
+			var _oSysCodeEditor = this.oView.byId("resultsCE2");
 			// build editor context
-			this.buildEditorContext(_part, _oSysCodeEditor);
-			
-			var _resultListArea = this.oView.byId("resultList");
-			// $.sap.require(".././layout/ResultLine");
-			
-			for (var i = 0; i < _part.children.length; ++i) {
-				var nextResult = _part.children[i];
-				if (nextResult && nextResult.children && nextResult.children.length > 0) {
-					// debugger;
-					var tagsCount = nextResult.children.length;
-					for (var j = 0; j < tagsCount; ++j) {
-						var nextTag = nextResult.children[j];
-						var rl = new ResultLine ({
-								title: nextTag.tagName,
-								tag: nextTag.tagName,
-								text: nextTag.textContent });
-					}
-				} else { // else --> simple tag
-					if (nextResult) {
-						var rl = new ResultLine ({
-								title: nextResult.tagName,
-								tag: nextResult.tagName,
-								text: nextResult.textContent });
+			this.buildEditorContext(_rawSystemData, _oSysCodeEditor);
 
-						_resultListArea.addContent(rl);
-					}
-				}
-			}
+			// bind exportTable
+			var _resultTable = this.oView.byId("resultTable");
+			
+			var sComponentBindingPath = "/Results/Part/" + _resultIdx + "/Result/";
+			// var cols = this._getNonEmptyResultColumns(partIdx);
+			
+			var resultTableTemplate = new sap.m.ColumnListItem({
+				cells: [
+					new sap.m.Label({ text: "{GenericId}" }),
+					new sap.m.Label({ text: "{Unit}" }),
+/* 					new sap.m.Label({ text: "{PerStart}" }),
+					new sap.m.Label({ text: "{PerEnd}" }),
+					new sap.m.Label({ text: "{Attribute1}" }),
+					new sap.m.Label({ text: "{Attribute2}" }),
+					new sap.m.Label({ text: "{Counter}" }) */
+				]
+			});
+			/* _resultTable.bindItems({
+				path: sComponentBindingPath,
+				template: resultTableTemplate
+			}); */
 		},
 		
-		/* _getNonEmptyResultColumns: function (iPartIndex) {
+		_getNonEmptyResultColumns: function (iPartIndex) {
 			var results = this.oModel.getData().children[0]._tagMeasurementResultsHook.children;
+			
 			var corRes = results[iPartIndex];
 			
 			// loop over children
@@ -103,18 +99,18 @@ sap.ui.define([
 				var nodeName = nextNode.nodeName;
 				if (nodeName) {
 					if (nodeName.trim().toLowerCase() === "result") {
-						console.log(nextNode.children);
+						// console.log("Child: " + nextNode.children);
 					}
 					// ignore tags different from 'Result', particularly the 'PartId' tag
 				}
 			}
 			// if no system was found return -1
 			return -1;
-		}, */		
+		}, 		
 
 		_onBindingChange: function (oEvent) {
 			// No data for the binding
-			if (!this.getView().byId("selectedResult").mElementBindingContexts) {
+			if (!this.getView().byId("selectedResult2").mElementBindingContexts) {
 				// this.getRouter().getTargets().display("notFound");
 				Log.error("System number can't be found");
 			}

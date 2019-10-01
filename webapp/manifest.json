@@ -176,6 +176,10 @@
 				"Properties": {
 					"viewType": "XML",
 					"viewName": "Properties"
+				},
+				"ResultsPrototype": {
+					"viewType": "XML",
+					"viewName": "ResultsPrototype"
 				}
 			}
 		}

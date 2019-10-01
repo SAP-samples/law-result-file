@@ -31,7 +31,7 @@
                                 <f:customLayout>
 									<grid:GridBoxLayout boxMinWidth="10rem"  />
 								</f:customLayout>
-								<CustomListItem class="sapContrast noBreak" type="Navigation" press="onSystemPressed">
+								<CustomListItem class="sapContrast noBreak lawItem" type="Navigation" press="onSystemPressed">
 									<HBox>
 										<c:Icon src="sap-icon://it-system" size="2.3rem" class="sapUiTinyMargin"/>
 										<VBox class="sapUiTinyMargin">

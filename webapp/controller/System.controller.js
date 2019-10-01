@@ -6,9 +6,10 @@ sap.ui.define([
 	"sap/base/Log",
 	"../model/formatter",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
+	"sap/ui/model/FilterOperator",
+	"./layout/ResultLine"
 
-], function (BaseController, EqualWidthColumns, XMLView, ResourceModel, Log, formatter, Filter, FilterOperator) {
+], function (BaseController, EqualWidthColumns, XMLView, ResourceModel, Log, formatter, Filter, FilterOperator, ResultLine) {
 	"use strict";
 
 	return BaseController.extend("glacelx.glacelx.controller.System", {
@@ -66,6 +67,7 @@ sap.ui.define([
 			// bind exportTable
 			var _exportTable = this.oView.byId("exportTable");
 			var sComponentBindingPath = this._sBindingPath + "/Components/Component";
+			// caution - template binding will fail if one of the three tags is missing!
 			var exportTableTemplate = new sap.m.ColumnListItem({
 				cells: [
 					new sap.m.Label({
@@ -84,6 +86,23 @@ sap.ui.define([
 				template: exportTableTemplate
 			});
 		},
+		
+		resultCount: function (sPartId) {
+			if (sPartId) {
+				sPartId = sPartId.trim();
+				var _mainModelRaw = this._oModel.getData().children[0];
+				var _results = _mainModelRaw._tagMeasurementResultsHook.children;
+				for (var i = 0; i < _results.length; ++i) {
+					var resPartId = _results[i].children[0].textContent.trim();
+					if (resPartId === sPartId) {
+						var count = _results[i].children.length - 1; // first line is the PartId, all other lines are Results
+						return count + " " +   this.getView().getModel("i18n").getResourceBundle().getText("result.ResultLines.text");
+					}
+				}
+			}	
+			// if no result was found (can happen), so return -1
+			return "No results";
+		},
 
 		_onBindingChange: function (oEvent) {
 			// No data for the binding
@@ -100,7 +119,6 @@ sap.ui.define([
 		onPartPressed: function (oEvent) {
 			var oItem = oEvent.getSource();
 			var oContextPath = oItem.getBindingContextPath();
-
 			// var sysIdx = oContext.getPath();
 			var iPartIdx = oContextPath.substr("/Parts/Part/".length);
 

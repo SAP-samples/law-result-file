@@ -96,6 +96,21 @@ sap.ui.define([
 			// if no system was found return -1
 			return -1;
 		},
+		
+		_getCorrespondingResultIndex: function (iPartIndex) {
+			var _iPartId = this.getOwnerComponent().getModel("userXML").getProperty("/Parts/Part/" + iPartIndex + "/PartId").trim();
+			// console.log("  Search for PartId " + _iPartId);
+			var results = this.oModel.getData().children[0]._tagMeasurementResultsHook.children;
+			for (var i = 0; i < results.length; ++i) {
+				var resPartId = results[i].children[0].textContent.trim();
+				// console.log("  Test " + resPartId + " === " + _iPartId);
+				if (resPartId === _iPartId) {
+					return i;
+				}
+			}
+			// if no result was found (can happen), so return -1
+			return -1;
+		},
 
 		_processXML: function (head) {
 			this._processXMLElement(head, 0, -2);

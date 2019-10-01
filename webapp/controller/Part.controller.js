@@ -91,6 +91,8 @@ sap.ui.define([
 		},
 
 		backToSystem: function (oEvent) {
+			var sy = this.sysIdx;
+			// debugger;
 			this.oRouter.navTo("system", {
 				sysIndex: this.sysIdx
 			});

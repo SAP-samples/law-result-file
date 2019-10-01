@@ -21,17 +21,19 @@ sap.ui.define([
 		
 		*/
 		
-		formatClient: function (sClient, sGenId) {
+		formatClient: function (sClient, sGenId, sPartId) {
 			if (!sClient) {
+				var resourceBundle = this.getView().getModel("i18n").getResourceBundle();
+
 				if (sGenId) {
 					if (sGenId.toUpperCase().startsWith("PRTX")) {
-						return "Cross Client";
+						return resourceBundle.getText("model.parts.part.PRTX.text");
 					}
 					if (sGenId.toUpperCase().startsWith("PRTC")) {
-						return "Consolidation";
+						return resourceBundle.getText("model.parts.part.PRTC.text");
 					}
 				}
-				return "";
+				return resourceBundle.getText("model.parts.part.partId.text") + " " + sPartId;
 			} 
 			return "Client " + sClient;
 		},

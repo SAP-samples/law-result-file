@@ -19,6 +19,15 @@
 						<cols:content>
 							<Panel headerText="{i18n>system.propsSection.title.text}">
 								<content>
+									<l:VerticalLayout class="sapUiNoMargin">
+										<cols:ResultLine	label="{i18n>all.index.text}" 
+															tag="" 
+															text="{i18n>dummyNo8}"/>
+										<cols:ResultLine	label="{i18n>model.systems.SystemNo.text}" 
+															tag="{i18n>model.systems.SystemNo.tag}" 
+															text="{SystemNo}"/>
+									</l:VerticalLayout>
+									
 									<fo:SimpleForm 
 											id="dataForm"
 											editable="false"
@@ -73,16 +82,20 @@
 												<grid:GridBoxLayout boxMinWidth="10rem"  />
 											</f:customLayout>
 											<!-- <CustomListItem class="sapContrast noBreak " type="Navigation" press="onPartPressed"> -->
-											<CustomListItem class="sapContrast noBreak" type="Navigation" press="onPartPressed">
+											<CustomListItem class="sapContrast noBreak lawItem" type="Navigation" press="onPartPressed">
 												<HBox>
 													<c:Icon src="sap-icon://it-instance" size="2.3rem" class="sapUiTinyMargin"/>	
 													<VBox class="sapUiTinyMargin">
-														<Title text="{PartId}" wrapping="true" />
 														<Label text="{
-																parts: [ {path: 'SAP_CLIENT/text()'}, {path: 'GenericId/text()'} ],
+																parts: [ {path: 'SAP_CLIENT/text()'}, {path: 'GenericId/text()'}, {path: 'PartId/text()'} ],
 																formatter: '.formatter.formatClient'
 															}" 
 																wrapping="true"/>
+														<!-- <Label text="{PartId}" wrapping="true" />	-->
+														<Label text="{
+																parts: [ {path: 'PartId'} ],
+																formatter: '.resultCount'
+																}" />
 													</VBox>
 												</HBox>
 											</CustomListItem>

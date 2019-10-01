@@ -20,6 +20,10 @@
 						select=".onTabSelect"
 						expandable="false">
 						<items>
+							<!-- first tab is just for testing / UI design -->
+							<IconTabFilter id="resultsPrototypeTab" text="{i18n>part.tab.Results.text}-Prototype" key="Results">
+								<mvc:XMLView viewName="glacelx.glacelx.view.part.ResultsPrototype"></mvc:XMLView>
+							</IconTabFilter> 
 							<IconTabFilter id="resultsTab" text="{i18n>part.tab.Results.text}" key="Results">
 								<mvc:XMLView viewName="glacelx.glacelx.view.part.Results"></mvc:XMLView>
 							</IconTabFilter>
