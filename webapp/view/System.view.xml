@@ -19,14 +19,14 @@
 						<cols:content>
 							<Panel headerText="{i18n>system.propsSection.title.text}">
 								<content>
-									<l:VerticalLayout class="sapUiNoMargin">
+									<!--  <l:VerticalLayout class="sapUiNoMargin">
 										<cols:ResultLine	label="{i18n>system.page.index.text}" 
 															tag="" 
 															text="{i18n>dummyNo8}"/>
 										<cols:ResultLine	label="{i18n>model.systems.SystemNo.text}" 
 															tag="{i18n>model.systems.SystemNo.tag}" 
 															text="{SystemNo}"/>
-									</l:VerticalLayout>
+									</l:VerticalLayout> -->
 									
 									<fo:SimpleForm 
 											id="dataForm"

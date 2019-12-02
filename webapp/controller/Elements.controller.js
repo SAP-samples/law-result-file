@@ -45,7 +45,7 @@ sap.ui.define([
 		},
 
 		onToIntro: function () {
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);			
 			oRouter.navTo("intro");
 		},
 

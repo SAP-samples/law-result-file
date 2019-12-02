@@ -11,28 +11,18 @@ sap.ui.define([
 			var i18nModel = new ResourceModel({
 				bundleName: "glacelx.glacelx.i18n.i18n"
 			});
-			this.getView().setModel(i18nModel, "i18n");
+			this.getView().setModel(i18nModel, "i18n");			
 		},
 
-		onResultTest: function () {
+		onUseExampleFile: function () {			
 			// load sample XML file and process it
+			var sampleModel = this.getOwnerComponent().getModel("sampleXML");	
 			var _oModel = this.getOwnerComponent().getModel("userXML");
-			this._processXML(_oModel.getData());
-			
-			// test Part/34/96
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("part", {
-				partIndex: 96,
-				sysIndex: 34
-			});
-		},
+			_oModel.setData(sampleModel.getData());
 
-		onUseExampleFile: function () {
-			// load sample XML file and process it
-			var _oModel = this.getOwnerComponent().getModel("userXML");
 			this._processXML(_oModel.getData());
 			// loading and processing of sample XML file is already done in onInit
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);			
 			oRouter.navTo("elements");
 		},
 
@@ -52,13 +42,13 @@ sap.ui.define([
 					var sRawXML = loadEvent.target.result;
 					_oModel.setXML(sRawXML);
 					that._processXML(_oModel.getData());
-					var oRouter = sap.ui.core.UIComponent.getRouterFor(that);					
+					var oRouter = sap.ui.core.UIComponent.getRouterFor(that);											
 					oRouter.navTo("elements");
+					that.oView.byId("fileSelector").clear();					
 				};
 				oFileReader.readAsText(this._oFile);
 
 			}
 		},
-
 	});
 });
