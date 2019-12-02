@@ -20,7 +20,7 @@
 							<Panel headerText="{i18n>system.propsSection.title.text}">
 								<content>
 									<l:VerticalLayout class="sapUiNoMargin">
-										<cols:ResultLine	label="{i18n>all.index.text}" 
+										<cols:ResultLine	label="{i18n>system.page.index.text}" 
 															tag="" 
 															text="{i18n>dummyNo8}"/>
 										<cols:ResultLine	label="{i18n>model.systems.SystemNo.text}" 
@@ -38,7 +38,7 @@
 											labelSpanS="3"
 											singleContainerFullSize="false">
 										<fo:content>
-											<Label text="{i18n>all.index.text}"/>
+											<Label text="{i18n>system.page.index.text}"/>
 											<Text id="systemIdx" />
 											<Label text="{i18n>model.systems.SystemNo.text}"/>
 											<Text text="{SystemNo}"/>
@@ -83,21 +83,24 @@
 											</f:customLayout>
 											<!-- <CustomListItem class="sapContrast noBreak " type="Navigation" press="onPartPressed"> -->
 											<CustomListItem class="sapContrast noBreak lawItem" type="Navigation" press="onPartPressed">
-												<HBox>
-													<c:Icon src="sap-icon://it-instance" size="2.3rem" class="sapUiTinyMargin"/>	
-													<VBox class="sapUiTinyMargin">
-														<Label text="{
-																parts: [ {path: 'SAP_CLIENT/text()'}, {path: 'GenericId/text()'}, {path: 'PartId/text()'} ],
-																formatter: '.formatter.formatClient'
-															}" 
-																wrapping="true"/>
-														<!-- <Label text="{PartId}" wrapping="true" />	-->
-														<Label text="{
-																parts: [ {path: 'PartId'} ],
-																formatter: '.resultCount'
-																}" />
-													</VBox>
-												</HBox>
+												<VBox class="sapUiTinyMargin">
+													<HBox class="sapUiNoMargin">
+														<c:Icon src="sap-icon://it-instance" size="2.3rem" class="sapUiTinyMargin"/>	
+														<VBox class="sapUiTinyMargin sapUiNoMarginBottom">
+															<Label text="{
+																	parts: [ {path: 'SAP_CLIENT/text()'}, {path: 'GenericId/text()'}, {path: 'PartId/text()'} ],
+																	formatter: '.formatter.formatClient'
+																}" 
+																	wrapping="true"/>
+															<!-- <Label text="{PartId}" wrapping="true" />	-->
+															<Label text="{
+																	parts: [ {path: 'PartId'} ],
+																	formatter: '.resultCount'
+																	}" />
+														</VBox>
+													</HBox>
+													<Label text="{ parts: [ {path: 'Name'} ] }" width="8rem" />
+												</VBox>													
 											</CustomListItem>
 										</f:GridList>
 									

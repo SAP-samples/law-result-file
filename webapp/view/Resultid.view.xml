@@ -1,0 +1,20 @@
+<mvc:View xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m" 
+	controllerName="glacelx.glacelx.controller.Resultid"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{i18n>partid.main.text}">
+				<content>
+					<l:VerticalLayout>
+						<Label id="result_id" />
+						<Label id="system_id" />
+						<Label id="part_id" />
+					</l:VerticalLayout>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

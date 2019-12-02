@@ -1,0 +1,161 @@
+{
+	"documentation": [
+		" 'tags' will be translated into its 'uiText' field, which may be a i18n value - if provided tag matches",
+		" 'innerHTML' will be translated into its 'uiText' field, which may be a i18n value - if provided text starts with innerHMTL",	
+		" 'tag' + 'innerHTML' will be translated into its 'utText' field, which may be a i18n value - if both provided text and tag match"
+	], 
+	"trans": [
+		{
+			"tag":			"GenericId",
+			"innerHTML":	"USRC00000000",
+			"uiText":		"{0}",
+			"uiTextMulti":	"{0}",
+			"number":		"useHtml"
+		}, {
+			"tag":			"GenericId",
+			"innerHTML":	"PRTC",
+			"uiText":		"Internal Consolidation"
+		},  {
+			"tag":			"GenericId",
+			"innerHTML":	"PRTX",
+			"uiText":		"Cross Client"
+		},  {
+			"tag":			"GenericId",
+			"innerHTML":	"PRTP",
+			"uiText":		"Consolidation Client"
+		}, {
+			"tag":			"Counter",
+			"uiText":		[
+				{		
+						"context":		"USRC",
+						"uiText":		"{0} users, classified as",
+						"uiTextMulti":	"{0} users, classified as a combination of"
+				}, {	
+						"context":		"ENGC",
+						"uiText":		"{0} units counted"
+				}, {	
+						"context":		"ENGS",
+						"uiText":		"(obsolete)"
+				}, {	
+						"uiText":		"{0} units"
+				}
+							]
+		}, {	
+   			"tag":			"PartId",
+   			"uiText":		"Part Id"
+   		}, {
+   			"tag":			"PerStart",
+			"uiText":		"From"
+		}, {
+			"tag":			"PerEnd",
+			"uiText":		"To"
+		}, {
+			"tag":			"Result",
+			"uiText":		"Result information"
+		}, {
+			"tag":			"Attribute2",
+			"uiText":		[
+				{
+						"context":		"USRC",
+						"uiText":		"Block #{0} of associated <Result>s",
+						"number":		"useValue"
+				}, {
+						"context":		"ENGS",
+						"uiText":		"Batchjob runtime ~{0} sec",
+						"number":		"useValue"
+				}
+							]
+		}, {
+			"tag":			"Name",
+   			"uiText":		"i18n>model.parts.part.name.text"
+		}, {
+			"tag":			"Status",
+   			"uiText":		"i18n>model.parts.part.status.text"
+		}, {
+			"tag":			"SystemNo",
+   			"uiText":		"i18n>model.parts.part.sysNo.text"
+		}, {
+			"tag":			"SAP_CLIENT",
+   			"uiText":		"i18n>model.parts.part.client.text"
+		}, {
+			"tag":			"DefUtype",
+   			"uiText":		"i18n>model.parts.part.DefUtype.text"
+		}, {
+			"tag":			"Productive",
+   			"uiText":		"i18n>model.parts.part.Productive.text"
+		}, {
+			"tag":			"MeasNo",
+   			"uiText":		"i18n>model.parts.part.MeasNo.text"
+		}, {
+			"tag":			"Executor",
+   			"uiText":		"i18n>model.parts.part.Executor.text"
+		}, {
+			"tag":			"Date",
+   			"uiText":		"i18n>model.parts.part.Date.text"
+		}, {
+			"tag":			"Excluded",
+   			"uiText":		"i18n>model.parts.part.Excluded.text"
+		},
+		
+		
+		{	
+   	    	"innerHTML":		"CHKP000000DELU", 
+    		"uiText":			"i18n>result.chkp.DELU"
+    	}, {	
+   	    	"innerHTML":		"CHKP000000USRD", 
+    		"uiText":			"i18n>result.chkp.USRD"
+    	}, {
+    		"innerHTML":		"PERW0000000012",
+    		"uiText":			"In the 12 weeks before the measurement"
+    	}, {
+			"innerHTML": 		"CHKP000000EXPU",
+			"uiText":			"Expired Users"
+		}, {
+			"innerHTML":		"ENGC000000",
+			"uiText":			"Engine {0}",
+			"number":			"useHtml"
+		}, {
+			"innerHTML":		"UNT000",
+			"uiText":			"Metric {0}",
+			"number":			"useHtml"
+		}
+   	],
+   	
+   	"NO_LONGER_USED" : [
+   		{
+			"tag":			"Counter",
+			"uiText":		[
+				{		
+						"firstHTML":		"USRC",
+						"uiText":			"{0} users classified as"
+				}, {	
+						"firstHTML":		"ENGC",
+						"uiText":			"{0} units counted"
+				}
+							],
+			"number":			"useValue"
+		}, {
+			"tag":			"GenericId",
+			"uiText":		[
+				{		
+						"firstHTML":		"USRC00000000",
+						"uiText":			"{0} users classified as"
+				}, {	
+						"firstHTML":		"ENGC000000",
+						"uiText":			"{0} units counted"
+				}, {		
+						"firstHTML":		"PRTC",
+						"uiText":			"Internal Consolidation"
+				}, {	
+						"firstHTML":		"PRTX",
+						"uiText":			"Cross Client"
+				}, {	
+						"firstHTML":		"PRTP",
+						"uiText":			"Consolidation Client"
+				}
+							],
+			"number":			"useValue"
+		} 
+   		
+   		]
+}

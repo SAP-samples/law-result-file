@@ -22,9 +22,12 @@ sap.ui.define([
 		*/
 		
 		formatClient: function (sClient, sGenId, sPartId) {
-			if (!sClient) {
-				var resourceBundle = this.getView().getModel("i18n").getResourceBundle();
+			var resourceBundle = this.getView().getModel("i18n").getResourceBundle();
+			return this.__proto__.formatter.formatClientRb(sClient, sGenId, sPartId, resourceBundle);
+		},
 
+		formatClientRb: function (sClient, sGenId, sPartId, resourceBundle) {
+			if (!sClient) {
 				if (sGenId) {
 					if (sGenId.toUpperCase().startsWith("PRTX")) {
 						return resourceBundle.getText("model.parts.part.PRTX.text");
@@ -37,7 +40,7 @@ sap.ui.define([
 			} 
 			return "Client " + sClient;
 		},
-		
+
 		formatStatus: function (sStatus) {
 			if (!sStatus) {
 				return "<cite>(n.a.)</cite>";

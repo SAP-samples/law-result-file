@@ -117,15 +117,16 @@ sap.ui.define([
 		},
 
 		onPartPressed: function (oEvent) {
+			this.getView().setBusy();
 			var oItem = oEvent.getSource();
 			var oContextPath = oItem.getBindingContextPath();
 			// var sysIdx = oContext.getPath();
-			var iPartIdx = oContextPath.substr("/Parts/Part/".length);
-
+			var indexInPartsBlock = oContextPath.substr("/Parts/Part/".length);
+			
 			// could select System with properties like SAP_SID, SystemNo, ...
 			// var selectedSyst = oCtx.getObject();
 			this.oRouter.navTo("part", {
-				partIndex: iPartIdx,
+				partIndex: indexInPartsBlock,
 				sysIndex: this._sysIndex
 			});
 		},

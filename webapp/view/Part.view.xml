@@ -8,30 +8,54 @@
 	xmlns:f="sap.f"
 	xmlns:smartForm="sap.ui.comp.smartform"
 	xmlns:smartField="sap.ui.comp.smartfield"
-	xmlns:html="http://www.w3.org/1999/xhtml">
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:cols="controller.layout">
 	<App>
 		<pages>
-			<Page title="{i18n>part.page.titlePlaceHolder}" showNavButton="true" navButtonPress="backToSystem" id="resultPage">
+			<Page title="{i18n>part.page.client.text}" showNavButton="true" navButtonPress="backToSystem" id="resultPage">
+				<headerContent>
+					<OverflowToolbar >
+						<ToolbarSpacer />
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
+						<Button text="{i18n>part.button.last.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
+						<Button text="{i18n>part.button.first.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
+						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>
+					</OverflowToolbar>
+				</headerContent>
+
 				<content>
-					<IconTabBar
-						id="iconTabBar"
-						headerBackgroundDesign="Transparent"
-						class="sapUiResponsiveContentPadding"
-						select=".onTabSelect"
-						expandable="false">
-						<items>
-							<!-- first tab is just for testing / UI design -->
-							<IconTabFilter id="resultsPrototypeTab" text="{i18n>part.tab.Results.text}-Prototype" key="Results">
-								<mvc:XMLView viewName="glacelx.glacelx.view.part.ResultsPrototype"></mvc:XMLView>
-							</IconTabFilter> 
-							<IconTabFilter id="resultsTab" text="{i18n>part.tab.Results.text}" key="Results">
-								<mvc:XMLView viewName="glacelx.glacelx.view.part.Results"></mvc:XMLView>
-							</IconTabFilter>
-							<IconTabFilter id="propertiesTab" text="{i18n>part.tab.Properties.text}" key="Properties">
-								<mvc:XMLView viewName="glacelx.glacelx.view.part.Properties"></mvc:XMLView>
-							</IconTabFilter>
-						</items>
-					</IconTabBar>
+					<!-- Properties Part -->
+						<cols:EqualWidthColumns id="selectedPart">
+							<cols:content>	
+								<Panel>
+									<Title text="{i18n>properties.propsSection.title}" level="H2" class="results" />
+									<l:VerticalLayout id="partProperties" width="100%"></l:VerticalLayout>
+								</Panel>
+										
+								<l:VerticalLayout class="sapUiNoMarginTop" width="100%" >
+									<Toolbar>
+										<OverflowToolbar >
+											<Label text="{i18n>xml.headerText}" />
+													<!-- <layoutData><OverflowToolbarLayoutData priority="AlwaysOverflow"/></layoutData>
+											<ToolbarSpacer />
+											<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
+													<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
+											<Button text="{i18n>part.button.last.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
+													<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
+											<Button text="{i18n>part.button.first.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
+													<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
+											<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>
+													<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData> -->
+										</OverflowToolbar>
+									</Toolbar>
+									<ce:CodeEditor id="propertiesCE" type="xml" class="wattEditorContainer"/>
+								 </l:VerticalLayout>
+							</cols:content>
+						</cols:EqualWidthColumns>
+
+						<l:VerticalLayout id="dynRestList" width="100%" class="sapUiSmallMargin" />
+
 				</content>
 			</Page>
 		</pages>

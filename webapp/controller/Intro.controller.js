@@ -14,6 +14,19 @@ sap.ui.define([
 			this.getView().setModel(i18nModel, "i18n");
 		},
 
+		onResultTest: function () {
+			// load sample XML file and process it
+			var _oModel = this.getOwnerComponent().getModel("userXML");
+			this._processXML(_oModel.getData());
+			
+			// test Part/34/96
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("part", {
+				partIndex: 96,
+				sysIndex: 34
+			});
+		},
+
 		onUseExampleFile: function () {
 			// load sample XML file and process it
 			var _oModel = this.getOwnerComponent().getModel("userXML");

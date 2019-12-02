@@ -52220,6 +52220,17 @@
 				<Counter>7 </Counter>
 			</Result>
 			<Result>
+				<GenericId>USRC0000000071</GenericId>
+				<Attribute2>1 </Attribute2>
+				<Counter>7 </Counter>
+			</Result>			
+
+			<Result>
+				<GenericId>USRC0000000054</GenericId>
+				<Attribute2>2 </Attribute2>
+				<Counter>1 </Counter>
+			</Result>			
+			<Result>
 				<GenericId>USRC0000000006</GenericId>
 				<Attribute2>2 </Attribute2>
 				<Counter>1 </Counter>

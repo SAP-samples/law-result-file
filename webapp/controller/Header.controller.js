@@ -12,9 +12,9 @@ sap.ui.define([
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this._checkInitialModel();
-			this.oModel = this.getOwnerComponent().getModel("userXML");
+			this._oModel = this.getOwnerComponent().getModel("userXML");
 			this.oView = this.getView();
-			this.oView.setModel(this.oModel);
+			this.oView.setModel(this._oModel);
 			this.sCoreBindingPath = "/Header/";
 
 			// bind form
@@ -22,7 +22,7 @@ sap.ui.define([
 			_oHeaderForm.bindElement(this.sCoreBindingPath);
 
 			// set code editor context
-			var _mainModelRaw = this.oModel.getData().children[0];
+			var _mainModelRaw = this._oModel.getData().children[0];
 			var _rawSystemData = _mainModelRaw._tagMeasurementHeaderHook;
 			var _oCodeEditor = this.byId("headerCodeEditor");
 			this.buildEditorContext(_rawSystemData, _oCodeEditor);

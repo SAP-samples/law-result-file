@@ -1,0 +1,1389 @@
+{ "documentation": [
+	"SAP internal information: This file is an extract from SAP's internal system K9R, table TU_UNTT, language English. Extract the data",
+	"with the option 'Text with tables', import it into Excel, use the formular to generate a proper JSON format, copy & paste it into MS Word",
+	"and paste it into this file. Remove the last ',' and make sure to have a closing '] }'",
+	"formular in Excel (quotation marks can't be displayed here correctly, so replace ' by \" in the formular):",
+	"=VERKETTEN(WENN(C3=C2;'';VERKETTEN(' { ''engine'': ''';C3;''',    ''units'': [ ';ZEICHEN(10)));'            { ''unit'': ''';D3;''', ''unitName'': ''';E3;''' }';WENN(C3=C4;', ';'] ' & ZEICHEN(10) & '}, '))"
+	],
+ "unitsList": [
+ { "engine": "100",    "units": [ 
+            { "unit": "50", "unitName": "PA Master Records" }, 
+            { "unit": "51", "unitName": "PD Master Records" }, 
+            { "unit": "100", "unitName": "Master records PD Organizational Mgmt" }, 
+            { "unit": "110", "unitName": "Master records PD training/event mgmt" }, 
+            { "unit": "120", "unitName": "Master records PD personnel development" }, 
+            { "unit": "150", "unitName": "Master records PA withdrawn" }, 
+            { "unit": "151", "unitName": "Master records PA inactive" }, 
+            { "unit": "152", "unitName": "Master records PA retirees" }, 
+            { "unit": "153", "unitName": "Master records PA active" }, 
+            { "unit": "157", "unitName": "Master Records PA employees calculated" }, 
+            { "unit": "160", "unitName": "Master records PA applicants" }, 
+            { "unit": "170", "unitName": "Master records PA Benefits" }, 
+            { "unit": "175", "unitName": "Master records PA compensation" }, 
+            { "unit": "180", "unitName": "e-recruitment: Requisitions" }, 
+            { "unit": "181", "unitName": "e-recruitment: Candidates Internal" }, 
+            { "unit": "182", "unitName": "e-recruitment: Candidates External" }, 
+            { "unit": "183", "unitName": "e-recruitment: Requisitions" }, 
+            { "unit": "190", "unitName": "Master records company pension scheme" }, 
+            { "unit": "191", "unitName": "Pension Fund (CH)" }, 
+            { "unit": "192", "unitName": "Pension Fund (NL)" }, 
+            { "unit": "193", "unitName": "Pension Fund (BE)" }, 
+            { "unit": "195", "unitName": "HR-VADM: Pensioners" }, 
+            { "unit": "196", "unitName": "HR-VADM: Surv. Dep. / Pens. Eq. Pymnt" }] 
+}, 
+ { "engine": "200",    "units": [ 
+            { "unit": "200", "unitName": "CLR: Financial Objects" }, 
+            { "unit": "201", "unitName": "CLR: Active Financial Objects" }, 
+            { "unit": "202", "unitName": "CLR: Valid Financial Objects" }, 
+            { "unit": "203", "unitName": "CLR: Active, Valid Financial Objects" }, 
+            { "unit": "210", "unitName": "RM: Financial Objects" }, 
+            { "unit": "211", "unitName": "RM: Active financial objects" }, 
+            { "unit": "212", "unitName": "RM: Valid financial objects" }, 
+            { "unit": "213", "unitName": "RM: Active, valid financial objects" }, 
+            { "unit": "220", "unitName": "ALM: Financial Objects" }, 
+            { "unit": "221", "unitName": "ALM: Active financial objects" }, 
+            { "unit": "222", "unitName": "ALM: Valid financial objects" }, 
+            { "unit": "223", "unitName": "ALM: Active, valid financial objects" }, 
+            { "unit": "230", "unitName": "STC: Financial Objects" }, 
+            { "unit": "231", "unitName": "STC: Active Financial Objects" }, 
+            { "unit": "232", "unitName": "STC: Valid Financial Objects" }, 
+            { "unit": "233", "unitName": "STC: Active, Valid Financial Objects" }, 
+            { "unit": "234", "unitName": "STC: Single-trans. costing fin. objects" }, 
+            { "unit": "235", "unitName": "STC: Volume calculation line items" }, 
+            { "unit": "240", "unitName": "BCA: Number of accounts" }, 
+            { "unit": "241", "unitName": "BCA: Maximum number of postings per day" }] 
+}, 
+ { "engine": "250",    "units": [ 
+            { "unit": "250", "unitName": "CML: Mortgage Loans" }, 
+            { "unit": "251", "unitName": "CML: Borrower's Notes" }, 
+            { "unit": "252", "unitName": "CML: Policies" }, 
+            { "unit": "253", "unitName": "CML: Loans" }, 
+            { "unit": "254", "unitName": "CML: Consumer Loans" }, 
+            { "unit": "255", "unitName": "CML: Investor Contracts" }] 
+}, 
+ { "engine": "260",    "units": [ 
+            { "unit": "260", "unitName": "Number of Active Limits" }] 
+}, 
+ { "engine": "265",    "units": [ 
+            { "unit": "265", "unitName": "Active Secured Receivables (Suite)" }] 
+}, 
+ { "engine": "290",    "units": [ 
+            { "unit": "290", "unitName": "Refinancable Assets" }, 
+            { "unit": "291", "unitName": "Refinanced Effective Volume" }, 
+            { "unit": "292", "unitName": "Number of Refinanced Contracts" }] 
+}, 
+ { "engine": "300",    "units": [ 
+            { "unit": "300", "unitName": "Patients Treated" }] 
+}, 
+ { "engine": "310",    "units": [ 
+            { "unit": "310", "unitName": "Outpatient Treatment Days" }, 
+            { "unit": "311", "unitName": "Patients Treated as Outpatients" }] 
+}, 
+ { "engine": "320",    "units": [ 
+            { "unit": "320", "unitName": "People Authorized to Provide Treatment" }] 
+}, 
+ { "engine": "330",    "units": [ 
+            { "unit": "330", "unitName": "Contract Accounts" }] 
+}, 
+ { "engine": "340",    "units": [ 
+            { "unit": "340", "unitName": "Participating Parties" }] 
+}, 
+ { "engine": "350",    "units": [ 
+            { "unit": "350", "unitName": "Database Size in GB" }, 
+            { "unit": "351", "unitName": "LT Basic" }, 
+            { "unit": "352", "unitName": "LT Organizational Change" }, 
+            { "unit": "353", "unitName": "LT Value Chain Harmonization" }, 
+            { "unit": "354", "unitName": "LT IT Consolidation" }] 
+}, 
+ { "engine": "370",    "units": [ 
+            { "unit": "370", "unitName": "Number of Gateway (ODC) Calls per Year" }, 
+            { "unit": "371", "unitName": "Number of Gateway (IWFND) Calls per Year" }, 
+            { "unit": "372", "unitName": "Number of Gateway Users per Year" }] 
+}, 
+ { "engine": "380",    "units": [ 
+            { "unit": "380", "unitName": "Successful Memory Requests" }, 
+            { "unit": "381", "unitName": "BPC NW Different Users in PAK" }, 
+            { "unit": "382", "unitName": "BPC NW Active Various Users PAK" }] 
+}, 
+ { "engine": "395",    "units": [ 
+            { "unit": "395", "unitName": "Number of Products" }, 
+            { "unit": "396", "unitName": "Number of Locations" }, 
+            { "unit": "397", "unitName": "Advanced Planning & Scheduling Indicator" }] 
+}, 
+ { "engine": "400",    "units": [ 
+            { "unit": "400", "unitName": "BIL/CCS: Consumption-Based Contracts" }, 
+            { "unit": "401", "unitName": "BIL/CCS: Flat-Fee Contracts" }, 
+            { "unit": "402", "unitName": "ICA: Contract Accounts" }, 
+            { "unit": "410", "unitName": "Total Consumption-Based Contracts" }, 
+            { "unit": "411", "unitName": "Consumption-Based Contracts: Electricity" }, 
+            { "unit": "412", "unitName": "Consumption-Based Contracts: Gas" }, 
+            { "unit": "413", "unitName": "Consumption-Based Contracts: Water" }, 
+            { "unit": "414", "unitName": "Consumption-Based Contracts: Waste Water" }, 
+            { "unit": "415", "unitName": "Consump.-Dep. Contracts Disrict Heating" }, 
+            { "unit": "416", "unitName": "Consump.-Dep. Contracts Waste Managemt." }, 
+            { "unit": "417", "unitName": "Consump.-Dep. Contracts Reciprocity" }, 
+            { "unit": "418", "unitName": "Consump.-Dep. Contracts Predominant" }, 
+            { "unit": "430", "unitName": "Total Flat-Rate Contracts" }, 
+            { "unit": "431", "unitName": "Flat-Rate Contracts Electricity" }, 
+            { "unit": "432", "unitName": "Flat-Rate Contracts Gas" }, 
+            { "unit": "433", "unitName": "Flat-Rate Contracts Water" }, 
+            { "unit": "434", "unitName": "Flat-Rate Contracts Waste Water" }, 
+            { "unit": "435", "unitName": "Flat-Rate Contracts District Heating" }, 
+            { "unit": "436", "unitName": "Flat-Rate Contracts Waste Management" }, 
+            { "unit": "437", "unitName": "Flat-Rate Contracts Reciprocity" }, 
+            { "unit": "438", "unitName": "Flat-Rate Contracts Predominant" }, 
+            { "unit": "450", "unitName": "Electricity: Reporting Point Settlement" }, 
+            { "unit": "451", "unitName": "Electricity: Deregulated Reporting Point" }, 
+            { "unit": "452", "unitName": "Electricity: Technical Reporting Points" }, 
+            { "unit": "453", "unitName": "Electricity: Total Reporting Points" }, 
+            { "unit": "454", "unitName": "Electricity: Counter Built In" }, 
+            { "unit": "460", "unitName": "Gas: Reporting Points Settlement" }, 
+            { "unit": "461", "unitName": "Gas: Deregulated Reporting Points" }, 
+            { "unit": "462", "unitName": "Gas: Technical Reporting Points" }, 
+            { "unit": "463", "unitName": "Gas: Total Reporting Points" }, 
+            { "unit": "464", "unitName": "Gas: Counter Built In" }, 
+            { "unit": "470", "unitName": "Other Areas: Reporting Points Settlement" }, 
+            { "unit": "471", "unitName": "Other Areas:Deregulated Reporting Points" }, 
+            { "unit": "472", "unitName": "Other Areas: Technical Reporting Points" }, 
+            { "unit": "473", "unitName": "Other Areas: Total Reporting Points" }, 
+            { "unit": "474", "unitName": "Other Areas: Counter Built In" }, 
+            { "unit": "480", "unitName": "Waste: Waste Objects" }, 
+            { "unit": "506", "unitName": "Reporting Point, Electricity" }, 
+            { "unit": "507", "unitName": "Reporting Point, Gas" }, 
+            { "unit": "508", "unitName": "Reporting Point, Water" }, 
+            { "unit": "509", "unitName": "Reporting Point, Other Areas" }, 
+            { "unit": "515", "unitName": "Reporting Point with AMI Usage, Electr." }, 
+            { "unit": "516", "unitName": "Reporting Point with AMI Usage, Gas" }, 
+            { "unit": "517", "unitName": "Reporting Point with AMI Usage, Water" }, 
+            { "unit": "518", "unitName": "Reporting Point with AMI Usage, Other" }, 
+            { "unit": "519", "unitName": "Contracts Not To Be Licensed" }, 
+            { "unit": "520", "unitName": "Contract, Distribution Flat-Rate, Elect." }, 
+            { "unit": "521", "unitName": "Contract, Distribution, Flat-Rate, Gas" }, 
+            { "unit": "522", "unitName": "Contract, Distribution, Flat-Rate, Water" }, 
+            { "unit": "523", "unitName": "Contract, Distribution, Flat-Rat, Other" }, 
+            { "unit": "525", "unitName": "Contract, Delivery, Flat-Rate, Electric." }, 
+            { "unit": "526", "unitName": "Contract, Delivery, Flat-Rate, Gas" }, 
+            { "unit": "527", "unitName": "Contract, Delivery, Flat-Rate, Water" }, 
+            { "unit": "528", "unitName": "Contract, Delivery, Flat-Rate, Other" }, 
+            { "unit": "530", "unitName": "Contract, Undefined, Flat-Rate, Electric" }, 
+            { "unit": "531", "unitName": "Contract, Undefined, Flat-Rate, Gas" }, 
+            { "unit": "532", "unitName": "Contract, Undefined, Flat-Rate, Water" }, 
+            { "unit": "533", "unitName": "Contract, Undefined, Flat-Rate, Waste" }, 
+            { "unit": "534", "unitName": "Contract, Undefined, Flat-Rate, Other" }, 
+            { "unit": "535", "unitName": "Contract, Distribution, Measured, Elect." }, 
+            { "unit": "536", "unitName": "Contract, Distribution, Measured, Gas" }, 
+            { "unit": "537", "unitName": "Contract, Distribution, Measured, Water" }, 
+            { "unit": "538", "unitName": "Contract, Distribution, Measured, Other" }, 
+            { "unit": "540", "unitName": "Contract, Delivery, Measured, Electric." }, 
+            { "unit": "541", "unitName": "Contract, Delivery, Measured, Gas" }, 
+            { "unit": "542", "unitName": "Contract, Delivery, Measured, Water" }, 
+            { "unit": "543", "unitName": "Contract, Delivery, Measured, Other" }, 
+            { "unit": "545", "unitName": "Contract, Undefined, Measured, Electric." }, 
+            { "unit": "546", "unitName": "Contract, Undefined, Measured, Gas" }, 
+            { "unit": "547", "unitName": "Contract, Undefined, Measured, Water" }, 
+            { "unit": "548", "unitName": "Contract, Undefined, Measured, Waste" }, 
+            { "unit": "549", "unitName": "Contract, Undefined, Measured, Other" }, 
+            { "unit": "551", "unitName": "EDM Usage Indicator, Electricity" }, 
+            { "unit": "552", "unitName": "EDM Usage Indicator, Gas" }, 
+            { "unit": "553", "unitName": "EDM Usage Indicator, Water" }, 
+            { "unit": "554", "unitName": "EDM Usage Indicator, Other" }, 
+            { "unit": "555", "unitName": "Contract Accounts" }, 
+            { "unit": "556", "unitName": "Integrated Counter, Electricity" }, 
+            { "unit": "557", "unitName": "Integrated Counter, Gas" }, 
+            { "unit": "558", "unitName": "Integrated Counter, Other Division Cats" }, 
+            { "unit": "559", "unitName": "Built-In Counters, Water and Waste Water" }, 
+            { "unit": "560", "unitName": "Waste Objects" }, 
+            { "unit": "561", "unitName": "AMI Usage Indicator, Electricity" }, 
+            { "unit": "562", "unitName": "AMI Usage Indicator, Gas" }, 
+            { "unit": "563", "unitName": "AMI Usage Indicator, Water" }, 
+            { "unit": "564", "unitName": "AMI Usage Indicator, Other" }, 
+            { "unit": "565", "unitName": "IDE Usage Indicator, Electricity" }, 
+            { "unit": "566", "unitName": "IDE Usage Indicator, Gas" }, 
+            { "unit": "567", "unitName": "IDE Usage Indicator, Water" }, 
+            { "unit": "568", "unitName": "IDE Usage Indicator, Other" }, 
+            { "unit": "569", "unitName": "EDM Usage Indicator, Read Meter" }, 
+            { "unit": "1800", "unitName": "PoDs (Electricity)" }, 
+            { "unit": "1801", "unitName": "PoDs (Gas)" }, 
+            { "unit": "1802", "unitName": "PoDs (District Heating)" }, 
+            { "unit": "1803", "unitName": "PoDs (Water)" }, 
+            { "unit": "1804", "unitName": "PoDs (Waste Water)" }, 
+            { "unit": "1805", "unitName": "PoDs (Waste & Recycling)" }, 
+            { "unit": "1806", "unitName": "PoDs (Mutual Help)" }, 
+            { "unit": "1807", "unitName": "PoDs (For All Sectors)" }, 
+            { "unit": "1810", "unitName": "PoDs, Advanced Meter (Electricity)" }, 
+            { "unit": "1811", "unitName": "PoDs, Advanced Meter (Gas)" }, 
+            { "unit": "1812", "unitName": "PoDs, Advanced Meter (District Heating)" }, 
+            { "unit": "1813", "unitName": "PoDs, Advanced Meter (Water)" }, 
+            { "unit": "1814", "unitName": "PoDs, Advanced Meter (Waste Water)" }, 
+            { "unit": "1815", "unitName": "PoDs, Advanced Meter (Waste & Recycling)" }, 
+            { "unit": "1816", "unitName": "PoDs, Advanced Meter (Mutual Help)" }, 
+            { "unit": "1817", "unitName": "PoDs, Advanced Meter (For All Sectors)" }, 
+            { "unit": "1830", "unitName": "Utilities Contracts (Electricity)" }, 
+            { "unit": "1831", "unitName": "Utilities Contracts (Gas)" }, 
+            { "unit": "1832", "unitName": "Utilities Contracts (District Heating)" }, 
+            { "unit": "1833", "unitName": "Utilities Contracts (Water)" }, 
+            { "unit": "1834", "unitName": "Utilities Contracts (Waste Water)" }, 
+            { "unit": "1835", "unitName": "Utilities Contracts (Waste & Recycling)" }, 
+            { "unit": "1836", "unitName": "Utilities Contracts (Mutual Help)" }, 
+            { "unit": "1837", "unitName": "Utilities Contracts (For All Sectors)" }, 
+            { "unit": "1850", "unitName": "Meter Admin & Ops Usage Indic., Energy" }, 
+            { "unit": "1851", "unitName": "Meter Admin & Ops Usage Indicator, Water" }, 
+            { "unit": "1852", "unitName": "EDM Usage Indicator, Energy" }, 
+            { "unit": "1853", "unitName": "WDM Usage Indicator, Water" }, 
+            { "unit": "1854", "unitName": "AMI Usage Indicator, Energy" }, 
+            { "unit": "1855", "unitName": "AMI Usage Indicator, Water" }, 
+            { "unit": "1856", "unitName": "Bill-to-Cash Mgmt Usage Indic., Energy" }, 
+            { "unit": "1857", "unitName": "Bill-to-Cash Mgmt Usage Indicator, Water" }, 
+            { "unit": "1858", "unitName": "Usage indicator Bill-to-Cash Mgmt, W&R" }, 
+            { "unit": "1861", "unitName": "Usage Indicator IDE" }, 
+            { "unit": "1862", "unitName": "Usage Indicator IDEX-GE" }, 
+            { "unit": "1870", "unitName": "Usage Ind. Logistics Waste & Recycling" }, 
+            { "unit": "1871", "unitName": "Usage ind. Meter Reading Plan. PROLOGA" }, 
+            { "unit": "1872", "unitName": "Usage ind. Material Flow Mgmt. PROLOGA" }, 
+            { "unit": "1873", "unitName": "Usage ind. Dispatching & Plan. PROLOGA" }, 
+            { "unit": "1883", "unitName": "Usage Indicator IDEX-GM" }, 
+            { "unit": "1892", "unitName": "PoDs Metering Location, Electricity" }, 
+            { "unit": "1893", "unitName": "PoDs Metering Location, Gas" }, 
+            { "unit": "1894", "unitName": "PoDs Metering ocation, District Heating" }, 
+            { "unit": "1895", "unitName": "PoDs Metering Location, Water" }, 
+            { "unit": "1896", "unitName": "PoDs Metering Location, Waste Water" }] 
+}, 
+ { "engine": "490",    "units": [ 
+            { "unit": "490", "unitName": "SAP Financial Closing Cockpit Task Lists" }] 
+}, 
+ { "engine": "500",    "units": [ 
+            { "unit": "500", "unitName": "RM-CA: Contract Accounts" }, 
+            { "unit": "501", "unitName": "RM-CA: Active Contract Accounts" }] 
+}, 
+ { "engine": "570",    "units": [ 
+            { "unit": "570", "unitName": "Planning Plant with WCM Model" }, 
+            { "unit": "571", "unitName": "Technical Objects According to WCM Model" }] 
+}, 
+ { "engine": "580",    "units": [ 
+            { "unit": "580", "unitName": "Contract Accounts" }] 
+}, 
+ { "engine": "585",    "units": [ 
+            { "unit": "585", "unitName": "Calculated Amount per Day (EUR)" }, 
+            { "unit": "586", "unitName": "585 - Exchange Rate Not Maintained" }] 
+}, 
+ { "engine": "590",    "units": [ 
+            { "unit": "590", "unitName": "Prepaid Transactions" }, 
+            { "unit": "591", "unitName": "Postpaid Transactions" }, 
+            { "unit": "592", "unitName": "Transactions (Prepaid and Postpaid)" }, 
+            { "unit": "593", "unitName": "Subscriber Accounts" }] 
+}, 
+ { "engine": "600",    "units": [ 
+            { "unit": "600", "unitName": "CD: Contract Accounts" }, 
+            { "unit": "620", "unitName": "Claims Management Claim" }, 
+            { "unit": "621", "unitName": "Claims Management Notice of Loss" }, 
+            { "unit": "622", "unitName": "Claims Management Claim Bundle" }] 
+}, 
+ { "engine": "606",    "units": [ 
+            { "unit": "606", "unitName": "Number of Insurance Policies in FS-PM" }] 
+}, 
+ { "engine": "615",    "units": [ 
+            { "unit": "615", "unitName": "Number of Alerts" }, 
+            { "unit": "616", "unitName": "Number of Rules Used in Total" }, 
+            { "unit": "617", "unitName": "Number of Available CEI Rules" }] 
+}, 
+ { "engine": "650",    "units": [ 
+            { "unit": "650", "unitName": "Number of KPIs" }] 
+}, 
+ { "engine": "670",    "units": [ 
+            { "unit": "670", "unitName": "Main Memory in Gigabytes (GB) - Peak" }, 
+            { "unit": "671", "unitName": "Main Memory in Gigabytes (GB) - Monthly" }] 
+}, 
+ { "engine": "680",    "units": [ 
+            { "unit": "680", "unitName": "Systems Connected to QIM" }] 
+}, 
+ { "engine": "690",    "units": [ 
+            { "unit": "690", "unitName": "Incom. & Outg. Payments: High Tech (EUR)" }, 
+            { "unit": "691", "unitName": "Incoming & Outgoing Payments: Telco(EUR)" }, 
+            { "unit": "692", "unitName": "Incoming & Outgoing Payments (No CURR)" }, 
+            { "unit": "693", "unitName": "Incom. & Outg. Payments: Banking (EUR)" }, 
+            { "unit": "694", "unitName": "Incoming&outgoing payments HighTech(MEUR" }, 
+            { "unit": "695", "unitName": "Incoming & outgoing payments Telco(MEUR)" }, 
+            { "unit": "696", "unitName": "Incoming&outgoing payments Banking(MEUR)" }] 
+}, 
+ { "engine": "700",    "units": [ 
+            { "unit": "700", "unitName": "CA: Contract Accounts" }, 
+            { "unit": "701", "unitName": "Contract Partners" }, 
+            { "unit": "702", "unitName": "Contract Accounts" }, 
+            { "unit": "703", "unitName": "Contract Partners" }, 
+            { "unit": "704", "unitName": "Contract Partners" }] 
+}, 
+ { "engine": "710",    "units": [ 
+            { "unit": "710", "unitName": "Calculated Items" }, 
+            { "unit": "711", "unitName": "Calculated Contract Accounts" }] 
+}, 
+ { "engine": "720",    "units": [ 
+            { "unit": "720", "unitName": "Volume of Extracted Data (NFE Inbound)" }, 
+            { "unit": "721", "unitName": "Volume of Extracted Data (NFE Outbound)" }] 
+}, 
+ { "engine": "730",    "units": [ 
+            { "unit": "730", "unitName": "Registrations" }, 
+            { "unit": "731", "unitName": "Active Students" }, 
+            { "unit": "732", "unitName": "University Applicants" }, 
+            { "unit": "735", "unitName": "Courses of studies" }, 
+            { "unit": "736", "unitName": "Active Studies" }] 
+}, 
+ { "engine": "740",    "units": [ 
+            { "unit": "740", "unitName": "ARO: Active Obligations" }] 
+}, 
+ { "engine": "745",    "units": [ 
+            { "unit": "745", "unitName": "Active Location Products" }] 
+}, 
+ { "engine": "755",    "units": [ 
+            { "unit": "755", "unitName": "Created Change Requests" }] 
+}, 
+ { "engine": "760",    "units": [ 
+            { "unit": "760", "unitName": "Provider Contracts for E-Mobility" }] 
+}, 
+ { "engine": "770",    "units": [ 
+            { "unit": "770", "unitName": "ISX Active Postpaid Contracts" }, 
+            { "unit": "771", "unitName": "ISX Active Prepaid Contracts" }] 
+}, 
+ { "engine": "780",    "units": [ 
+            { "unit": "780", "unitName": "Contracts" }] 
+}, 
+ { "engine": "790",    "units": [ 
+            { "unit": "790", "unitName": "eDocuments" }] 
+}, 
+ { "engine": "800",    "units": [ 
+            { "unit": "800", "unitName": "SSR: Service Stations" }] 
+}, 
+ { "engine": "810",    "units": [ 
+            { "unit": "810", "unitName": "OGSD: User" }, 
+            { "unit": "811", "unitName": "OGSD: Data Collation Documents" }, 
+            { "unit": "812", "unitName": "OGSD: Interface Documents" }, 
+            { "unit": "813", "unitName": "RFNO Service Stations" }] 
+}, 
+ { "engine": "815",    "units": [ 
+            { "unit": "815", "unitName": "Nominations or HPM Dyn.Quantity Convers." }] 
+}, 
+ { "engine": "820",    "units": [ 
+            { "unit": "820", "unitName": "User" }] 
+}, 
+ { "engine": "830",    "units": [ 
+            { "unit": "830", "unitName": "BSLM Users" }, 
+            { "unit": "831", "unitName": "IDM: Trucks" }, 
+            { "unit": "832", "unitName": "IDM: Drivers" }] 
+}, 
+ { "engine": "840",    "units": [ 
+            { "unit": "840", "unitName": "No. of Alerts Business Partner Screening" }] 
+}, 
+ { "engine": "900",    "units": [ 
+            { "unit": "900", "unitName": "CEM: Device Master Records" }] 
+}, 
+ { "engine": "920",    "units": [ 
+            { "unit": "920", "unitName": "Average Number of Events of Price Sim." }] 
+}, 
+ { "engine": "930",    "units": [ 
+            { "unit": "930", "unitName": "Active Retail Banking Deposits Contracts" }, 
+            { "unit": "931", "unitName": "Inac. Retail Banking Deposits Contracts" }, 
+            { "unit": "932", "unitName": "Active Comn. Banking Deposits Contracts" }, 
+            { "unit": "933", "unitName": "Inac. Comn. Banking Deposits Contracts" }] 
+}, 
+ { "engine": "940",    "units": [ 
+            { "unit": "940", "unitName": "Active Retail Banking Loan Contracts" }, 
+            { "unit": "941", "unitName": "Inact. Retail Banking Loan Contracts" }, 
+            { "unit": "942", "unitName": "Active Comn. Banking Loan Contracts" }, 
+            { "unit": "943", "unitName": "Inac. Comn. Banking Loan Contracts" }, 
+            { "unit": "944", "unitName": "Active German Mortgage Loan Contracts" }, 
+            { "unit": "945", "unitName": "Inac. German Mortgage Loan Contracts" }] 
+}, 
+ { "engine": "950",    "units": [ 
+            { "unit": "950", "unitName": "Act. Business & Assets Private Customers" }, 
+            { "unit": "951", "unitName": "Inactive Business and Assets Priv. Custs" }, 
+            { "unit": "952", "unitName": "Act Business & Assets Corporat.Customers" }, 
+            { "unit": "953", "unitName": "Inact Bus. & Assets Corporate Customers" }] 
+}, 
+ { "engine": "960",    "units": [ 
+            { "unit": "960", "unitName": "Act. Business & Assets Private Customers" }, 
+            { "unit": "961", "unitName": "Inactive Business and Assets Priv. Custs" }, 
+            { "unit": "962", "unitName": "Act Business & Assets Corporat.Customers" }, 
+            { "unit": "963", "unitName": "Inact Bus. & Assets Corporate Customers" }] 
+}, 
+ { "engine": "970",    "units": [ 
+            { "unit": "970", "unitName": "SAP Incentives Administration by Vistex" }, 
+            { "unit": "971", "unitName": "SAP Paybacks and Chargebacks by Vistex" }, 
+            { "unit": "972", "unitName": "SAP Data Maint. ERP by Vistex-Pricing" }, 
+            { "unit": "973", "unitName": "SAP Promotions and Agreements by Vistex" }, 
+            { "unit": "974", "unitName": "SAP Data Maint. ERP by Vistex-Resources" }, 
+            { "unit": "975", "unitName": "SAP Incentives Administration by Vistex" }, 
+            { "unit": "976", "unitName": "SAP Paybacks and Chargebacks by Vistex" }, 
+            { "unit": "977", "unitName": "Vistex Chargebacks/Billbacks /No SDP" }, 
+            { "unit": "978", "unitName": "Vistex Sales Commission/Incentive Comp." }, 
+            { "unit": "979", "unitName": "Vistex Incentive & Payback Solution" }, 
+            { "unit": "980", "unitName": "SAP Con. Record Management by Vistex" }, 
+            { "unit": "981", "unitName": "SAP Promotions and Agreements by Vistex" }] 
+}, 
+ { "engine": "1000",    "units": [ 
+            { "unit": "1000", "unitName": "SPEC 2000: Spare Parts Master Records" }] 
+}, 
+ { "engine": "1100",    "units": [ 
+            { "unit": "1100", "unitName": "JIT: Summarized JIT Call" }, 
+            { "unit": "1101", "unitName": "JIT: Call Synchronous with Production" }] 
+}, 
+ { "engine": "1110",    "units": [ 
+            { "unit": "1110", "unitName": "RPM: Cars Produced" }, 
+            { "unit": "1111", "unitName": "VMS: Vehicles" }, 
+            { "unit": "1112", "unitName": "Vehicles Created in VMS" }, 
+            { "unit": "1113", "unitName": "Vehicles Created from DBM" }] 
+}, 
+ { "engine": "1120",    "units": [ 
+            { "unit": "1120", "unitName": "Created Warranty Contracts" }, 
+            { "unit": "1121", "unitName": "Warranty Claims Created in WTY" }, 
+            { "unit": "1122", "unitName": "Warranty Claims Created from DBM" }] 
+}, 
+ { "engine": "1140",    "units": [ 
+            { "unit": "1140", "unitName": "Business Expert, Ltd. Professional User" }, 
+            { "unit": "1141", "unitName": "Employee, ESS User" }] 
+}, 
+ { "engine": "1144",    "units": [ 
+            { "unit": "1144", "unitName": "Business Expert, Ltd. Professional User" }, 
+            { "unit": "1145", "unitName": "Employee, ESS User" }] 
+}, 
+ { "engine": "1150",    "units": [ 
+            { "unit": "1150", "unitName": "Invoices" }, 
+            { "unit": "1175", "unitName": "OT: Documents with VIM Workflow" }] 
+}, 
+ { "engine": "1151",    "units": [ 
+            { "unit": "1151", "unitName": "Invoices" }, 
+            { "unit": "1152", "unitName": "Limited Access Option" }, 
+            { "unit": "1176", "unitName": "OT: Documents with ICC Data Extraction" }] 
+}, 
+ { "engine": "1154",    "units": [ 
+            { "unit": "1154", "unitName": "Named User" }] 
+}, 
+ { "engine": "1156",    "units": [ 
+            { "unit": "1156", "unitName": "Employee Files - Active Employees" }, 
+            { "unit": "1157", "unitName": "Employee Files - Inactive Employees" }] 
+}, 
+ { "engine": "1200",    "units": [ 
+            { "unit": "1200", "unitName": "FSCM BD Init" }, 
+            { "unit": "1201", "unitName": "FSCM BD Pay" }, 
+            { "unit": "1202", "unitName": "FSCM BD Dispute" }, 
+            { "unit": "1203", "unitName": "FSCM BD Business Partners" }, 
+            { "unit": "1205", "unitName": "FSCM DM Invoice Documents" }, 
+            { "unit": "1206", "unitName": "FSCM DM Sales-Relevant Postings" }, 
+            { "unit": "1210", "unitName": "FSCM DM Open Dispute" }, 
+            { "unit": "1211", "unitName": "FSCM DM Close Dispute" }, 
+            { "unit": "1212", "unitName": "FSCM DM Reopen Dispute" }] 
+}, 
+ { "engine": "1215",    "units": [ 
+            { "unit": "1215", "unitName": "FSCM CM Active Business Partners" }] 
+}, 
+ { "engine": "1230",    "units": [ 
+            { "unit": "1230", "unitName": "FSCM DM Active Customers" }] 
+}, 
+ { "engine": "1240",    "units": [ 
+            { "unit": "1240", "unitName": "FSCM COLL Active Customers" }] 
+}, 
+ { "engine": "1250",    "units": [ 
+            { "unit": "1250", "unitName": "Allocation Plans" }] 
+}, 
+ { "engine": "1300",    "units": [ 
+            { "unit": "1300", "unitName": "WM Delivery Items" }, 
+            { "unit": "1301", "unitName": "WM Delivery Items" }, 
+            { "unit": "1302", "unitName": "WM Tasks" }, 
+            { "unit": "1303", "unitName": "WM Handling Units" }, 
+            { "unit": "1304", "unitName": "WM Transport Requests" }] 
+}, 
+ { "engine": "1310",    "units": [ 
+            { "unit": "1310", "unitName": "Small Warehouse" }, 
+            { "unit": "1311", "unitName": "Medium Warehouse" }, 
+            { "unit": "1312", "unitName": "Large Warehouse" }] 
+}, 
+ { "engine": "1318",    "units": [ 
+            { "unit": "1318", "unitName": "Warehouse" }] 
+}, 
+ { "engine": "1320",    "units": [ 
+            { "unit": "1320", "unitName": "Appointment Loading Point, Small" }, 
+            { "unit": "1321", "unitName": "Appointment Loading Point, Medium" }, 
+            { "unit": "1322", "unitName": "Appointment Loading Point, Large" }] 
+}, 
+ { "engine": "1340",    "units": [ 
+            { "unit": "1340", "unitName": "Products Assigned to any Assortment List" }] 
+}, 
+ { "engine": "1345",    "units": [ 
+            { "unit": "1345", "unitName": "POS transactions loaded into SAP CAR" }, 
+            { "unit": "1346", "unitName": "Queries executed on SAP CAR views" }, 
+            { "unit": "1347", "unitName": "On-Shelf Availability status records" }] 
+}, 
+ { "engine": "1360",    "units": [ 
+            { "unit": "1360", "unitName": "Planning transactional objects" }] 
+}, 
+ { "engine": "1400",    "units": [ 
+            { "unit": "1401", "unitName": "FSCM BRM Active Customers" }, 
+            { "unit": "1402", "unitName": "FSCM BRM Active Billers" }] 
+}, 
+ { "engine": "1405",    "units": [ 
+            { "unit": "1405", "unitName": "Active Customers" }, 
+            { "unit": "1406", "unitName": "Active Creditors" }] 
+}, 
+ { "engine": "1450",    "units": [ 
+            { "unit": "1450", "unitName": "No. of Bus. obj. Docs. created/changed" }, 
+            { "unit": "1451", "unitName": "No. of Bus. obj. Docs. created/changed" }] 
+}, 
+ { "engine": "1455",    "units": [ 
+            { "unit": "1455", "unitName": "Number of Documents" }] 
+}, 
+ { "engine": "1470",    "units": [ 
+            { "unit": "1470", "unitName": "Items of the last 12 months" }, 
+            { "unit": "1471", "unitName": "Items of the last 12 months" }, 
+            { "unit": "1472", "unitName": "Items of the last 12 months" }] 
+}, 
+ { "engine": "1480",    "units": [ 
+            { "unit": "1480", "unitName": "EWM:small warehouses last 12 months" }, 
+            { "unit": "1481", "unitName": "EWM: midsize warehouses last 12 months" }, 
+            { "unit": "1482", "unitName": "EWM: large warehouses last 12 months" }] 
+}, 
+ { "engine": "1495",    "units": [ 
+            { "unit": "1495", "unitName": "Cross Channel Order Mgmt.: Documents" }] 
+}, 
+ { "engine": "1500",    "units": [ 
+            { "unit": "1500", "unitName": "Branches (Total)" }, 
+            { "unit": "1501", "unitName": "Small Branches" }, 
+            { "unit": "1502", "unitName": "Medium Branches" }, 
+            { "unit": "1503", "unitName": "Large Branches" }, 
+            { "unit": "1504", "unitName": "Branches Without Size Specification" }, 
+            { "unit": "1510", "unitName": "Distribution Centers" }, 
+            { "unit": "1520", "unitName": "Active Branches (Total)" }, 
+            { "unit": "1521", "unitName": "Active Small Branches" }, 
+            { "unit": "1522", "unitName": "Active Medium Branches" }, 
+            { "unit": "1523", "unitName": "Active Large Branches" }, 
+            { "unit": "1524", "unitName": "Active Branches Without Size Spec." }, 
+            { "unit": "1530", "unitName": "Active Distribution Centers" }] 
+}, 
+ { "engine": "1535",    "units": [ 
+            { "unit": "1535", "unitName": "Retail Articles" }] 
+}, 
+ { "engine": "1550",    "units": [ 
+            { "unit": "1550", "unitName": "BIA: Number of Blades" }, 
+            { "unit": "1551", "unitName": "BIA: Main Memory of Blades (GB)" }, 
+            { "unit": "1552", "unitName": "BWA: Main Memory of Prod. Blades (GB)" }] 
+}, 
+ { "engine": "1570",    "units": [ 
+            { "unit": "1570", "unitName": "Extracted Data Volume (MB)" }, 
+            { "unit": "1571", "unitName": "Extracted Data Volume (MB) (OData)" }] 
+}, 
+ { "engine": "1600",    "units": [ 
+            { "unit": "1601", "unitName": "Interactive Forms" }] 
+}, 
+ { "engine": "1630",    "units": [ 
+            { "unit": "1630", "unitName": "SLC:No.of Bus Obj. docs created/changed" }] 
+}, 
+ { "engine": "1650",    "units": [ 
+            { "unit": "1650", "unitName": "Number of Users" }] 
+}, 
+ { "engine": "1670",    "units": [ 
+            { "unit": "1670", "unitName": "Service Orders (as Slot Orders in EMSP)" }] 
+}, 
+ { "engine": "1720",    "units": [ 
+            { "unit": "1720", "unitName": "Usage Indicator Cerner i.s.h.med" }] 
+}, 
+ { "engine": "1740",    "units": [ 
+            { "unit": "1740", "unitName": "Account.financ. Instr. - Contracts" }, 
+            { "unit": "1741", "unitName": "Account.financ. Instr. - Transactions" }, 
+            { "unit": "1742", "unitName": "Credit Risk Mgmt - Records" }, 
+            { "unit": "1743", "unitName": "Financ. Datab. F. Banking - Records" }, 
+            { "unit": "1744", "unitName": "Import.Subledger Docs RDL - Transactions" }, 
+            { "unit": "1745", "unitName": "Funds Transf.Pric.- Records" }] 
+}, 
+ { "engine": "1843",    "units": [ 
+            { "unit": "1843", "unitName": "Active users Multichannel" }, 
+            { "unit": "1863", "unitName": "Usage indicator Multichannel Foundation" }] 
+}, 
+ { "engine": "1848",    "units": [ 
+            { "unit": "1848", "unitName": "Business Partners (DSM)" }, 
+            { "unit": "1849", "unitName": "Usage Indicator: Demand Side Mgmt (DSM)" }] 
+}, 
+ { "engine": "1859",    "units": [ 
+            { "unit": "1859", "unitName": "Sales Mgmt & Customer Usage Ind., Energy" }, 
+            { "unit": "1860", "unitName": "Sales Mgmt & Customer Usage Ind., Water" }] 
+}, 
+ { "engine": "1874",    "units": [ 
+            { "unit": "1874", "unitName": "Usage ind. EDM add-on Gas PROLOGA" }] 
+}, 
+ { "engine": "1879",    "units": [ 
+            { "unit": "1879", "unitName": "Sales Portfolios (in TWh)" }, 
+            { "unit": "1880", "unitName": "Usage indicator EPM" }] 
+}, 
+ { "engine": "1881",    "units": [ 
+            { "unit": "1881", "unitName": "Usage indicator PCU" }] 
+}, 
+ { "engine": "1884",    "units": [ 
+            { "unit": "1884", "unitName": "Usage indicator IDEX-GENF" }] 
+}, 
+ { "engine": "1885",    "units": [ 
+            { "unit": "1885", "unitName": "Usage indicator SAP EEG Billing" }] 
+}, 
+ { "engine": "1890",    "units": [ 
+            { "unit": "1890", "unitName": "Usage indicator IDEX-GM 2.0" }] 
+}, 
+ { "engine": "1897",    "units": [ 
+            { "unit": "1897", "unitName": "Usage Indicator MPM" }] 
+}, 
+ { "engine": "1898",    "units": [ 
+            { "unit": "1898", "unitName": "Usage Indicator IDEX-CH" }] 
+}, 
+ { "engine": "1899",    "units": [ 
+            { "unit": "1899", "unitName": "Usage Indicator IMG" }] 
+}, 
+ { "engine": "1900",    "units": [ 
+            { "unit": "1900", "unitName": "Usage Indicator IDXPF" }] 
+}, 
+ { "engine": "1902",    "units": [ 
+            { "unit": "1902", "unitName": "Usage Indicator MOSB German Elec. & Gas" }] 
+}, 
+ { "engine": "2000",    "units": [ 
+            { "unit": "2001", "unitName": "Number of Event Handlers" }, 
+            { "unit": "2002", "unitName": "Number of Event Messages" }] 
+}, 
+ { "engine": "2100",    "units": [ 
+            { "unit": "2101", "unitName": "Public Sector Records" }, 
+            { "unit": "2102", "unitName": "Financial Services Records" }, 
+            { "unit": "2103", "unitName": "Case Management Records" }, 
+            { "unit": "2104", "unitName": "Human Capital Management Records" }, 
+            { "unit": "2105", "unitName": "Records from Any Application Area" }, 
+            { "unit": "2106", "unitName": "Product Lifecycle Mmgt Records ECR WD UI" }, 
+            { "unit": "2107", "unitName": "Records Managment Records" }, 
+            { "unit": "2108", "unitName": "Lifecycle Management Records" }] 
+}, 
+ { "engine": "2130",    "units": [ 
+            { "unit": "2130", "unitName": "Number of FLM Users" }] 
+}, 
+ { "engine": "2200",    "units": [ 
+            { "unit": "2201", "unitName": "ICM Commission Contract Partners" }, 
+            { "unit": "2202", "unitName": "ICM Agents" }, 
+            { "unit": "2203", "unitName": "ICM Insurance Policies" }, 
+            { "unit": "2204", "unitName": "ICM Rank by Packages" }, 
+            { "unit": "2205", "unitName": "ICM Commission Contract Partners" }] 
+}, 
+ { "engine": "2300",    "units": [ 
+            { "unit": "2301", "unitName": "Distributed Objects" }, 
+            { "unit": "2302", "unitName": "MDM Product" }, 
+            { "unit": "2303", "unitName": "MDM Customer" }, 
+            { "unit": "2304", "unitName": "MDM Vendor" }, 
+            { "unit": "2305", "unitName": "MDM Functional Location" }, 
+            { "unit": "2306", "unitName": "MDM Customer-Specific Objects (MDF)" }, 
+            { "unit": "2307", "unitName": "MDM Client System" }, 
+            { "unit": "2312", "unitName": "MDM Client's Product" }, 
+            { "unit": "2313", "unitName": "MDM Client's Customer" }, 
+            { "unit": "2314", "unitName": "MDM Client's Vendor" }, 
+            { "unit": "2315", "unitName": "MDM Client's Functional Location" }, 
+            { "unit": "2316", "unitName": "MDM Client's Customer-Specific Objects" }] 
+}, 
+ { "engine": "2320",    "units": [ 
+            { "unit": "2320", "unitName": "XI Chargeable Dataset in MB" }, 
+            { "unit": "2321", "unitName": "XI Complete Dataset (MB)" }, 
+            { "unit": "2322", "unitName": "XI Free-of-Charge Dataset (MB)" }, 
+            { "unit": "2323", "unitName": "XI Data with Unclear Status in MB" }] 
+}, 
+ { "engine": "2405",    "units": [ 
+            { "unit": "2405", "unitName": "Number of Active Resources" }, 
+            { "unit": "2406", "unitName": "Number of Capacitive Resources" }] 
+}, 
+ { "engine": "2410",    "units": [ 
+            { "unit": "2410", "unitName": "Resources" }] 
+}, 
+ { "engine": "2420",    "units": [ 
+            { "unit": "2420", "unitName": "IPM Rights Acquisition Contracts" }, 
+            { "unit": "2421", "unitName": "IPM Active Rights Acquisition Contracts" }, 
+            { "unit": "2422", "unitName": "IPM License Sales Contracts" }, 
+            { "unit": "2423", "unitName": "IPM Active License Sales Contracts" }] 
+}, 
+ { "engine": "2600",    "units": [ 
+            { "unit": "2600", "unitName": "Unclear Status: XI Adapter" }, 
+            { "unit": "2601", "unitName": "SAP Adapter File/FTP" }, 
+            { "unit": "2602", "unitName": "SAP Adapter JDBC" }, 
+            { "unit": "2603", "unitName": "SAP Adapter JMS" }, 
+            { "unit": "2604", "unitName": "SAP Adapter SOAP" }, 
+            { "unit": "2605", "unitName": "SAP Adapter Plain HTTP" }, 
+            { "unit": "2606", "unitName": "SAP Adapter Mail" }, 
+            { "unit": "2607", "unitName": "SAP Business Connector" }, 
+            { "unit": "2608", "unitName": "SAP Adapter Marketplace" }, 
+            { "unit": "2609", "unitName": "SAP Adapter RFC" }, 
+            { "unit": "2610", "unitName": "SAP Adapter IDoc" }, 
+            { "unit": "2611", "unitName": "SAP Adapter RosettaNet (RNIF 2.0)" }, 
+            { "unit": "2612", "unitName": "SAP Adapter RosettaNet (RNIF 1.1)" }, 
+            { "unit": "2613", "unitName": "SAP Adapter CDIX (RNIF 1.1)" }, 
+            { "unit": "2614", "unitName": "Itemfield Conversion Agent" }, 
+            { "unit": "2615", "unitName": "iWay Adapter Ariba" }, 
+            { "unit": "2616", "unitName": "iWay Adapter Baan" }, 
+            { "unit": "2617", "unitName": "iWay Adapter Broadvision" }, 
+            { "unit": "2618", "unitName": "iWay Adapter Clarify" }, 
+            { "unit": "2619", "unitName": "iWay Adapter JD Edwards One World XE" }, 
+            { "unit": "2620", "unitName": "iWay Adapter JD Edwards World" }, 
+            { "unit": "2621", "unitName": "iWay Adapter i2" }, 
+            { "unit": "2622", "unitName": "iWay Adapter Lawson" }, 
+            { "unit": "2623", "unitName": "iWay Adapter Manugistics" }, 
+            { "unit": "2624", "unitName": "iWay Adapter Microsoft CRM" }, 
+            { "unit": "2625", "unitName": "iWay Adapter Oracle Applications" }, 
+            { "unit": "2626", "unitName": "iWay Adapter Peoplesoft" }, 
+            { "unit": "2627", "unitName": "iWay Adapter QAD MFG Pro" }, 
+            { "unit": "2628", "unitName": "iWay Adapter Siebel" }, 
+            { "unit": "2629", "unitName": "iWay Adapter Vantive" }, 
+            { "unit": "2630", "unitName": "iWay Adapter Swift" }, 
+            { "unit": "2631", "unitName": "iWay Adapter Transora" }, 
+            { "unit": "2632", "unitName": "iWay Adapter UCCnet" }, 
+            { "unit": "2633", "unitName": "iWay Adapter AS1" }, 
+            { "unit": "2634", "unitName": "iWay Adapter AS2" }, 
+            { "unit": "2635", "unitName": "iWay Adapter BEA WLI" }, 
+            { "unit": "2636", "unitName": "iWay Adapter COM+/DCOM" }, 
+            { "unit": "2637", "unitName": "iWay Adapter Corba" }, 
+            { "unit": "2638", "unitName": "iWay Adapter Lotus Notes" }, 
+            { "unit": "2639", "unitName": "iWay Adapter Tibco Rendezvous" }, 
+            { "unit": "2640", "unitName": "iWay Adapter CICS" }, 
+            { "unit": "2641", "unitName": "iWay Adapter TMS/IMS" }, 
+            { "unit": "2642", "unitName": "iWay Adapter Tuxedo" }, 
+            { "unit": "2643", "unitName": "iWay Adapter Telnet (3270)" }, 
+            { "unit": "2644", "unitName": "iWay Adapter Telnet (5250)" }, 
+            { "unit": "2645", "unitName": "iWay Adapter HL7" }, 
+            { "unit": "2646", "unitName": "iWay Adapter MQSeries" }, 
+            { "unit": "2647", "unitName": "Seeburger AS2" }, 
+            { "unit": "2648", "unitName": "Seeburger OFTP" }, 
+            { "unit": "2649", "unitName": "Seeburger VAN Access" }, 
+            { "unit": "2650", "unitName": "Seeburger Generic EDI" }, 
+            { "unit": "2651", "unitName": "Seeburger Cross Industry (Payment)" }, 
+            { "unit": "2652", "unitName": "Seeburger Aerospace & Defense" }, 
+            { "unit": "2653", "unitName": "Seeburger Automotive" }, 
+            { "unit": "2654", "unitName": "Seeburger Chemicals" }, 
+            { "unit": "2655", "unitName": "Seeburger Consumer Products" }, 
+            { "unit": "2656", "unitName": "Seeburger Consumer Products (UK)" }, 
+            { "unit": "2657", "unitName": "Seeburger High-Tech" }, 
+            { "unit": "2658", "unitName": "Seeburger Paper" }, 
+            { "unit": "2659", "unitName": "Seeburger Pharmaceutical" }, 
+            { "unit": "2660", "unitName": "Seeburger Retail" }, 
+            { "unit": "2661", "unitName": "Seeburger Retail (UK)" }, 
+            { "unit": "2662", "unitName": "Seeburger PapiNet" }, 
+            { "unit": "2663", "unitName": "Web Service Adapter ABAP" }, 
+            { "unit": "2664", "unitName": "Itemfield Conversion Agent" }, 
+            { "unit": "2665", "unitName": "JAVA HTTP" }, 
+            { "unit": "2666", "unitName": "JAVA IDoc" }] 
+}, 
+ { "engine": "2700",    "units": [ 
+            { "unit": "2700", "unitName": "SAP ES: Main Memory of Blades (GB)" }] 
+}, 
+ { "engine": "2850",    "units": [ 
+            { "unit": "2850", "unitName": "Number of SAP HANA DB Scenarios" }, 
+            { "unit": "2851", "unitName": "Numbe of SLT Scenarios, Complete License" }] 
+}, 
+ { "engine": "2950",    "units": [ 
+            { "unit": "2950", "unitName": "Active User" }] 
+}, 
+ { "engine": "2955",    "units": [ 
+            { "unit": "2955", "unitName": "Potential Days of Use" }] 
+}, 
+ { "engine": "3000",    "units": [ 
+            { "unit": "3001", "unitName": "Active Portfolio Objects" }, 
+            { "unit": "3002", "unitName": "Portfolio Budget (N Unit in EUR)" }] 
+}, 
+ { "engine": "3100",    "units": [ 
+            { "unit": "3100", "unitName": "DSP: Number of Products" }, 
+            { "unit": "3101", "unitName": "DSP: Number of Locations" }, 
+            { "unit": "3102", "unitName": "DSP: Products" }, 
+            { "unit": "3103", "unitName": "DSP: Locations" }] 
+}, 
+ { "engine": "3110",    "units": [ 
+            { "unit": "3110", "unitName": "ILM: Managed Objects" }, 
+            { "unit": "3111", "unitName": "ILM - Database Size in TB" }, 
+            { "unit": "3112", "unitName": "ILM - Decommissioned Systems" }, 
+            { "unit": "3113", "unitName": "ILM - Retention Warehouse System" }, 
+            { "unit": "3114", "unitName": "ILM - Data Controller Rule Framework" }] 
+}, 
+ { "engine": "3120",    "units": [ 
+            { "unit": "3120", "unitName": "TM - Forwarding Orders" }, 
+            { "unit": "3121", "unitName": "TM - Freight Units" }, 
+            { "unit": "3122", "unitName": "TM - Freight Orders" }, 
+            { "unit": "3123", "unitName": "TM - Booking Orders" }, 
+            { "unit": "3124", "unitName": "TM - Settlement" }, 
+            { "unit": "3126", "unitName": "TM - Freight Spent (K Euro)" }, 
+            { "unit": "3127", "unitName": "TM - Revenue (K Euro)" }, 
+            { "unit": "3128", "unitName": "TM - Transport Request" }, 
+            { "unit": "3129", "unitName": "TM - Request for Quotation" }] 
+}, 
+ { "engine": "3130",    "units": [ 
+            { "unit": "3130", "unitName": "Managed Identities" }, 
+            { "unit": "3131", "unitName": "All Entry Types" }] 
+}, 
+ { "engine": "3140",    "units": [ 
+            { "unit": "3140", "unitName": "Participants" }] 
+}, 
+ { "engine": "3145",    "units": [ 
+            { "unit": "3145", "unitName": "User" }] 
+}, 
+ { "engine": "3151",    "units": [ 
+            { "unit": "3151", "unitName": "S4H BPC User" }] 
+}, 
+ { "engine": "3155",    "units": [ 
+            { "unit": "3152", "unitName": "Inactive BPC Professional User" }, 
+            { "unit": "3153", "unitName": "Inactive BPC Standard User" }, 
+            { "unit": "3154", "unitName": "Inactive BPC User Without Data Stamp" }, 
+            { "unit": "3155", "unitName": "BPC Environment" }, 
+            { "unit": "3156", "unitName": "BPC Users" }, 
+            { "unit": "3157", "unitName": "BPC Professional Users" }, 
+            { "unit": "3158", "unitName": "BPC Standard User" }] 
+}, 
+ { "engine": "3160",    "units": [ 
+            { "unit": "3160", "unitName": "Extracted Data Volume (RAR Objects)" }, 
+            { "unit": "3161", "unitName": "Extracted Data Volume (CUP Objects)" }, 
+            { "unit": "3162", "unitName": "Extracted Data Volume (ERM Objects)" }, 
+            { "unit": "3163", "unitName": "Extracted Data Volume (SPM Objects)" }] 
+}, 
+ { "engine": "3165",    "units": [ 
+            { "unit": "3165", "unitName": "Extracted Data Volume (AC Objects)" }, 
+            { "unit": "3166", "unitName": "Extracted Data Volume (PC Objects)" }, 
+            { "unit": "3167", "unitName": "Extracted Data Volume (RM Objects)" }] 
+}, 
+ { "engine": "3170",    "units": [ 
+            { "unit": "3170", "unitName": "CRM Service Requests & Master Requests" }, 
+            { "unit": "3171", "unitName": "CRM Service Quotes & Orders" }, 
+            { "unit": "3172", "unitName": "CRM Service Confirmations" }, 
+            { "unit": "3173", "unitName": "CRM Service Complaints, Returns, Repairs" }, 
+            { "unit": "3174", "unitName": "CRM Service Contracts, Agreements, Plans" }, 
+            { "unit": "3175", "unitName": "CRM Service Product Service Letters" }, 
+            { "unit": "3176", "unitName": "CRM Service Warranty Claims" }, 
+            { "unit": "3177", "unitName": "CRM Service Knowledge Articles" }, 
+            { "unit": "3178", "unitName": "CRM Service Cases" }] 
+}, 
+ { "engine": "3180",    "units": [ 
+            { "unit": "3180", "unitName": "CRM Sales Orders" }, 
+            { "unit": "3181", "unitName": "CRM Sales Opportunity Value (kEUR)" }, 
+            { "unit": "3182", "unitName": "CRM Sales Opportunity Value (MEUR)" }, 
+            { "unit": "3183", "unitName": "CRM Sales Orders" }] 
+}, 
+ { "engine": "3190",    "units": [ 
+            { "unit": "3190", "unitName": "CRM Marketing Contacts" }, 
+            { "unit": "3191", "unitName": "CRM Marketing Campaigns" }, 
+            { "unit": "3192", "unitName": "CRM Marketing MDF Program" }, 
+            { "unit": "3193", "unitName": "CRM Trade Promotions" }, 
+            { "unit": "3194", "unitName": "CRM Marketing Loyalty Memberships" }, 
+            { "unit": "3195", "unitName": "CRM Marketing BPs in Campaigns" }, 
+            { "unit": "3196", "unitName": "CRM Marketing BPs in Campaigns" }] 
+}, 
+ { "engine": "3200",    "units": [ 
+            { "unit": "3200", "unitName": "CRM IC Interaction Records" }] 
+}, 
+ { "engine": "3210",    "units": [ 
+            { "unit": "3210", "unitName": "Connected Feeder Systems - Compl. Mgmt" }, 
+            { "unit": "3211", "unitName": "Connected Feeder Systems - Risk Mgmt" }, 
+            { "unit": "3212", "unitName": "Connected Feeder Systems - Customs Mgmt" }, 
+            { "unit": "3213", "unitName": "Created Shipments - Exports" }, 
+            { "unit": "3214", "unitName": "Created Shipments - Imports" }, 
+            { "unit": "3215", "unitName": "Created Shipments - Restitution" }, 
+            { "unit": "3216", "unitName": "Exporting Countries" }, 
+            { "unit": "3217", "unitName": "Created Customs Export Declarations (DE)" }, 
+            { "unit": "3218", "unitName": "Created Customs Documents - SPL" }, 
+            { "unit": "3219", "unitName": "Created Elect. Admin. Accom. Docs - EMCS" }, 
+            { "unit": "3220", "unitName": "Products Used - Preference" }, 
+            { "unit": "3221", "unitName": "Stock Postings for Processing Trade" }, 
+            { "unit": "3222", "unitName": "Number of FTZ Customs IDs" }, 
+            { "unit": "3223", "unitName": "Created Shipments - Exports" }, 
+            { "unit": "3224", "unitName": "Customs Declarations - Export" }, 
+            { "unit": "3225", "unitName": "Created Shipments - Imports" }, 
+            { "unit": "3226", "unitName": "Customs Declarations - Import" }] 
+}, 
+ { "engine": "3230",    "units": [ 
+            { "unit": "3230", "unitName": "DCN Enterprise Edition Users" }] 
+}, 
+ { "engine": "3250",    "units": [ 
+            { "unit": "3250", "unitName": "AIF Customer Interfaces" }, 
+            { "unit": "3251", "unitName": "AIF Customer Messages (Monitoring only)" }, 
+            { "unit": "3252", "unitName": "AIF Customer Messages (Processing)" }] 
+}, 
+ { "engine": "3300",    "units": [ 
+            { "unit": "3300", "unitName": "CMM Risk Usage Indicator" }, 
+            { "unit": "3301", "unitName": "CMM Risk Usage Indicator" }] 
+}, 
+ { "engine": "3302",    "units": [ 
+            { "unit": "3302", "unitName": "CMM Risk Usage Indicator" }] 
+}, 
+ { "engine": "3305",    "units": [ 
+            { "unit": "3305", "unitName": "CMM Procurement Usage Indicator" }, 
+            { "unit": "3306", "unitName": "CMM Procurement Usage Indicator" }] 
+}, 
+ { "engine": "3310",    "units": [ 
+            { "unit": "3310", "unitName": "CMM Sales Usage Indicator" }, 
+            { "unit": "3311", "unitName": "CMM Sales Usage Indicator" }] 
+}, 
+ { "engine": "3315",    "units": [ 
+            { "unit": "3315", "unitName": "Number of Master Projects Created" }] 
+}, 
+ { "engine": "3319",    "units": [ 
+            { "unit": "3319", "unitName": "Number of billing units" }] 
+}, 
+ { "engine": "3321",    "units": [ 
+            { "unit": "3321", "unitName": "Number of contacts" }, 
+            { "unit": "3322", "unitName": "Usage indicator Data Management" }, 
+            { "unit": "3323", "unitName": "Usage indicator Acquisition Option" }, 
+            { "unit": "3325", "unitName": "Usage indicator Segmentation Option" }, 
+            { "unit": "3326", "unitName": "Usage indicator Recommendation Option" }, 
+            { "unit": "3327", "unitName": "Usage indicator Insight Option" }] 
+}, 
+ { "engine": "3330",    "units": [ 
+            { "unit": "3331", "unitName": "Number of Financial Objects" }, 
+            { "unit": "3332", "unitName": "Number of Hedging Relationships (P-HA)" }, 
+            { "unit": "3333", "unitName": "Number of Transactions" }] 
+}, 
+ { "engine": "3350",    "units": [ 
+            { "unit": "3350", "unitName": "CRM Sales Users" }, 
+            { "unit": "3351", "unitName": "CRM Sales, limited access user" }] 
+}, 
+ { "engine": "3355",    "units": [ 
+            { "unit": "3355", "unitName": "CRM Service User" }, 
+            { "unit": "3356", "unitName": "CRM Service, Limited Access User" }] 
+}, 
+ { "engine": "3390",    "units": [ 
+            { "unit": "3390", "unitName": "Spend Volume in million EUROs" }, 
+            { "unit": "3391", "unitName": "Error: currency table not maintained" }] 
+}, 
+ { "engine": "3395",    "units": [ 
+            { "unit": "3395", "unitName": "Released financial and merchandise plans" }] 
+}, 
+ { "engine": "3400",    "units": [ 
+            { "unit": "3400", "unitName": "LVM Add-On" }] 
+}, 
+ { "engine": "3403",    "units": [ 
+            { "unit": "3403", "unitName": "Tax Decl. Tax Process and Credit Option" }] 
+}, 
+ { "engine": "3404",    "units": [ 
+            { "unit": "3404", "unitName": "Tax Decl. Analytics and Reporting Option" }] 
+}, 
+ { "engine": "3405",    "units": [ 
+            { "unit": "3405", "unitName": "Tax Decl. eSocial Option" }] 
+}, 
+ { "engine": "3406",    "units": [ 
+            { "unit": "3406", "unitName": "GEF Service Calls (Thousands)" }, 
+            { "unit": "3407", "unitName": "GEF Number of Users" }] 
+}, 
+ { "engine": "3408",    "units": [ 
+            { "unit": "3408", "unitName": "Number of Users" }] 
+}, 
+ { "engine": "3415",    "units": [ 
+            { "unit": "3415", "unitName": "Traceable objects created per year" }, 
+            { "unit": "3416", "unitName": "Number of Countries" }] 
+}, 
+ { "engine": "3421",    "units": [ 
+            { "unit": "3421", "unitName": "Active Checking Groups" }] 
+}, 
+ { "engine": "3424",    "units": [ 
+            { "unit": "3424", "unitName": "Products Last Calendar Year" }, 
+            { "unit": "3425", "unitName": "Products Time-Independent" }] 
+}, 
+ { "engine": "3427",    "units": [ 
+            { "unit": "3427", "unitName": "Number of Users" }] 
+}, 
+ { "engine": "3600",    "units": [ 
+            { "unit": "3600", "unitName": "GB Memory Consumption" }] 
+}, 
+ { "engine": "4003",    "units": [ 
+            { "unit": "4003", "unitName": "Main Memory in Gigabytes (GB) - Peak" }] 
+}, 
+ { "engine": "4006",    "units": [ 
+            { "unit": "4006", "unitName": "SAP PPM Standard User" }, 
+            { "unit": "4007", "unitName": "SAP PPM Professional User" }] 
+}, 
+ { "engine": "4010",    "units": [ 
+            { "unit": "4010", "unitName": "User" }] 
+}, 
+ { "engine": "4014",    "units": [ 
+            { "unit": "4014", "unitName": "Classifier Transfers" }] 
+}, 
+ { "engine": "4018",    "units": [ 
+            { "unit": "4018", "unitName": "Usage Indicator Dairy Management" }] 
+}, 
+ { "engine": "4022",    "units": [ 
+            { "unit": "4022", "unitName": "Usage Indicator Meat & Fish Management" }] 
+}, 
+ { "engine": "4030",    "units": [ 
+            { "unit": "4031", "unitName": "Sales Order Line Item (in K)" }, 
+            { "unit": "4032", "unitName": "Sales Contract Line Item (in K)" }, 
+            { "unit": "4033", "unitName": "Sales Quote Line Item (in K)" }, 
+            { "unit": "4034", "unitName": "Sales Sched. Agreement Releases (in K)" }] 
+}, 
+ { "engine": "4040",    "units": [ 
+            { "unit": "4041", "unitName": "Purchase Order Line Item (in K)" }, 
+            { "unit": "4042", "unitName": "Purchase Requisition Line Item (in K)" }, 
+            { "unit": "4043", "unitName": "Purchase Sched. Agreemt Releases (in K)" }] 
+}, 
+ { "engine": "4050",    "units": [ 
+            { "unit": "4051", "unitName": "Billing Document Line Item (in K)" }, 
+            { "unit": "4052", "unitName": "Billing Doc. Request Line Item (in K)" }, 
+            { "unit": "4053", "unitName": "Supplier Invoice Line Item (in K)" }] 
+}, 
+ { "engine": "4060",    "units": [ 
+            { "unit": "4061", "unitName": "Production Order (in K)" }, 
+            { "unit": "4062", "unitName": "Process Order (in K)" }, 
+            { "unit": "4063", "unitName": "Manufacturing Confirmation (in K)" }] 
+}, 
+ { "engine": "4070",    "units": [ 
+            { "unit": "4071", "unitName": "Material Document Line Item (in K)" }] 
+}, 
+ { "engine": "4080",    "units": [ 
+            { "unit": "4081", "unitName": "Defect (in K)" }, 
+            { "unit": "4082", "unitName": "Quality Notification (in K)" }, 
+            { "unit": "4083", "unitName": "Inspection Result (in K)" }, 
+            { "unit": "4084", "unitName": "Inspection Point Result (in K)" }] 
+}, 
+ { "engine": "4090",    "units": [ 
+            { "unit": "4091", "unitName": "Maintenance Order (in K)" }, 
+            { "unit": "4092", "unitName": "Maintenance Notification (in K)" }, 
+            { "unit": "4093", "unitName": "Maintenance Confirmation (in K)" }, 
+            { "unit": "4094", "unitName": "Warranty Claim  (in K)" }, 
+            { "unit": "4095", "unitName": "Service Order (in K)" }, 
+            { "unit": "4096", "unitName": "Service Notification (in K)" }, 
+            { "unit": "4097", "unitName": "Service Confirmation (in K)" }, 
+            { "unit": "4121", "unitName": "S/4 Service Order (in K)" }, 
+            { "unit": "4123", "unitName": "S/4 Service Confirmation (in K)" }] 
+}, 
+ { "engine": "4100",    "units": [ 
+            { "unit": "4101", "unitName": "Financial Document Item (in K)" }] 
+}, 
+ { "engine": "4110",    "units": [ 
+            { "unit": "4111", "unitName": "Time Sheet Record (in K)" }, 
+            { "unit": "4112", "unitName": "Time Management Record (in K)" }] 
+}, 
+ { "engine": "4400",    "units": [ 
+            { "unit": "4400", "unitName": "CM Deal Capture Usage Indicator" }] 
+}, 
+ { "engine": "4410",    "units": [ 
+            { "unit": "4410", "unitName": "Consolidation Units" }] 
+}, 
+ { "engine": "4415",    "units": [ 
+            { "unit": "4415", "unitName": "Consolidation Units" }] 
+}, 
+ { "engine": "5000",    "units": [ 
+            { "unit": "5000", "unitName": "Inquiry" }, 
+            { "unit": "5001", "unitName": "Purchase order" }, 
+            { "unit": "5002", "unitName": "Contract" }, 
+            { "unit": "5003", "unitName": "Scheduling Agreement" }, 
+            { "unit": "5025", "unitName": "Others" }] 
+}, 
+ { "engine": "5100",    "units": [ 
+            { "unit": "5100", "unitName": "Inquiry" }, 
+            { "unit": "5101", "unitName": "Offer" }, 
+            { "unit": "5102", "unitName": "Sales Order" }, 
+            { "unit": "5103", "unitName": "Product Proposal" }, 
+            { "unit": "5104", "unitName": "Scheduling Agreement" }, 
+            { "unit": "5105", "unitName": "Scheduling Agreement w. Ext. Service" }, 
+            { "unit": "5106", "unitName": "Contract" }, 
+            { "unit": "5107", "unitName": "Returns" }, 
+            { "unit": "5108", "unitName": "Delivery w/o Charge" }, 
+            { "unit": "5109", "unitName": "Credit Memo" }, 
+            { "unit": "5110", "unitName": "Debit Memo" }, 
+            { "unit": "5125", "unitName": "Others" }, 
+            { "unit": "5210", "unitName": "Orders from External Users" }, 
+            { "unit": "5211", "unitName": "Orders from Technical Users" }, 
+            { "unit": "5212", "unitName": "Orders from Internal Users" }, 
+            { "unit": "5213", "unitName": "Orders from License-Free Users" }, 
+            { "unit": "5214", "unitName": "Orders from Unknown Users" }] 
+}, 
+ { "engine": "5200",    "units": [ 
+            { "unit": "5200", "unitName": "Service Contracts without Revenues" }, 
+            { "unit": "5201", "unitName": "Service Contracts with Revenues" }] 
+}, 
+ { "engine": "5250",    "units": [ 
+            { "unit": "5250", "unitName": "Document from CRM" }, 
+            { "unit": "5251", "unitName": "Document for ARM Process" }, 
+            { "unit": "5252", "unitName": "Document by eCATT" }, 
+            { "unit": "5253", "unitName": "Document by ODataService" }, 
+            { "unit": "5254", "unitName": "Document by Lean Order (LORD)" }, 
+            { "unit": "5255", "unitName": "Document by Dialog Module (CALL DIALOG)" }, 
+            { "unit": "5256", "unitName": "Document by Dialog BAPI" }, 
+            { "unit": "5257", "unitName": "Document by IDoc Interface (EDI)" }, 
+            { "unit": "5258", "unitName": "Document by CALL TRANSACTION USING" }, 
+            { "unit": "5259", "unitName": "Document by Batch Input Interface" }, 
+            { "unit": "5260", "unitName": "Document by BAPI Interface" }, 
+            { "unit": "5261", "unitName": "Document by Batch General" }, 
+            { "unit": "5262", "unitName": "Other Documents (e.g.Document by Dialog)" }] 
+}, 
+ { "engine": "5310",    "units": [ 
+            { "unit": "5310", "unitName": "User" }] 
+}, 
+ { "engine": "5322",    "units": [ 
+            { "unit": "5322", "unitName": "User" }] 
+}, 
+ { "engine": "5326",    "units": [ 
+            { "unit": "5326", "unitName": "Standard User" }, 
+            { "unit": "5327", "unitName": "Professional User" }] 
+}, 
+ { "engine": "5334",    "units": [ 
+            { "unit": "5334", "unitName": "Users comm. proj. mgmt. Workspaces" }, 
+            { "unit": "5335", "unitName": "Users comm. proj. cost and rev. planning" }, 
+            { "unit": "5336", "unitName": "Users comm. proj. issue and change mgmt" }] 
+}, 
+ { "engine": "5340",    "units": [ 
+            { "unit": "5340", "unitName": "Usage Indicator Finance Cash Management" }] 
+}, 
+ { "engine": "5344",    "units": [ 
+            { "unit": "5344", "unitName": "Items" }] 
+}, 
+ { "engine": "5348",    "units": [ 
+            { "unit": "5348", "unitName": "Retail for Merchandise Mgmt Indicator" }, 
+            { "unit": "5349", "unitName": "Fashion and Vertical Business Indicator" }, 
+            { "unit": "5350", "unitName": "Foundation Usage Indicator" }] 
+}, 
+ { "engine": "5352",    "units": [ 
+            { "unit": "5352", "unitName": "Remote and Base Locations" }] 
+}, 
+ { "engine": "6000",    "units": [ 
+            { "unit": "6000", "unitName": "RE-Classic: Rental Units" }, 
+            { "unit": "6001", "unitName": "RE-Classic: Square Meters (in Thousands)" }, 
+            { "unit": "6002", "unitName": "RE-Classic: Square Feet (in Thousands)" }, 
+            { "unit": "6003", "unitName": "RE-FX: Number of Apartments" }, 
+            { "unit": "6004", "unitName": "RE-FX: Number of Rental Objects (Mixed)" }, 
+            { "unit": "6005", "unitName": "RE-FX: No. of Rental Objs (Commercial)" }, 
+            { "unit": "6006", "unitName": "RE-FX: Number of Parcels" }, 
+            { "unit": "6008", "unitName": "RE-FX: Number of Apartments" }] 
+}, 
+ { "engine": "6007",    "units": [ 
+            { "unit": "6007", "unitName": "RE Users" }] 
+}, 
+ { "engine": "6020",    "units": [ 
+            { "unit": "6020", "unitName": "Active Data Delivery Agreements" }] 
+}, 
+ { "engine": "7000",    "units": [ 
+            { "unit": "7000", "unitName": "SAP Sales / SAP Service: Laptops" }] 
+}, 
+ { "engine": "7100",    "units": [ 
+            { "unit": "7100", "unitName": "IHC: Affiliated Companies / Subsidiaries" }] 
+}, 
+ { "engine": "7500",    "units": [ 
+            { "unit": "7500", "unitName": "AutoCAD Integration Users" }, 
+            { "unit": "7501", "unitName": "CATIA (V4) Integration Users" }, 
+            { "unit": "7502", "unitName": "I-DEAS Integration Users" }, 
+            { "unit": "7503", "unitName": "Pro/Engineer Integration Users" }, 
+            { "unit": "7504", "unitName": "Solid Edge Integration Users" }, 
+            { "unit": "7505", "unitName": "Solid Works Integration Users" }, 
+            { "unit": "7506", "unitName": "UNIGRAPHICS Integration Users" }, 
+            { "unit": "7507", "unitName": "User Inventor Integration" }, 
+            { "unit": "7508", "unitName": "CATIA (V5) Integration Users" }, 
+            { "unit": "7509", "unitName": "Microstation Integration Users" }, 
+            { "unit": "7510", "unitName": "CAD Integration Technical Users" }, 
+            { "unit": "7511", "unitName": "Easy DMS Interface Users" }, 
+            { "unit": "7512", "unitName": "CIDEON Mircostation Integration Users" }, 
+            { "unit": "7515", "unitName": "AutoCAD Integration Users" }, 
+            { "unit": "7516", "unitName": "Creo Integration Users" }, 
+            { "unit": "7517", "unitName": "Solid Edge Integration Users" }, 
+            { "unit": "7518", "unitName": "Solid Works Integration Users" }, 
+            { "unit": "7519", "unitName": "NX Integration Users" }, 
+            { "unit": "7520", "unitName": "User Inventor Integration" }, 
+            { "unit": "7521", "unitName": "CATIA (V5) Integration Users" }, 
+            { "unit": "7522", "unitName": "ECTR Standard Users" }, 
+            { "unit": "7523", "unitName": "ECTR Professional Users" }, 
+            { "unit": "7524", "unitName": "ECC Interf. EPLAN Users" }, 
+            { "unit": "7580", "unitName": "User Altium Designer (PCB)" }, 
+            { "unit": "7581", "unitName": "User Altium Designer (Schematic)" }, 
+            { "unit": "7582", "unitName": "User Cadence Allegro Design Entry" }, 
+            { "unit": "7583", "unitName": "User Cadence Allegro PCB Designer" }, 
+            { "unit": "7584", "unitName": "User Cadence OrCAD PCB Designer" }, 
+            { "unit": "7585", "unitName": "User Cadence OrCAD Schematic CIS" }, 
+            { "unit": "7586", "unitName": "User Mentor PADS Schematic" }, 
+            { "unit": "7587", "unitName": "User Mentor xPCB Layout" }, 
+            { "unit": "7588", "unitName": "User Mentor xDX Designer" }, 
+            { "unit": "7589", "unitName": "User Zuken e3.series" }, 
+            { "unit": "7590", "unitName": "User Mentor PADS Layout" }, 
+            { "unit": "7591", "unitName": "User Mentor PADS DX Designer" }, 
+            { "unit": "7592", "unitName": "User Mentor PADS Professional Layout" }, 
+            { "unit": "7593", "unitName": "User AutoCAD Electrical" }, 
+            { "unit": "7594", "unitName": "User Mentor Capital" }, 
+            { "unit": "7612", "unitName": "SAP User Solidworks Electrical" }] 
+}, 
+ { "engine": "7530",    "units": [ 
+            { "unit": "7530", "unitName": "Number of Duet Users" }] 
+}, 
+ { "engine": "7550",    "units": [ 
+            { "unit": "7551", "unitName": "LSO: Learners" }, 
+            { "unit": "7552", "unitName": "Learning Solution: Learner" }, 
+            { "unit": "7553", "unitName": "Learning Solution: Learner" }, 
+            { "unit": "7554", "unitName": "Learning Solution: Learner" }] 
+}, 
+ { "engine": "7610",    "units": [ 
+            { "unit": "7610", "unitName": "SAP ECTR for TDM Integration" }, 
+            { "unit": "7611", "unitName": "SAP ECTR Interface to PTC Windchill" }] 
+}, 
+ { "engine": "7985",    "units": [ 
+            { "unit": "7985", "unitName": "Number of Manual Printouts" }, 
+            { "unit": "7986", "unitName": "Number of Print Requests Created" }] 
+}, 
+ { "engine": "7990",    "units": [ 
+            { "unit": "7990", "unitName": "Incident Reporter" }] 
+}, 
+ { "engine": "7995",    "units": [ 
+            { "unit": "7995", "unitName": "EHS: Risk Assesment User" }] 
+}, 
+ { "engine": "7998",    "units": [ 
+            { "unit": "7998", "unitName": "Compliance Management User" }] 
+}, 
+ { "engine": "8000",    "units": [ 
+            { "unit": "8000", "unitName": "EHS: Saved Specifications" }, 
+            { "unit": "8001", "unitName": "EHS: Saved Dangerous Goods Master Data" }, 
+            { "unit": "8002", "unitName": "EHS: Saved Work Areas" }, 
+            { "unit": "8003", "unitName": "EHS: Created Disposal Documents" }, 
+            { "unit": "8004", "unitName": "EHS: Created Medical Services" }, 
+            { "unit": "8005", "unitName": "EHS: Saved Hazardous Substance Mstr Recs" }] 
+}, 
+ { "engine": "8010",    "units": [ 
+            { "unit": "8010", "unitName": "SRC: Created Tasks" }, 
+            { "unit": "8011", "unitName": "SRC: REACH Substances" }] 
+}, 
+ { "engine": "8040",    "units": [ 
+            { "unit": "8040", "unitName": "RBD Accounts" }, 
+            { "unit": "8041", "unitName": "Contracts Processed in RBD" }, 
+            { "unit": "8042", "unitName": "Contracts Processed in RBD-ipx" }] 
+}, 
+ { "engine": "8050",    "units": [ 
+            { "unit": "8050", "unitName": "Number of E-Mail Recipients" }, 
+            { "unit": "8051", "unitName": "E-Mail Recipient" }] 
+}, 
+ { "engine": "8060",    "units": [ 
+            { "unit": "8060", "unitName": "Private Health Ins.: Accepted Patients" }] 
+}, 
+ { "engine": "8070",    "units": [ 
+            { "unit": "8070", "unitName": "Database Size in GB" }, 
+            { "unit": "8072", "unitName": "Database Size in GB" }] 
+}, 
+ { "engine": "8080",    "units": [ 
+            { "unit": "8080", "unitName": "Loan Contracts" }, 
+            { "unit": "8081", "unitName": "Released Loan Contracts" }] 
+}, 
+ { "engine": "8082",    "units": [ 
+            { "unit": "8082", "unitName": "Deposit Contracts" }, 
+            { "unit": "8083", "unitName": "Released Deposit Contracts" }] 
+}, 
+ { "engine": "8084",    "units": [ 
+            { "unit": "8084", "unitName": "Active Secured Receivables" }] 
+}, 
+ { "engine": "8086",    "units": [ 
+            { "unit": "8086", "unitName": "Objects with Active Financing (CRM)" }] 
+}, 
+ { "engine": "8087",    "units": [ 
+            { "unit": "8087", "unitName": "Active Financing Items (LAE)" }] 
+}, 
+ { "engine": "8088",    "units": [ 
+            { "unit": "8088", "unitName": "Retail Customer (CRM)" }, 
+            { "unit": "8089", "unitName": "Corporate Customer (CRM)" }] 
+}, 
+ { "engine": "8090",    "units": [ 
+            { "unit": "8090", "unitName": "Turnover / Tax Entries" }, 
+            { "unit": "8091", "unitName": "Number of Accounts" }, 
+            { "unit": "8092", "unitName": "Number of Contracts DE/CH" }, 
+            { "unit": "8093", "unitName": "Retail Customer (CRM)" }, 
+            { "unit": "8094", "unitName": "Number of International Contracts" }] 
+}, 
+ { "engine": "8100",    "units": [ 
+            { "unit": "8100", "unitName": "FIN Service Request" }, 
+            { "unit": "8101", "unitName": "HR Service Request" }, 
+            { "unit": "8102", "unitName": "Contact Records" }, 
+            { "unit": "8103", "unitName": "Transaction Start Interfaces" }, 
+            { "unit": "8104", "unitName": "Procurement Service Requests" }] 
+}, 
+ { "engine": "8110",    "units": [ 
+            { "unit": "8110", "unitName": "Active Retail Loan Contracts" }, 
+            { "unit": "8111", "unitName": "Inactive Retail Loan Contracts" }, 
+            { "unit": "8112", "unitName": "Active Commercial Loan Contracts" }, 
+            { "unit": "8113", "unitName": "Inactive Commercial Loan Contracts" }] 
+}, 
+ { "engine": "8114",    "units": [ 
+            { "unit": "8114", "unitName": "Active German Mortgage Loans" }, 
+            { "unit": "8115", "unitName": "Inactive German Mortgage Loans" }] 
+}, 
+ { "engine": "8120",    "units": [ 
+            { "unit": "8120", "unitName": "Active Retail Deposit Contracts" }, 
+            { "unit": "8121", "unitName": "Inactive Retail Deposit Contracts" }, 
+            { "unit": "8122", "unitName": "Active Commercial Deposit Contracts" }, 
+            { "unit": "8123", "unitName": "Inactive Commercial Deposit Contracts" }] 
+}, 
+ { "engine": "8160",    "units": [ 
+            { "unit": "8160", "unitName": "Payment Item" }] 
+}, 
+ { "engine": "8170",    "units": [ 
+            { "unit": "8170", "unitName": "LPA Template" }] 
+}, 
+ { "engine": "8180",    "units": [ 
+            { "unit": "8180", "unitName": "Master Data Governance: Financial Data" }, 
+            { "unit": "8181", "unitName": "MDG: Customer-Specific Objects" }, 
+            { "unit": "8182", "unitName": "Master Data Governance: Supplier Objects" }, 
+            { "unit": "8183", "unitName": "Master Data Governance: Customer Objects" }, 
+            { "unit": "8184", "unitName": "Master Data Governance: Product Objects" }, 
+            { "unit": "8185", "unitName": "Master Data Governance: BP Objects" }, 
+            { "unit": "8186", "unitName": "MDG: Enterprise Asset Mgmt. Objects" }, 
+            { "unit": "8187", "unitName": "MDG: Retail and Fashion Objects" }, 
+            { "unit": "8188", "unitName": "MDG: Asset Information Workbench" }] 
+}, 
+ { "engine": "8502",    "units": [ 
+            { "unit": "8501", "unitName": "SBOP LEG Desktop Intelligence (NUL)" }, 
+            { "unit": "8502", "unitName": "SBOP LEG BOE Prof. Premium (NUL)" }, 
+            { "unit": "8504", "unitName": "SBOP LEG WebI Interactive (NUL)" }, 
+            { "unit": "8507", "unitName": "SBOP LEG BOE Prof. for ER (NUL)" }, 
+            { "unit": "8508", "unitName": "SBOP LEG BOE Prof. for QRA (NUL)" }, 
+            { "unit": "8515", "unitName": "SBOP LEG Desktop Intelligence (CPU)" }, 
+            { "unit": "8516", "unitName": "SBOP LEG BOE Prof. Premium (CPU)" }, 
+            { "unit": "8518", "unitName": "SBOP LEG WebI Interactive (CPU)" }, 
+            { "unit": "8519", "unitName": "SBOP LEG BOE Prof. for ER (CPU)" }, 
+            { "unit": "8520", "unitName": "SBOP LEG BOE Prof. for QRA (CPU)" }, 
+            { "unit": "8525", "unitName": "SBOP LEG BOE Professional (NUL)" }, 
+            { "unit": "8546", "unitName": "SBOP LEG BOE Prof. (CPU)" }, 
+            { "unit": "8582", "unitName": "SBOP LEG BOE Prof. Premium (CAL)" }, 
+            { "unit": "8583", "unitName": "SBOP LEG BOE Prof. Premium (CAL) T/D" }, 
+            { "unit": "8584", "unitName": "SBOP LEG BOE Prof. Premium (NUL) T/D" }, 
+            { "unit": "8585", "unitName": "SBOP LEG Web Intelligence (NUL) T/D" }, 
+            { "unit": "8589", "unitName": "SBOP LEG BOE Prof. (CPU) T/D" }, 
+            { "unit": "8590", "unitName": "SBOP LEG Desktop Intelligence (NUL) T/D" }, 
+            { "unit": "8646", "unitName": "SBOP LEG BOE Prof. Premium (CPU) T/D" }, 
+            { "unit": "8660", "unitName": "SBOP LEG WebI Interactive (CAL)" }, 
+            { "unit": "8661", "unitName": "SBOP LEG Web Intelligence (CAL)" }, 
+            { "unit": "8662", "unitName": "SBOP LEG BOE Prof. for QRA (CAL)" }, 
+            { "unit": "8663", "unitName": "SBOP LEG BOE Prof. for ER (CAL)" }, 
+            { "unit": "8666", "unitName": "SBOP LEG WebI Interactive (NUL) T/D" }, 
+            { "unit": "8667", "unitName": "SBOP LEG BOE Professional (NUL) T/D" }, 
+            { "unit": "8668", "unitName": "SBOP LEG BOE Prof. for QRA (NUL) T/D" }, 
+            { "unit": "8669", "unitName": "SBOP LEG BOE Prof. for ER (NUL) T/D" }, 
+            { "unit": "8670", "unitName": "SBOP LEG Web Intelligence (CPU) T/D" }, 
+            { "unit": "8671", "unitName": "SBOP LEG WebI Interactive (CPU) T/D" }, 
+            { "unit": "8672", "unitName": "SBOP LEG Desktop Intelligence (CPU) T/D" }, 
+            { "unit": "8673", "unitName": "SBOP LEG BOE Prof. for QRA (CPU) T/D" }, 
+            { "unit": "8674", "unitName": "SBOP LEG BOE Prof. for ER (CPU) T/D" }, 
+            { "unit": "8675", "unitName": "SBOP LEG Web Intelligence (CAL) T/D" }, 
+            { "unit": "8676", "unitName": "SBOP LEG WebI Interactive (CAL) T/D" }, 
+            { "unit": "8677", "unitName": "SBOP LEG BOE Prof. for QRA (CAL) T/D" }, 
+            { "unit": "8678", "unitName": "SBOP LEG BOE Prof. for ER (CAL) T/D" }, 
+            { "unit": "8686", "unitName": "SBOP LEG Web Intelligence (NUL)" }, 
+            { "unit": "8688", "unitName": "SBOP LEG Web Intelligence (CPU)" }] 
+}, 
+ { "engine": "8679",    "units": [ 
+            { "unit": "8679", "unitName": "SBOP BIP BI Package (NUL)" }, 
+            { "unit": "8680", "unitName": "SBOP BIP BI Package (CPU)" }, 
+            { "unit": "8684", "unitName": "SBOP BIP BI Starter Package" }] 
+}, 
+ { "engine": "8681",    "units": [ 
+            { "unit": "8681", "unitName": "SBOP BIS BI Suite (NUL)" }, 
+            { "unit": "8682", "unitName": "SBOP BIS BI Suite (CS)" }] 
+}, 
+ { "engine": "8694",    "units": [ 
+            { "unit": "8685", "unitName": "SBOP ALC Web Intelligence (NUL)" }, 
+            { "unit": "8689", "unitName": "SBOP ALC BOE Prof. for ER (CPU)" }, 
+            { "unit": "8690", "unitName": "SBOP ALC BOE Prof. for ER (NUL)" }, 
+            { "unit": "8691", "unitName": "SBOP ALC BOE Prof. for QRA (CPU)" }, 
+            { "unit": "8692", "unitName": "SBOP ALC BOE Prof. for QRA (NUL)" }, 
+            { "unit": "8693", "unitName": "SBOP ALC BOE Prof. Premium (CPU)" }, 
+            { "unit": "8694", "unitName": "SBOP ALC BOE Prof. Premium (NUL)" }, 
+            { "unit": "8696", "unitName": "SBOP ALC Web Intelligence (CPU)" }, 
+            { "unit": "8697", "unitName": "SBOP ALC WebI Interactive (CPU)" }, 
+            { "unit": "8698", "unitName": "SBOP ALC WebI Interactive (NUL)" }, 
+            { "unit": "8699", "unitName": "SBOP ALC Desktop Intelligence (CPU)" }, 
+            { "unit": "8700", "unitName": "SBOP ALC Desktop Intelligence (NUL)" }] 
+}, 
+ { "engine": "8704",    "units": [ 
+            { "unit": "8701", "unitName": "SBOP COM BA&T Web Intelligence (CS)" }, 
+            { "unit": "8702", "unitName": "SBOP COM BA&T Web Intelligence (NUL)" }, 
+            { "unit": "8703", "unitName": "SBOP COM BA&T BI Platform (CS)" }, 
+            { "unit": "8704", "unitName": "SBOP COM BA&T BI Platform (NUL)" }] 
+}, 
+ { "engine": "8999",    "units": [ 
+            { "unit": "8999", "unitName": "Usage Indicator Over/Undertake Billing" }] 
+} 
+] }
+

@@ -4,6 +4,9 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 ], function(Control) {
 	"use strict";
 	
+	// if _isDebugMode is true, additional HTML comments are written to facilitate the analysis of the generated HMTL code
+	var _isDebugMode = false;
+	
 	/* This Control will render <div> tags for two or multiple columns with equal width. The rendered HTML/CSS is this (example)
 	// root:
 		<div style="flex"> 								// display: flex; (// flex box will result in equal height of children)
@@ -31,6 +34,7 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 	    renderer : {
 	    	render: function(oRm, oControl) { // static function, so use the given "oControl" instance
 		        // instead of "this" in the renderer function
+		        if (_isDebugMode) { oRm.write("<!-- EWC (1) -->"); }
 		        oRm.write("<div");
 		        oRm.writeControlData(oControl);  // writes the Control ID and enables event handling - important!
 		        oRm.writeClasses();              // there is no class to write, but this enables
@@ -42,8 +46,13 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 		        var aChildren = oControl.getContent();
 		        for (var i = 0; i < aChildren.length; i++) { // loop over all child Controls,
 		            // render the colored box around them
+		            if (_isDebugMode) { oRm.write("<!-- EWC (2) -->"); }
 		            oRm.write("<div");
-		            oRm.addStyle("flex", "1");
+		            if (i === 0) {
+		            	oRm.addStyle("flex", "4");
+		            } else {
+		            	oRm.addStyle("flex", "3");
+		            }
 		            oRm.addStyle("padding", "0em");
 		            if (oControl.getUse() && oControl.getUse().toLowerCase() === "text") {
 		            	oRm.addStyle("margin-right", "1em");
@@ -53,9 +62,11 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 		            oRm.write(">");
 		            oRm.renderControl(aChildren[i]);   // render the child Control
 		                                               // (could even be a big Control tree, but you don't need to care)
+					if (_isDebugMode) { oRm.write("<!-- EWC (3) -->"); }
 		            oRm.write("</div>"); // end of the box around the respective child
 		        }
 		        
+		        if (_isDebugMode) { oRm.write("<!-- EWC (4) -->"); }
 		        oRm.write("</div>"); // end of the complete Control
 		    }
 	    }, 

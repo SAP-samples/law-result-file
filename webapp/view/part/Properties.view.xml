@@ -13,7 +13,7 @@
 
 	<cols:EqualWidthColumns id="selectedPart">
 		<cols:content>	
-			<Panel headerText="{parts:['i18n>properties.propsSection.title', 'PartId'], formatter: 'jQuery.sap.formatMessage'}" class="column1">
+			<Panel headerText="{i18n>properties.propsSection.title}" class="column1">
 				<fo:SimpleForm 
 								editable="false"
 								layout="ResponsiveGridLayout"
@@ -24,7 +24,7 @@
 
 								singleContainerFullSize="false" >
 					<fo:content>
-						<Label text="{i18n>all.index.text}"/>
+						<Label text="{i18n>part.page.index.text}"/>
 						<Text id="indexProperty"/>
 						
 						<Label text="{i18n>model.parts.part.partId.text}"/>

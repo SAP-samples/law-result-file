@@ -6,6 +6,8 @@ sap.ui.define([
 	"sap/base/Log"
 ], function (Controller, UIComponent, JSONModel, MessageToast, Log) {
 	"use strict";
+	
+	var _oBundle; // holds the resource bundle for text translation
 
 	return Controller.extend("glacelx.glacelx.controller.BaseController", {
 		onInit: function () {
@@ -17,6 +19,7 @@ sap.ui.define([
 		},
 
 		_checkInitialModel: function () {
+			// debugger;
 			var _oModel = this.getOwnerComponent().getModel("userXML");
 			if (_oModel.getData()) {
 				if (_oModel.getData().hasChildNodes()) {
@@ -27,6 +30,8 @@ sap.ui.define([
 				} else {
 					this._processXML(_oModel.getData());
 				}
+			} else {
+				MessageToast.show("{i18n>elements.noData.text");
 			}
 		},
 
@@ -67,26 +72,47 @@ sap.ui.define([
 		},
 
 		buildEditorContext: function (head, oCodeEditor) {
+			if (! head) {
+				_oBundle = this.getView().getModel("i18n").getResourceBundle();
+				oCodeEditor.setValue(_oBundle.getText("part.nodata.text"));
+				oCodeEditor.setEditable(false);
+				oCodeEditor.setType("xml");
+				return;
+			}
 			var _sXMAS = this.__convertModelToString(head);
+			
 			// remove last line break (otherwise we are left with an empty last line)
 			_sXMAS = _sXMAS.slice(0, -1);
+			
+			this.buildEditor(_sXMAS, oCodeEditor, head._tagLineStart);
+		},
+		
+		buildEditor: function (codeStr, oCodeEditor, firstLineNumber) {
+			if (! codeStr) {
+				_oBundle = this.getView().getModel("i18n").getResourceBundle();
+				oCodeEditor.setValue(_oBundle.getText("part.nodata.text"));
+				oCodeEditor.setEditable(false);
+				oCodeEditor.setType("xml");
+				return;
+			}
 
 			// WARNING: This is a direct call to the ACE settings and might break
 			// if the ACE interface changes. Reference:
 			// https://github.com/ajaxorg/ace/wiki/Configuring-Ace#session-options
 			// set maxLines to a very large numbers to prevent scroll bars
 			oCodeEditor._oEditor.setOptions({
-				firstLineNumber: head._tagLineStart,
+				firstLineNumber: firstLineNumber,
 				maxLines: 100000000
 			});
-			oCodeEditor.setValue(_sXMAS);
+			oCodeEditor.setValue(codeStr);
 			oCodeEditor.setEditable(false);
 			oCodeEditor.setType("xml");
 		},
 
 		_getCorrespondingSystem: function (iPartIndex) {
-			var _iSysNo = this.getOwnerComponent().getModel("userXML").getProperty("/Parts/Part/" + iPartIndex + "/SystemNo");
-			var systems = this.oModel.getData().children[0]._tagMeasurementSystemsHook.children;
+			var tModel = this.getOwnerComponent().getModel("userXML");
+			var _iSysNo = tModel.getProperty("/Parts/Part/" + iPartIndex + "/SystemNo");
+			var systems = tModel.getData().children[0]._tagMeasurementSystemsHook.children;
 			for (var i = 0; i < systems.length; ++i) {
 				if (systems[i].children[0].textContent === _iSysNo) {
 					return i;
@@ -97,10 +123,10 @@ sap.ui.define([
 			return -1;
 		},
 		
-		_getCorrespondingResultIndex: function (iPartIndex) {
+		_getCorrespondingResultIndex: function (iPartIndex) {			
 			var _iPartId = this.getOwnerComponent().getModel("userXML").getProperty("/Parts/Part/" + iPartIndex + "/PartId").trim();
 			// console.log("  Search for PartId " + _iPartId);
-			var results = this.oModel.getData().children[0]._tagMeasurementResultsHook.children;
+			var results = this._oModel.getData().children[0]._tagMeasurementResultsHook.children;
 			for (var i = 0; i < results.length; ++i) {
 				var resPartId = results[i].children[0].textContent.trim();
 				// console.log("  Test " + resPartId + " === " + _iPartId);

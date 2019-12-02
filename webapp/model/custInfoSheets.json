@@ -1,0 +1,36 @@
+{	"documentation": [
+		" Each entry should have two lines, a 'units' line and a 'url' which references the customer information sheet",
+		" The 'units' array should list all metrics that are handled in the customer information sheet.", 
+		" 'units' don't need, but may have a leading 0 (will be cut off)."
+	], 
+   	
+   	"defaults":  {
+		   	"enginePage": "https://support.sap.com/en/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement.html",
+		   	"engineText": "No specific info. You may check the engine page." 
+   	},
+	
+	"cis":
+	[
+   		{	
+   			"units": [	"100", "110", "120"],
+   			"url":		"https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0100-0120-sap-human-resource-management-hr-pd-en.pdf",
+			"title": "Human Resource Management Engine Measurement (100-120)"   			
+   		}, {	
+   			"units": [ "150", "151", "152", "153", "160", "170", "175"],
+   			"url":		"https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0150-0175-sap-human-resource-management-hr-pa-en.pdf", 
+   			"title": "Human Resource Management Engine Measurement (150-175)"
+   		}, {	
+   			"units":	[	"157" ],
+   			"url":		"https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0157-sap-human-resource-management-payroll-processing-en.pdf", 
+   			"title": "Human Resource Management (HR) - Payroll"
+   		}, {
+   			"units": [	"370", "371", "372" ],
+   			"url":		"https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0370-0372-sap-netweaver-gateway-2.0-en.pdf", 
+   			"title": "SAP NetWeaver Gateway 2.0 Measurement (indicator)"
+   		}, {
+   			"units": [	"672", "673", "H010", "H011" ],
+   			"url":		"https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0672-0673andH010-H011-sap-hana-main-memory-en.pdf", 
+   			"title": "SAP HANA Main Memory Measurement"
+   		}
+   	]
+}

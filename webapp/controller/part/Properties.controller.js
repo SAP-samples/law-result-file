@@ -8,21 +8,23 @@ sap.ui.define([
 	return BaseController.extend("glacelx.glacelx.controller.part.Properties", {
 		
 		onInit: function () {
+			// debugger;
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.route = this.oRouter.getRoute("part");
 			this.oView = this.getView();
 			this._checkInitialModel();
-			this.oModel = this.getOwnerComponent().getModel("userXML");
+			this._oModel = this.getOwnerComponent().getModel("userXML");
 			this.route.attachMatched(this._onRouteMatched, this);
-			this.iPartsCount = this.oModel.getData().children[0]._tagMeasurementPartsHook.childElementCount;
-			this.iSystemsCount = this.oModel.getData().children[0]._tagMeasurementSystemsHook.childElementCount;
+			this.iPartsCount = this._oModel.getData().children[0]._tagMeasurementPartsHook.childElementCount;
+			this.iSystemsCount = this._oModel.getData().children[0]._tagMeasurementSystemsHook.childElementCount;
 		
 			var tabs = this.getView().byId("iconTabBar");
 		},
 
 		_onRouteMatched : function (oEvent) {
+			// debugger;
 			var oArgs = oEvent.getParameter("arguments");
-			this.oView.setModel(this.oModel);
+			this.oView.setModel(this._oModel);
 			
 			// create binding for System Details
 			this.sysIdx = oArgs.sysIndex;
@@ -44,10 +46,10 @@ sap.ui.define([
 				}
 			}); 
 			// set index property
-			this.oView.byId("indexProperty").setText(this.partIdx);
+			this.oView.byId("indexProperty").setText("[" + this.partIdx + "]");
 
 			// navigate to part branch and extract data
-			var _mainModelRaw = this.oModel.getData().children[0];
+			var _mainModelRaw = this._oModel.getData().children[0];
 			var _rawSystemData = _mainModelRaw._tagMeasurementPartsHook.children[this.partIdx];
 			// set code editor context
 			var _oSysCodeEditor = this.oView.byId("propertiesCE");
