@@ -22,7 +22,9 @@ sap.ui.define("controller/layout/ClearLine", [
 	    renderer : {
 	    	render: function(oRm, oControl) { // static function, so use the given "oControl" instance
 		        // instead of "this" in the renderer function
-		        oRm.writeEscaped("<div class='" + oControl.getStyle() + "' ");
+				oRm.write("<div class='");
+				oRm.writeEscaped(oControl.getStyle());
+				oRm.write("' ");
 		        oRm.writeControlData(oControl);  // writes the Control ID and enables event handling - important!
 		        // oRm.writeClasses();              // there is no class to write, but this enables
 		                                         // support for ColorBoxContainer.addStyleClass(...)

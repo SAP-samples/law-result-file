@@ -37,7 +37,7 @@ sap.ui.define([
 		},
 
 
-		handleSelectXMLFile: function (oEvent) {
+		handleSelectXMLFile: function (oEvent) {			
 			// select file 
 			if (oEvent.getParameter("files") && oEvent.getParameter("files")[0]) {
 				this._oFile = oEvent.getParameter("files")[0];
@@ -52,7 +52,7 @@ sap.ui.define([
 					var sRawXML = loadEvent.target.result;
 					_oModel.setXML(sRawXML);
 					that._processXML(_oModel.getData());
-					var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+					var oRouter = sap.ui.core.UIComponent.getRouterFor(that);					
 					oRouter.navTo("elements");
 				};
 				oFileReader.readAsText(this._oFile);
