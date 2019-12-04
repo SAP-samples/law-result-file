@@ -31,7 +31,7 @@
 											singleContainerFullSize="false"	>
 										<fo:content>
 											<Label text="{i18n>model.header.transfer.time.text}"/>
-											<Text text="{Transfer/Time}" id="c43"/>
+											<Text text="{Transfer/Time}" id="time" />
 											<Label text="{i18n>model.header.transfer.name.text}"/>
 											<Text text="{Transfer/Name}"/>
 											<Label text="{i18n>model.header.transfer.version.text}"/>

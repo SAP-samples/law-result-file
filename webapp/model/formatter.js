@@ -93,7 +93,14 @@ sap.ui.define([
 				}
 			}
 			return "bbtn";
-		}
-		
+		},
+
+		formatTime: function (sTime) {
+			 if (sTime && sTime.length == 6 ) {
+				return sTime.substr(0,2) + ":" + sTime.substr(2,2) + " (:" + sTime.substr(4,2) + "s)";
+				 // return sTime.substr(0,2) + "h " + sTime.substr(2,2) + "min " + sTime.substr(4,2) + "sec";
+			 }
+			 return sTime;
+		 }		
 	};
 });

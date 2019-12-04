@@ -28,6 +28,12 @@ sap.ui.define([
 			this.buildEditorContext(_rawSystemData, _oCodeEditor);
 		},
 
+		onAfterRendering: function() {
+			var timeText = this.byId("time").getText();
+			timeText = formatter.formatTime(timeText);
+			this.byId("time").setText(timeText);
+		},
+
 		navToNext: function () {
 			this.oRouter.navTo("system", {
 				sysIndex: 0
