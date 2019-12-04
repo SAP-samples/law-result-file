@@ -22,12 +22,22 @@ sap.ui.define([
 			// debugger;
 			var _oModel = this.getOwnerComponent().getModel("userXML");
 			if (_oModel.getData()) {
-				if (_oModel.getData().hasChildNodes()) {
-					if (_oModel.getData().children[0]._tagDepth === undefined || _oModel.getData().children[0]._tagClass === undefined || _oModel.getData()
-						.children[0]._tagLineStart === undefined) {
+				try {
+					if (_oModel.getData().hasChildNodes()) {
+						if (_oModel.getData().children[0]._tagDepth === undefined || _oModel.getData().children[0]._tagClass === undefined || _oModel.getData()
+							.children[0]._tagLineStart === undefined) {
+							this._processXML(_oModel.getData());
+						}
+					} else {
 						this._processXML(_oModel.getData());
 					}
-				} else {
+				} catch(err) {
+					MessageToast.show("{i18n>elements.noData.text");
+
+					// no data / data lost (e.g. due to refresh)				
+					var sampleModel = this.getOwnerComponent().getModel("sampleXML");	
+					var _oModel = this.getOwnerComponent().getModel("userXML");
+					_oModel.setData(sampleModel.getData());
 					this._processXML(_oModel.getData());
 				}
 			} else {
