@@ -47,56 +47,56 @@ sap.ui.define([
 			}
 		},
 
-		__convertModelToString: function (head) {
+		__convertModelToString: function (node) {
 			var _retString = "";
 
 			// leaf nodes
-			if (!head.children || head.children.length === 0) {
+			if (!node.children || node.children.length === 0) {
 				var _sLTabSpace = "";
-				for (var _dCount = 0; _dCount < head._tagDepth; ++_dCount) {
+				for (var _dCount = 0; _dCount < node._tagDepth; ++_dCount) {
 					_sLTabSpace += "    ";
 				}
 
-				if (head.textContent != "") {
-					_retString = _sLTabSpace + _retString + "<" + head.tagName + ">" + head.textContent + "</" + head.tagName + ">\n";
+				if (node.textContent != "") {
+					_retString = _sLTabSpace + _retString + "<" + node.tagName + ">" + node.textContent + "</" + node.tagName + ">\n";
 				} else {
-					_retString = _sLTabSpace + _retString + "<" + head.tagName + "/>\n";
+					_retString = _sLTabSpace + _retString + "<" + node.tagName + "/>\n";
 				}
 
 				return _retString;
 			}
 			// parent node
-			else if (head.children.length > 0) {
+			else if (node.children.length > 0) {
 				var _sCTabSpace = "";
-				for (var _eCount = 0; _eCount < head._tagDepth; ++_eCount) {
+				for (var _eCount = 0; _eCount < node._tagDepth; ++_eCount) {
 					_sCTabSpace += "    ";
 				}
-				_retString = _sCTabSpace + "<" + head.tagName + ">\n" + _retString;
+				_retString = _sCTabSpace + "<" + node.tagName + ">\n" + _retString;
 
 				// call all children
-				for (var i = 0; i < head.children.length; ++i) {
-					_retString += this.__convertModelToString(head.children[i]);
+				for (var i = 0; i < node.children.length; ++i) {
+					_retString += this.__convertModelToString(node.children[i]);
 				}
 
-				_retString = _retString + _sCTabSpace + "</" + head.tagName + ">\n";
+				_retString = _retString + _sCTabSpace + "</" + node.tagName + ">\n";
 				return _retString;
 			} else {}
 		},
 
-		buildEditorContext: function (head, oCodeEditor) {
-			if (! head) {
+		buildEditorContext: function (node, oCodeEditor) {
+			if (! node) {
 				_oBundle = this.getView().getModel("i18n").getResourceBundle();
 				oCodeEditor.setValue(_oBundle.getText("part.nodata.text"));
 				oCodeEditor.setEditable(false);
 				oCodeEditor.setType("xml");
 				return;
 			}
-			var _sXMAS = this.__convertModelToString(head);
+			var _sXMAS = this.__convertModelToString(node);
 			
 			// remove last line break (otherwise we are left with an empty last line)
 			_sXMAS = _sXMAS.slice(0, -1);
 			
-			this.buildEditor(_sXMAS, oCodeEditor, head._tagLineStart);
+			this.buildEditor(_sXMAS, oCodeEditor, node._tagLineStart);
 		},
 		
 		buildEditor: function (codeStr, oCodeEditor, firstLineNumber) {
@@ -150,99 +150,99 @@ sap.ui.define([
 			return -1;
 		},
 
-		_processXML: function (head) {
-			this._processXMLElement(head, 0, -2);
+		_processXML: function (node) {			
+			this._processXMLElement(node, 0, -2);
 		},
 
-		_processXMLElement: function (head, lastPos, lastDepth) {
+		_processXMLElement: function (node, lastPos, lastDepth) {
 			// leaf node
-			if (head.children && head.children.length === 0) {
-				head._tagLineStart = lastPos + 1;
-				head._tagLineEnd = head._tagLineStart;
-				head._tagClass = "leaf";
-				head._tagDepth = lastDepth + 1; // we do not want to return this change				
-				if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Header") {
-					head._tagMetaBlockAssociationName = "Header";
-					head._tagMetaBlockAssociationHook = head.parentNode._tagMetaBlockAssociationHook;
-				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Systems") {
-					head._tagMetaBlockAssociationName = "Systems";
-					head._tagMetaBlockAssociationHook = head.parentNode._tagMetaBlockAssociationHook;
-				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Parts") {
-					head._tagMetaBlockAssociationName = "Parts";
-					head._tagMetaBlockAssociationHook = head.parentNode._tagMetaBlockAssociationHook;
-				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Results") {
-					head._tagMetaBlockAssociationName = "Results";
-					head._tagMetaBlockAssociationHook = head.parentNode._tagMetaBlockAssociationHook;
+			if (node.children && node.children.length === 0) {
+				node._tagLineStart = lastPos + 1;
+				node._tagLineEnd = node._tagLineStart;
+				node._tagClass = "leaf";
+				node._tagDepth = lastDepth + 1; // we do not want to return this change				
+				if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Header") {
+					node._tagMetaBlockAssociationName = "Header";
+					node._tagMetaBlockAssociationHook = node.parentNode._tagMetaBlockAssociationHook;
+				} else if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Systems") {
+					node._tagMetaBlockAssociationName = "Systems";
+					node._tagMetaBlockAssociationHook = node.parentNode._tagMetaBlockAssociationHook;
+				} else if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Parts") {
+					node._tagMetaBlockAssociationName = "Parts";
+					node._tagMetaBlockAssociationHook = node.parentNode._tagMetaBlockAssociationHook;
+				} else if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Results") {
+					node._tagMetaBlockAssociationName = "Results";
+					node._tagMetaBlockAssociationHook = node.parentNode._tagMetaBlockAssociationHook;
 				}
 				return {
-					lPos: head._tagLineStart,
+					lPos: node._tagLineStart,
 					lDepth: lastDepth
 				};
 			}
 			// parent node
-			else if (head.children && head.children.length > 0) {
+			else if (node.children && node.children.length > 0) {
 				// MISSING: _tagLineEnd
-				head._tagLineStart = lastPos + 1;
-				head._tagDepth = lastDepth + 1;
-				head._tagClass = "parent";
+				node._tagLineStart = lastPos + 1;
+				node._tagDepth = lastDepth + 1;
+				node._tagClass = "parent";
 				// identify Measurement block
-				if (head.tagName === "Measurement" && head.parentNode.parentNode === null) {
-					head._tagMetaBlockAssociationName = "Measurement";
-					head._tagMetaBlockAssociationHook = head;
+				if (node.tagName === "Measurement" && node.parentNode.parentNode === null) {
+					node._tagMetaBlockAssociationName = "Measurement";
+					node._tagMetaBlockAssociationHook = node;
 
 					// set hooks to components if available
-					for (var k = 0; k < head.children.length; ++k) {
-						switch (head.children[k].tagName) {
+					for (var k = 0; k < node.children.length; ++k) {
+						switch (node.children[k].tagName) {
 						case "Header":
-							head._tagMeasurementHeaderHook = head.children[k];
+							node._tagMeasurementHeaderHook = node.children[k];
 							break;
 						case "Systems":
-							head._tagMeasurementSystemsHook = head.children[k];
+							node._tagMeasurementSystemsHook = node.children[k];
 							break;
 						case "Parts":
-							head._tagMeasurementPartsHook = head.children[k];
+							node._tagMeasurementPartsHook = node.children[k];
 							break;
 						case "Results":
-							head._tagMeasurementResultsHook = head.children[k];
+							node._tagMeasurementResultsHook = node.children[k];
 							break;
 						}
 					}
-				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Measurement" && head.tagName === "Header") {
-					head._tagMetaBlockAssociationName = "Header";
-					head._tagMetaBlockAssociationHook = head;
-				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Measurement" && head.tagName === "Systems") {
-					head._tagMetaBlockAssociationName = "Systems";
-					head._tagMetaBlockAssociationHook = head;
-				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Measurement" && head.tagName === "Parts") {
-					head._tagMetaBlockAssociationName = "Parts";
-					head._tagMetaBlockAssociationHook = head;
-				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Measurement" && head.tagName === "Results") {
-					head._tagMetaBlockAssociationName = "Results";
-					head._tagMetaBlockAssociationHook = head;
-				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Header") {
-					head._tagMetaBlockAssociationName = "Header";
-					head._tagMetaBlockAssociationHook = head.parentNode._tagMetaBlockAssociationHook;
-				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Systems") {
-					head._tagMetaBlockAssociationName = "Systems";
-					head._tagMetaBlockAssociationHook = head.parentNode._tagMetaBlockAssociationHook;
-				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Parts") {
-					head._tagMetaBlockAssociationName = "Parts";
-					head._tagMetaBlockAssociationHook = head.parentNode._tagMetaBlockAssociationHook;
-				} else if (head.parentNode && head.parentNode._tagMetaBlockAssociationName === "Results") {
-					head._tagMetaBlockAssociationName = "Results";
-					head._tagMetaBlockAssociationHook = head.parentNode._tagMetaBlockAssociationHook;
+				} else if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Measurement" && node.tagName === "Header") {
+					node._tagMetaBlockAssociationName = "Header";
+					node._tagMetaBlockAssociationHook = node;
+				} else if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Measurement" && node.tagName === "Systems") {
+					node._tagMetaBlockAssociationName = "Systems";
+					node._tagMetaBlockAssociationHook = node;
+				} else if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Measurement" && node.tagName === "Parts") {
+					node._tagMetaBlockAssociationName = "Parts";
+					node._tagMetaBlockAssociationHook = node;
+				} else if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Measurement" && node.tagName === "Results") {
+					node._tagMetaBlockAssociationName = "Results";
+					node._tagMetaBlockAssociationHook = node;
+				} else if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Header") {
+					node._tagMetaBlockAssociationName = "Header";
+					node._tagMetaBlockAssociationHook = node.parentNode._tagMetaBlockAssociationHook;
+				} else if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Systems") {
+					node._tagMetaBlockAssociationName = "Systems";
+					node._tagMetaBlockAssociationHook = node.parentNode._tagMetaBlockAssociationHook;
+				} else if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Parts") {
+					node._tagMetaBlockAssociationName = "Parts";
+					node._tagMetaBlockAssociationHook = node.parentNode._tagMetaBlockAssociationHook;
+				} else if (node.parentNode && node.parentNode._tagMetaBlockAssociationName === "Results") {
+					node._tagMetaBlockAssociationName = "Results";
+					node._tagMetaBlockAssociationHook = node.parentNode._tagMetaBlockAssociationHook;
 				} else {
-					head._tagMetaBlockAssociationName = "invalid";
+					node._tagMetaBlockAssociationName = "invalid";
 				}
 
 				// initial values
 				var _oCallValues = {};
-				_oCallValues.lPos = head._tagLineStart;
-				_oCallValues.lDepth = head._tagDepth;
+				_oCallValues.lPos = node._tagLineStart;
+				_oCallValues.lDepth = node._tagDepth;
 
 				// call all children
-				for (var i = 0; i < head.children.length; ++i) {
-					_oCallValues = this._processXMLElement(head.children[i], _oCallValues.lPos, _oCallValues.lDepth);
+				for (var i = 0; i < node.children.length; ++i) {
+					_oCallValues = this._processXMLElement(node.children[i], _oCallValues.lPos, _oCallValues.lDepth);
 				}
 
 				// increase line position and ajdust its value in _oCallValues
