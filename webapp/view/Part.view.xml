@@ -13,17 +13,7 @@
 	xmlns:cols="controller.layout">
 	<App>
 		<pages>
-			<Page title="{i18n>part.page.client.text}" showNavButton="true" navButtonPress="backToSystem" id="resultPage">
-				<headerContent>
-					<OverflowToolbar >
-						<ToolbarSpacer />
-						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
-						<Button text="{i18n>part.button.last.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
-						<Button text="{i18n>part.button.first.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
-						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>
-					</OverflowToolbar>
-				</headerContent>
-
+			<Page title="{i18n>part.page.client.text}" showNavButton="true" enableScrolling="true" navButtonPress="backToSystem" id="resultPage">
 				<content>
 					<!-- Properties Part -->
 						<cols:EqualWidthColumns id="selectedPart">
@@ -32,31 +22,28 @@
 									<Title text="{i18n>properties.propsSection.title}" level="H2" class="results" />
 									<l:VerticalLayout id="partProperties" width="100%"></l:VerticalLayout>
 								</Panel>
-										
-								<l:VerticalLayout class="sapUiNoMarginTop" width="100%" >
-									<Toolbar>
-										<OverflowToolbar >
-											<Label text="{i18n>xml.headerText}" />
-													<!-- <layoutData><OverflowToolbarLayoutData priority="AlwaysOverflow"/></layoutData>
-											<ToolbarSpacer />
-											<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
-													<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
-											<Button text="{i18n>part.button.last.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
-													<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
-											<Button text="{i18n>part.button.first.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
-													<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
-											<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>
-													<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData> -->
-										</OverflowToolbar>
-									</Toolbar>
-									<ce:CodeEditor id="propertiesCE" type="xml" class="wattEditorContainer"/>
-								 </l:VerticalLayout>
+							</cols:content>
+							<cols:content>
+								<Panel>													
+									<Title text="{i18n>xml.headerText}" level="H2" class="results" />
+									<ce:CodeEditor id="propertiesCE" type="xml" class="wattEditorContainer"/>							 	
+								</Panel>
 							</cols:content>
 						</cols:EqualWidthColumns>
 
 						<l:VerticalLayout id="dynRestList" width="100%" class="sapUiSmallMargin" />
 
 				</content>
+				<footer>
+					<OverflowToolbar >
+						<ToolbarSpacer />
+						<Label text="{i18n>part.button.label.text}"/>
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
+						<Button text="{i18n>part.button.last.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
+						<Button text="{i18n>part.button.first.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
+						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>
+					</OverflowToolbar>
+				</footer>
 			</Page>
 		</pages>
 	</App>

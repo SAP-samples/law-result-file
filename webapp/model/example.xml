@@ -52224,7 +52224,6 @@
 				<Attribute2>1 </Attribute2>
 				<Counter>7 </Counter>
 			</Result>			
-
 			<Result>
 				<GenericId>USRC0000000054</GenericId>
 				<Attribute2>2 </Attribute2>
@@ -53865,10 +53864,12 @@
 			<Result>
 				<GenericId>CONM0000000000</GenericId>
 				<Unit>CONM_CONS</Unit>
+				<Attribute1>This is just a quite long text comment example of a customer on the completion of the LAW consolidation</Attribute1>
 			</Result>
 			<Result>
 				<GenericId>CONM0000000000</GenericId>
 				<Unit>CONM_NMP</Unit>
+				<Attribute1>Just a short comment here</Attribute1>
 			</Result>
 		</Part>
 	</Results>

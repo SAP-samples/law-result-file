@@ -198,7 +198,7 @@ sap.ui.define([
 			
 			var _mainModelRaw = this._oModel.getData().children[0];
 			// navigate to part branch and extract data
-			var _rawSystemData = _mainModelRaw._tagMeasurementPartsHook.children[this.partIdx];
+			var _rawSystemData = _mainModelRaw._tagMeasurementPartsHook.children[this.partIdx];			
 			// set code editor context
 			var _oSysCodeEditor = this.oView.byId("propertiesCE");
 			// build editor context
@@ -242,7 +242,8 @@ sap.ui.define([
 			// navigate to part branch and extract data
 			var _mainModelRaw = this._oModel.getData().children[0];
 			var _result = _mainModelRaw._tagMeasurementResultsHook.children[resultIdx];
-			this._buildResultList(_result);
+			var isLastResult = (resultIdx + 1 === _mainModelRaw._tagMeasurementResultsHook.childElementCount);
+			this._buildResultList(_result, isLastResult);
 			
 			/*
 			// set code editor context
@@ -689,7 +690,7 @@ sap.ui.define([
 			return resVal;
 		},
 
-		_buildResultList: function (_result) {
+		_buildResultList: function (_result, isLastResult) {
 			 // no result block available for this part
 			if (!_result) { 
 				this._renderResultList(null);
@@ -881,8 +882,68 @@ sap.ui.define([
 							codeStr = "";
 							displayedElements = new Array();
 							resBlockStartLine = codeLine;	
-						} 
+						} 						
+					} else if ("USRI" === curResVal[_POS_RES_VAL.GenId_F4]) {
+						// is there a next item belonging to this rule?
+						hasMore	= ("USRI" === nextResVal[_POS_RES_VAL.GenId_F4] && curResVal[_POS_RES_VAL.GenId_L2] === nextResVal[_POS_RES_VAL.GenId_L2]);
 						
+						// render a general intro line with a link to user classification
+						if ("USRI" !== prevResVal[_POS_RES_VAL.GenId_F4]) {		
+							title = new Link ({ text: _cis_defaults.userText, 
+														target: "_blank", 
+														href: _cis_defaults.userPage	});
+							title.addStyleClass(_TITLE_CSS);							
+							title.addStyleClass("sapUiTinyMarginTop");
+							displayedElements.push(title);					
+							
+							title = new ClearLine({ style: "elxCL1" }); 
+							displayedElements.push(title);			
+
+							displayTxt = this._translate("i18n>result.usri.txt");							
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							displayedElements.push(title);
+						} 
+
+						// If this result block doesn't belong to the previous user block (same value for GenericId (particluarly last two digits)), render the introduction lines  
+						if (curResVal[_POS_RES_VAL.GenId_L2] !== prevResVal[_POS_RES_VAL.GenId_L2]) {
+							displayTxt = this._formatTranslation(
+												this._translate("i18n>result.usri.includes.txt"),
+												curResVal[_POS_RES_VAL.GenId_L2],
+												this._getTutypText(curResVal[_POS_RES_VAL.GenId_L2])
+							);										
+							displayedElements.push(
+								new ResultLine ({
+									title: displayTxt,
+									tag: _KNOWN_TAGS.GenericId,
+									text: curResVal[_POS_RES_VAL.GenId],
+									skipTopMargin: false,
+									styleSuffix: "2" })  // actually false, but there is line space anyway, so drop it
+							);	
+						} 
+
+						// in any way, render which user type was included						
+						displayTxt = curResVal[_POS_RES_VAL.At1] + ": " + this._getTutypText(curResVal[_POS_RES_VAL.At1]);
+						displayedElements.push(
+								new ResultLine ({
+									label:	displayTxt,
+									tag:	_KNOWN_TAGS.Attributes1,
+									text:	curResVal[_POS_RES_VAL.At1],
+									skipTopMargin: true,
+									styleSuffix: "3"}) 
+							);	
+						
+						prevResVal = curResVal;
+						if (hasMore) {							
+							codeStr = codeStr + "\n";
+						} else {							
+							// end result block handling
+							resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
+							resultArray.push(resultElement);
+							// reset 
+							codeStr = "";
+							displayedElements = new Array();
+							resBlockStartLine = codeLine;	
+						} 						
 					} else if ("ENGC" === curResVal[_POS_RES_VAL.GenId_F4]) {
 						// is there a next item?
 						hasMore	= false; 
@@ -1375,6 +1436,10 @@ sap.ui.define([
 
 			// render tailing </Part> tag
 			codeStr = "\t\t</Part>";
+			if (isLastResult) {
+				codeStr = codeStr + "\n\t</Results>\n</Measurement>";
+			}
+
 			resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
 			resultArray.push(resultElement);
 

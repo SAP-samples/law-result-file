@@ -25,10 +25,26 @@
 			"tag":			"GenericId",
 			"innerHTML":	"PRTX",
 			"uiText":		"Cross Client"
-		},  {
+		}, {
 			"tag":			"GenericId",
 			"innerHTML":	"PRTP",
 			"uiText":		"Consolidation Client"
+		}, {
+			"tag":			"GenericId",
+			"innerHTML":	"CONM0000000000",
+			"uiText":		"i18n>result.conm.text"
+		}, {
+			"tag":			"Unit",
+			"innerHTML":	"CONM_CONS",
+			"uiText":		"i18n>result.conm_cons.text"
+		}, {
+			"tag":			"Unit",
+			"innerHTML":	"CONM_NMP",
+			"uiText":		"i18n>result.conm_nmp.text"
+		}, {
+			"tag":			"Unit",
+			"innerHTML":	"CONM_USMM",
+			"uiText":		"i18n>result.conm_usmm.text"
 		}, {
 			"tag":			"Counter",
 			"uiText":		[
@@ -62,6 +78,13 @@
 		}, {
 			"tag":			"Result",
 			"uiText":		"Result information"
+		}, {
+			"tag":			"Attribute1",
+			"uiText":		[
+				{		
+					"context":		"CONM0000000000",
+					"uiText":		"Comment (text)"				
+				} 			]
 		}, {
 			"tag":			"Attribute2",
 			"uiText":		[

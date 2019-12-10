@@ -98,6 +98,7 @@ H4.results {
 	font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
 	margin-top: 0px;
 	height: 14px;
+	max-width: 15rem;
 }
 
 /* Styles for the ResultLine control */
