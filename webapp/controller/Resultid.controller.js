@@ -18,6 +18,7 @@ sap.ui.define([
 		},
 
 		_onRouteMatched: function (oEvent) {
+			this._checkInitialModel();
 			// load sample XML file and process it
 			var _oModel = this.getOwnerComponent().getModel("userXML");
 			this._processXML(_oModel.getData());
@@ -130,8 +131,6 @@ sap.ui.define([
 		 * @memberOf glacelx.glacelx.view.partid
 		 */
 		onBeforeRendering: function() {
-			this._checkInitialModel(); ;
-			
 			if (this.partIdx && this.partIdx > -1 && this.sysIdx && this.sysIdx > -1) {
 				this.oRouter.navTo("part", {
 					partIndex: this.partIdx,

@@ -46,7 +46,11 @@ sap.ui.define([
 	var _custInfos;			// lists units and the corresponding customer information sheets
 	var _tuuntTexts;		// holds a copy of the table TUUNT
 	var _tutypTexts;		// holds a copy of the table TUTYP
+	var _tul_acttc;			// holds a copy of the table TUL_ACTTC
 	var _cis_defaults;		// holds the generic URL for the engine page & a title; 
+
+	var _tuzus =		{ "00": "No special version", "01": "Double Byte", "02": "Arabic", "03": "Cyrillic", "04": "Greek", "90": "50% surcharge", "91": "100% surcharge" };
+							// holds a copy of the table TUZUT (for country surcharge)
 			
 	// Constant values					
 	var MONTHS =				[ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
@@ -54,9 +58,10 @@ sap.ui.define([
 	// var _RESULT_TYPES_STR =		{ "PartId":"PartId",	"USR": "USR",	"ENGS": "ENGS",	"ENGC": "ENGC", "CHK": "CHK",	"Unknown": 9 };	// XML content to define ResultType
 	// var _POS_RES_ARRAY =		{ "Controls": 0, "CodeStr": 1, "StartLine": 2, "BlockType" :3 };		// position of data elements in the array handed over from the buildResult to the renderResult methods
 	var _POS_RES_VAL =			{ "GenId": 0, "GenId_F3": 1, "GenId_F4": 2, "GenId_L2": 3, "GenId_L4": 4, "At1": 5, "At2": 6, "Unit": 7, 
-									"PerStart": 8, "PerEnd": 9, "Counter": 10, "CisUrl": 11, "CisTitle": 12, "TuUntTitle": 13 }; 	// position of various contentText/innerHTML values of the current result
+									"PerStart": 8, "PerEnd": 9, "Counter": 10, "CisUrl": 11, "CisTitle": 12, "TuUntTitle": 13, "Unit_L4": 14 }; 	// position of various contentText/innerHTML values of the current result
 	var _CIS_DATA = 			{ "URL": 0, "Title": 1 }; // used to decide if the URL or the Title should be read from the custInfoSheets.json file  
-	var _KNOWN_TAGS =			{ "Counter": "Counter", "GenericId": "GenericId", "Attributes1": "Attribute1", "Attributes2": "Attribute2", "Unit":"Unit" }; // List of (case sensitive) tags used in the application and (potentially) used in the tagTranslation.json file
+	var _KNOWN_TAGS =			{ "Counter": "Counter", "GenericId": "GenericId", "Attributes1": "Attribute1", "Attributes2": "Attribute2",
+									 "Unit":"Unit", "PerStartEnd": "PerStart/PerEnd" }; // List of (case sensitive) tags used in the application and (potentially) used in the tagTranslation.json file
 	var _TITLE_CSS =			  "results"; 		// style class for titles
 
 	return BaseController.extend("glacelx.glacelx.controller.Part", {
@@ -90,6 +95,7 @@ sap.ui.define([
 			_cis_defaults = this.getView().getModel("custInfos").getData().defaults;
 			_tuuntTexts = this.getView().getModel("tu_untt").getData().unitsList;
 			_tutypTexts = this.getView().getModel("tutyp").getData().types;
+			_tul_acttc = this.getView().getModel("tul_acttc").getData().tnames;
 			
 			/// ------------------- PARTS coding 
 			// debugger;
@@ -118,8 +124,16 @@ sap.ui.define([
 			var sysLabel = "(unknown)";
 			var partLabel = sysLabel;
 			// get system label (SID or fallback: SystemNo)
-			var _iSAP_SID = this._oModel.getProperty(this.systPath + "/SAP_SID");
-			var _iSystemNo = this._oModel.getProperty(this.systPath + "/SystemNo");
+			try {
+				var _iSAP_SID = this._oModel.getProperty(this.systPath + "/SAP_SID");
+			} catch(err) {
+				var _iSAP_SID = this._translate("i18n>all.na"); // =n.a.
+			}
+			try {
+				var _iSystemNo = this._oModel.getProperty(this.systPath + "/SystemNo");
+			} catch(err) {
+				var _iSystemNo = this._translate("i18n>all.na"); // =n.a.
+			}
 			var _oSys = this._oModel.getProperty(this.systPath);
 			
 
@@ -242,135 +256,6 @@ sap.ui.define([
 			this._writeAllResultLines(_resultListArea, _result); */
 		},
 
-		/* reads the tagsTranslation.json file (referred as 'file') and tries to get a translation for
-			1. if the file contains in the 'tags" section an entry that matches the 'tag' variable, then 
-				a) if a 'uiText' string value is provided, it will be returned; example: for tag 'PerStart' the translation 'From' will be returned
-				b)	'uiText' could also be an array. This is required e.g. for the <Counter> tag. In this case, the translation will depend on
-					content of the first tag. Known cases: firstTag is <GenericId>. 
-						If the innerHTML starts with 'USRC', then "{0} users classified as" will be returned
-						If the innerHTML starts with 'ENGC', then "{0} units counted
-			2. If not tag translation is found, then the texts section is checked if their is a match for the innnerHTML.
-				If the getMulti variable is true and a uiTextMulti element exists, this one is returned, otherwise the uiText value;
-		If the file holds an entry for 'number', two cases are implemented:
-			a) number = 'useValue': The innerHTML of the tag will be used, e.g. for <Counter>7</Counter> the 7 will be used to resovle/format
-				e.g. '{0} users classified as' into '7 users classified as'
-			b) number = 'useHTML': The tag will be split. If the tag is "USRC00000000EC" and the file innerHTML is "USRC00000000", then the 
-				first part "USRC00000000" will be used for a 'startsWith())' check for the translation (returns e.g. '- Type {0}') and the
-				seocnd part "EC" will be used to resolve/format the translation, so 
-				the final result will be "- Type EC" 
-		
-		tag -			the tag
-		innerHtml -		the value of the tag
-		getMulti -		return the 'plural' text (to indicate cases with multiple entries)
-		firstTagHtml -	e.g. get translation for USRC or for ENGC 
-		secNum - the value of Attribute 2 (only used if translation's number = "useValue")
-		*/
-		/* _getTranslation: function (tag, innerHtml, getMulti, firstTagHtml, secNum) {
-			// is there a translation for the tag?
-			var i;
-			var displayText, uiText;
-			if (tag && tag !== "") {
-				if (_translatableTags && _translatableTags.length > 0) {
-					for (i = 0; i < _translatableTags.length; i++) {
-					var transEntry = _translatableTags[i];
-						var transTag = transEntry.tag;
-						if (transTag && transTag !== "") {
-							if (tag.toUpperCase().startsWith(transTag.toUpperCase())) {
-								// If multiple uiTexts exist, find the proper one: by using the firstTagHtml value
-								if (transEntry.uiText && typeof transEntry.uiText !== "string") {
-									if (transEntry.uiText.length > 0) {
-										for (var k=0; k < transEntry.uiText.length; k++) {
-											if (typeof transEntry.uiText[k].firstHTML === 'string' && 
-													typeof transEntry.uiText[k].uiText === 'string') {
-												// both of the next two cases are relevant
-												if (typeof firstTagHtml === 'string') { 
-													if (firstTagHtml.toUpperCase().startsWith(transEntry.uiText[k].firstHTML.toUpperCase())) {
-														displayText = transEntry.uiText[k].uiText;
-														uiText = displayText;
-														break;
-													}
-												} else if (innerHtml) {
-													if (innerHtml.toUpperCase().startsWith(transEntry.uiText[k].firstHTML.toUpperCase())) {
-														displayText = transEntry.uiText[k].uiText;
-														uiText = displayText;
-														break;
-													}
-												}
-											} else { // ignore else case as it seems to be an invalid translation entry
-												debugger;
-											}
-										}
-										if (!displayText) {
-											// no translation found
-											// displayText = tag;
-											// debugger;
-										}
-									} else {
-										// no translation found
-										// displayText = tag;
-										// debugger;
-									}
-									break;
-								} else {
-									if (getMulti && transEntry.uiTextMulti) {
-										displayText = transEntry.uiTextMulti;
-									} else {
-										displayText = transEntry.uiText;
-									}
-									break;
-								}
-							} // else: nothing to do, for next will try next translation tag
-						} // else: nothing to do, for next will try next translation tag
-					} // end loop
-					if (displayText) {
-						// translate if necessary
-						displayText = this._translate(displayText);
-						// format (replace {0} placeholders with numbers)
-						if (transEntry.number && transEntry.number === "useValue" ) {
-							return this._formatTranslation(	displayText,	// e.g. '{0} users classified as",
-															innerHtml,		// e.g. 8 from <Counter>8</Counter>
-															secNum			// used for Attribute2
-														);
-						}
-						return transEntry.uiText;
-					} // else: no translation found, try innerHTML part
-				}
-			} 
-			// is there a translation for the innerHTML?
-			if (!innerHtml || innerHtml === "") {
-				return tag;
-			}
-	
-			if (_translatableTexts && _translatableTexts.length > 0) {
-				var uiText;
-				for (i = 0; i < _translatableTexts.length; i++) {
-					transEntry = _translatableTexts[i];
-					var curText = transEntry.innerHTML;
-					if (curText && curText !== "") {
-						if (innerHtml.toUpperCase().startsWith(curText.toUpperCase())) {
-							if (getMulti) {
-								uiText = transEntry.uiTextMulti;
-							} else {
-								uiText = transEntry.uiText;
-							}
-							uiText = this._translate(uiText);
-
-							// format (replace {0} placeholders with numbers)
-							if (transEntry.number && transEntry.number === "useHtml") {
-								var start = curText.length;
-								var len = innerHtml.length - start;
-								uiText = this._formatTranslation(	uiText,		// e.g. "- Type {0}",
-																innerHtml.substr(start, len)
-															);
-							}
-							return uiText;
-						}
-					}
-				}
-			}
-			return this._translate("i18n>all.unspecified.text");
-		}, */
-		
 		_getTuuntText: function (engine, metric) {
 			if (engine && engine.trim() !== "" && metric && metric.trim() !== "") {
 				
@@ -463,6 +348,17 @@ sap.ui.define([
 				}
 			}
 			return this._formatTranslation(this._translate("i18n>result.engine.defaultTitle.txt"), engId);
+		},
+
+		_getTul_ActtcText: function(tableId) {
+			if (tableId && tableId.trim() !== "") {
+				for (var i = 0; i < _tul_acttc.length; i++) {
+					if (tableId === _tul_acttc[i].id) {
+						return _tul_acttc[i].table;
+					}
+				}
+			}
+			return "";
 		},
 
 		_getCustInfoSheetData: function (metric, retElement) {
@@ -615,7 +511,7 @@ sap.ui.define([
 				}
 			} 
 			return this._translate("i18n>all.unspecified.text");
-		},		
+		},
 		
 		 /* returns a title for a given combination of an engine and a metric number. Accepts 
 			engine with leading 0 or ENG(C/S/*) and metric with leading 0 or "UNT" 
@@ -647,41 +543,13 @@ sap.ui.define([
 				return text;
 			}
 		},
-  
-		/* _getTranslationRule: function (tag, text) {
-			if (!tag || tag === "") return "";
-			if (_translatableTags && _translatableTags.length > 0) {
-				for (var i = 0; i < _translatableTags.length; i++) {
-					var curEntry = _translatableTags[i];
-					var curTag = curEntry.tag;
-					if (curTag && curTag !== "") {
-						if (tag.toUpperCase().startsWith(curTag.toUpperCase())) {
-							if (curEntry.uiText) {
-								return curEntry.uiText;
-							} else if (curEntry.handlers) {
-								if (text && text !== "") {
-									for (var j = 0; j < curEntry.handlers.length; j++) {
-										var curHandel = curEntry.handlers[j];
-										if (text.toUpperCase().startsWith(curHandel.text)) {
-											return curHandel;
-										}
-									} 
-									// Tag found but no transation for it, return tag instead
-									return tag;
-								} else {
-									debugger;
-									return null;
-								}
-							} else {
-								debugger;
-								return null;
-							}
-						}
-					}
-				}
+
+		_removeLeadingZeros: function (val) {
+			while(val && val.length > 0 && val.substr(0,1) === "0") {
+				val = val.substr(1,val.length);
 			}
-			return null;
-		}, */
+			return val;
+		},
 
 		/* returns ENG (for engines), CHK (for usage checks), USR (for users) or UNK (for all other, unknown/unexpected types) */
 		_getBlockType: function (tag) {
@@ -774,6 +642,11 @@ sap.ui.define([
 							break;
 						case "UNIT": // get UNIT and (if available) the URL of the customer information sheet via custInfoSheets.json
 							resVal[_POS_RES_VAL.Unit]		= curResChildTxt;
+							if (curResChildTxt.length >= 4) {
+								resVal[_POS_RES_VAL.Unit_L4]	= curResChildTxt.substr(curResChildTxt.length - 4, 4);
+							} else {
+								resVal[_POS_RES_VAL.Unit_L4]	= null;
+							}
 							break;
 						case "PERSTART":
 							if (curResChildTxt.length === 8) {
@@ -844,6 +717,8 @@ sap.ui.define([
 								childLine,		// iterator variable for child elements
 				displayTxt, 	// text shown in a result line;
 				hasMore,		// does the next result block also belong to this result block;
+				// hasTemplate, 	// flag: Most templates render the result in a specific way (hasTemplate = true);
+								//  there might be cases where no template appies and a default rendering of the result blockend should take place (hasTemplate = false)
 				title			// temporary variable to hold a title element which needs additional style class
 				;
 				
@@ -852,6 +727,7 @@ sap.ui.define([
 			// loop over the child nodes of the <part> element (typically one <PartId> and multiple <Result> nodes, of which some belong together)
 			while (resElem < _result.children.length) {
 				curResult = _result.children[resElem];
+				// hasTemplate = true; // default setting
 				
 				// write code lines into codeStr variable for XML editor
 				codeStr = codeStr + "\t\t\t" + curResult.outerHTML; 
@@ -894,13 +770,30 @@ sap.ui.define([
 					
 					// handle various special cases, otherwise default case
 					// is it a User Type block?					
-					if ("USRC" === curResVal[_POS_RES_VAL.GenId_F4]) {
+					if ("USRC" === curResVal[_POS_RES_VAL.GenId_F4] || "USRS" === curResVal[_POS_RES_VAL.GenId_F4]) {
 						// is there a next item?
 						hasMore = ( curResVal[_POS_RES_VAL.GenId_F4] === nextResVal[_POS_RES_VAL.GenId_F4] && curResVal[_POS_RES_VAL.At2] === nextResVal[_POS_RES_VAL.At2] );
 
-						// If this result block doesn't belong to the previous one, render the introduction lines  
-						if ("USRC" !== prevResVal[_POS_RES_VAL.GenId_F4] || curResVal[_POS_RES_VAL.At2] !== prevResVal[_POS_RES_VAL.At2]) {
-							displayTxt = this._getTagTranslation(_KNOWN_TAGS.Counter, null, hasMore, curResVal[_POS_RES_VAL.Counter], curResVal[_POS_RES_VAL.GenId_F4]);
+						// render a general intro line with a link to user classification
+						if ("USRC" !== prevResVal[_POS_RES_VAL.GenId_F4] && "USRS" !== prevResVal[_POS_RES_VAL.GenId_F4]) {
+							title = new Link ({ text: _cis_defaults.userText, 
+														target: "_blank", 
+														href: _cis_defaults.userPage	});
+							title.addStyleClass(_TITLE_CSS);							
+							title.addStyleClass("sapUiTinyMarginTop");
+							displayedElements.push(title);														
+						} 
+
+						// If this result block doesn't belong to the previous user block (link via Attribute 2), render the introduction lines  
+						if (	("USRC" === curResVal[_POS_RES_VAL.GenId_F4] && 
+									("USRC" !== prevResVal[_POS_RES_VAL.GenId_F4] || curResVal[_POS_RES_VAL.At2] !== prevResVal[_POS_RES_VAL.At2])
+								) || 
+								("USRS" === curResVal[_POS_RES_VAL.GenId_F4]) 
+							) {
+							displayTxt = this._getTagTranslation(_KNOWN_TAGS.Counter, null, 
+																	(hasMore && "USRS" !== curResVal[_POS_RES_VAL.GenId_F4]),
+																	 this._removeLeadingZeros(curResVal[_POS_RES_VAL.Counter]),
+																	 curResVal[_POS_RES_VAL.GenId_F4]);
 							displayedElements.push(
 								new ResultLine ({
 									title: displayTxt,
@@ -913,7 +806,7 @@ sap.ui.define([
 
 						// in any way, render classification Type 
 						// function (tag, innerHtml, getMulti, firstTagHtml, secNum)
-						displayTxt = this._getTagTranslation(_KNOWN_TAGS.GenericId, curResVal[_POS_RES_VAL.GenId], hasMore, curResVal[_POS_RES_VAL.Counter], null);
+						displayTxt = this._getTagTranslation(_KNOWN_TAGS.GenericId, curResVal[_POS_RES_VAL.GenId], hasMore, curResVal[_POS_RES_VAL.Counter], null);						
 						var translt = this._getTutypText(curResVal[_POS_RES_VAL.GenId_L2]);
 						
 						displayedElements.push(
@@ -924,26 +817,63 @@ sap.ui.define([
 									skipTopMargin: true,
 									styleSuffix: "3"}) 
 							);	
+
+
+						// render country surcharge (should only occur for USRS)
+						/// var _tuzus =	{ "00": "No special version", "01": "Double Byte", "02": "Arabic", "03": "Cyrillic", "04": "Greek", "90": "50% surcharge", "91": "100% surcharge" };
+						if (curResVal[_POS_RES_VAL.Unit] && curResVal[_POS_RES_VAL.Unit].trim() !== "") {
+							if ("SURL" === curResVal[_POS_RES_VAL.Unit]) {
+								displayTxt = this._translate("i18n>result.usrs.surl.txt");
+							} else {
+								displayTxt = this._translate("i18n>result.usrs.surs.txt");
+							}
+							displayedElements.push(
+								new ResultLine ({
+									label:	displayTxt,
+									tag:	_KNOWN_TAGS.Unit,
+									text:	curResVal[_POS_RES_VAL.Unit],
+									skipTopMargin: true,
+									styleSuffix: "3"}) 
+							);	
+
+							// render surcharge value
+							if (curResVal[_POS_RES_VAL.At1] && curResVal[_POS_RES_VAL.At1].trim() !== "") {
+								displayTxt = null;
+								if ("SURS" === curResVal[_POS_RES_VAL.Unit]) {
+									displayTxt = _tuzus[curResVal[_POS_RES_VAL.At1]];									
+								} 								
+								if (displayTxt == null) {									
+									displayTxt = this._formatTranslation(
+										this._translate("i18n>result.usrs.surl.perc.txt"),
+										curResVal[_POS_RES_VAL.At1]
+									);
+								}
+								displayedElements.push(
+									new ResultLine ({
+										label:	displayTxt,
+										tag:	_KNOWN_TAGS.Attributes1,
+										text:	curResVal[_POS_RES_VAL.At1],
+										skipTopMargin: true,
+										styleSuffix: "3"}) 
+								);
+							}							
+						}
 						
 						if (hasMore) {
 							prevResVal = curResVal;
 							codeStr = codeStr + "\n";
 						} else {
-							// If the next result block doesn't belong to this result block, render the closding lines
-							
-							//								GenericId	USRC0000000006	true					USRC or ENGC or null
-							// _getTagTranslation: function (	tag,		innerHtml,		getMulti,	count,		context) {
-							//  "GenId": 0, "GenId_F3": 1, "GenId_F4": 2, "GenId_L2": 3, "GenId_L4": 4, "At1": 5, "At2": 6, "Unit": 7, "PerStart": 8, "PerEnd": 9, "Counter": 10 }; 	// position of various contentText/innerHTML values of the current result
-					
-							displayTxt = this._getTagTranslation(_KNOWN_TAGS.Attributes2, null, false, curResVal[_POS_RES_VAL.At2], curResVal[_POS_RES_VAL.GenId_F4]);
-							displayedElements.push(
-								new ResultLine ({
-									label:	displayTxt,
-									tag:	_KNOWN_TAGS.Attributes2,
-									text:	curResVal[_POS_RES_VAL.At2],
-									skipTopMargin: true}) 
-							);	
-							
+							// If the next result block doesn't belong to this result block, render the closding lines for USRC cases, not for USRS cases
+							if ("USRC" === curResVal[_POS_RES_VAL.GenId_F4]) {
+								displayTxt = this._getTagTranslation(_KNOWN_TAGS.Attributes2, null, false, curResVal[_POS_RES_VAL.At2], curResVal[_POS_RES_VAL.GenId_F4]);
+								displayedElements.push(
+									new ResultLine ({
+										label:	displayTxt,
+										tag:	_KNOWN_TAGS.Attributes2,
+										text:	curResVal[_POS_RES_VAL.At2],
+										skipTopMargin: true}) 
+								);	
+							}
 							// end result block handling
 							resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
 							resultArray.push(resultElement);
@@ -1154,7 +1084,270 @@ sap.ui.define([
 						}
 						prevResVal = curResVal;
 					
-					} else {
+					} else if ("CHKP" === curResVal[_POS_RES_VAL.GenId_F4]) {
+						/* var _POS_RES_VAL =			{ 	"GenId": 0, "GenId_F3": 1, "GenId_F4": 2, "GenId_L2": 3, "GenId_L4": 4, "At1": 5, "At2": 6, "Unit": 7, 
+															"PerStart": 8, "PerEnd": 9, "Counter": 10, "CisUrl": 11, "CisTitle": 12, "TuUntTitle": 13 }; 	// position of various contentText/innerHTML values of the current result */
+	
+						/* if 		(curResVal[_POS_RES_VAL.GenId] === "CHKP000000DELU") {															
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000EXPU") {															
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000FUTU") {															
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000LLOG") {															
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLOG") {															
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLPK") {															
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000BPRL") {															
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000EXCU") {															
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000USRD") {															
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000NCTU") {	
+						} else */ if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MUGP") {
+							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000MUG2");
+
+							// render blank line 
+							title = new ClearLine({ style: "elxCL1" }); 
+							displayedElements.push(title);			
+
+							// render headline 							
+							displayTxt = this._translate("i18n>result.chkp.MUGP.headline"); // Check for multiple user records grouped into one user in the same client
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							displayedElements.push(title);		
+
+							// render tag & value
+							displayTxt = this._formatTranslation(
+								this._translate("i18n>result.chkp.MUGP"),	// {0} cases with multiple user records
+								curResVal[_POS_RES_VAL.Counter]);							
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: curResVal[_POS_RES_VAL.GenId],
+									text: curResVal[_POS_RES_VAL.Counter],
+									skipTopMargin: true,
+									styleSuffix: "2"})  
+							);
+
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MUG2") {
+							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000MUG2");
+
+							// render tag & value
+							displayTxt = this._formatTranslation(
+								this._translate("i18n>result.chkp.MUG2"),	// result.chkp.MUG2=Case with {0} user records for one person 
+								curResVal[_POS_RES_VAL.Counter]);							
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: curResVal[_POS_RES_VAL.GenId],
+									text: curResVal[_POS_RES_VAL.Counter],
+									skipTopMargin: true,
+									styleSuffix: "3"})  
+							);
+						} else {
+							// no template applied, so simply render the tags and values							
+							childLine = 0;
+							while (childLine < curResult.childElementCount) {
+								curResChild = curResult.children[childLine];
+								displayTxt = this._getTagTranslation(curResChild.tagName, curResChild.innerHTML, false, curResChild.innerHTML, curResVal[_POS_RES_VAL.GenId_F4]);
+								displayedElements.push(
+									new ResultLine ({
+									// firstTag: "Result",
+									// title: "Key tags in the next <Result> block(s)",
+									label: displayTxt,
+									tag: curResChild.tagName,
+									text: curResChild.innerHTML,
+									skipTopMargin: (childLine > 0)}) );	
+								childLine++;
+							}
+							resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
+							resultArray.push(resultElement);
+							// reset 
+							codeStr = "";
+							displayedElements = new Array();
+							resBlockStartLine = codeLine;	
+						}
+
+						// after handling all CHKP templates, start new block where necessary
+						if (!hasMore) {
+							// end result block handling
+							resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
+							resultArray.push(resultElement);
+							// reset 
+							codeStr = "";
+							displayedElements = new Array();
+							resBlockStartLine = codeLine;
+						} else {
+							codeStr = codeStr + "\n";
+						}
+						prevResVal = curResVal;
+
+					} else if ("CHKC" === curResVal[_POS_RES_VAL.GenId_F4]) {
+						hasMore = (nextResVal[_POS_RES_VAL.GenId_F4] === "CHKC");
+
+						// render blank line 
+						title = new ClearLine({ style: "elxCL1" }); 
+						displayedElements.push(title);			
+
+						// render headline if this is the first entry
+						if (prevResVal[_POS_RES_VAL.GenId_F4] !== "CHKC") {
+							displayTxt = this._translate("i18n>result.chkc.headline"); // =Indicator: Classification checks for (Ltd.) Professional and Developer users
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							displayedElements.push(title);	
+						}	
+
+						// render caption for each new check
+						if (curResVal[_POS_RES_VAL.Unit] !== prevResVal[_POS_RES_VAL.Unit]) {							
+							if (curResVal[_POS_RES_VAL.Unit] === "CHKC000000") {
+								// Check for (Ltd.) Professional Users
+								displayTxt = this._translate("i18n>result.chkc.prof.unit"); 	// Check for (Ltd.) Professional Users
+							} else if (curResVal[_POS_RES_VAL.Unit] === "CHKC000001") {
+								// Check for developers 
+								displayTxt = this._translate("i18n>result.chkc.dev.unit"); 	// Check for developers 
+							} else {
+								// unknown check
+								displayTxt = this._translate("i18n>result.chkc.unknown.unit"); 	// Unknown check  
+							} 
+							// render type of check
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: _KNOWN_TAGS.Unit,
+									text: curResVal[_POS_RES_VAL.Unit],
+									skipTopMargin: true,
+									styleSuffix: "2"})
+							);  
+						}
+
+						// render counter
+						displayTxt = this._formatTranslation(
+											this._translate("i18n>result.chkc.counter"),	// =found {0} users which are classified as
+											curResVal[_POS_RES_VAL.Counter]);							
+						displayedElements.push(
+							new ResultLine ({
+								label: displayTxt,
+								tag: _KNOWN_TAGS.Counter,
+								text: curResVal[_POS_RES_VAL.Counter],
+								skipTopMargin: true,
+								styleSuffix: "3"})
+						);
+
+						// render classification
+						displayTxt = curResVal[_POS_RES_VAL.At1] + ": " + this._getTutypText(curResVal[_POS_RES_VAL.At1] ); // e.g. 92 External Contact
+						displayedElements.push(
+							new ResultLine ({
+								label: displayTxt,
+								tag: _KNOWN_TAGS.Attributes1,
+								text: curResVal[_POS_RES_VAL.At1],
+								skipTopMargin: true,
+								styleSuffix: "3"})
+						);
+
+						// render from - to 
+						if ( 	(curResVal[_POS_RES_VAL.PerStart] && curResVal[_POS_RES_VAL.PerStart] !== "" ) ||
+								(curResVal[_POS_RES_VAL.PerEnd] && curResVal[_POS_RES_VAL.PerEnd] !== "")) {
+							displayTxt = this._formatTranslation(
+											this._translate("i18n>result.chkc.Period.text"),	// =From {0} to {1}
+											curResVal[_POS_RES_VAL.PerStart],
+											curResVal[_POS_RES_VAL.PerEnd] );
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: _KNOWN_TAGS.PerStartEnd,
+									text: this._translate("i18n>all.3dots"), // ...
+									skipTopMargin: true,
+									styleSuffix: "3"})
+							);
+						}
+
+						if (!hasMore) {
+							// end result block handling
+							resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
+							resultArray.push(resultElement);
+							// reset 
+							codeStr = "";
+							displayedElements = new Array();
+							resBlockStartLine = codeLine;
+						} else {
+							codeStr = codeStr + "\n";
+						}
+						prevResVal = curResVal;
+
+
+					} else if ("CHKA" === curResVal[_POS_RES_VAL.GenId_F4]) {
+						hasMore = (nextResVal[_POS_RES_VAL.GenId_F4] === "CHKA");
+
+						// render blank line 
+						title = new ClearLine({ style: "elxCL1" }); 
+						displayedElements.push(title);			
+
+						// render headline if this is the first entry
+						if (prevResVal[_POS_RES_VAL.GenId_F4] !== "CHKA") {
+							displayTxt = this._translate("i18n>result.chka.headline"); // =Indicator: Classification checks for (Ltd.) Professional and Developer users
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							displayedElements.push(title);	
+						}	
+
+						// render counter
+						if (curResVal[_POS_RES_VAL.GenId_L2] === "06") {
+							displayTxt = this._formatTranslation(
+								this._translate("i18n>result.chka6.counter"),	// ={0} entries were made 
+								curResVal[_POS_RES_VAL.Counter]);
+						} else if (curResVal[_POS_RES_VAL.GenId_L2] === "05") {
+							displayTxt = this._formatTranslation(
+								this._translate("i18n>result.chka5.counter"),	// ={0}% of entries were made
+								curResVal[_POS_RES_VAL.Counter]);
+						} else {
+							displayTxt = _KNOWN_TAGS.Counter;
+						}
+						displayedElements.push(
+							new ResultLine ({
+								label: displayTxt,
+								tag: _KNOWN_TAGS.Counter,
+								text: curResVal[_POS_RES_VAL.Counter],
+								skipTopMargin: true,
+								styleSuffix: "3"})
+						);
+
+						displayTxt = this._formatTranslation(
+										this._translate("i18n>result.chka.unit"),	// =into table {0} {1}
+										curResVal[_POS_RES_VAL.Unit_L4],
+										this._getTul_ActtcText(curResVal[_POS_RES_VAL.Unit_L4])	);
+						// render type of check
+						displayedElements.push(
+							new ResultLine ({
+								label: displayTxt,
+								tag: _KNOWN_TAGS.Unit,
+								text: curResVal[_POS_RES_VAL.Unit],
+								skipTopMargin: true,
+								styleSuffix: "3"})
+						);  
+
+						// render from - to 
+						displayTxt = this._formatTranslation(
+										this._translate("i18n>result.chkc.Period.text"),	// =From {0} to {1}
+										curResVal[_POS_RES_VAL.PerStart],
+										curResVal[_POS_RES_VAL.PerEnd] );
+						displayedElements.push(
+							new ResultLine ({
+								label: displayTxt,
+								tag: _KNOWN_TAGS.PerStartEnd,
+								text: this._translate("i18n>all.3dots"), // ...
+								skipTopMargin: true,
+								styleSuffix: "3"})
+						);
+
+						if (!hasMore) {
+							// end result block handling
+							resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
+							resultArray.push(resultElement);
+							// reset 
+							codeStr = "";
+							displayedElements = new Array();
+							resBlockStartLine = codeLine;
+						} else {
+							codeStr = codeStr + "\n";
+						}
+						prevResVal = curResVal;
+					}
+					
+					
+					else {						
+						// no template applied, so simply render the tags and values
 						childLine = 0;
 						while (childLine < curResult.childElementCount) {
 							curResChild = curResult.children[childLine];
@@ -1174,11 +1367,17 @@ sap.ui.define([
 						// reset 
 						codeStr = "";
 						displayedElements = new Array();
-						resBlockStartLine = codeLine;	
+						resBlockStartLine = codeLine;							
 					}
 				}
 				resElem++;				
 			}
+
+			// render tailing </Part> tag
+			codeStr = "\t\t</Part>";
+			resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
+			resultArray.push(resultElement);
+
 			this._renderResultList(resultArray);
 		},	
 		

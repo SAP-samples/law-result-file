@@ -13,6 +13,12 @@
 			"number":		"useHtml"
 		}, {
 			"tag":			"GenericId",
+			"innerHTML":	"USRS00000000",
+			"uiText":		"{0}",
+			"uiTextMulti":	"{0}",
+			"number":		"useHtml"
+		}, {
+			"tag":			"GenericId",
 			"innerHTML":	"PRTC",
 			"uiText":		"Internal Consolidation"
 		},  {
@@ -27,9 +33,13 @@
 			"tag":			"Counter",
 			"uiText":		[
 				{		
-						"context":		"USRC",
-						"uiText":		"{0} users, classified as",
-						"uiTextMulti":	"{0} users, classified as a combination of"
+					"context":		"USRC",
+					"uiText":		"{0} users, classified as",
+					"uiTextMulti":	"{0} users, classified as a combination of"
+				}, {		
+					"context":		"USRS",
+					"uiText":		"{0} users, classified as",
+					"uiTextMulti":	"{0} users, classified as a combination of"
 				}, {	
 						"context":		"ENGC",
 						"uiText":		"{0} units counted"
@@ -96,8 +106,6 @@
 			"tag":			"Excluded",
    			"uiText":		"i18n>model.parts.part.Excluded.text"
 		},
-		
-		
 		{	
    	    	"innerHTML":		"CHKP000000DELU", 
     		"uiText":			"i18n>result.chkp.DELU"

@@ -5,8 +5,10 @@
 	], 
    	
    	"defaults":  {
-		   	"enginePage": "https://support.sap.com/en/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement.html",
-		   	"engineText": "No specific info. You may check the engine page." 
+			"enginePage": "https://support.sap.com/en/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement.html",
+		   	"engineText": "No specific info. You may check the engine page.",
+			"userPage":	  "https://support.sap.com/en/my-support/systems-installations/system-measurement/system-measurement-information.html#section_1908747832",
+			"userText":	  "User classifications" 
    	},
 	
 	"cis":

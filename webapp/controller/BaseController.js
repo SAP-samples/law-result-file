@@ -32,8 +32,9 @@ sap.ui.define([
 						this._processXML(_oModel.getData());
 					}
 				} catch(err) {
-					MessageToast.show("{i18n>elements.noData.text");
-
+					var _i18nBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+					MessageToast.show(_i18nBundle.getText("elements.noData.text"));
+					
 					// no data / data lost (e.g. due to refresh)				
 					var sampleModel = this.getOwnerComponent().getModel("sampleXML");	
 					var _oModel = this.getOwnerComponent().getModel("userXML");
@@ -41,7 +42,8 @@ sap.ui.define([
 					this._processXML(_oModel.getData());
 				}
 			} else {
-				MessageToast.show("{i18n>elements.noData.text");
+				var _i18nBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+				MessageToast.show(_i18nBundle.getText("elements.noData.text"));				
 			}
 		},
 

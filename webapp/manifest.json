@@ -97,6 +97,12 @@
 				"settings": {},
 				"uri": "./model/tuapp.json",
 				"preload": true
+			}, 
+			"tul_acttc": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "./model/tul_acttc.json",
+				"preload": true
 			}
 		},
 		"resources": {
