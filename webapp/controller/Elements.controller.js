@@ -8,8 +8,8 @@ sap.ui.define([
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRoute = this.oRouter.getRoute("elements");
-			this.oRoute.attachMatched(this._onRouteMatched, this);
 			this._checkInitialModel();
+			this.oRoute.attachMatched(this._onRouteMatched, this);
 		},
 
 		_onRouteMatched: function () {
@@ -45,7 +45,7 @@ sap.ui.define([
 		},
 
 		onToIntro: function () {
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);			
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("intro");
 		},
 

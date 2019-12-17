@@ -6,7 +6,7 @@ sap.ui.define([
 	"sap/base/Log"
 ], function (Controller, UIComponent, JSONModel, MessageToast, Log) {
 	"use strict";
-	
+
 	var _oBundle; // holds the resource bundle for text translation
 
 	return Controller.extend("glacelx.glacelx.controller.BaseController", {
@@ -19,31 +19,28 @@ sap.ui.define([
 		},
 
 		_checkInitialModel: function () {
-			// debugger;
-			var _oModel = this.getOwnerComponent().getModel("userXML");
+			var that = this;
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			var _oModel = that.getOwnerComponent().getModel("userXML");
 			if (_oModel.getData()) {
 				try {
 					if (_oModel.getData().hasChildNodes()) {
-						if (_oModel.getData().children[0]._tagDepth === undefined || _oModel.getData().children[0]._tagClass === undefined || _oModel.getData()
+						if (_oModel.getData().children[0]._tagDepth === undefined || _oModel.getData().children[0]._tagClass === undefined || _oModel
+							.getData()
 							.children[0]._tagLineStart === undefined) {
-							this._processXML(_oModel.getData());
+							that._processXML(_oModel.getData());
 						}
 					} else {
-						this._processXML(_oModel.getData());
+						_oModel.setXML(oStorage.get("xmlLocalStorage"));
+						that._processXML(_oModel.getData());
 					}
-				} catch(err) {
-					var _i18nBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
-					MessageToast.show(_i18nBundle.getText("elements.noData.text"));
-					
-					// no data / data lost (e.g. due to refresh)				
-					var sampleModel = this.getOwnerComponent().getModel("sampleXML");	
-					var _oModel = this.getOwnerComponent().getModel("userXML");
-					_oModel.setData(sampleModel.getData());
-					this._processXML(_oModel.getData());
+				} catch (err) {
+					_oModel.setXML(oStorage.get("xmlLocalStorage"));
+					that._processXML(_oModel.getData());
 				}
 			} else {
-				var _i18nBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
-				MessageToast.show(_i18nBundle.getText("elements.noData.text"));				
+				_oModel.setXML(oStorage.get("xmlLocalStorage"));
+				that._processXML(_oModel.getData());
 			}
 		},
 
@@ -84,7 +81,7 @@ sap.ui.define([
 		},
 
 		buildEditorContext: function (node, oCodeEditor) {
-			if (! node) {
+			if (!node) {
 				_oBundle = this.getView().getModel("i18n").getResourceBundle();
 				oCodeEditor.setValue(_oBundle.getText("part.nodata.text"));
 				oCodeEditor.setEditable(false);
@@ -92,15 +89,15 @@ sap.ui.define([
 				return;
 			}
 			var _sXMAS = this.__convertModelToString(node);
-			
+
 			// remove last line break (otherwise we are left with an empty last line)
 			_sXMAS = _sXMAS.slice(0, -1);
-			
+
 			this.buildEditor(_sXMAS, oCodeEditor, node._tagLineStart);
 		},
-		
+
 		buildEditor: function (codeStr, oCodeEditor, firstLineNumber) {
-			if (! codeStr) {
+			if (!codeStr) {
 				_oBundle = this.getView().getModel("i18n").getResourceBundle();
 				oCodeEditor.setValue(_oBundle.getText("part.nodata.text"));
 				oCodeEditor.setEditable(false);
@@ -134,8 +131,8 @@ sap.ui.define([
 			// if no system was found return -1
 			return -1;
 		},
-		
-		_getCorrespondingResultIndex: function (iPartIndex) {			
+
+		_getCorrespondingResultIndex: function (iPartIndex) {
 			var _iPartId = this.getOwnerComponent().getModel("userXML").getProperty("/Parts/Part/" + iPartIndex + "/PartId").trim();
 			// console.log("  Search for PartId " + _iPartId);
 			var results = this._oModel.getData().children[0]._tagMeasurementResultsHook.children;
@@ -150,12 +147,19 @@ sap.ui.define([
 			return -1;
 		},
 
-		_processXML: function (node) {			
-			this._processXMLElement(node, 0, -2);
+		storeLocalRawXML: function (oData) {
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			oStorage.put("xmlLocalStorage", oData);
+		},
+
+		_processXML: function (node) {
+			var that = this;
+			that._processXMLElement(node, 0, -2);
 		},
 
 		_processXMLElement: function (node, lastPos, lastDepth) {
 			// leaf node
+			var that = this;
 			if (node.children && node.children.length === 0) {
 				node._tagLineStart = lastPos + 1;
 				node._tagLineEnd = node._tagLineStart;
@@ -242,7 +246,7 @@ sap.ui.define([
 
 				// call all children
 				for (var i = 0; i < node.children.length; ++i) {
-					_oCallValues = this._processXMLElement(node.children[i], _oCallValues.lPos, _oCallValues.lDepth);
+					_oCallValues = that._processXMLElement(node.children[i], _oCallValues.lPos, _oCallValues.lDepth);
 				}
 
 				// increase line position and ajdust its value in _oCallValues
