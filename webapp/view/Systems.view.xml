@@ -22,7 +22,7 @@
 									<Title text="{i18n>systems.syslist.title}"/>
 									<Button text="{i18n>systems.button.lawCons.text}" press="onConsButton" class="sapContrast" />
 									<ToolbarSpacer/>
-									<SearchField width="15rem"/>
+									<SearchField width="15rem" liveChange="onLiveChange"/>
 								</content>
 							</Toolbar>							
 							<f:GridList id="systemList" growing="true" class="sapUxAPObjectPageSubSectionAlignContent"
