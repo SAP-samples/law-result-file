@@ -1,48 +1,62 @@
 <mvc:View controllerName="glacelx.glacelx.controller.Elements"
 	xmlns:core="sap.ui.core" 
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:comm="sap.suite.ui.commons"
 	xmlns="sap.m"
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<App id="Intro">
 		<pages>
 			<Page id="overview" title="{i18n>elements.page.title}" class="sapUiStdPage" showNavButton="true" navButtonText="Back" navButtonPress="onToIntro">
 				<content>
-					<FlexBox
-        				alignItems="Center"
-        				justifyContent="Center">
-						<StandardTile	
-							id="tileHeader"
-							icon="sap-icon://letter"
-							numberUnit="{i18n>elements.tiles.header.numberUnit}" 
-							title="{i18n>elements.tiles.header.title}"
-							press="onToHeader"/>
-						<StandardTile 
-							id="tileSystems"
-							icon="sap-icon://it-system" 
-							numberUnit="{i18n>model.systems.text}"
-							title="{i18n>elements.tiles.systems.numberUnit}" 
-							press="onSystemList"/>
-						<StandardTile 
-							id="tileParts"
-							icon="sap-icon://it-instance"
-							numberUnit="{i18n>model.parts.text}"
-							title="{i18n>elements.tiles.parts.title}"
-							info="{i18n>elements.tiles.parts.info}" 
-							press="onPartPressed"/>
-						<StandardTile 
-							id="tileResults"
-							icon="sap-icon://survey"
-							numberUnit="{i18n>model.results.text}"
-							blocked="true"							
-							title="{i18n>elements.tiles.results.title}" 
-							info="{i18n>elements.tiles.results.info}" />
-						<StandardTile 
-							id="tileXml"
-							icon="sap-icon://syntax"
-							numberUnit="{i18n>elements.tiles.xml.numberUnit}"
-							title="{i18n>elements.tiles.xml.title}" 
-							info="{i18n>elements.tiles.xml.info}" />
-					</FlexBox>
+					<l:HorizontalLayout>
+
+						<l:VerticalLayout>
+							<l:HorizontalLayout>							
+								<StandardTile	
+									id="tileHeader"
+									icon="sap-icon://letter"
+									numberUnit="{i18n>elements.tiles.header.numberUnit}" 
+									title="{i18n>elements.tiles.header.title}"
+									info="{i18n>elements.tiles.header.info}"
+									press="onToHeader"/>		
+								<StandardTile 
+									id="tileSystems"
+									icon="sap-icon://it-system" 
+									numberUnit="{i18n>elements.tiles.systems.numberUnit}"
+									title="{i18n>elements.tiles.systems.title}" 
+									info="{i18n>elements.tiles.systems.info}"
+									press="onSystemList"/>													
+							</l:HorizontalLayout>														
+							
+							<StandardTile 
+								id="tileParts"
+								icon="sap-icon://it-instance"
+								numberUnit="{i18n>elements.tiles.parts.numberUnit}"
+								title="{i18n>elements.tiles.parts.title}"
+								info="{i18n>elements.tiles.parts.info}" 
+								press="onPartPressed"/>
+
+							<l:HorizontalLayout>
+								<StandardTile 
+									id="tileResults"
+									blocked="false"	
+									icon="sap-icon://survey"
+									numberUnit="{i18n>elements.tiles.results.numberUnit}"														
+									title="{i18n>elements.tiles.results.title}" 
+									info="{i18n>elements.tiles.results.info}" />
+								<StandardTile 
+									id="tileXml"
+									icon="sap-icon://syntax"
+									numberUnit="{i18n>elements.tiles.xml.numberUnit}"
+									title="{i18n>elements.tiles.xml.title}" 
+									info="{i18n>elements.tiles.xml.info}" />																					
+							</l:HorizontalLayout>									
+						</l:VerticalLayout>	
+
+						<Image src="../css/law_xml_structure.gif" class="sapUiSmallMargin" />
+						
+					</l:HorizontalLayout>									
 				</content>
 			</Page>
 		</pages>
