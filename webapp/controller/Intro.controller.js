@@ -19,7 +19,7 @@ sap.ui.define([
 			var sampleModel = this.getOwnerComponent().getModel("sampleXML");
 			var _oModel = this.getOwnerComponent().getModel("userXML");
 			_oModel.setData(sampleModel.getData());
-
+			this.storeLocalRawXML(sampleModel.getXML());
 			this._processXML(_oModel.getData());
 			// loading and processing of sample XML file is already done in onInit
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
