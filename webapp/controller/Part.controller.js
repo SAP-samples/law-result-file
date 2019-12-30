@@ -727,7 +727,10 @@ sap.ui.define([
 				hasMore,		// does the next result block also belong to this result block;
 				// hasTemplate, 	// flag: Most templates render the result in a specific way (hasTemplate = true);
 								//  there might be cases where no template appies and a default rendering of the result blockend should take place (hasTemplate = false)
-				title			// temporary variable to hold a title element which needs additional style class
+				title,			// temporary variable to hold a title element which needs additional style class
+				mlogStack,		// array that holds entries/lines of MLOG entries which is an array of [0] Attr1, [1] curResVal, //// no longer: [2] codeStr, [3] codeLine
+				mlpkStack,		// array that holds entries/lines of MLPK entries which is an array of [0] Attr1, [1] curResVal, //// no longer: [2] codeStr, [3] codeLine
+				curMlStackLine	// temporary var to create/read a stack line for MLOG/MLPK
 				;
 				
 			prevResVal = this._getResultValueArray(null); // initialize empty 
@@ -1410,8 +1413,101 @@ sap.ui.define([
 							}								
 							
 
-						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLOG" || curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLPK") {															
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLOG" || curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLPK") {							
+							curMlStackLine = [];
+							curMlStackLine[0] = curResVal[_POS_RES_VAL.At1];
+							curMlStackLine[1] = curResVal;
+							// curMlStackLine[2] = codeStr;
+							// curMlStackLine[3] = codeLine;
+							if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLOG") {
+								// add to MLOG stack
+								if (mlogStack == null) {
+									mlogStack = [];
+								}
+								mlogStack.push(curMlStackLine);
+							} else {
+								// add to MLPK stack
+								if (mlpkStack == null) {
+									mlpkStack = [];									
+								}
+								mlpkStack.push(curMlStackLine);
+							}
+							
+							// check if next result is no CHKP000000MLOG/MLPK and rendering need to be done 
+							if (nextResVal[_POS_RES_VAL.GenId] !== "CHKP000000MLOG" && nextResVal[_POS_RES_VAL.GenId] !== "CHKP000000MLPK") {
+								// this result was the last in the MLOG/MLPK stack, so start rendering now
 
+								// loop over mlog stack and render each element
+								if (mlogStack != null && mlogStack.length > 0) {
+									// forEach + function call or (BETTER: for loop over the lenght)
+									for(var sl = 0; sl < mlogStack.length; sl++) {		
+										// render blank line 
+										title = new ClearLine({ style: "elxCL1" }); 
+										displayedElements.push(title);
+
+										if (sl == 0) {
+											// first line: headline 			
+											displayTxt = this._translate("i18n>result.chkp.MLOG.headline"); // =Indicator: Users deleted before the measurement
+											title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+											displayedElements.push(title);	
+										}
+
+										// render MLOG entry plus corresponding MPLK entry
+										displayTxt = mlogStack[sl][0];
+										if (displayTxt !== null && displayTxt.length == 6) {
+											displayTxt = displayTxt.substr(0,4) + "-" + displayTxt.substr(4,2);
+										}
+										displayTxt = this._formatTranslation(
+											this._translate("i18n>result.chkp.MLOG.month.text"), // =In the month {0}, multiple log ons occured
+											displayTxt);
+										displayedElements.push(
+											new ResultLine ({
+												label: displayTxt,
+												tag: _KNOWN_TAGS.Attributes1,
+												text: mlogStack[sl][0],
+												skipTopMargin: true,
+												styleSuffix: "2"})  
+										);										
+
+										// render MLOG conter
+										displayTxt = this._formatTranslation(
+											this._translate("i18n>result.chkp.MLOG.number.text"), // =- {0} times
+											mlogStack[sl][1][_POS_RES_VAL.Counter]);
+										displayedElements.push(
+											new ResultLine ({
+												label: displayTxt,
+												tag: _KNOWN_TAGS.Counter,
+												text: mlogStack[sl][1][_POS_RES_VAL.Counter],
+												skipTopMargin: true,
+												styleSuffix: "3"})  
+										);			
+
+										if (mlpkStack.length > 0 && mlpkStack[sl][0] === mlogStack[sl][0]) {
+											displayTxt = this._formatTranslation(
+												this._translate("i18n>result.chkp.MLOG.peak.text"), // =- with {0} logons at a time 
+												mlpkStack[sl][1][_POS_RES_VAL.Counter]);
+											displayedElements.push(
+												new ResultLine ({
+													label: displayTxt,
+													tag: _KNOWN_TAGS.Counter,
+													text: mlpkStack[sl][1][_POS_RES_VAL.Counter],
+													skipTopMargin: true,
+													styleSuffix: "3"}) );												
+										} else {
+											// @TODO unlikly/potential case: different entries --> loop over mlpkStack and search if there is a corresponding month match
+										}
+									}
+
+								} else {
+									// @TODO unlikly/potential case: why should there be only MLPK entries?
+								}
+
+								// @TODO unlikly/potential case: check if mlpk stack has unprocessed entries 
+
+								hasMore = false; // creates a new result block after this one
+							} else {
+								hasMore = true;	// prevents direct rendering of single result blocks in the XML editor
+							}							
 						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000BPRL") {		
 							// render blank line 
 							title = new ClearLine({ style: "elxCL1" }); 
