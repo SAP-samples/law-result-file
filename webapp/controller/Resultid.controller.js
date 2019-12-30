@@ -13,14 +13,15 @@ sap.ui.define([
 		 */
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			var route = this.oRouter.getRoute("resultid");
+			var route = this.oRouter.getRoute("resultid");			
 			route.attachMatched(this._onRouteMatched, this);
 		},
 
-		_onRouteMatched: function (oEvent) {
-			this._checkInitialModel();
+		_onRouteMatched: function (oEvent) {	
 			// load sample XML file and process it
-			var _oModel = this.getOwnerComponent().getModel("userXML");
+			var _oModel = this.getOwnerComponent().getModel("userXML");			
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			_oModel.setXML(oStorage.get("xmlLocalStorage"));
 			this._processXML(_oModel.getData());
 
 			var oArgs, oView;

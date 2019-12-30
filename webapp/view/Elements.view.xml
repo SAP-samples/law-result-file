@@ -12,45 +12,48 @@
 					<l:HorizontalLayout>
 
 						<l:VerticalLayout>
-							<l:HorizontalLayout>							
+							<l:HorizontalLayout>	
 								<StandardTile	
 									id="tileHeader"
 									icon="sap-icon://letter"
 									numberUnit="{i18n>elements.tiles.header.numberUnit}" 
 									title="{i18n>elements.tiles.header.title}"
 									info="{i18n>elements.tiles.header.info}"
-									press="onToHeader"/>		
+									press="onToHeader"/>								
 								<StandardTile 
 									id="tileSystems"
 									icon="sap-icon://it-system" 
 									numberUnit="{i18n>elements.tiles.systems.numberUnit}"
 									title="{i18n>elements.tiles.systems.title}" 
 									info="{i18n>elements.tiles.systems.info}"
-									press="onSystemList"/>													
+									press="onSystemList"/>																				
 							</l:HorizontalLayout>														
 							
-							<StandardTile 
-								id="tileParts"
-								icon="sap-icon://it-instance"
-								numberUnit="{i18n>elements.tiles.parts.numberUnit}"
-								title="{i18n>elements.tiles.parts.title}"
-								info="{i18n>elements.tiles.parts.info}" 
-								press="onPartPressed"/>
+							<l:HorizontalLayout>	
+								<StandardTile />
+								<StandardTile 
+									id="tileParts"
+									icon="sap-icon://it-instance"
+									numberUnit="{i18n>elements.tiles.parts.numberUnit}"
+									title="{i18n>elements.tiles.parts.title}"
+									info="{i18n>elements.tiles.parts.info}" 
+									press="onPartPressed"/>
+							</l:HorizontalLayout>
 
 							<l:HorizontalLayout>
+								<StandardTile 
+									id="tileXml"
+									icon="sap-icon://syntax"
+									numberUnit="{i18n>elements.tiles.xml.numberUnit}"
+									title="{i18n>elements.tiles.xml.title}" 
+									info="{i18n>elements.tiles.xml.info}" />							
 								<StandardTile 
 									id="tileResults"
 									blocked="false"	
 									icon="sap-icon://survey"
 									numberUnit="{i18n>elements.tiles.results.numberUnit}"														
 									title="{i18n>elements.tiles.results.title}" 
-									info="{i18n>elements.tiles.results.info}" />
-								<StandardTile 
-									id="tileXml"
-									icon="sap-icon://syntax"
-									numberUnit="{i18n>elements.tiles.xml.numberUnit}"
-									title="{i18n>elements.tiles.xml.title}" 
-									info="{i18n>elements.tiles.xml.info}" />																					
+									info="{i18n>elements.tiles.results.info}" />																					
 							</l:HorizontalLayout>									
 						</l:VerticalLayout>	
 

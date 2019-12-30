@@ -14,6 +14,23 @@
 	<App>
 		<pages>
 			<Page title="{i18n>part.page.client.text}" showNavButton="true" enableScrolling="true" navButtonPress="backToSystem" id="resultPage">
+				<subHeader>
+					<OverflowToolbar >
+						<Breadcrumbs currentLocationText="{i18n>properties.breadcrumb.title}">
+							<Link press="onNavLoad" text="{i18n>header.breadcrumb.load.text}"/>
+							<Link press="onNavAll" text="{i18n>header.breadcrumb.all.text}"/>
+							<Link press="onNavSystemList" text="{i18n>header.breadcrumb.systems.text}"/>
+							<Link press="onNavSystem" text="{i18n>part.breadcrumb.sid.placeholder.text}" id="bcSid" />														
+						</Breadcrumbs>				
+						<ToolbarSpacer />						
+						<Label text="{i18n>part.button.label.text}"/>
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
+						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>						
+						<Button text="{i18n>part.button.firstSystem.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
+						<Button text="{i18n>part.button.lastSystem.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
+					</OverflowToolbar>
+
+				</subHeader>
 				<content>
 					<!-- Properties Part -->
 						<cols:EqualWidthColumns id="selectedPart">
@@ -35,14 +52,6 @@
 
 				</content>
 				<footer>
-					<OverflowToolbar >
-						<ToolbarSpacer />
-						<Label text="{i18n>part.button.label.text}"/>
-						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
-						<Button text="{i18n>part.button.last.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
-						<Button text="{i18n>part.button.first.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
-						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>
-					</OverflowToolbar>
 				</footer>
 			</Page>
 		</pages>

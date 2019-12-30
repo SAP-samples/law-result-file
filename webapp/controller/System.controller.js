@@ -160,6 +160,19 @@ sap.ui.define([
 			this.oRouter.navTo("system", {
 				sysIndex: _iSysTarget
 			});
-		}
+		},
+
+		onNavLoad: function() {
+			this.oRouter.navTo("intro");
+		},
+
+		onNavAll: function() {
+			this.oRouter.navTo("elements");
+		},
+
+		onNavSystemList: function() {
+			this.oRouter.navTo("systems");
+
+		},
 	});
 });

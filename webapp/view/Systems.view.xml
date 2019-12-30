@@ -12,7 +12,7 @@
 	displayBlock="true">
 	<App id="systemListApp">
 		<pages>
-			<Page id="SystemTiles" title="{i18n>model.systems.text}" showNavButton="true" navButtonPress="onToAll">
+			<Page id="SystemTiles" title="{i18n>model.systems.text}" showNavButton="true" navButtonPress="onToAll">	
 				<content>
 					<!-- <Text text="{path: 'lawFile>/Systems', formatter: '.formatter.setStyle'}" /> -->
 					<Panel id="panelForGridList2">

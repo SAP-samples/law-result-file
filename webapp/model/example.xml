@@ -26783,6 +26783,59 @@
 		</Part>
 		<Part>
 			<PartId>   187</PartId>
+
+			<!-- START - fake entries, just for testing. Entries not expected in LAW, but only USMM results -->
+			<Result>
+				<GenericId>CHKP000000BPRL</GenericId>
+				<Counter>36 </Counter>
+			</Result>
+			<Result>
+				<GenericId>CHKP000000EXCU</GenericId>
+				<Attribute1>SAP*</Attribute1>
+			</Result>
+			<Result>
+				<GenericId>CHKP000000EXCU</GenericId>
+				<Attribute1>TSADM</Attribute1>
+			</Result>
+
+			<Result>
+				<GenericId>CHKP000000USRD</GenericId>
+				<Unit>TUT000000A</Unit>
+				<Counter>234 </Counter>
+			</Result>
+			<Result>
+				<GenericId>CHKP000000USRD</GenericId>
+				<Unit>TUT000000B</Unit>
+				<Counter>16 </Counter>
+			</Result>
+			<Result>
+				<GenericId>CHKP000000USRD</GenericId>
+				<Unit>TUT000000C</Unit>
+				<Counter>21 </Counter>
+			</Result>
+			<Result>
+				<GenericId>CHKP000000USRD</GenericId>
+				<Unit>TUT000000S</Unit>
+				<Counter>76 </Counter>
+			</Result>					
+			<Result>
+				<GenericId>CHKP000000NCTU</GenericId>
+				<Unit>TUT000000B</Unit>
+				<Counter>4 </Counter>
+			</Result>
+			<Result>
+				<GenericId>CHKP000000NCTU</GenericId>
+				<Unit>TUT000000C</Unit>
+				<Counter>2 </Counter>
+			</Result>
+			<Result>
+				<GenericId>CHKP000000NCTU</GenericId>
+				<Unit>TUT000000S</Unit>
+				<Counter>6 </Counter>
+			</Result>
+
+			<!-- END - fake entries, just for testing. Entries not expected in LAW, but only USMM results -->			
+			
 			<Result>
 				<GenericId>CHKP000000MUGP</GenericId>
 				<Counter>6 </Counter>

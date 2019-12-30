@@ -14,6 +14,24 @@
 		<pages>
 			<Page title="{parts:['i18n>system.page.title', 'SAP_SID/text()'], formatter: 'jQuery.sap.formatMessage'}" 
 					showNavButton="true" navButtonPress="onSystemList" id="SystemView">
+
+				<subHeader>
+					<OverflowToolbar >
+						<Breadcrumbs currentLocationText="{i18n>header.breadcrumb.system.text}">
+							<Link press="onNavLoad" text="{i18n>header.breadcrumb.load.text}"/>
+							<Link press="onNavAll" text="{i18n>header.breadcrumb.all.text}"/>
+							<Link press="onNavSystemList" text="{i18n>header.breadcrumb.systems.text}"/>							
+						</Breadcrumbs>				
+						<ToolbarSpacer />						
+						<Label text="{i18n>part.button.label.text}"/>
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
+						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>						
+						<Button text="{i18n>part.button.firstSystem.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
+						<Button text="{i18n>part.button.lastSystem.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
+					</OverflowToolbar>
+
+				</subHeader>
+
 				<content> 
 					<cols:EqualWidthColumns>
 						<cols:content>
@@ -127,11 +145,6 @@
 								</content>
 							</Panel>
 							<Panel headerText="{i18n>xml.headerText}" class="column2">
-									<Button text="{i18n>xml.button.top}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
-									<Button text="{i18n>xml.button.up}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>
-									<Button text="{i18n>xml.button.down}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
-									<Button text="{i18n>xml.button.bottom}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
-									<Button text="{i18n>xml.button.goto}" icon="sap-icon://sales-document" class="navButton"/>
 									<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="systemCodeEditor" />
 							 </Panel>
 						</cols:content>

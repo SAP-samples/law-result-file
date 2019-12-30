@@ -75,6 +75,7 @@ sap.ui.define([
 			this.route = this.oRouter.getRoute("part");
 			this.oView = this.getView();
 			
+			this._checkInitialModel();
 			this._oModel = this.getOwnerComponent().getModel("userXML");
 			this.route.attachMatched(this._onRouteMatched, this);
 			
@@ -84,8 +85,7 @@ sap.ui.define([
 			
 		},
 
-		_onRouteMatched: function (oEvent) {
-			this._checkInitialModel();
+		_onRouteMatched: function (oEvent) {		
 			_i18nBundle = this.getView().getModel("i18n").getResourceBundle();
 			// _translatableTags = this.getView().getModel("tags").getData().tags; 
 			_translatableTexts = this.getView().getModel("trans").getData().trans;
@@ -169,6 +169,13 @@ sap.ui.define([
 				oForm.setTitle(sysLabel + " - " + partClientText);
 			}
 			
+			// breadcrumb - update SID and client number
+			if (_iSAP_SID != this._translate("i18n>all.na")) {
+				this.oView.byId("bcSid").setText(_iSAP_SID);
+			} else {
+				this.oView.byId("bcSid").setText(_iSystemNo);
+			}			
+
 			/// ------  PROPERTIES coding -----------------------
 						// debugger;
 			var oArgs = oEvent.getParameter("arguments");
@@ -760,7 +767,7 @@ sap.ui.define([
 					codeStr = "";
 					displayedElements = new Array();
 					resBlockStartLine = codeLine;
-				} else {
+				} else {					
 					// get next two results
 					curResVal = this._getResultValueArray(curResult);
 					if (resElem + 1 < _result.childElementCount) {
@@ -1149,17 +1156,396 @@ sap.ui.define([
 						/* var _POS_RES_VAL =			{ 	"GenId": 0, "GenId_F3": 1, "GenId_F4": 2, "GenId_L2": 3, "GenId_L4": 4, "At1": 5, "At2": 6, "Unit": 7, 
 															"PerStart": 8, "PerEnd": 9, "Counter": 10, "CisUrl": 11, "CisTitle": 12, "TuUntTitle": 13 }; 	// position of various contentText/innerHTML values of the current result */
 	
-						/* if 		(curResVal[_POS_RES_VAL.GenId] === "CHKP000000DELU") {															
-						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000EXPU") {															
-						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000FUTU") {															
-						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000LLOG") {															
-						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLOG") {															
-						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLPK") {															
-						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000BPRL") {															
-						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000EXCU") {															
-						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000USRD") {															
+						if 			(curResVal[_POS_RES_VAL.GenId] === "CHKP000000DELU") {							
+							// render blank line 
+							title = new ClearLine({ style: "elxCL1" }); 
+							displayedElements.push(title);			
+
+							// render headline 							
+							displayTxt = this._translate("i18n>result.chkp.DELU.headline"); // =Indicator: Users deleted before the measurement
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							displayedElements.push(title);		
+							
+							// render tag & value
+							displayTxt = this._formatTranslation(
+								this._translate("i18n>result.chkp.DELU.Counter.desc"),	//{0} user master records were deleted
+								curResVal[_POS_RES_VAL.Counter]);							
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: _KNOWN_TAGS.Counter,
+									text: curResVal[_POS_RES_VAL.Counter],
+									skipTopMargin: true,
+									styleSuffix: "2"})  
+							);
+
+							if (curResVal[_POS_RES_VAL.Unit]) {
+								displayTxt = null;
+								if (curResVal[_POS_RES_VAL.Unit] === "PERW000012") {
+									displayTxt = this._translate("i18n>result.chkp.DELU.Unit.period_12.txt");
+								} else if (curResVal[_POS_RES_VAL.Unit] === "PERW000004") {
+									displayTxt = this._translate("i18n>result.chkp.DELU.Unit.period_4.txt");
+								} else if (curResVal[_POS_RES_VAL.Unit] === "PERW000001") {
+									displayTxt = this._translate("i18n>result.chkp.DELU.Unit.period_1.txt");
+								}
+								if (displayTxt) {
+									displayedElements.push(
+										new ResultLine ({
+											label: displayTxt,
+											tag: _KNOWN_TAGS.Unit,
+											text: curResVal[_POS_RES_VAL.Unit],
+											skipTopMargin: true,
+											styleSuffix: "3"})  
+									);
+								}
+							}			
+							
+							// render from - to 
+							if ( 	(curResVal[_POS_RES_VAL.PerStart] && curResVal[_POS_RES_VAL.PerStart] !== "" ) ||
+									(curResVal[_POS_RES_VAL.PerEnd] && curResVal[_POS_RES_VAL.PerEnd] !== "")) {
+								displayTxt = this._formatTranslation(
+												this._translate("i18n>result.chkc.PeriodS.text"),	// =From {0} to {1}
+												curResVal[_POS_RES_VAL.PerStart],
+												curResVal[_POS_RES_VAL.PerEnd] );
+								displayedElements.push(
+									new ResultLine ({
+										label: displayTxt,
+										tag: _KNOWN_TAGS.PerStartEnd,
+										text: this._translate("i18n>all.3dots"), // ...
+										skipTopMargin: true,
+										styleSuffix: "3"})
+								);
+							}
+
+
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000EXPU") {
+							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000EXPU");
+							// render blank line 
+							title = new ClearLine({ style: "elxCL1" }); 
+							displayedElements.push(title);			
+
+							// render headline 			
+							if (prevResVal[_POS_RES_VAL.GenId] !== "CHKP000000EXPU") {			
+								displayTxt = this._translate("i18n>result.chkp.EXPU.headline"); // 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								displayedElements.push(title);		
+							}
+
+							// render tag & value
+							displayTxt = this._formatTranslation(
+								this._translate("i18n>result.chkp.EXPU.Counter.desc"),	//
+								curResVal[_POS_RES_VAL.Counter]);							
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: _KNOWN_TAGS.Counter,
+									text: curResVal[_POS_RES_VAL.Counter],
+									skipTopMargin: true,
+									styleSuffix: "2"})  
+							);
+
+							if (curResVal[_POS_RES_VAL.Unit]) {
+								displayTxt = null;
+								if (curResVal[_POS_RES_VAL.Unit] === "PERW000012") {
+									displayTxt = this._translate("i18n>result.chkp.DELU.Unit.period_12.txt");
+								} else if (curResVal[_POS_RES_VAL.Unit] === "PERW000004") {
+									displayTxt = this._translate("i18n>result.chkp.DELU.Unit.period_4.txt");
+								} else if (curResVal[_POS_RES_VAL.Unit] === "PERW000001") {
+									displayTxt = this._translate("i18n>result.chkp.DELU.Unit.period_1.txt");
+								}
+								if (displayTxt) {
+									displayedElements.push(
+										new ResultLine ({
+											label: displayTxt,
+											tag: _KNOWN_TAGS.Unit,
+											text: curResVal[_POS_RES_VAL.Unit],
+											skipTopMargin: true,
+											styleSuffix: "3"})  
+									);
+								}
+							}			
+							
+							// render from - to 
+							if ( 	(curResVal[_POS_RES_VAL.PerStart] && curResVal[_POS_RES_VAL.PerStart] !== "" ) ||
+									(curResVal[_POS_RES_VAL.PerEnd] && curResVal[_POS_RES_VAL.PerEnd] !== "")) {
+								displayTxt = this._formatTranslation(
+												this._translate("i18n>result.chkc.PeriodS.text"),	// =From {0} to {1}
+												curResVal[_POS_RES_VAL.PerStart],
+												curResVal[_POS_RES_VAL.PerEnd] );
+								displayedElements.push(
+									new ResultLine ({
+										label: displayTxt,
+										tag: _KNOWN_TAGS.PerStartEnd,
+										text: this._translate("i18n>all.3dots"), // ...
+										skipTopMargin: true,
+										styleSuffix: "3"})
+								);
+							}																						
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000FUTU") {	
+							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000FUTU");
+							// render blank line 
+							title = new ClearLine({ style: "elxCL1" }); 
+							displayedElements.push(title);			
+
+							// render headline 			
+							if (prevResVal[_POS_RES_VAL.GenId] !== "CHKP000000FUTU") {			
+								displayTxt = this._translate("i18n>result.chkp.FUTU.headline"); // 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								displayedElements.push(title);		
+							}
+
+							// render tag & value
+							displayTxt = this._formatTranslation(
+								this._translate("i18n>result.chkp.FUTU.Counter.desc"),	//
+								curResVal[_POS_RES_VAL.Counter]);							
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: _KNOWN_TAGS.Counter,
+									text: curResVal[_POS_RES_VAL.Counter],
+									skipTopMargin: true,
+									styleSuffix: "2"})  
+							);
+
+							if (curResVal[_POS_RES_VAL.Unit]) {
+								displayTxt = null;
+								if (curResVal[_POS_RES_VAL.Unit] === "PERW000012") {
+									displayTxt = this._translate("i18n>result.chkp.FUTU.Unit.period_12.txt");
+								} else if (curResVal[_POS_RES_VAL.Unit] === "PERW000004") {
+									displayTxt = this._translate("i18n>result.chkp.FUTU.Unit.period_4.txt");
+								} else if (curResVal[_POS_RES_VAL.Unit] === "PERW000001") {
+									displayTxt = this._translate("i18n>result.chkp.FUTU.Unit.period_1.txt");
+								}
+								if (displayTxt) {
+									displayedElements.push(
+										new ResultLine ({
+											label: displayTxt,
+											tag: _KNOWN_TAGS.Unit,
+											text: curResVal[_POS_RES_VAL.Unit],
+											skipTopMargin: true,
+											styleSuffix: "3"})  
+									);
+								}
+							}			
+							
+							// render from - to 
+							if ( 	(curResVal[_POS_RES_VAL.PerStart] && curResVal[_POS_RES_VAL.PerStart] !== "" ) ||
+									(curResVal[_POS_RES_VAL.PerEnd] && curResVal[_POS_RES_VAL.PerEnd] !== "")) {
+								displayTxt = this._formatTranslation(
+												this._translate("i18n>result.chkc.PeriodS.text"),	// =From {0} to {1}
+												curResVal[_POS_RES_VAL.PerStart],
+												curResVal[_POS_RES_VAL.PerEnd] );
+								displayedElements.push(
+									new ResultLine ({
+										label: displayTxt,
+										tag: _KNOWN_TAGS.PerStartEnd,
+										text: this._translate("i18n>all.3dots"), // ...
+										skipTopMargin: true,
+										styleSuffix: "3"})
+								);
+							}									
+							
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000LLOG") {		
+							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000LLOG");
+							// render blank line 
+							title = new ClearLine({ style: "elxCL1" }); 
+							displayedElements.push(title);			
+
+							// render headline 			
+							if (prevResVal[_POS_RES_VAL.GenId] !== "CHKP000000LLOG") {			
+								displayTxt = this._translate("i18n>result.chkp.LLOG.headline"); // 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								displayedElements.push(title);		
+							}
+
+							// render tag & value
+							displayTxt = this._formatTranslation(
+								this._translate("i18n>result.chkp.FUTU.Counter.desc"),	//
+								curResVal[_POS_RES_VAL.Counter]);							
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: _KNOWN_TAGS.Counter,
+									text: curResVal[_POS_RES_VAL.Counter],
+									skipTopMargin: true,
+									styleSuffix: "2"})  
+							);
+
+							if (curResVal[_POS_RES_VAL.Unit]) {
+								displayTxt = null;
+								if (curResVal[_POS_RES_VAL.Unit] === "PERW000012") {
+									displayTxt = this._translate("i18n>result.chkp.DELU.Unit.period_12.txt");
+								} else if (curResVal[_POS_RES_VAL.Unit] === "PERW000004") {
+									displayTxt = this._translate("i18n>result.chkp.DELU.Unit.period_4.txt");
+								} else if (curResVal[_POS_RES_VAL.Unit] === "PERW000001") {
+									displayTxt = this._translate("i18n>result.chkp.DELU.Unit.period_1.txt");
+								}
+								if (displayTxt) {
+									displayedElements.push(
+										new ResultLine ({
+											label: displayTxt,
+											tag: _KNOWN_TAGS.Unit,
+											text: curResVal[_POS_RES_VAL.Unit],
+											skipTopMargin: true,
+											styleSuffix: "3"})  
+									);
+								}
+							}			
+							
+							// render from - to 
+							if ( 	(curResVal[_POS_RES_VAL.PerStart] && curResVal[_POS_RES_VAL.PerStart] !== "" ) ||
+									(curResVal[_POS_RES_VAL.PerEnd] && curResVal[_POS_RES_VAL.PerEnd] !== "")) {
+								displayTxt = this._formatTranslation(
+												this._translate("i18n>result.chkc.PeriodS.text"),	// =From {0} to {1}
+												curResVal[_POS_RES_VAL.PerStart],
+												curResVal[_POS_RES_VAL.PerEnd] );
+								displayedElements.push(
+									new ResultLine ({
+										label: displayTxt,
+										tag: _KNOWN_TAGS.PerStartEnd,
+										text: this._translate("i18n>all.3dots"), // ...
+										skipTopMargin: true,
+										styleSuffix: "3"})
+								);
+							}								
+							
+
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLOG" || curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLPK") {															
+
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000BPRL") {		
+							// render blank line 
+							title = new ClearLine({ style: "elxCL1" }); 
+							displayedElements.push(title);			
+
+							// render headline 			
+							if (prevResVal[_POS_RES_VAL.GenId] !== "CHKP000000BPRL") {			
+								displayTxt = this._translate("i18n>result.chkp.BPRL.headline"); // 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								displayedElements.push(title);
+							}
+
+							// render tag & value
+							displayTxt = this._formatTranslation(
+								this._translate("i18n>result.chkp.FUTU.Counter.desc"),	//
+								curResVal[_POS_RES_VAL.Counter]);							
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: _KNOWN_TAGS.Counter,
+									text: curResVal[_POS_RES_VAL.Counter],
+									skipTopMargin: true,
+									styleSuffix: "2"})  
+							);			
+
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000EXCU") {
+							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000EXCU");
+
+							if (prevResVal[_POS_RES_VAL.GenId] !== "CHKP000000EXCU") {
+								// render blank line 
+								title = new ClearLine({ style: "elxCL1" }); 
+								displayedElements.push(title);			
+
+								// render headline 	
+								displayTxt = this._translate("i18n>result.chkp.EXCU.headline"); // 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								displayedElements.push(title);
+							}
+
+							// render tag & value
+							displayTxt = this._formatTranslation(
+								this._translate("i18n>result.chkp.EXCU.user"),	//
+								curResVal[_POS_RES_VAL.At1]);							
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: _KNOWN_TAGS.Attributes1,
+									text: curResVal[_POS_RES_VAL.At1],
+									skipTopMargin: true,
+									styleSuffix: "2"})  
+							);		
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000USRD") {
+							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000USRD");
+
+							if (prevResVal[_POS_RES_VAL.GenId] !== "CHKP000000USRD") {
+								// render blank line 
+								title = new ClearLine({ style: "elxCL1" }); 
+								displayedElements.push(title);										
+
+								// render headline 										
+								displayTxt = this._translate("i18n>result.chkp.USRD.headline"); // 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								displayedElements.push(title);
+							}
+
+							// render tag & value
+							switch(curResVal[_POS_RES_VAL.Unit]){
+								case "TUT000000A":
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTA.txt");		break;
+								case "TUT000000B":
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTB.txt");		break;									
+								case "TUT000000C":
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTC.txt");		break;
+								case "TUT000000S":
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTS.txt");		break;
+								case "TUT000000L":
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTL.txt");		break;
+								default: 
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTX.txt");	
+							}							
+							displayTxt = this._formatTranslation(
+								displayTxt,	//
+								curResVal[_POS_RES_VAL.Counter]);							
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: _KNOWN_TAGS.Counter,
+									text: curResVal[_POS_RES_VAL.Counter],
+									skipTopMargin: true,
+									styleSuffix: "3"})  
+							);		
+
 						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000NCTU") {	
-						} else */ if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MUGP") {
+							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000NCTU");
+
+							if (prevResVal[_POS_RES_VAL.GenId] !== "CHKP000000NCTU") {
+								// render blank line 
+								title = new ClearLine({ style: "elxCL1" }); 
+								displayedElements.push(title);										
+
+								// render headline 										
+								displayTxt = this._translate("i18n>result.chkp.NCTU.headline"); // 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								displayedElements.push(title);
+							}
+
+							// render tag & value
+							switch(curResVal[_POS_RES_VAL.Unit]){
+								case "TUT000000A":
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTA.txt");		break;
+								case "TUT000000B":
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTB.txt");		break;									
+								case "TUT000000C":
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTC.txt");		break;
+								case "TUT000000S":
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTS.txt");		break;
+								case "TUT000000L":
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTL.txt");		break;
+								default: 
+									displayTxt = this._translate("i18n>result.chkp.USRD.TUTX.txt");	
+							}							
+							displayTxt = this._formatTranslation(
+								displayTxt,	//
+								curResVal[_POS_RES_VAL.Counter]);							
+							displayedElements.push(
+								new ResultLine ({
+									label: displayTxt,
+									tag: _KNOWN_TAGS.Counter,
+									text: curResVal[_POS_RES_VAL.Counter],
+									skipTopMargin: true,
+									styleSuffix: "3"})  
+							);	
+							
+						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MUGP") {
 							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000MUG2");
 
 							// render blank line 
@@ -1840,6 +2226,26 @@ sap.ui.define([
 					sysIndex: _iSysIndex
 				});
 			}
+		},
+
+		onNavLoad: function() {
+			this.oRouter.navTo("intro");
+		},
+
+		onNavAll: function() {
+			this.oRouter.navTo("elements");
+		},
+
+		onNavSystemList: function() {
+			this.oRouter.navTo("systems");
+
+		},
+
+		onNavSystem: function() {
+			this.oRouter.navTo("system", {
+				sysIndex: this.sysIdx 
+			});
 		}
+
 	});
 });
