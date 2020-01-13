@@ -21,19 +21,29 @@ sap.ui.define([
 			var _oModel = this.getOwnerComponent().getModel("userXML");
 			var _rawModelData = _oModel.getData().children[0];
 
+			var resourceBundle = this.getView().getModel("i18n").getResourceBundle();
+
 			for (var i = 0; i < _rawModelData.children.length; ++i) {
 				switch (_rawModelData.children[i].tagName) {
 				case "Header":
-					oHeaderTile.setNumber(1);
+					oHeaderTile.setHeader(jQuery.sap.formatMessage(
+												resourceBundle.getText("elements.tiles.header.title.N"),
+												1));
 					break;
 				case "Systems":
-					oSystemsTile.setNumber(_rawModelData.children[i].children.length);
+					oSystemsTile.setHeader(jQuery.sap.formatMessage(
+												resourceBundle.getText("elements.tiles.systems.title.N"),
+												_rawModelData.children[i].children.length));
 					break;
 				case "Parts":
-					oPartsTile.setNumber(_rawModelData.children[i].children.length);
+					oPartsTile.setHeader(jQuery.sap.formatMessage(
+												resourceBundle.getText("elements.tiles.parts.title.N"),
+												_rawModelData.children[i].children.length));
 					break;
 				case "Results":
-					oResultsTile.setNumber(_rawModelData.children[i].children.length);
+					oResultsTile.setHeader(jQuery.sap.formatMessage(
+												resourceBundle.getText("elements.tiles.results.title.N"),
+												_rawModelData.children[i].children.length));
 					break;
 				}
 			}
@@ -52,6 +62,22 @@ sap.ui.define([
 		onSystemList: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("systems");
+		},
+
+		onFirstSystem: function (oEvent) {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);			
+			var sysIdx = "1";
+			oRouter.navTo("system", {
+				sysIndex: sysIdx
+			});
+		},
+
+		onFirstPart: function (oEvent) {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var resultId  = "1";			
+			oRouter.navTo("resultid", {
+				resultId: resultId				
+			});
 		},
 
 		onPartPressed: function (oEvent) {
