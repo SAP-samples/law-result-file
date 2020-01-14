@@ -64,7 +64,7 @@ sap.ui.define([
 									 "Unit":"Unit", "PerStartEnd": "PerStart/PerEnd" }; // List of (case sensitive) tags used in the application and (potentially) used in the tagTranslation.json file
 	var _TITLE_CSS =			  "results"; 		// style class for titles
 
-	return BaseController.extend("zglacelx.zglacelx.controller.Part", {
+	return BaseController.extend("sap.support.zglacelx.controller.Part", {
 		valueCheck: function (oEvent) {
 			var oArgs = oEvent.getParameter("arguments");
 		},

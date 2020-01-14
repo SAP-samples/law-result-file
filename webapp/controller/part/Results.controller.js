@@ -28,7 +28,7 @@ sap.ui.define([
 	var _engineNames;		// is an copy of the TUUNT table in JSON format which holds the texts for the engine IDs. 
 							// In contrast to the LAW results, Ids are provided here without leading 0s.
 
-	return BaseController.extend("zglacelx.zglacelx.controller.part.Results", {
+	return BaseController.extend("sap.support.zglacelx.controller.part.Results", {
 		onInit: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			var route = oRouter.getRoute("part");

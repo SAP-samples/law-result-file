@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (BaseController, Log) {
 	"use strict";
 
-	return BaseController.extend("zglacelx.zglacelx.controller.Systems", {
+	return BaseController.extend("sap.support.zglacelx.controller.Systems", {
 
 		onInit: function () {
 			this._checkInitialModel();
