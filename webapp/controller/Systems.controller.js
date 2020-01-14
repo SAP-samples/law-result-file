@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (BaseController, Log) {
 	"use strict";
 
-	return BaseController.extend("glacelx.glacelx.controller.Systems", {
+	return BaseController.extend("zglacelx.zglacelx.controller.Systems", {
 
 		onInit: function () {
 			this._checkInitialModel();

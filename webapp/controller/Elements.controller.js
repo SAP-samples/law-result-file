@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
 	"use strict";
 
-	return BaseController.extend("glacelx.glacelx.controller.Elements", {
+	return BaseController.extend("zglacelx.zglacelx.controller.Elements", {
 
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);

@@ -7,9 +7,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<!-- define the groupId for your project, e.g. com.sap.support.application -->
-	<groupId>sap.support.glacelx</groupId>
+	<groupId>sap.support.zglacelx</groupId>
 	<!-- define the artifactId for your project, e.g. com.sap.support.application -->
-	<artifactId>sap.support.glacelx</artifactId>
+	<artifactId>sap.support.zglacelx</artifactId>
 	<version>2019.1.0-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
 	<!-- describe your project, a quick comment to any readers of the POM -->

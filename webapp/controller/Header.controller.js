@@ -8,7 +8,7 @@ sap.ui.define([
 ], function (BaseController, formatter, Filter, FilterOperator, EqualWidthColumns) {
 	"use strict";
 
-	return BaseController.extend("glacelx.glacelx.controller.Header", {
+	return BaseController.extend("zglacelx.zglacelx.controller.Header", {
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this._checkInitialModel();

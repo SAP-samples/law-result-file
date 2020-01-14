@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (BaseController, Log, EqualWidthColumns) {
 	"use strict";
 
-	return BaseController.extend("glacelx.glacelx.controller.part.Properties", {
+	return BaseController.extend("zglacelx.zglacelx.controller.part.Properties", {
 		
 		onInit: function () {
 			// debugger;

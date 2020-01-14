@@ -9,7 +9,7 @@ sap.ui.define([
 
 	var _oBundle; // holds the resource bundle for text translation
 
-	return Controller.extend("glacelx.glacelx.controller.BaseController", {
+	return Controller.extend("zglacelx.zglacelx.controller.BaseController", {
 		onInit: function () {
 
 		},

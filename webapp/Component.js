@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (UIComponent, Device, models, Log) {
 	"use strict";
 
-	return UIComponent.extend("glacelx.glacelx.Component", {
+	return UIComponent.extend("zglacelx.zglacelx.Component", {
 
 		metadata: {
 			manifest: "json"

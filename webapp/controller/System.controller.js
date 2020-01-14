@@ -12,7 +12,7 @@ sap.ui.define([
 ], function (BaseController, EqualWidthColumns, XMLView, ResourceModel, Log, formatter, Filter, FilterOperator, ResultLine) {
 	"use strict";
 
-	return BaseController.extend("glacelx.glacelx.controller.System", {
+	return BaseController.extend("zglacelx.zglacelx.controller.System", {
 		formatter: formatter,
 
 		onInit: function () {

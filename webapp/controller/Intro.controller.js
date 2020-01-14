@@ -5,11 +5,11 @@ sap.ui.define([
 ], function (BaseController, ResourceModel) {
 	"use strict";
 
-	return BaseController.extend("glacelx.glacelx.controller.Intro", {
+	return BaseController.extend("zglacelx.zglacelx.controller.Intro", {
 		onInit: function () {
 			// set i18n model on view
 			var i18nModel = new ResourceModel({
-				bundleName: "glacelx.glacelx.i18n.i18n"
+				bundleName: "zglacelx.zglacelx.i18n.i18n"
 			});
 			this.getView().setModel(i18nModel, "i18n");
 		},
