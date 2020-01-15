@@ -22,7 +22,7 @@
 									headerImage="sap-icon://letter"
 									frameType="TwoByOne" 
 									press="onToHeader"
-									backgroundImage="../css/nav_header.png">
+									backgroundImage="/webapp/css/nav_header.png">
 									<TileContent footer="{i18n>elements.tiles.header.info}" />															
 								</GenericTile>
 
@@ -33,7 +33,7 @@
 									headerImage="sap-icon://it-system" 
 									frameType="TwoByOne" 
 									press="onSystemList"
-									backgroundImage="../css/nav_systems.png">
+									backgroundImage="/webapp/css/nav_systems.png">
 									<TileContent footer="{i18n>elements.tiles.systems.info}" />															
 								</GenericTile>
 
@@ -44,7 +44,7 @@
 									headerImage="sap-icon://it-instance"
 									frameType="TwoByOne" 
 									press="onFirstSystem"
-									backgroundImage="../css/nav_part.png">
+									backgroundImage="/webapp/css/nav_part.png">
 									<TileContent footer="{i18n>elements.tiles.parts.info}" />
 								</GenericTile>
 
@@ -55,7 +55,7 @@
 									headerImage="sap-icon://survey"
 									frameType="TwoByOne" 
 									press="onFirstPart"
-									backgroundImage="../css/nav_result.png">
+									backgroundImage="/webapp/css/nav_result.png">
 									<TileContent footer="{i18n>elements.tiles.results.info}" />
 								</GenericTile>
 
@@ -72,7 +72,7 @@
 						<VBox>	
 							<l:VerticalLayout class="sapUiMediumMargin">												
 								<Title text="{i18n>elements.col.right.title}" level="H2" class="results" />									
-								<Image src="../css/law_xml_structure.png" class="sapUiSmallMargin" />
+								<Image src="/webapp/css/law_xml_structure.png" class="sapUiSmallMargin" />
 							</l:VerticalLayout>									
 						</VBox>
 				
