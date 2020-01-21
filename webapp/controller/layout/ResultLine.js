@@ -114,12 +114,12 @@ sap.ui.define("controller/layout/ResultLine", [
 					title.addStyleClass("sapUiTinyMarginTop");
 					displayedElements.push(title);			*/
 
-					var oTitle = new sap.m.Label ({ text : oResLine.getTitle(), design: sap.m.LabelDesign.Bold }); 
+					var oTitle = new sap.m.Label ({ text : oResLine.getTitle(), design: sap.m.LabelDesign.Bold, wrapping: true }); 
 			        // var oTitle = new sap.m.Title({ text : oResLine.getTitle() });
 			        oArea.renderControl(oTitle);
 			        //oResLine.addContent(oTitle);
 				} else if (oResLine.getLabel() && oResLine.getLabel() !== "") {
-					var oLabel = new sap.m.Label({ text : oResLine.getLabel() });
+					var oLabel = new sap.m.Label({ text : oResLine.getLabel(), wrapping: true });
 					oArea.renderControl(oLabel);
 			        // oResLine.addContent(oLabel);
 				} else {

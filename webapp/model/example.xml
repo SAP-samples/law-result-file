@@ -32719,6 +32719,17 @@
 				<PerEnd>20171231</PerEnd>
 				<Counter>441746 </Counter>
 			</Result>
+
+			<!-- START manually added for testing -->
+			<Result>
+				<GenericId>ENGC0000002950</GenericId>
+				<Unit>UNT0002950</Unit>
+				<PerStart>20170101</PerStart>
+				<PerEnd>20171231</PerEnd>
+				<Counter>42 </Counter>
+			</Result>
+			<!-- END manually added for testing -->
+
 			<Result>
 				<GenericId>USRS0000000011</GenericId>
 				<Counter>79 </Counter>
