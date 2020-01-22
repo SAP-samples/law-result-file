@@ -270,18 +270,18 @@ sap.ui.define([
 				// reduce engine variable to number without leading 0s  
 				engine = engine.trim().toUpperCase();
 				if (engine.startsWith("ENG")) { // ENGC or ENGS
-					engine = engine.substr(3, engine.lenght);
+					engine = engine.substr(3, engine.length);
 				}
 				while (engine.startsWith("0")) {
-					engine = engine.substr(1, engine.lenght);
+					engine = engine.substr(1, engine.length);
 				}
 				// reduce metric variable to number without leading 0s
 				metric = metric.trim().toUpperCase();
 				if (metric.startsWith("UNT")) {
-					metric = metric.substr(3, metric.lenght);
+					metric = metric.substr(3, metric.length);
 				}
 				while (metric.startsWith("0")) {
-					metric = metric.substr(1, metric.lenght);
+					metric = metric.substr(1, metric.length);
 				}
 				
 				var units, curEngine, curUnit;
@@ -310,17 +310,17 @@ sap.ui.define([
 			if (uType && uType.trim() !== "") {
 				uType = uType.trim().toUpperCase();
 				if (uType.startsWith("USRC")) {
-					uType = uType.substr(4, uType.lenght);
+					uType = uType.substr(4, uType.length);
 				}
 				while (uType.startsWith("0")) {
-					uType = uType.substr(1, uType.lenght);
+					uType = uType.substr(1, uType.length);
 				}
 				var unit;
 				for (var i = 0; i < _tutypTexts.length; i++) {
 					unit = _tutypTexts[i].type;
 					
 					while (unit && unit.startsWith("0")) {
-						unit = unit.substr(1, unit.lenght);
+						unit = unit.substr(1, unit.length);
 					}
 					
 					if (unit === uType) {
@@ -336,7 +336,7 @@ sap.ui.define([
 			var engine = engId; // keep original with 0s
 			if (engine && engine.trim() !== "") {
 				while (engine.startsWith("0")) {
-					engine = engine.substr(1, engine.lenght);
+					engine = engine.substr(1, engine.length);
 				}
 			}
 			
@@ -369,41 +369,73 @@ sap.ui.define([
 			return "";
 		},
 
-		_getCustInfoSheetData: function (metric, retElement) {
+		_getCustInfoSheetData: function (oMetric, retElement) {
+			var cisData = [ "", ""]; // define an empty result set with three entries, one for URL, one for the title, one for the covered units
+			var metric = oMetric;
+
 			if (!metric || metric.trim() === "") {
 				return null;
 			}
 			metric = metric.trim().toUpperCase();
 			if (metric.startsWith("UNT")) {
-				metric = metric.substr(3, metric.lenght);
+				metric = metric.substr(3, metric.length);
 			}
 			while (metric.startsWith("0")) {
-				metric = metric.substr(1, metric.lenght);
+				metric = metric.substr(1, metric.length);
+			}
+			while (metric.endsWith("-")) {
+				metric = metric.substr(0, metric.length - 1);
 			}
 			var metrDef;
+
+			// first loop, find direct matches only
 			for (var i = 0; i < _custInfos.length; i++) {
 				var metrics = _custInfos[i].units;
 				for (var j = 0; j < metrics.length; j++) {
 					metrDef = _custInfos[i].units[j];
 					while (metrDef.startsWith("0")) {
-						metrDef = metrDef.substr(1, metrDef.lenght - 1);
+						metrDef = metrDef.substr(1, metrDef.length - 1);
 					}
-					if (metric === metrDef) {
-						if (retElement === _CIS_DATA.Title) {
-							return _custInfos[i].title;
-						} else {
-							return _custInfos[i].url;
-						}
+					while (metrDef.endsWith("-")) {
+						metrDef = metrDef.substr(0, metrDef.length - 1);
+					}
+					if (metric === metrDef) {						
+						cisData[_CIS_DATA.URL] = _custInfos[i].url;						
+						cisData[_CIS_DATA.Title] = _custInfos[i].title;						
+						return cisData;
 					}
 				}
 			} 
-			if (retElement === _CIS_DATA.Title) {
-				// return a default URL/Title ?
-				return this._formatTranslation(	this._translate("i18n>result.engine.defaultTitle.txt"), // =Engine {0}
-												metric); 
+			
+			// second loop, check if metric fit into a range of two unit ids; the first one is detected by a dash at the end 
+			for (var i = 0; i < _custInfos.length; i++) {
+				var metrics = _custInfos[i].units;				
+				try {
+					var metricInt = parseInt(metric);			
+					for (var j = 0; j < metrics.length; j++) {
+						if (_custInfos[i].units[j].endsWith("-") && j < metrics.length - 1)  {						
+							var lowUnit = _custInfos[i].units[j];
+							lowUnit = lowUnit.substr(0, lowUnit.length - 1);
+							lowUnit = parseInt(lowUnit);
+							var highUnit = parseInt(_custInfos[i].units[j + 1]);							
+
+							if (!isNaN(lowUnit) && !isNaN(highUnit) && !isNaN(metricInt) && lowUnit <= metricInt &&  metricInt <= highUnit) {
+								cisData[_CIS_DATA.URL] = _custInfos[i].url;
+								cisData[_CIS_DATA.Title] =  _custInfos[i].title;
+								return cisData;
+							}
+						}
+					}
+				} catch(err) {
+					// one unit ID was not a number 
+				}
 			} 
-			return null;
-			// return a default URL?? --> No
+
+			// cisData[_CIS_DATA.URL] = "";
+			cisData[_CIS_DATA.Title] = this._formatTranslation(	
+											this._translate("i18n>result.engine.defaultTitle.txt"), // =Engine {0}
+											metric); 
+			return cisData;	
 		},
 		
 		//								GenericId	USRC0000000006	true					USRC or ENGC or null
@@ -621,7 +653,7 @@ sap.ui.define([
 		These are used particluarly for later checks. */
 		_getResultValueArray: function (curResult) {
 			
-			var resVal = new Array (_POS_RES_VAL.lenght);
+			var resVal = new Array (_POS_RES_VAL.length);
 			if (!curResult) return resVal;
 			
 			var childLine = 0;
@@ -690,8 +722,15 @@ sap.ui.define([
 				childLine++;
 			}
 			
-			resVal[_POS_RES_VAL.CisUrl]		= this._getCustInfoSheetData(resVal[_POS_RES_VAL.GenId_L4],	_CIS_DATA.URL);
-			resVal[_POS_RES_VAL.CisTitle]	= this._getCustInfoSheetData(resVal[_POS_RES_VAL.GenId_L4],	_CIS_DATA.Title);
+			if (resVal[_POS_RES_VAL.GenId_F3] === "ENG") {
+				var cisData = this._getCustInfoSheetData(resVal[_POS_RES_VAL.GenId_L4]);
+				resVal[_POS_RES_VAL.CisUrl]		= cisData[_CIS_DATA.URL];
+				resVal[_POS_RES_VAL.CisTitle]	= cisData[_CIS_DATA.Title];
+				
+			} else {
+				resVal[_POS_RES_VAL.CisUrl]		= "";
+				resVal[_POS_RES_VAL.CisTitle]	= "";				
+			}
 			resVal[_POS_RES_VAL.TuUntTitle]	= this._getTuuntText(resVal[_POS_RES_VAL.GenId_L4], resVal[_POS_RES_VAL.Unit]);
 			
 			return resVal;
@@ -730,7 +769,9 @@ sap.ui.define([
 				title,			// temporary variable to hold a title element which needs additional style class
 				mlogStack,		// array that holds entries/lines of MLOG entries which is an array of [0] Attr1, [1] curResVal, //// no longer: [2] codeStr, [3] codeLine
 				mlpkStack,		// array that holds entries/lines of MLPK entries which is an array of [0] Attr1, [1] curResVal, //// no longer: [2] codeStr, [3] codeLine
-				curMlStackLine	// temporary var to create/read a stack line for MLOG/MLPK
+				curMlStackLine,	// temporary var to create/read a stack line for MLOG/MLPK
+				oHBox,			// temporary HBox item to have multi segment headline
+				oControl		// temporary Control
 				;
 				
 			prevResVal = this._getResultValueArray(null); // initialize empty 
@@ -787,9 +828,9 @@ sap.ui.define([
 
 						// render a general intro line with a link to user classification
 						if ("USRC" !== prevResVal[_POS_RES_VAL.GenId_F4] && "USRS" !== prevResVal[_POS_RES_VAL.GenId_F4]) {
-							title = new Link ({ text: _cis_defaults.userText, 
-														target: "_blank", 
-														href: _cis_defaults.userPage	});
+							title = new Link ({ text: 	this._translate("i18n>result.cis.user.text"),
+												target: "_blank", 
+												href: _cis_defaults.userPage	});
 							title.addStyleClass(_TITLE_CSS);							
 							title.addStyleClass("sapUiTinyMarginTop");
 							displayedElements.push(title);														
@@ -899,9 +940,9 @@ sap.ui.define([
 						
 						// render a general intro line with a link to user classification
 						if ("USRI" !== prevResVal[_POS_RES_VAL.GenId_F4]) {		
-							title = new Link ({ text: _cis_defaults.userText, 
-														target: "_blank", 
-														href: _cis_defaults.userPage	});
+							title = new Link ({ text: this._translate("i18n>result.cis.user.text"),
+												target: "_blank", 
+												href: _cis_defaults.userPage	});
 							title.addStyleClass(_TITLE_CSS);							
 							title.addStyleClass("sapUiTinyMarginTop");
 							displayedElements.push(title);					
@@ -966,12 +1007,23 @@ sap.ui.define([
 						// Do we have results for a metric with a different Customer information sheet --> Render title + URL als Link
 						if ((! curResVal[_POS_RES_VAL.CisUrl] || curResVal[_POS_RES_VAL.CisUrl] === "") && 
 								curResVal[_POS_RES_VAL.GenId_L4] !== prevResVal[_POS_RES_VAL.GenId_L4]) {
-							title = new Link ({ text: _cis_defaults.engineText, 
-														target: "_blank", 
-														href: _cis_defaults.enginePage	});
+
+							oControl = new Label ( { text: this._translate("i18n>result.cis.engine.noCis.label.text") }); // =No specific customer information sheet - 
+							oControl.addStyleClass("sapUiTinyMarginTop");
+
+							oHBox = new sap.m.HBox ();
+							oHBox.addStyleClass("sapUiNoMargin ");
+							oHBox.addItem(oControl);
+
+							title = new Link ({ text: this._translate("i18n>result.cis.engine.noCis.link.text"), // =SAP Support Portal may list a recently published one
+												target: "_blank", 
+												wrapping: true,
+												href: _cis_defaults.enginePage	});
 							title.addStyleClass(_TITLE_CSS);							
 							title.addStyleClass("sapUiTinyMarginTop");
-							displayedElements.push(title);														
+							oHBox.addItem(title);
+							displayedElements.push(oHBox);
+
 						} else if ( (curResVal[_POS_RES_VAL.CisUrl] !== prevResVal[_POS_RES_VAL.CisUrl])) {
 							title = new Link ({ 	text: curResVal[_POS_RES_VAL.CisTitle], 
 													target: "_blank", 
@@ -989,7 +1041,7 @@ sap.ui.define([
 							displayTxt = this._formatTranslation(
 													this._getTuappText(curResVal[_POS_RES_VAL.GenId_L4]),
 													curResVal[_POS_RES_VAL.GenId_L4]);
-							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 							displayedElements.push(title);								
 						}	
 
@@ -1067,6 +1119,7 @@ sap.ui.define([
 						} else if ( (curResVal[_POS_RES_VAL.CisUrl] !== prevResVal[_POS_RES_VAL.CisUrl])) {
 							title = new Link ({ 	text: curResVal[_POS_RES_VAL.CisTitle], 
 													target: "_blank", 
+													wrapping: true,
 													href: curResVal[_POS_RES_VAL.CisUrl]	});
 							title.addStyleClass(_TITLE_CSS);					
 							title.addStyleClass("sapUiTinyMarginTop");
@@ -1081,7 +1134,7 @@ sap.ui.define([
 							displayTxt = this._formatTranslation(
 													this._getTuappText(curResVal[_POS_RES_VAL.GenId_L4]),
 													curResVal[_POS_RES_VAL.GenId_L4]);
-							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 							displayedElements.push(title);								
 						}	
 
@@ -1166,7 +1219,7 @@ sap.ui.define([
 
 							// render headline 							
 							displayTxt = this._translate("i18n>result.chkp.DELU.headline"); // =Indicator: Users deleted before the measurement
-							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 							displayedElements.push(title);		
 							
 							// render tag & value
@@ -1230,7 +1283,7 @@ sap.ui.define([
 							// render headline 			
 							if (prevResVal[_POS_RES_VAL.GenId] !== "CHKP000000EXPU") {			
 								displayTxt = this._translate("i18n>result.chkp.EXPU.headline"); // 
-								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 								displayedElements.push(title);		
 							}
 
@@ -1293,7 +1346,7 @@ sap.ui.define([
 							// render headline 			
 							if (prevResVal[_POS_RES_VAL.GenId] !== "CHKP000000FUTU") {			
 								displayTxt = this._translate("i18n>result.chkp.FUTU.headline"); // 
-								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 								displayedElements.push(title);		
 							}
 
@@ -1357,7 +1410,7 @@ sap.ui.define([
 							// render headline 			
 							if (prevResVal[_POS_RES_VAL.GenId] !== "CHKP000000LLOG") {			
 								displayTxt = this._translate("i18n>result.chkp.LLOG.headline"); // 
-								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 								displayedElements.push(title);		
 							}
 
@@ -1410,8 +1463,19 @@ sap.ui.define([
 										skipTopMargin: true,
 										styleSuffix: "3"})
 								);
-							}								
+							}	
 							
+							// render help text for LLOG
+							if (!hasMore) {
+								var helpText = new sap.m.Text ({
+									wrappingType:	"Hyphenated",
+									wrapping:		true,
+									text:			this._translate("i18n>result.chkp.LLOG.helptext")									
+								});							
+								helpText.addStyleClass("sapUiSmallMargin");
+								// helpText.addStyleClass("sapMLabel"); // to have a grey ink color --> doesn't work as style class sapMText is used with higher priority
+								displayedElements.push(helpText);								
+							}					
 
 						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLOG" || curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLPK") {							
 							curMlStackLine = [];
@@ -1419,18 +1483,19 @@ sap.ui.define([
 							curMlStackLine[1] = curResVal;
 							// curMlStackLine[2] = codeStr;
 							// curMlStackLine[3] = codeLine;
+							if (mlogStack == null) {
+								mlogStack = [];
+							}
+							if (mlpkStack == null) {
+								mlpkStack = [];									
+							}
+
 							if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MLOG") {
 								// add to MLOG stack
-								if (mlogStack == null) {
-									mlogStack = [];
-								}
 								mlogStack.push(curMlStackLine);
 							} else {
 								// add to MLPK stack
-								if (mlpkStack == null) {
-									mlpkStack = [];									
-								}
-								mlpkStack.push(curMlStackLine);
+								mlpkStack.push(curMlStackLine);						
 							}
 							
 							// check if next result is no CHKP000000MLOG/MLPK and rendering need to be done 
@@ -1439,7 +1504,12 @@ sap.ui.define([
 
 								// loop over mlog stack and render each element
 								if (mlogStack != null && mlogStack.length > 0) {
-									// forEach + function call or (BETTER: for loop over the lenght)
+									mlogStack.sort();
+									if (mlpkStack.length > 0) {
+										mlpkStack.sort();
+									}
+
+									// forEach + function call or (BETTER: for loop over the length)
 									for(var sl = 0; sl < mlogStack.length; sl++) {		
 										// render blank line 
 										title = new ClearLine({ style: "elxCL1" }); 
@@ -1448,18 +1518,24 @@ sap.ui.define([
 										if (sl == 0) {
 											// first line: headline 			
 											displayTxt = this._translate("i18n>result.chkp.MLOG.headline"); // =Indicator: Users deleted before the measurement
-											title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+											title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 											displayedElements.push(title);	
 										}
 
 										// render MLOG entry plus corresponding MPLK entry
 										displayTxt = mlogStack[sl][0];
 										if (displayTxt !== null && displayTxt.length == 6) {
-											displayTxt = displayTxt.substr(0,4) + "-" + displayTxt.substr(4,2);
-										}
-										displayTxt = this._formatTranslation(
-											this._translate("i18n>result.chkp.MLOG.month.text"), // =In the month {0}, multiple log ons occured
-											displayTxt);
+											displayTxt = this._formatTranslation(
+												this._translate("i18n>result.chkp.MLOG.month.text"), // =In the month {0}, multiple log ons occured
+												displayTxt.substr(0,4),
+												displayTxt.substr(4,2)
+												);
+										} else {
+											displayTxt = this._formatTranslation(
+												this._translate("i18n>result.chkp.MLOG.month.text"), // =In the month {0}, multiple log ons occured
+												displayTxt,
+												"");
+										}										
 										displayedElements.push(
 											new ResultLine ({
 												label: displayTxt,
@@ -1481,7 +1557,7 @@ sap.ui.define([
 												skipTopMargin: true,
 												styleSuffix: "3"})  
 										);			
-
+																				
 										if (mlpkStack.length > 0 && mlpkStack[sl][0] === mlogStack[sl][0]) {
 											displayTxt = this._formatTranslation(
 												this._translate("i18n>result.chkp.MLOG.peak.text"), // =- with {0} logons at a time 
@@ -1494,8 +1570,15 @@ sap.ui.define([
 													skipTopMargin: true,
 													styleSuffix: "3"}) );												
 										} else {
-											// @TODO unlikly/potential case: different entries --> loop over mlpkStack and search if there is a corresponding month match
-										}
+											// There are cases where no MLPK entries exist - nothing to do 
+											displayedElements.push(
+												new ResultLine ({
+													label: this._translate("i18n>result.chkp.MLOG.nopeak.text"),
+													tag: "",
+													text: "",
+													skipTopMargin: true,
+													styleSuffix: "3"}) );	
+										} 										 
 									}
 
 								} else {
@@ -1507,7 +1590,8 @@ sap.ui.define([
 								hasMore = false; // creates a new result block after this one
 							} else {
 								hasMore = true;	// prevents direct rendering of single result blocks in the XML editor
-							}							
+							}		
+
 						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000BPRL") {		
 							// render blank line 
 							title = new ClearLine({ style: "elxCL1" }); 
@@ -1516,7 +1600,7 @@ sap.ui.define([
 							// render headline 			
 							if (prevResVal[_POS_RES_VAL.GenId] !== "CHKP000000BPRL") {			
 								displayTxt = this._translate("i18n>result.chkp.BPRL.headline"); // 
-								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 								displayedElements.push(title);
 							}
 
@@ -1543,7 +1627,7 @@ sap.ui.define([
 
 								// render headline 	
 								displayTxt = this._translate("i18n>result.chkp.EXCU.headline"); // 
-								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 								displayedElements.push(title);
 							}
 
@@ -1569,7 +1653,7 @@ sap.ui.define([
 
 								// render headline 										
 								displayTxt = this._translate("i18n>result.chkp.USRD.headline"); // 
-								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 								displayedElements.push(title);
 							}
 
@@ -1610,7 +1694,7 @@ sap.ui.define([
 
 								// render headline 										
 								displayTxt = this._translate("i18n>result.chkp.NCTU.headline"); // 
-								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+								title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 								displayedElements.push(title);
 							}
 
@@ -1640,7 +1724,19 @@ sap.ui.define([
 									skipTopMargin: true,
 									styleSuffix: "3"})  
 							);	
-							
+
+							// render help text for LLOG
+							if (!hasMore) {
+								var helpText = new sap.m.Text ({
+									wrappingType:	"Hyphenated",
+									wrapping:		true,
+									text:			this._translate("i18n>result.chkp.NCTU.helptext")									
+								});							
+								helpText.addStyleClass("sapUiSmallMargin");
+								// helpText.addStyleClass("sapMLabel"); // to have a grey ink color --> doesn't work as style class sapMText is used with higher priority
+								displayedElements.push(helpText);								
+							}
+
 						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MUGP") {
 							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000MUG2");
 
@@ -1650,7 +1746,7 @@ sap.ui.define([
 
 							// render headline 							
 							displayTxt = this._translate("i18n>result.chkp.MUGP.headline"); // Check for multiple user records grouped into one user in the same client
-							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 							displayedElements.push(title);		
 
 							// render tag & value
@@ -1727,9 +1823,14 @@ sap.ui.define([
 						displayedElements.push(title);			
 
 						// render headline if this is the first entry
-						if (prevResVal[_POS_RES_VAL.GenId_F4] !== "CHKC") {
-							displayTxt = this._translate("i18n>result.chkc.headline"); // =Indicator: Classification checks for (Ltd.) Professional and Developer users
-							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+						if (prevResVal[_POS_RES_VAL.GenId_F4] !== "CHKC" || curResVal[_POS_RES_VAL.Unit] !== prevResVal[_POS_RES_VAL.Unit]) {
+							if (curResVal[_POS_RES_VAL.Unit] === "CHKC000000") {
+								displayTxt = this._translate("i18n>result.chkc.headline.prof"); // =Indicator: Classification checks for (Ltd.) Professional users
+							} else {
+								displayTxt = this._translate("i18n>result.chkc.headline.dev"); // =Indicator: Classification checks for Developer users
+							}
+							
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 							displayedElements.push(title);	
 						}	
 
@@ -1740,8 +1841,11 @@ sap.ui.define([
 								displayTxt = this._translate("i18n>result.chkc.prof.unit"); 	// Check for (Ltd.) Professional Users
 							} else if (curResVal[_POS_RES_VAL.Unit] === "CHKC000001") {
 								// Check for developers 
-								displayTxt = this._translate("i18n>result.chkc.dev.unit"); 	// Check for developers 
-							} else {
+								displayTxt = this._translate("i18n>result.chkc.dev.01.unit"); 	// Check for developers 
+							} else if (curResVal[_POS_RES_VAL.Unit] === "CHKC000002") {
+								// Check for developers 
+								displayTxt = this._translate("i18n>result.chkc.dev.02.unit"); 	// Check for developers 
+							}else {
 								// unknown check
 								displayTxt = this._translate("i18n>result.chkc.unknown.unit"); 	// Unknown check  
 							} 
@@ -1816,14 +1920,45 @@ sap.ui.define([
 
 						// render blank line 
 						title = new ClearLine({ style: "elxCL1" }); 
-						displayedElements.push(title);			
+						displayedElements.push(title);							
 
 						// render headline if this is the first entry
 						if (prevResVal[_POS_RES_VAL.GenId_F4] !== "CHKA") {
 							displayTxt = this._translate("i18n>result.chka.headline"); // =Indicator: Classification checks for (Ltd.) Professional and Developer users
-							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 							displayedElements.push(title);	
 						}	
+
+						if (!prevResVal[_POS_RES_VAL.PerStart] || prevResVal[_POS_RES_VAL.PerStart] !== curResVal[_POS_RES_VAL.PerStart] ||
+							!prevResVal[_POS_RES_VAL.PerEnd]   || prevResVal[_POS_RES_VAL.PerEnd  ] !== curResVal[_POS_RES_VAL.PerEnd] ) {
+								// render from - to 
+								displayTxt = this._formatTranslation(
+									this._translate("i18n>result.chkc.Period.text"),	// =From {0} to {1}
+									curResVal[_POS_RES_VAL.PerStart],
+									curResVal[_POS_RES_VAL.PerEnd] );
+								displayedElements.push(
+									new ResultLine ({
+										label: displayTxt,
+										tag: _KNOWN_TAGS.PerStartEnd,
+										text: this._translate("i18n>all.3dots"), // ...
+										skipTopMargin: true,
+										styleSuffix: "2"})
+								);
+						}
+
+						displayTxt = this._formatTranslation(
+										this._translate("i18n>result.chka.unit"),	// =into table {0} {1}
+										curResVal[_POS_RES_VAL.Unit_L4],
+										this._getTul_ActtcText(curResVal[_POS_RES_VAL.Unit_L4])	);
+						// render type of check
+						displayedElements.push(
+							new ResultLine ({
+								label: displayTxt,
+								tag: _KNOWN_TAGS.Unit,
+								text: curResVal[_POS_RES_VAL.Unit],
+								skipTopMargin: true,
+								styleSuffix: "3"})
+						);  
 
 						// render counter
 						if (curResVal[_POS_RES_VAL.GenId_L2] === "06") {
@@ -1842,34 +1977,6 @@ sap.ui.define([
 								label: displayTxt,
 								tag: _KNOWN_TAGS.Counter,
 								text: curResVal[_POS_RES_VAL.Counter],
-								skipTopMargin: true,
-								styleSuffix: "3"})
-						);
-
-						displayTxt = this._formatTranslation(
-										this._translate("i18n>result.chka.unit"),	// =into table {0} {1}
-										curResVal[_POS_RES_VAL.Unit_L4],
-										this._getTul_ActtcText(curResVal[_POS_RES_VAL.Unit_L4])	);
-						// render type of check
-						displayedElements.push(
-							new ResultLine ({
-								label: displayTxt,
-								tag: _KNOWN_TAGS.Unit,
-								text: curResVal[_POS_RES_VAL.Unit],
-								skipTopMargin: true,
-								styleSuffix: "3"})
-						);  
-
-						// render from - to 
-						displayTxt = this._formatTranslation(
-										this._translate("i18n>result.chkc.Period.text"),	// =From {0} to {1}
-										curResVal[_POS_RES_VAL.PerStart],
-										curResVal[_POS_RES_VAL.PerEnd] );
-						displayedElements.push(
-							new ResultLine ({
-								label: displayTxt,
-								tag: _KNOWN_TAGS.PerStartEnd,
-								text: this._translate("i18n>all.3dots"), // ...
 								skipTopMargin: true,
 								styleSuffix: "3"})
 						);
@@ -2031,248 +2138,6 @@ sap.ui.define([
 			oList.setGrowingThreshold(20); */
 
 			// console.log("Finished building UI ");
-		},
-
-		_writeAllResultLines: function (mainArea, _result) {
-			mainArea.destroyContent();
-			_i18nBundle = this.getView().getModel("i18n").getResourceBundle();
-			// _translatableTags = this.getView().getModel("tags").getData().tags; 
-			_translatableTexts = this.getView().getModel("tags").getData().texts;
-			// _engineNames = this.getView().getModel("engineNames").getData().units;
-
-			// holds the type of the last processed item (Engine, )
-			var previousBlockType = "";
-			var isFirstInList = false; // skip the padding-top for the first item
-			
-			var resLine = 0;
-			var labelUiText;
-			var lastSpecialTag = null;
-			var lastSpecialVal = null;		
-			var sameResultBlockLines = 1;
-			
-			
-			// ---------- test only -------------------------------
-			// remove previous content
-			// _resultListArea.destroyContent(); 
-			
-			/* var _testModelRaw = _result.children[1];
-			debugger;
-			 _testModelRaw.append(_result.children[2]);
-			 _testModelRaw.append(_result.children[3]); 
-			// navigate to part branch and extract data
-			// set code editor context
-			var _oNewEditor = new CodeEditor({ type: "xml"}); //  class="wattEditorContainer"
-
-			// build editor context
-			this.buildEditorContext(_testModelRaw, _oNewEditor);
-						
-			var _oTestEditorPanel = this.oView.byId("testEditor");
-			_oTestEditorPanel.addContent(_oNewEditor); */
-			// ---------- END test -------------------------------
-			
-
-			while (resLine < _result.children.length) {
-				var curResult = _result.children[resLine];
-				
-				if (curResult && curResult.children && curResult.children.length > 0) {
-					// Check if the type of result check changed
-					var firstTag = curResult.children[0];
-					var firstTagTxt = firstTag.innerHTML;
-					var firstTagType = this._getBlockType(firstTagTxt);
-
-					// Check if a new Panel-Headline is required (e.g. when Engines block ends and User Checks start)
-					if (firstTagType !== previousBlockType) {
-						// create a Panel control and add all further result lines of this block to it
-						// Tags to be written: <Panel headerText="{i18n>model.result.checks.CHK.text}" 
-						//							class="sapUiNoMargin" expandable="true" expanded="true">
-
-						var newTypePanel = new Panel();
-						newTypePanel.setHeaderText(this._getPanelText(firstTagType));
-						newTypePanel.setExpanded(true);
-						newTypePanel.setExpandable(true);
-						newTypePanel.addStyleClass("sapUiNoMargin");
-						mainArea.addContent(newTypePanel);
-						previousBlockType = firstTagType;
-						isFirstInList = true;
-					}
-					
-					var tagLine = 0;
-					var curTag;
-					var curAttribute2Val = null;
-					var counterTranslation;
-					var hasNextResultBlock;
-					
-					// loop over the attribues of the <Result> block and handle/display each line
-					while (tagLine < curResult.children.length) {
-						curTag = curResult.children[tagLine];
-						hasNextResultBlock = false;
-						
-						// Handle special rendering of USRC and ENGC blocks
-						if (curTag && curTag.nodeName.toUpperCase().startsWith("GenericId".toUpperCase())) {
-							
-							// --------- USRC handling ---------------------------------------------------------------------
-							if (curTag.innerHTML && curTag.innerHTML.toUpperCase().startsWith("USRC")) {
-								
-								// get Attribute2 value of the current result
-								if (curResult.children[1] && curResult.children[1].nodeName.toUpperCase() === "ATTRIBUTE2") {
-									curAttribute2Val = curResult.children[1].innerHTML;
-									
-									// check if previous result also was 1.) a USRC result and had 2.)  the same Attribute2 value
-									if (	!curTag.innerHTML.toUpperCase().startsWith(lastSpecialTag) ||	// 1.) 
-											curAttribute2Val !== lastSpecialVal) {							// 2.)
-										// if not, render a first line like "7" user classified as:		<Counter>n</>"
-										// if (curResult.children[2] !== 'undefined' && curResult.children[2].innerHTML && curResult.children[2].nodeName) {
-											counterTranslation = this._getTagTranslation(curResult.children[2].nodeName, curResult.children[2].innerHTML, false, "USRC");
-											// format with <Counter> value
-											counterTranslation = this._formatTranslation(counterTranslation, curResult.children[2].innerHTML);
-											
-											labelUiText =  this._getTagTranslation(curResult.nodeName);
-											newTypePanel.addContent(
-												new ResultLine ({
-													// firstTag: "Result",
-													// title: "Key tags in the next <Result> block(s)",
-													label: labelUiText,
-													tag: curResult.nodeName,
-													text: "...",
-													skipTopMargin: false}));			
-											
-											// render a first line like "7" user classified as:		<Counter>n</>"
-											newTypePanel.addContent(
-												new ResultLine ({
-													title: counterTranslation,
-													//label: counterTranslation,
-													tag: curResult.children[2].nodeName,
-													text: curResult.children[2].innerHTML,
-													skipTopMargin: true}));
-										// }
-									}
-								}
-								
-								// check if we need the closing block after this result (like 'Result block 1		<Attribute2>1 </>')
-								if (		resLine + 1 < _result.children.length && 
-											_result.children[resLine + 1]  !== 'undefined' &&
-											_result.children[resLine + 1].children  !== 'undefined' &&								// has <result> subnodes
-											_result.children[resLine + 1].children[0]  !== 'undefined' &&
-											_result.children[resLine + 1].children[0].nodeName.toUpperCase().startsWith("GENERICID") &&
-											_result.children[resLine + 1].children[0].innerHTML.toUpperCase().startsWith("USRC") &&
-											_result.children[resLine + 1].children[1] !== 'undefined' &&
-											_result.children[resLine + 1].children[1].nodeName.toUpperCase().startsWith("ATTRIBUTE2") &&
-											_result.children[resLine + 1].children[1].innerHTML === curAttribute2Val 
-									) { 
-									hasNextResultBlock = true;	
-									sameResultBlockLines++;
-								} else {
-									// debugger;
-								}
-								
-								// render <GenericId> tag
-								labelUiText =  this._getTagTranslation(curTag.nodeName, curTag.innerHTML, hasNextResultBlock, "USRC");
-								
-								newTypePanel.addContent(
-									new ResultLine ({
-										// title: labelUiText,
-										label: labelUiText,
-										tag: curTag.tagName,
-										text: curTag.innerHTML,
-										skipTopMargin: true}));			
-												
-								// check if we need the closing block after this result (like 'Result block 1		<Attribute2>1 </>')
-								if (!hasNextResultBlock) { 
-									labelUiText =  this._getTagTranslation(curResult.children[1].nodeName, curResult.children[1].innerHTML, (sameResultBlockLines == 1), "USRC", sameResultBlockLines);
-									newTypePanel.addContent(
-										new ResultLine ({
-											// title: labelUiText,
-											label: labelUiText,
-											tag: curResult.children[1].nodeName,
-											text: curResult.children[1].innerHTML,
-											skipTopMargin: true}));
-									sameResultBlockLines = 1;
-								}
-								
-								// stop processing the lines of this result, but goto the next result
-								lastSpecialTag = "USRC";
-								lastSpecialVal = curAttribute2Val;
-								break;
-							} 
-							
-							// --------- ENGC handling ---------------------------------------------------------------------
-							else if (curTag.innerHTML.toUpperCase().startsWith("ENGC")) {
-									newTypePanel.addContent(new Label({ text: "" })); // add an empty label for an empty line
-									newTypePanel.addContent(
-										 new Link ({ 	text: "0100 - 0120 HR-Personnel Planning and Development (PD)", 
-														target: "_blank"
-														// href: "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0100-0120-sap-human-resource-management-hr-pd-en.pdf" 
-													})); 
-								// break; // exit the loop over the result lines and process the next result node
-																/// DUMMY CODING 
-								labelUiText = this._getTagTranslation(curTag.tagName, curTag.innerHTML, false, firstTagTxt);
-
-								newTypePanel.addContent(
-									new ResultLine ({
-										// title: labelUiText,
-										label: labelUiText,
-										tag: curTag.tagName,
-										text: curTag.innerHTML,
-										skipTopMargin: true}));
-								tagLine++;
-								
-							} else {
-								
-								
-								/// DUMMY CODING 
-								labelUiText = this._getTagTranslation(curTag.tagName, curTag.innerHTML, false, firstTagTxt);
-
-								newTypePanel.addContent(
-									new ResultLine ({
-										// title: labelUiText,
-										label: labelUiText,
-										tag: curTag.tagName,
-										text: curTag.innerHTML,
-										skipTopMargin: true}));
-								tagLine++;
-							}
-						} else {
-							// Handle normal tag - write ResultLine with/without leading margin
-							labelUiText = this._getTagTranslation(curTag.tagName, curTag.innerHTML, false, firstTagTxt);
-
-							newTypePanel.addContent(
-								new ResultLine ({
-									// title: labelUiText,
-									label: labelUiText,
-									tag: curTag.tagName,
-									text: curTag.innerHTML,
-									skipTopMargin: true}));
-							// var nl = new Label ( { text: "----" } );
-							// debugger;
-							// newTypePanel.addConent(nl);
-							// console.log("--- (1) label=" + labelUiText + "\t +++ tag=" + curTag.tagName + "\t +++ text=" + curTag.innerHTML);
-							if (tagLine === 0 && isFirstInList) { 
-								isFirstInList = false; 
-							}
-							tagLine++;
-						} // end if-else / tag was not a "GenericId"
-					} // loop over tag lines
-
-				// else --> simple tag without child elements. For example the leading <PartId>27</PartId> tag
-				} else { 
-					if (curResult) {
-						labelUiText = this._getTagTranslation(curResult.tagName, curResult.textContent);
-						if (typeof labelUiText !== "string") {
-							labelUiText = curResult.tagName;
-						}
-						mainArea.addContent(
-							new ResultLine ({
-								// title: labelUiText,
-								label: labelUiText,
-								tag: curResult.tagName,
-								text: curResult.innerHTML }) );
-						// console.log("--- (2) label=" + labelUiText + "\t +++ tag=" + curResult.tagName, + "\t +++ text=" + curResult.innerHTML);
-					}
-				}
-				
-				resLine++;
-			}
-			mainArea.addContent(newTypePanel);
 		},
 	
 		backToSystem: function (oEvent) {

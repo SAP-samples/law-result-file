@@ -49,9 +49,11 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 		            if (_isDebugMode) { oRm.write("<!-- EWC (2) -->"); }
 		            oRm.write("<div");
 		            if (i === 0) {
-		            	oRm.addStyle("flex", "4");
+						oRm.addStyle("flex", "4");
+						oRm.addStyle("overflow", "hidden");
 		            } else {
-		            	oRm.addStyle("flex", "3");
+						oRm.addStyle("flex", "3");
+						oRm.addStyle("overflow", "hidden");
 		            }
 		            oRm.addStyle("padding", "0em");
 		            if (oControl.getUse() && oControl.getUse().toLowerCase() === "text") {
