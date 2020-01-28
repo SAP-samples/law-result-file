@@ -22,12 +22,14 @@
 							<Link press="onNavAll" text="{i18n>header.breadcrumb.all.text}"/>
 							<Link press="onNavSystemList" text="{i18n>header.breadcrumb.systems.text}"/>							
 						</Breadcrumbs>				
+						<ToolbarSpacer />												
+						<Button text="{i18n>part.button.firstSystem.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
+						<Button text="{i18n>part.button.lastSystem.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
+
 						<ToolbarSpacer />						
 						<Label text="{i18n>part.button.label.text}"/>
 						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
 						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>						
-						<Button text="{i18n>part.button.firstSystem.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
-						<Button text="{i18n>part.button.lastSystem.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
 					</OverflowToolbar>
 
 				</subHeader>
@@ -35,115 +37,123 @@
 				<content> 
 					<cols:EqualWidthColumns>
 						<cols:content>
-							<Panel headerText="{i18n>system.propsSection.title.text}">
-								<content>
-									<!--  <l:VerticalLayout class="sapUiNoMargin">
-										<cols:ResultLine	label="{i18n>system.page.index.text}" 
-															tag="" 
-															text="{i18n>dummyNo8}"/>
-										<cols:ResultLine	label="{i18n>model.systems.SystemNo.text}" 
-															tag="{i18n>model.systems.SystemNo.tag}" 
-															text="{SystemNo}"/>
-									</l:VerticalLayout> -->
-									
-									<fo:SimpleForm 
-											id="dataForm"
-											editable="false"
-											layout="ResponsiveGridLayout"
-											labelSpanXL="6" 
-											labelSpanL="6"	
-											labelSpanM="4"	
-											labelSpanS="3"
-											singleContainerFullSize="false">
-										<fo:content>
-											<Label text="{i18n>system.page.index.text}"/>
-											<Text id="systemIdx" />
-											<Label text="{i18n>model.systems.SystemNo.text}"/>
-											<Text text="{SystemNo}"/>
-											<Label text="{i18n>model.systems.InstallationNo.text}"/>
-											<Text text="{InstallationNo}"/>
-											<Label text="{i18n>model.systems.SAP_SID.text}"/>
-											<Text text="{SAP_SID}"/>
-											<Label	text="{i18n>model.systems.Status.text}" 
-													visible="{ 
-															parts: [ {path: 'Status/text()'} ],
-															formatter: '.formatter.exists' }" />
-											<FormattedText 
-													htmlText="{
-															parts: [ {path: 'Status/text()'} ],
-															formatter: '.formatter.formatStatus'
-														}" 
-													visible="{ 
-															parts: [ {path: 'Status/text()'} ],
-															formatter: '.formatter.exists' }"/>
-											<Label text="{i18n>model.systems.Release.text}"/>
-											<Text text="{Release}"/>
-											<Label text="{i18n>model.systems.Database.text}"/>
-											<Text text="{Database}"/>
-										</fo:content>
-									</fo:SimpleForm>
+							<l:VerticalLayout class="sapUiNoMargin" width="100%">
+								<Panel headerText="{i18n>system.propsSection.title.text}" width="100%">
+									<content>
+										<!--  <l:VerticalLayout class="sapUiNoMargin">
+											<cols:ResultLine	label="{i18n>system.page.index.text}" 
+																tag="" 
+																text="{i18n>dummyNo8}"/>
+											<cols:ResultLine	label="{i18n>model.systems.SystemNo.text}" 
+																tag="{i18n>model.systems.SystemNo.tag}" 
+																text="{SystemNo}"/>
+										</l:VerticalLayout> -->
+										
+										<fo:SimpleForm 
+												id="dataForm"
+												editable="false"
+												layout="ResponsiveGridLayout"
+												labelSpanXL="6" 
+												labelSpanL="6"	
+												labelSpanM="4"	
+												labelSpanS="3"
+												singleContainerFullSize="false">
+											<fo:content>
+												<Label text="{i18n>system.page.index.text}"/>
+												<Text id="systemIdx" />
+												<Label text="{i18n>model.systems.SystemNo.text}"/>
+												<Text text="{SystemNo}"/>
+												<Label text="{i18n>model.systems.InstallationNo.text}"/>
+												<Text text="{InstallationNo}"/>
+												<Label text="{i18n>model.systems.SAP_SID.text}"/>
+												<Text text="{SAP_SID}"/>
+												<Label	text="{i18n>model.systems.Status.text}" 
+														visible="{ 
+																parts: [ {path: 'Status/text()'} ],
+																formatter: '.formatter.exists' }" />
+												<FormattedText 
+														htmlText="{
+																parts: [ {path: 'Status/text()'} ],
+																formatter: '.formatter.formatStatus'
+															}" 
+														visible="{ 
+																parts: [ {path: 'Status/text()'} ],
+																formatter: '.formatter.exists' }"/>
+												<Label text="{i18n>model.systems.Release.text}"/>
+												<Text text="{Release}"/>
+												<Label text="{i18n>model.systems.Database.text}"/>
+												<Text text="{Database}"/>
+											</fo:content>
+										</fo:SimpleForm>
 
-									<l:VerticalLayout class="sapUiContentPadding">										
-										<Title text="{i18n>system.partsSection.title.text}"/>
-										<f:GridList	id="partsList" 
-											items="{
-												path: '/Parts/Part',
-												sorter: {
-													path: 'PartId'
-												},
-												filters: [{
-													path: 'SystemNo/text()', 
-													operator: 'EQ',
-													value1: 'placeholder' }] 
-											}" >
-											<f:customLayout> 
-												<grid:GridBoxLayout boxMinWidth="10rem"  />
-											</f:customLayout>
-											<!-- <CustomListItem class="sapContrast noBreak " type="Navigation" press="onPartPressed"> -->
-											<CustomListItem class="sapContrast noBreak lawItem" type="Navigation" press="onPartPressed">
-												<VBox class="sapUiTinyMargin">
-													<HBox class="sapUiNoMargin">
-														<c:Icon src="sap-icon://it-instance" size="2.3rem" class="sapUiTinyMargin"/>	
-														<VBox class="sapUiTinyMargin sapUiNoMarginBottom">
-															<Label text="{
-																	parts: [ {path: 'SAP_CLIENT/text()'}, {path: 'GenericId/text()'}, {path: 'PartId/text()'} ],
-																	formatter: '.formatter.formatClient'
-																}" 
-																	wrapping="true"/>
-															<!-- <Label text="{PartId}" wrapping="true" />	-->
-															<Label text="{
-																	parts: [ {path: 'PartId'} ],
-																	formatter: '.resultCount'
-																	}" />
-														</VBox>
-													</HBox>
-													<Label text="{ parts: [ {path: 'Name'} ] }" width="8rem" />
-												</VBox>													
-											</CustomListItem>
-										</f:GridList>
-									
-										<Title text="{i18n>system.compSection.table.headerText}"/>
-										<Table id="exportTable" 
-											inset="false" 
-											growing="false" 
-											growingScrollToLoad="false"
-											noDataText="{i18n>system.compSection.table.noData.text}"
-											class="sapUiTinyMargin">
-											<columns>
-												<Column>
-													<Text text="{i18n>model.systems.Components.Name.text}"/>
-												</Column>
-												<Column hAlign="End">
-													<Text text="{i18n>model.systems.Component.Release.text}"/>
-												</Column>
-												<Column hAlign="End">
-													<Text text="{i18n>model.systems.Component.PatchLevel.text}"/>
-												</Column>
-											</columns>
-										</Table>
-									</l:VerticalLayout>
-								</content>
-							</Panel>
+										<l:VerticalLayout class="sapUiContentPadding" width="100%">										
+											<Title text="{i18n>system.partsSection.title.text}" />					
+											<f:GridList	id="partsList" 
+												items="{
+													path: '/Parts/Part',
+													sorter: {
+														path: 'PartId'
+													},
+													filters: [{
+														path: 'SystemNo/text()', 
+														operator: 'EQ',
+														value1: 'placeholder' }] 
+												}" width="100%" >
+												<f:customLayout> 
+													<grid:GridBoxLayout boxMinWidth="11rem" />
+												</f:customLayout>
+												<!-- <CustomListItem class="sapContrast noBreak " type="Navigation" press="onPartPressed"> -->
+												<CustomListItem class="sapContrast noBreak lawItem" type="Navigation" press="onPartPressed">
+													<VBox class="sapUiTinyMargin sapUiNoMarginEnd">
+														<HBox class="sapUiNoMargin">
+															<c:Icon src="sap-icon://it-instance" size="2.3rem" class="sapUiTinyMargin"/>	
+															<VBox class="sapUiTinyMargin sapUiNoMarginBottom sapUiNoMarginEnd">
+																<Label text="{
+																		parts: [ {path: 'SAP_CLIENT/text()'}, {path: 'GenericId/text()'}, {path: 'PartId/text()'} ],
+																		formatter: '.formatter.formatClient'
+																	}" 
+																		wrapping="true"/>
+																<!-- <Label text="{PartId}" wrapping="true" />	-->
+																<Label text="{
+																		parts: [ {path: 'PartId'} ],
+																		formatter: '.resultCount'
+																		}" />
+															</VBox>
+														</HBox>
+														<Label text="{ parts: [ {path: 'Name'} ] }" class="sapUiNoMarginEnd" />
+													</VBox>													
+												</CustomListItem>
+											</f:GridList>
+										</l:VerticalLayout>																			
+									</content>
+								</Panel>										
+										
+								<Panel headerText="{i18n>system.compSection.table.headerText}" expandable="true" expanded="true" width="100%">
+									<content>	
+										
+											<Table id="exportTable" 
+												inset="false" 
+												growing="false" 
+												growingScrollToLoad="false"
+												noDataText="{i18n>system.compSection.table.noData.text}"
+												class="sapUiTinyMargin">
+												<columns>
+													<Column>
+														<Text text="{i18n>model.systems.Components.Name.text}"/>
+													</Column>
+													<Column hAlign="End">
+														<Text text="{i18n>model.systems.Component.Release.text}"/>
+													</Column>
+													<Column hAlign="End">
+														<Text text="{i18n>model.systems.Component.PatchLevel.text}"/>
+													</Column>
+												</columns>
+											</Table>
+																	
+									</content>
+								</Panel>
+							</l:VerticalLayout>
+
 							<Panel headerText="{i18n>xml.headerText}" class="column2">
 									<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="systemCodeEditor" />
 							 </Panel>
