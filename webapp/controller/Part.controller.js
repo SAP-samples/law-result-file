@@ -32,7 +32,7 @@ sap.ui.define([
 							// 'tags' list XML tags from LAW which needs to be explaned, 'trans' the corresponding translation
 							// example: tag <PerStart> will be replaced by "from" for the description part
 							
-	var _translatableTexts;	// holds the set of texts where either 'tag' should  match a tag or a provided text should start with 'innerHTML', or both.
+	// var _translatableTexts;	// holds the set of texts where either 'tag' should  match a tag or a provided text should start with 'innerHTML', or both.
 							// 
 	// var _engineNames;	// is an copy of the TUUNT table in JSON format which holds the texts and function modules for the engine IDs. 
 							// In contrast to the LAW results, Ids are provided here without leading 0s.
@@ -74,8 +74,7 @@ sap.ui.define([
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.route = this.oRouter.getRoute("part");
 			this.oView = this.getView();
-			
-			this._checkInitialModel();
+						
 			this._oModel = this.getOwnerComponent().getModel("userXML");
 			this.route.attachMatched(this._onRouteMatched, this);
 			
@@ -88,7 +87,7 @@ sap.ui.define([
 		_onRouteMatched: function (oEvent) {		
 			_i18nBundle = this.getView().getModel("i18n").getResourceBundle();
 			// _translatableTags = this.getView().getModel("tags").getData().tags; 
-			_translatableTexts = this.getView().getModel("trans").getData().trans;
+			// _translatableTexts = this.getView().getModel("trans").getData().trans;
 			// _engineNames = this.getView().getModel("engineNames").getData().units; 
 			_engineModules = this.getView().getModel("tuapp").getData().modules;
 			_custInfos = this.getView().getModel("custInfos").getData().cis;
@@ -438,152 +437,8 @@ sap.ui.define([
 			return cisData;	
 		},
 		
-		//								GenericId	USRC0000000006	true					USRC or ENGC or null
-		_getTagTranslation: function (	tag,		innerHtml,		getMulti,	count,		context) {
-			// is there a translation for the tag?
-			var i;
-			var displayText, start, len;
-			var transEntry, transTag, transTxt;
-			if (tag && tag !== "") {
-				if (_translatableTexts && _translatableTexts.length > 0) {
-					for (i = 0; i < _translatableTexts.length; i++) {
-						transEntry = _translatableTexts[i];
-						transTag = transEntry.tag;
-						transTxt = transEntry.innerHTML;
-						if (transTag && transTag !== "") {
-							if ((tag === "Attribute2" || tag === "ATTRIBUTE2") && (!context || context === "")) {
-								// debugger;
-							}
-							if (tag.toUpperCase().startsWith(transTag.toUpperCase())) {
-								// If multiple uiTexts exist, find the proper one: by using the firstTagHtml value
-								if (transEntry.uiText && typeof transEntry.uiText !== "string") {
-									if (transEntry.uiText.length > 0) {
-										for (var k=0; k < transEntry.uiText.length; k++) {
-											if ( (typeof transEntry.uiText[k].context === 'string' && typeof transEntry.uiText[k].uiText === 'string' && 
-													transEntry.uiText[k].context.startsWith(context))
-												|| (!context &&  !transEntry.uiText[k].context)) 
-											{
-												if (getMulti && transEntry.uiText[k].uiTextMulti) {
-													displayText = transEntry.uiText[k].uiTextMulti;
-												} else {
-													displayText = transEntry.uiText[k].uiText;
-												}
-												displayText = this._translate(displayText);
-												// format (replace {0} placeholders with numbers)
-												displayText = this._formatTranslation(displayText,	count);
-												return displayText;
-											} 
-										}
-										if (!displayText) {
-											// no translation found
-											// displayText = tag;
-											// debugger;
-										}
-									} else {
-										// no translation found
-										// displayText = tag;
-										// debugger;
-									}
-									break; 
-								} else {
-									// check if also the innerHTML must match
-									if (transTxt && transTxt !== "") {
-										if (innerHtml.toUpperCase().startsWith(transTxt.toUpperCase())) {
-											if (getMulti) {
-												displayText = transEntry.uiTextMulti;
-											} else {
-												displayText = transEntry.uiText;
-											}
-											displayText = this._translate(displayText);
-				
-											// format (replace {0} placeholders with numbers)
-											if (transEntry.number && transEntry.number === "useHtml") {
-												start = transTxt.length;
-												len = innerHtml.length - start;
-												displayText = this._formatTranslation(	displayText,		// e.g. "- Type {0}",
-																				innerHtml.substr(start, len)
-																			);
-											}
-											return displayText;
-										}
-									} else {
-										if (getMulti && transEntry.uiTextMulti) {
-											displayText = transEntry.uiTextMulti;
-										} else {
-											displayText = transEntry.uiText;
-										}
-										displayText = this._translate(displayText);
-										displayText = this._formatTranslation(displayText,	count);
-										return displayText;
-									}
-								}
-							} // else: nothing to do, for next will try next translation tag
-						} else { 
-							// no tag provided, so an innerHTML is expected to match
-							transTxt = transEntry.innerHTML;
-							if (transTxt && transTxt !== "") {
-								if (innerHtml.toUpperCase().startsWith(transTxt.toUpperCase())) {
-									if (getMulti) {
-										displayText = transEntry.uiTextMulti;
-									} else {
-										displayText = transEntry.uiText;
-									}
-									displayText = this._translate(displayText);
+	
 		
-									// format (replace {0} placeholders with numbers)
-									if (transEntry.number && transEntry.number === "useHtml") {
-										start = transTxt.length;
-										len = innerHtml.length - start;
-										displayText = this._formatTranslation(	displayText,		// e.g. "- Type {0}",
-																		innerHtml.substr(start, len)
-																	);
-									}
-									return displayText;
-								}
-							} else {
-								// debugger;
-								// console.log("Entry in tagsTranslations.json file with neither 'tag' nor 'innerHTML' entry");
-							}
-						} 
-					} // else: no translation found, try innerHTML part
-				} else {
-					return this._translate("i18n>all.unspecified.text");
-				}
-			} 
-			return this._translate("i18n>all.unspecified.text");
-		},
-		
-		 /* returns a title for a given combination of an engine and a metric number. Accepts 
-			engine with leading 0 or ENG(C/S/*) and metric with leading 0 or "UNT" 
-		 // File format:	"unitsList": [
-								{ "engine": "100",    "units": [ 
-            						{ "unit": "50", "unitName": "PA Master Records" }, 
-		 */ 		
-		
-		_formatTranslation: function (text, firstNumStr, secondNumStr, thirdNumStr) {
-			var newText = jQuery.sap.formatMessage(text, firstNumStr, secondNumStr, thirdNumStr);
-			return newText;
-		},
-		
-		_translate: function (text) {
-			if (!text) { 
-				return _i18nBundle.getText("all.unspecified.text"); // =[unspecified]
-			}
-			if (text.startsWith("i18n>")) {
-				text = text.substr(5, text.length);
-				var translation = _i18nBundle.getText(text);
-				if (translation) {
-					return translation;
-				} else {
-					return "[!" + text + "]";
-				}
-			} else {
-				// the text might already be translated, e.g. in the tagsTranslation.json file
-				// do NOT REMOVE this part, unless you replace all translations in the tagsTranslation.json with i18n> bundles
-				return text;
-			}
-		},
-
 		_removeLeadingZeros: function (val) {
 			while(val && val.length > 0 && val.substr(0,1) === "0") {
 				val = val.substr(1,val.length);

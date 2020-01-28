@@ -22376,7 +22376,7 @@
 		<Part>
 			<PartId>   107</PartId>
 			<GenericId>PRTM0000000000</GenericId>
-			<Name>Mandant:010 ISP</Name>
+			<Name>Mandant:010 ISP S4 HANA</Name>
 			<Status>Measured</Status>
 			<SystemNo>000000000311208907</SystemNo>
 			<SAP_CLIENT>010</SAP_CLIENT>
@@ -24783,7 +24783,7 @@
 		<Part>
 			<PartId>   114</PartId>
 			<GenericId>PRTM0000000000</GenericId>
-			<Name>Mandant:010 ISP</Name>
+			<Name>Mandant:010 ISP  S4 HANA</Name>
 			<Status>Measured</Status>
 			<SystemNo>000000000311209028</SystemNo>
 			<SAP_CLIENT>010</SAP_CLIENT>

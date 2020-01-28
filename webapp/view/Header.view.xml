@@ -10,52 +10,38 @@
 	xmlns:smartField="sap.ui.comp.smartfield"
 	xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:grid="sap.ui.layout.cssgrid"
+
     xmlns:cols="controller.layout">
 	<App>
 		<pages>
-			<Page title="{i18n>header.page.title}" 
-					showNavButton="true" navButtonPress="onElements" id="headerPage">
+			<Page title="{i18n>header.page.title}" showNavButton="true" navButtonPress="onElements" id="headerPage">
+				<subHeader>
+					<OverflowToolbar >
+						<Breadcrumbs currentLocationText="{i18n>elements.tiles.header.title}">
+							<Link press="onNavLoad" text="{i18n>header.breadcrumb.load.text}"/>
+							<Link press="onNavAll" text="{i18n>header.breadcrumb.all.text}"/>							
+						</Breadcrumbs>				
+						<ToolbarSpacer />						
+						<Label text="{i18n>part.button.label.text}"/>
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToFirstSystem" />
+						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem" enabled="false"/>	
+
+						<!-- <ToolbarSpacer />	
+						<Label text="{i18n>part.button.label.text}"/>					
+						<Button text="{i18n>nav.button.first}" icon="sap-icon://sys-first-page" class="navButton" enabled="false"/>
+						<Button text="{i18n>nav.button.last}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/> -->
+
+						<Select id="drop" />
+
+					</OverflowToolbar>
+				</subHeader>
+
 				<content> 
 					<cols:EqualWidthColumns>
 						<cols:content>				
-							<Panel headerText="{i18n>header.propsSection.title.text}">
-								<content>
-									<fo:SimpleForm 
-											id="headerForm"
-											editable="false"
-											layout="ResponsiveGridLayout"
-											labelSpanXL="6" 
-											labelSpanL="6"	
-											labelSpanM="4"	
-											labelSpanS="3"
-											singleContainerFullSize="false"	>
-										<fo:content>
-											<Label text="{i18n>model.header.transfer.time.text}"/>
-											<Text text="{Transfer/Time}" id="time" />
-											<Label text="{i18n>model.header.transfer.name.text}"/>
-											<Text text="{Transfer/Name}"/>
-											<Label text="{i18n>model.header.transfer.version.text}"/>
-											<Text text="{Transfer/Version}"/>
-											<Label text="{i18n>model.header.transfer.program.text}" />
-											<Text text="{Transfer/Program}"/>
-                                            <Label text="{i18n>model.header.transfer.type.text}" />
-											<Text text="{Transfer/Type}"/>
-                                            <Label text="{i18n>model.header.sender.name.text}" />
-											<Text text="{Sender/Name}"/>
-                                            <Label text="{i18n>model.header.sender.email.text}" />
-											<Text text="{Sender/EMail}"/>
-										</fo:content>
-									</fo:SimpleForm>
-
-								</content>
-							</Panel>
+							<Panel headerText="{i18n>header.propsSection.title.text}" id="propSec" />
 							<Panel headerText="{i18n>xml.headerText}">
-									<Button text="{i18n>xml.button.top}" icon="sap-icon://sys-first-page" class="navButton"/>
-									<Button text="{i18n>xml.button.up}" icon="sap-icon://sys-prev-page" class="navButton"/>
-									<Button text="{i18n>xml.button.down}" icon="sap-icon://sys-next-page" class="navButton" press="navToNext"/>
-									<Button text="{i18n>xml.button.bottom}" icon="sap-icon://sys-last-page" class="navButton" press="navToNext" />
-									<Button text="{i18n>xml.button.goto}" icon="sap-icon://sales-document" class="navButton"/>
-									<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="headerCodeEditor" />
+								<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="headerCodeEditor" />
 							 </Panel>
 						</cols:content>
 					</cols:EqualWidthColumns>									 
