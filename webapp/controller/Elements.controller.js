@@ -58,6 +58,14 @@ sap.ui.define([
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("intro");
 		},
+		
+		onShowXML: function () {
+			var sapMLib = sap.m.URLHelper.redirect(	"#/Xml", /* use pattern "Xml" defined in the route section of the manifest.json */
+													true); /* true: open in new windows */
+			sap.ui.require(	[ "sap/m/library" ], sapMLib);
+			// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			// oRouter.navTo("xmlcode");
+		},
 
 		onSystemList: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);

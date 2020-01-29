@@ -110,15 +110,10 @@ sap.ui.define([
 			this.oRouter.navTo("elements");
 		},
 
-		navToLastSystem: function() {
-			var _iPartIndex = this.iPartsCount - 1;
-			var _iSysIndex = this._getCorrespondingSystem(_iPartIndex);
-			if (_iPartIndex <= this.iPartsCount && _iSysIndex >= 0 && _iSysIndex <= this.iSystemsCount) {
-				this.oRouter.navTo("part", {
-					partIndex: _iPartIndex,
-					sysIndex: _iSysIndex
-				});
-			}
+		navToFirstSystem: function () {
+			this.oRouter.navTo("system", {
+				sysIndex: 0
+			});
 		},
 
 		onNavLoad: function() {

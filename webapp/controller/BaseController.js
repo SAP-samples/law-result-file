@@ -85,6 +85,10 @@ sap.ui.define([
 		},
 
 		buildEditorContext: function (node, oCodeEditor) {
+			return this.buildEditorContextSized(node, oCodeEditor, true);
+		},
+			
+		buildEditorContextSized: function (node, oCodeEditor, setSize) {
 			if (!node) {
 				_oBundle = this.getView().getModel("i18n").getResourceBundle();
 				oCodeEditor.setValue(_oBundle.getText("part.nodata.text"));
@@ -97,10 +101,14 @@ sap.ui.define([
 			// remove last line break (otherwise we are left with an empty last line)
 			_sXMAS = _sXMAS.slice(0, -1);
 
-			this.buildEditor(_sXMAS, oCodeEditor, node._tagLineStart);
+			this.buildEditorSized(_sXMAS, oCodeEditor, node._tagLineStart, setSize);
 		},
 
 		buildEditor: function (codeStr, oCodeEditor, firstLineNumber) {
+			return this.buildEditorSized(codeStr, oCodeEditor, firstLineNumber, true);
+		},
+			
+		buildEditorSized: function (codeStr, oCodeEditor, firstLineNumber, setSize) {	
 			if (!codeStr) {
 				_oBundle = this.getView().getModel("i18n").getResourceBundle();
 				oCodeEditor.setValue(_oBundle.getText("part.nodata.text"));
@@ -113,13 +121,18 @@ sap.ui.define([
 			// if the ACE interface changes. Reference:
 			// https://github.com/ajaxorg/ace/wiki/Configuring-Ace#session-options
 			// set maxLines to a very large numbers to prevent scroll bars
-			oCodeEditor._oEditor.setOptions({
-				firstLineNumber: firstLineNumber,
-				maxLines: 100000000
-			});
+			if (setSize) {            	
+				oCodeEditor._oEditor.setOptions({
+					firstLineNumber: firstLineNumber, maxLines: 100000000
+				});
+			} else {
+				oCodeEditor._oEditor.setOptions({ 
+                firstLineNumber: firstLineNumber, minLines: 5,
+                scrollPastEnd: 0.5 });
+			}
 			oCodeEditor.setValue(codeStr);
 			oCodeEditor.setEditable(false);
-			oCodeEditor.setType("xml");
+			oCodeEditor.setType("xml");			
 		},
 
 		_getCorrespondingSystem: function (iPartIndex) {

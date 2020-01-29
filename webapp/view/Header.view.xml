@@ -31,7 +31,7 @@
 						<Button text="{i18n>nav.button.first}" icon="sap-icon://sys-first-page" class="navButton" enabled="false"/>
 						<Button text="{i18n>nav.button.last}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/> -->
 
-						<Select id="drop" />
+						<Select id="drop" width="18rem"/>
 
 					</OverflowToolbar>
 				</subHeader>

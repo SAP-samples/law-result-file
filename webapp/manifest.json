@@ -73,31 +73,31 @@
 				"settings": {},
 				"uri": "./model/tagsTranslations.json",
 				"preload": true
-			}, 
+			},
 			"custInfos": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},
 				"uri": "./model/custInfoSheets.json",
 				"preload": true
-			}, 
+			},
 			"tu_untt": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},
 				"uri": "./model/tu_untt.json",
 				"preload": true
-			}, 
+			},
 			"tutyp": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},
 				"uri": "./model/tutyp.json",
 				"preload": true
-			}, 
+			},
 			"tuapp": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},
 				"uri": "./model/tuapp.json",
 				"preload": true
-			}, 
+			},
 			"tul_acttc": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},
@@ -169,7 +169,13 @@
 					"pattern": "Resultid/{resultId}",
 					"greedy": false,
 					"target": "Resultid"
-				}				
+				}, 
+				{
+					"name": "xmlcode",
+					"pattern": "Xml",
+					"greedy": false,
+					"target": "XmlCode"
+				}
 			],
 			"targets": {
 				"Intro": {
@@ -219,15 +225,15 @@
 					"viewId": "results",
 					"viewLevel": 5
 				},
-				"Properties": {
-					"viewType": "XML",
-					"viewName": "Properties"
-				},
 				"Resultid": {
 					"viewType": "XML",
 					"viewName": "Resultid",
 					"viewId": "resultid",
 					"viewLevel": 5
+				},
+				"XmlCode": {
+					"viewType": "XML",
+					"viewName": "XmlCode"
 				}
 			}
 		}

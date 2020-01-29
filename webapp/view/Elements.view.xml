@@ -13,8 +13,11 @@
 				<content>
 					<grid:CSSGrid gridTemplateColumns="1fr 2fr" gridGap="1rem">
 						<VBox>
-							<l:VerticalLayout class="sapUiMediumMargin">	
-								<Title text="{i18n>elements.col.left.title}" level="H2" class="results" />																								
+							<l:VerticalLayout class="sapUiSmallMargin sapUiNoMarginBottom">
+								<Title text="{i18n>elements.col.left.title}" level="H2" class="results" />	
+							</l:VerticalLayout>
+							<l:VerticalLayout class="sapUiNoMargin sapUiContentPadding">
+																															
 								<GenericTile
 									id="tileHeader"
 									header="{i18n>elements.tiles.header.title}"
@@ -60,19 +63,29 @@
 								</GenericTile>
 
 								<GenericTile
-									header="{i18n>elements.tiles.xml.title}"
-									subheader="{i18n>elements.tiles.xml.subheader}"
+									header="{i18n>elements.tiles.xml.blocks.title}"
+									subheader="{i18n>elements.tiles.xml.blocks.subheader}"
 									headerImage="sap-icon://syntax"
 									frameType="TwoByOne" 
 									press="onToHeader">
-									<TileContent footer="{i18n>elements.tiles.xml.info}" />
+									<TileContent footer="{i18n>elements.tiles.xml.blocks.info}" />
 								</GenericTile>
+
+								<GenericTile
+									header="{i18n>elements.tiles.xml.code.title}"
+									subheader="{i18n>elements.tiles.xml.code.subheader}"
+									headerImage="sap-icon://syntax"
+									frameType="TwoByOne" 
+									press="onShowXML">
+									<TileContent footer="{i18n>elements.tiles.xml.code.info}" />
+								</GenericTile>
+								
 							</l:VerticalLayout>
 						</VBox>
 						<VBox>	
-							<l:VerticalLayout class="sapUiMediumMargin">												
-								<Title text="{i18n>elements.col.right.title}" level="H2" class="results" />									
-								<Image src="/webapp/css/law_xml_structure.png" class="sapUiSmallMargin" />
+							<l:VerticalLayout class="sapUiSmallMargin sapUiNoMarginBottom">												
+								<Title text="{i18n>elements.col.right.title}" level="H2" class="results" />										
+								<Image src="/webapp/css/law_xml_structure.png" class="sapUiNoMargin" />
 							</l:VerticalLayout>									
 						</VBox>
 				
