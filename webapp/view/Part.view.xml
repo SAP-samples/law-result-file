@@ -21,15 +21,14 @@
 							<Link press="onNavAll" text="{i18n>header.breadcrumb.all.text}"/>
 							<Link press="onNavSystemList" text="{i18n>header.breadcrumb.systems.text}"/>
 							<Link press="onNavSystem" text="{i18n>part.breadcrumb.sid.placeholder.text}" id="bcSid" />														
-						</Breadcrumbs>				
+						</Breadcrumbs>										
+
 						<ToolbarSpacer />						
 						<Label text="{i18n>part.button.label.text}"/>
-						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
-						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>						
-						<Button text="{i18n>part.button.firstSystem.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
-						<Button text="{i18n>part.button.lastSystem.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToFirstSystem" id="nextBlock" />
+						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem" id="prevBlock"/>	
+						<Select id="drop" width="18rem"/>
 					</OverflowToolbar>
-
 				</subHeader>
 				<content>
 					<!-- Properties Part -->
@@ -48,11 +47,10 @@
 							</cols:content>
 						</cols:EqualWidthColumns>
 
-						<l:VerticalLayout id="dynRestList" width="100%" class="sapUiSmallMargin" />
+						<l:VerticalLayout id="resultList" width="100%" class="sapUiSmallMargin" />
 
-				</content>
-				<footer>
-				</footer>
+						<BusyIndicator size="1.5rem" id="busyInd"/>														
+				</content>									
 			</Page>
 		</pages>
 	</App>

@@ -482,6 +482,7 @@ sap.ui.define([
 		_formatTranslation: function (text, firstNumStr, secondNumStr, thirdNumStr) {
 			var newText = jQuery.sap.formatMessage(text, firstNumStr, secondNumStr, thirdNumStr);
 			return newText;
-		}
+		},
+
 	});
 });

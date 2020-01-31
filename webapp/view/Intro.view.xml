@@ -16,29 +16,33 @@
 			<pages>
 				<Page id="page" title="{i18n>intro.page.title}">
 					<content>
-						<grid:CSSGrid gridAutoFlow="Column" gridTemplateColumns="1fr 3fr" gridAutoRows="10rem">
-							<grid:items>						
-								<Panel id="sampleFile"  headerText="{i18n>intro.sampleSection.headerText}">
-									<!-- <layoutData>
-										<grid:GridItemLayoutData gridColumn= "1 / 2"/>
-									</layoutData> -->
-									<Button text="{i18n>intro.sampleSection.button.start.text}" press="onUseExampleFile" width="100%"/>			
-								</Panel>
-								<Panel id="uploadSection"  headerText="{i18n>intro.uploadSection.panel.headerText}">
-									<!-- <layoutData>
-										<grid:GridItemLayoutData gridColumn= "3 / 6"/>
-									</layoutData> -->
-									<u:FileUploader id="fileSelector" name="lawFileUpload" buttonText="{i18n>intro.uploadSection.button.filePicker.text}" uploadUrl="upload/" 
-										tooltip="{i18n>intro.uploadSection.button.filePicker.toolTip}"
-										change="handleSelectXMLFile" fileType="xml" width="100%"/>									
-								</Panel>
-							</grid:items>															
-						</grid:CSSGrid>						
-						<Panel id="howTo"  headerText="{i18n>intro.panel_processDescription.headerText}"  width="100%">
-							<content>
-								<FormattedText id="text1" htmlText="{i18n>intro.description.Formated.text}" />
-							</content>
-						</Panel>
+						<grid:CSSGrid gridAutoFlow="Column" gridTemplateColumns="1fr 1fr" gridAutoRows="10rem" gridGap="2rem">
+							<VBox>
+								<layoutData>
+									<grid:GridItemLayoutData gridRow="span 2" />
+								</layoutData>
+								<Panel id="howTo"  headerText="{i18n>intro.panel_processDescription.headerText}"  width="100%" height="100%">
+									<content>
+										<FormattedText id="text1" htmlText="{i18n>intro.description.Formated.text}" />
+									</content>
+								</Panel>	
+							</VBox>
+
+							<Panel id="sampleFile"  headerText="{i18n>intro.sampleSection.headerText}">
+								<!-- <layoutData>
+									<grid:GridItemLayoutData gridColumn= "1 / 2"/>
+								</layoutData> -->
+								<Button text="{i18n>intro.sampleSection.button.start.text}" press="onUseExampleFile"/>			
+							</Panel>
+							<Panel id="uploadSection"  headerText="{i18n>intro.uploadSection.panel.headerText}">
+								<!-- <layoutData>
+									<grid:GridItemLayoutData gridColumn= "3 / 6"/>
+								</layoutData> -->
+								<u:FileUploader id="fileSelector" name="lawFileUpload" buttonText="{i18n>intro.uploadSection.button.filePicker.text}" uploadUrl="upload/" 
+									tooltip="{i18n>intro.uploadSection.button.filePicker.toolTip}"
+									change="handleSelectXMLFile" fileType="xml" width="100%"/>									
+							</Panel>																
+						</grid:CSSGrid>										
 					</content>
 				</Page>
 			</pages>
