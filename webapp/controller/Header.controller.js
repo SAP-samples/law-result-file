@@ -25,10 +25,6 @@ sap.ui.define([
 			var _oCodeEditor = this.byId("headerCodeEditor");
 			this.buildEditorContext(_rawSystemData, _oCodeEditor);
 
-			// for navigation buttons
-			this.iPartsCount = this._oModel.getData().children[0]._tagMeasurementPartsHook.childElementCount;
-			this.iSystemsCount = this._oModel.getData().children[0]._tagMeasurementSystemsHook.childElementCount;
-
 			var ddList = this.oView.byId("drop");
 			ddList = this._getCodeSelector(ddList);
 			ddList.setSelectedKey("header");

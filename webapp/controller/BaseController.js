@@ -174,7 +174,7 @@ sap.ui.define([
 			that._processXMLElement(node, 0, -2);
 		},
 
-		_processXMLElement: function (node, lastPos, lastDepth) {
+		_processXMLElement: function (node, lastPos, lastDepth) {			
 			// leaf node
 			var that = this;
 			if (node.children && node.children.length === 0) {
@@ -304,27 +304,33 @@ sap.ui.define([
 			oBlockSelector.addItem(nextItem);
 
 			// build System entries
-			for (i = 0; i < _mainModelRaw._tagMeasurementSystemsHook.childElementCount; i++) {
-				mainText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.line.text"), _mainModelRaw._tagMeasurementSystemsHook.children[i]._tagLineStart);
-				addText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.system.text"), i);
-				nextItem = new sap.ui.core.ListItem( { key: "system/" + i, text: mainText, additionalText: addText } );
-				oBlockSelector.addItem(nextItem);
+			if (_mainModelRaw._tagMeasurementSystemsHook) {
+				for (i = 0; i < _mainModelRaw._tagMeasurementSystemsHook.childElementCount; i++) {
+					mainText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.line.text"), _mainModelRaw._tagMeasurementSystemsHook.children[i]._tagLineStart);
+					addText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.system.text"), i);
+					nextItem = new sap.ui.core.ListItem( { key: "system/" + i, text: mainText, additionalText: addText } );
+					oBlockSelector.addItem(nextItem);
+				}
 			}
 			
 			// build Part entries
-			for (i = 0; i < _mainModelRaw._tagMeasurementPartsHook.childElementCount; i++) {
-				mainText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.line.text"), _mainModelRaw._tagMeasurementPartsHook.children[i]._tagLineStart);
-				addText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.part.text"), i);
-				nextItem = new sap.ui.core.ListItem( { key: "part/" + i, text: mainText, additionalText: addText } );
-				oBlockSelector.addItem(nextItem);
+			if (_mainModelRaw._tagMeasurementPartsHook) {
+				for (i = 0; i < _mainModelRaw._tagMeasurementPartsHook.childElementCount; i++) {
+					mainText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.line.text"), _mainModelRaw._tagMeasurementPartsHook.children[i]._tagLineStart);
+					addText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.part.text"), i);
+					nextItem = new sap.ui.core.ListItem( { key: "part/" + i, text: mainText, additionalText: addText } );
+					oBlockSelector.addItem(nextItem);
+				}
 			}
 			
 			// build result entries
-			for (i = 0; i < _mainModelRaw._tagMeasurementResultsHook.childElementCount; i++) {
-				mainText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.line.text"), _mainModelRaw._tagMeasurementResultsHook.children[i]._tagLineStart);
-				addText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.result.text"), i);
-				nextItem = new sap.ui.core.ListItem( { key: "resultid/" + i, text: mainText, additionalText: addText } );
-				oBlockSelector.addItem(nextItem);
+			if (_mainModelRaw._tagMeasurementResultsHook) {
+				for (i = 0; i < _mainModelRaw._tagMeasurementResultsHook.childElementCount; i++) {
+					mainText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.line.text"), _mainModelRaw._tagMeasurementResultsHook.children[i]._tagLineStart);
+					addText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.result.text"), i);
+					nextItem = new sap.ui.core.ListItem( { key: "resultid/" + i, text: mainText, additionalText: addText } );
+					oBlockSelector.addItem(nextItem);
+				}
 			}
 			return oBlockSelector;
 
