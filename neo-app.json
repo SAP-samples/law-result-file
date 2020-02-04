@@ -1,34 +1,77 @@
 {
-	"welcomeFile": "index.html",
+	"welcomeFile": "/webapp/index.html",
 	"routes": [{
-			"path": "/resources",
-			"target": {
-				"type": "service",
-				"name": "sapui5",
-				"version": "1.52.27",
-				"preferLocal": true,
-				"entryPath": "/resources"
-			},
-			"description": "SAPUI5 Resources"
-		},{
-			"path": "/test-resources",
-			"target": {
-				"type": "service",
-				"version": "1.52.27",
-				"name": "sapui5",
-				"entryPath": "/test-resources"
-			},
-			"description": "SAPUI5 Test Resources"
+		"path": "/resources",
+		"target": {
+			"type": "application",
+			"name": "sapui5preview",
+			"entryPath": "/resources"
 		},
-{
-			"path": "/services/odata",
-			"target": {
-				"type": "destination",
-				"name": "SMP_NG_WEB",
-				"entryPath": "/odata"
-			},
-			"description": "Gateway to I7D (CCOE)"
-		}
-	],
-	"sendWelcomeFileRedirect": false
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/test-resources",
+		"target": {
+			"type": "application",
+			"name": "sapui5preview",
+			"entryPath": "/test-resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/webapp/resources",
+		"target": {
+			"type": "application",
+			"name": "sapui5preview",
+			"entryPath": "/resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/webapp/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/webapp/test-resources",
+		"target": {
+			"type": "application",
+			"name": "sapui5preview",
+			"entryPath": "/test-resources"
+		},
+		"description": "SAPUI5 Test Resources"
+	}, {
+		"path": "/webapp/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources"
+		},
+		"description": "SAPUI5 Test Resources"
+	}, {
+		"path": "/services/odata",
+		"target": {
+			"type": "destination",
+			"name": "SMP_NG_WEB",
+			"entryPath": "/odata"
+		},
+		"description": "Gateway to I7D (CCOE)"
+	}],
+	"sendWelcomeFileRedirect": true
 }
