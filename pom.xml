@@ -16,6 +16,48 @@
 	<description>Explain LAW XML</description>
 	<packaging>war</packaging>
 	<build>
-		<plugins></plugins>
+		<plugins>
+			<!--
+                                                               in case your application contains translatable .properties resource files, uncommen the
+                                                               following plugin-section and define your D/I/C user id with a upper case first letter,
+                                                               e.g. D012345 as translationDeveloper, as well as a translationCollection name starting
+                                                               with SUPPORTPORTAL_, e.g SUPPORTPORTAL_APPLICATION to identify your translation resources.
+                                               -->
+			<!--
+                                               <plugin>
+                                                               <groupId>com.sap.ldi</groupId>
+                                                               <artifactId>translation-plugin</artifactId>
+                                                               <configuration>
+                                                                               <translationDeveloper>TO BE DEFINED</translationDeveloper>
+                                                                               <translationCollection>TO BE DEFINED</translationCollection>
+                                                               </configuration>
+                                               </plugin>
+                                               -->
+			<!--
+                                                               in case you get a "merge-modules failed: module name could not be determined" error on build,
+                                                               uncomment the following plugin-section and define the SAPUI5 namespace of your Component file
+                                                               in the <prefix> tag e.g. sap/support/application.
+                                               -->
+			<!--
+                                               <plugin>
+                                                               <groupId>com.sap.ui5.tools.build</groupId>
+                                                               <artifactId>maven-coldwater-plugin</artifactId>
+                                                               <executions>
+                                                                               <execution>
+                                                                                              <id>merge-application-modules</id>
+                                                                                              <configuration>
+                                                                                                              <resourceRoots>
+                                                                                                                              <resourceRoot>
+                                                                                                                                              <folder>${basedir}/webapp</folder>
+                                                                                                                                              <prefix>TO BE DEFINED</prefix>
+                                                                                                                                              <autoDetectPrefix>false</autoDetectPrefix>
+                                                                                                                              </resourceRoot>
+                                                                                                              </resourceRoots>
+                                                                                              </configuration>
+                                                                               </execution>
+                                                               </executions>
+                                               </plugin>
+                                               -->
+		</plugins>
 	</build>
 </project>
