@@ -35,7 +35,7 @@
 
 									headerImage="sap-icon://it-system" 
 									frameType="TwoByOne" 
-									press="onSystemList"
+									press="onSystemList"									
 									backgroundImage="/webapp/css/nav_systems.png">
 									<TileContent footer="{i18n>elements.tiles.systems.info}" />															
 								</GenericTile>
@@ -63,6 +63,7 @@
 								</GenericTile>
 
 								<GenericTile
+									id="tileXml"									
 									header="{i18n>elements.tiles.xml.blocks.title}"
 									subheader="{i18n>elements.tiles.xml.blocks.subheader}"
 									headerImage="sap-icon://syntax"

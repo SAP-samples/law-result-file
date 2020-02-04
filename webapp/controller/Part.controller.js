@@ -1953,44 +1953,21 @@ sap.ui.define([
 				sysIndex: this.sysIdx
 			});
 		},
-		
-		navToFirstSystem: function() {
-			var _iSysIndex = this._getCorrespondingSystem(0);
-			this.oRouter.navTo("part", {
-				partIndex: 0,
-				sysIndex: _iSysIndex
-			});
-		},
-		
-		navToNextSystem: function() {
-			var _iPartIndex = parseInt(this.partIdx) + 1;
-			var _iSysIndex = this._getCorrespondingSystem(_iPartIndex);
-			if (_iPartIndex <= this.iPartsCount && _iSysIndex >= 0 && _iSysIndex <= this.iSystemsCount) {
-				this.oRouter.navTo("part", {
-					partIndex: _iPartIndex,
-					sysIndex: _iSysIndex
-				});
-			}
-		},
-		
-		navToPrevSystem: function() {
+
+		navToPrevBlock: function() {
 			var _iPartIndex = parseInt(this.partIdx) - 1;
 			var _iSysIndex = this._getCorrespondingSystem(_iPartIndex);
-			if (_iPartIndex <= this.iPartsCount && _iSysIndex >= 0 && _iSysIndex <= this.iSystemsCount) {
-				this.oRouter.navTo("part", {
-					partIndex: _iPartIndex,
-					sysIndex: _iSysIndex
+			if (_iPartIndex >= 0) {				
+				// navigate to part with current index - 1
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);		
+				oRouter.navTo("resultid", {
+					resultId: _iPartIndex
 				});
-			}
-		},
-		
-		navToLastSystem: function() {
-			var _iPartIndex = this.iPartsCount - 1;
-			var _iSysIndex = this._getCorrespondingSystem(_iPartIndex);
-			if (_iPartIndex <= this.iPartsCount && _iSysIndex >= 0 && _iSysIndex <= this.iSystemsCount) {
-				this.oRouter.navTo("part", {
-					partIndex: _iPartIndex,
-					sysIndex: _iSysIndex
+			} else {
+				// navigate to system with highest index
+				var systemCount = this.iSystemsCount - 1;
+				this.oRouter.navTo("system", {
+					sysIndex: systemCount
 				});
 			}
 		},

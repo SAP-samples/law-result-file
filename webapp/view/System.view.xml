@@ -22,14 +22,12 @@
 							<Link press="onNavAll" text="{i18n>header.breadcrumb.all.text}"/>
 							<Link press="onNavSystemList" text="{i18n>header.breadcrumb.systems.text}"/>							
 						</Breadcrumbs>				
-						<ToolbarSpacer />												
-						<Button text="{i18n>part.button.firstSystem.text}" icon="sap-icon://sys-first-page" class="navButton" press="navToFirstSystem"/>
-						<Button text="{i18n>part.button.lastSystem.text}" icon="sap-icon://sys-last-page" class="navButton" press="navToLastSystem"/>
 
 						<ToolbarSpacer />						
 						<Label text="{i18n>part.button.label.text}"/>
-						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextSystem"/>
-						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem"/>						
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextBlock" />
+						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevBlock"/>	
+						<Select id="drop" width="18rem"/>
 					</OverflowToolbar>
 
 				</subHeader>

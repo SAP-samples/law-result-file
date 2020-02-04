@@ -25,8 +25,8 @@
 
 						<ToolbarSpacer />						
 						<Label text="{i18n>part.button.label.text}"/>
-						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToFirstSystem" id="nextBlock" />
-						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevSystem" id="prevBlock"/>	
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextBlock" id="nextBlock" />
+						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevBlock" />	
 						<Select id="drop" width="18rem"/>
 					</OverflowToolbar>
 				</subHeader>

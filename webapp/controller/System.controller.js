@@ -23,7 +23,7 @@ sap.ui.define([
 			this.oView = this.getView();
 			this.iSystemsCount = this._oModel.getData().children[0]._tagMeasurementSystemsHook.childElementCount;
 			this.oView.setModel(this._oModel);
-			this.oRoute.attachMatched(this._onRouteMatched, this);
+			this.oRoute.attachMatched(this._onRouteMatched, this);			
 		},
 
 		_onRouteMatched: function (oEvent) {
@@ -85,6 +85,10 @@ sap.ui.define([
 				path: sComponentBindingPath,
 				template: exportTableTemplate
 			});
+
+			var ddList = this.oView.byId("drop");
+			ddList = this._getCodeSelector(ddList);
+			ddList.setSelectedKey("header");
 		},
 		
 		resultCount: function (sPartId) {
@@ -131,35 +135,33 @@ sap.ui.define([
 			});
 		},
 
-		navToFirstSystem: function () {
-			this.oRouter.navTo("system", {
-				sysIndex: 0
-			});
-		},
-
-		navToNextSystem: function () {
+		navToNextBlock: function() {
 			var _iSysTarget = parseInt(this._sysIndex) + 1;
 			if (_iSysTarget <= (this.iSystemsCount - 1)) {
+				// next system
 				this.oRouter.navTo("system", {
 					sysIndex: _iSysTarget
 				});
+			} else {
+				// first part
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				var resultId  = "0";			
+				oRouter.navTo("resultid", {
+					resultId: resultId				
+				});
 			}
-		},
+		}, 
 
-		navToPrevSystem: function () {
+		navToPrevBlock: function() {
 			var _iSysTarget = parseInt(this._sysIndex) - 1;
 			if (_iSysTarget >= 0) {
 				this.oRouter.navTo("system", {
 					sysIndex: _iSysTarget
 				});
+			} else {				
+				this.oRouter.navTo("header");
 			}
-		},
 
-		navToLastSystem: function () {
-			var _iSysTarget = this.iSystemsCount - 1;
-			this.oRouter.navTo("system", {
-				sysIndex: _iSysTarget
-			});
 		},
 
 		onNavLoad: function() {
