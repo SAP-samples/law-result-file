@@ -24,10 +24,10 @@
 						</Breadcrumbs>				
 
 						<ToolbarSpacer />						
-						<Label text="{i18n>part.button.label.text}"/>
-						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextBlock" />
+						<Label text="{i18n>part.button.label.text}"/>												
+						<Select id="drop" width="18rem" change="onDropDownSelect"/>
 						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevBlock"/>	
-						<Select id="drop" width="18rem"/>
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextBlock" />						
 					</OverflowToolbar>
 
 				</subHeader>
@@ -83,6 +83,9 @@
 												<Text text="{Database}"/>
 											</fo:content>
 										</fo:SimpleForm>
+									</content>
+								</Panel>										
+
 
 										<l:VerticalLayout class="sapUiContentPadding" width="100%">										
 											<Title text="{i18n>system.partsSection.title.text}" />					
@@ -122,9 +125,9 @@
 													</VBox>													
 												</CustomListItem>
 											</f:GridList>
-										</l:VerticalLayout>																			
-									</content>
-								</Panel>										
+										</l:VerticalLayout>	
+
+								<Panel />
 										
 								<Panel headerText="{i18n>system.compSection.table.headerText}" expandable="true" expanded="true" width="100%">
 									<content>	

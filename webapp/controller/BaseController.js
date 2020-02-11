@@ -150,6 +150,9 @@ sap.ui.define([
 		},
 
 		_getCorrespondingResultIndex: function (iPartIndex) {
+			if (!this.isValidPartIndx(iPartIndex)) {
+				return -1;
+			}
 			var _iPartId = this.getOwnerComponent().getModel("userXML").getProperty("/Parts/Part/" + iPartIndex + "/PartId").trim();
 			// console.log("  Search for PartId " + _iPartId);
 			var results = this._oModel.getData().children[0]._tagMeasurementResultsHook.children;
@@ -274,12 +277,53 @@ sap.ui.define([
 			}
 		},
 
-		_getCodeSelector: function(oBlockSelector) { 		// _mainModelRaw = this._oModel.getData().children[0];
+		onDropDownSelect: function(oEvent) {  
+			this._resultSelected = null;
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			// console.log("Dropdown selected") ;
+			var selKey = oEvent.getParameter('selectedItem').getKey();
+			if (selKey === "header") {
+				this.resetResultSelection();								
+				oRouter.navTo("header");
+			} else if (selKey.startsWith("system/")) {				
+				this.resetResultSelection();
+				oRouter.navTo("system", {
+					sysIndex: selKey.substr("system/".length, selKey.length)
+				});				
+			} else if (selKey.startsWith("part/")) {				
+				this.resetResultSelection();
+				this.navigateToPartIndex(selKey.substr("part/".length, selKey.length));
+			} else if (selKey.startsWith("resultid/")) {			
+				this._resultSelected = selKey;
+				// console.log("Set Result selection in drop down to " + selKey);
+				this.navigateToResultIndex(selKey.substr("resultid/".length, selKey.length));
+			} else {
+				// unexpected element in drop down list!
+			}
+		},
+
+		resetResultSelection: function() {
+			this._resultSelected = null;
+			// console.log("Reset Result selection in drop down");
+		},
+
+		_getCodeSelector: function(oBlockSelector, selectedKey, selectedResult) { 		// _mainModelRaw = this._oModel.getData().children[0];
 			_oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 			var _mainModelRaw = this._oModel.getData().children[0];
 			
 			try {
-				if (oBlockSelector != null && oBlockSelector.getItems() != null && oBlockSelector.getItems().length > 0) {									
+				if (oBlockSelector != null && oBlockSelector.getItems() != null && oBlockSelector.getItems().length > 0) {							
+					if (selectedKey && selectedKey != "") {
+						oBlockSelector.setSelectedKey(selectedKey);
+						if (this._resultSelected && selectedResult !== "resultid/-1") {
+							oBlockSelector.setSelectedKey(selectedResult);
+							// console.log("Selected existing, selected result " + selectedResult);
+						} else {
+							// console.log("Selected existing, selected " + selectedKey);
+						}						
+					} else {
+						// console.log("No selected dropdown key");
+					}
 					return oBlockSelector;
 				}
 			} catch (err) {
@@ -331,6 +375,13 @@ sap.ui.define([
 					nextItem = new sap.ui.core.ListItem( { key: "resultid/" + i, text: mainText, additionalText: addText } );
 					oBlockSelector.addItem(nextItem);
 				}
+			}
+
+			if (selectedKey && selectedKey != "") {
+				oBlockSelector.setSelectedKey(selectedKey);
+				// console.log("Selected " + selectedKey);
+			} else {
+				// console.log("No selected dropdown key");
 			}
 			return oBlockSelector;
 
@@ -489,6 +540,123 @@ sap.ui.define([
 			var newText = jQuery.sap.formatMessage(text, firstNumStr, secondNumStr, thirdNumStr);
 			return newText;
 		},
+
+		/* Checks if the provided partIndx is in the range between 0 and the number of entries in the <Parts> block
+		returns true or false; */
+		isValidPartIndx: function (partIndx) {
+			if (this.getOwnerComponent().getModel("userXML")) {
+				if (partIndx >= 0 && partIndx < this.getOwnerComponent().getModel("userXML").getData().children[0]._tagMeasurementPartsHook.childElementCount) {
+					return true;
+				}
+			}
+			return false;
+		},
+
+		/* Calls getIdsForPartIndex and navigates to Part.view to show the corresponding part (and result if available) */
+		navigateToPartIndex: function (partIndx) {
+			var target = this.getIdsForPartIndex(partIndx);
+			if (target[0] != -1 &&  target[1] != -1) {
+				this.oRouter.navTo("part", {					
+					sysIndex: target[0],
+					partIndex: target[1],
+				});
+			} else {
+				// navigate to an error page with the option to navigate to the Elements.view
+			}
+
+		},
+
+		/* In the <Parts> block at position specified by variable partIndx, a part should exist. The corresponding PartId
+		and the SystemNo can directly be read there. The index (sysIndx) in the <Systems> block can be determined via the 
+		SystemNo value. It is required for the navigation (which requires sysIndx and partIndx). 
+		
+		returns an int array [sysIndex, partIndex]; -1 indicates that a value was not found
+		*/		
+		getIdsForPartIndex: function (partIndx) {						
+			if (!this.isValidPartIndx || !this.getOwnerComponent().getModel("userXML")) {
+				return [-1, -1];
+			}
+			var sysNo = this.getOwnerComponent().getModel("userXML").getProperty("/Parts/Part/" + partIndx + "/SystemNo").trim();
+			// now loop over <Systems> block to find matching SystemNo to get the systemIndex
+			// get the part index corresponding to the ResultId (= Part Id)
+
+			var oSystems = this.getOwnerComponent().getModel("userXML").getObject("/Systems");	
+			var curSyst, curSystChild;
+			var sysIdx = -1; // used as flag for abort
+			if (oSystems && oSystems.childElementCount > 0) {
+				oSystems = oSystems.children;
+				for (var si = 0; si < oSystems.length; si++) {
+					curSyst = oSystems[si];
+					if (curSyst && curSyst.childElementCount > 0) {
+						for (var sj = 0; sj < curSyst.childElementCount; sj++) {
+							curSystChild = curSyst.children[sj];
+							if (curSystChild && curSystChild.tagName.toUpperCase() === "SYSTEMNO") {
+								// console.log ("SystemNo " + curSystChild.innerHTML.trim() + " ?= " + sysNo);
+								if (curSystChild && curSystChild.innerHTML.trim() === sysNo) {
+									// console.log(" ------------ found ! -----------");
+									sysIdx = si;													
+									break;
+								} else {
+									break; // this System has a different SystemNo, try next one
+								}
+							}
+						}
+						if (sysIdx > -1) {
+							this.sysIdx = si;
+							this.partIdx = partIndx;											
+							break;
+						}
+					}
+				}								
+			}
+			if (sysIdx == -1) {
+				var msg = this.getView().getModel("i18n").getResourceBundle().getText("resultid.exception.NoSuchSystemNo.text"); // =No system found with SystemNo {0}.
+				msg = jQuery.sap.formatMessage(msg, this.resultId);
+				sap.m.MessageToast.show(msg);
+			}
+
+			return [sysIdx, partIndx];
+		},
+
+		navigateToResultIndex: function(resIndx) {
+			var _mainModelRaw = this._oModel.getData().children[0];
+			// get the result at position resIndx and read its PartId
+			var partIndxStr = this._oModel.getData().children[0]._tagMeasurementResultsHook.children[resIndx].children[0].innerHTML.trim();
+			var partIndx = Number.parseInt(partIndxStr);
+
+			// loop over the Parts and get SystemNo
+			var oParts = this._oModel.getData().children[0]._tagMeasurementPartsHook;
+			var curPart, curPartChild, curPartId, sysNo, sysIdx, isRightPart;						
+
+			if (oParts &&  oParts.childElementCount > 0) {
+				// loop over the parts and check which part has a matching PartId
+				for (var curPartIndx = 0; curPartIndx < oParts.childElementCount; curPartIndx++) {
+					var curPart = oParts.children[curPartIndx];
+					isRightPart = false;
+
+					// first loop: check if PartId matches
+					for (var j = 0; j < curPart.childElementCount; j++) {
+						curPartChild = curPart.children[j];
+						if (curPartChild && curPartChild.tagName.toUpperCase() === "PARTID" && curPartChild.innerHTML) {													
+							curPartId = curPartChild.innerHTML.trim();
+							if (curPartId ===  partIndxStr) {
+								isRightPart = true;								
+							}
+							break;
+						}
+					}
+
+					if (isRightPart) {
+						break;						
+					} 
+				}
+				if (isRightPart) {
+					this.navigateToPartIndex(curPartIndx);
+				} else {
+					// no Part found with a matching PartId 
+				}
+			} // else: no Parts 
+		} 
 
 	});
 });

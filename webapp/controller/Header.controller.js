@@ -13,6 +13,9 @@ sap.ui.define([
 	return BaseController.extend("sap.support.zglacelx.controller.Header", {
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			this.oRoute = this.oRouter.getRoute("header");			
+			this.oRoute.attachMatched(this._onRouteMatched, this);	
+
 			this._checkInitialModel();
 			this._oModel = this.getOwnerComponent().getModel("userXML");
 			this.oView = this.getView();
@@ -24,10 +27,6 @@ sap.ui.define([
 			var _rawSystemData = _mainModelRaw._tagMeasurementHeaderHook;
 			var _oCodeEditor = this.byId("headerCodeEditor");
 			this.buildEditorContext(_rawSystemData, _oCodeEditor);
-
-			var ddList = this.oView.byId("drop");
-			ddList = this._getCodeSelector(ddList);
-			ddList.setSelectedKey("header");
 			
 			var porpPanel = this.oView.byId("propSec");			
 			var panL = new sap.ui.layout.VerticalLayout( { width: "100%" }); 
@@ -60,6 +59,11 @@ sap.ui.define([
 					}
 				}
 			}
+		},
+
+		_onRouteMatched: function (oEvent) {
+			var ddList = this.oView.byId("drop");
+			ddList = this._getCodeSelector(ddList, "header");
 		},
 
 		_writeAllPropertyLines: function (mainArea, _result, partIdx) {
@@ -96,7 +100,7 @@ sap.ui.define([
 		onAfterRendering: function() {
 		},
 
-		navToNext: function () {
+		navToNext: function () {			
 			this.oRouter.navTo("system", {
 				sysIndex: 0
 			});
@@ -106,7 +110,7 @@ sap.ui.define([
 			this.oRouter.navTo("elements");
 		},
 
-		navToFirstSystem: function () {
+		navToFirstSystem: function () {			
 			this.oRouter.navTo("system", {
 				sysIndex: 0
 			});

@@ -124,11 +124,7 @@ sap.ui.define([
 		},
 
 		onFirstPart: function (oEvent) {
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			var resultId  = "1";			
-			oRouter.navTo("resultid", {
-				resultId: resultId				
-			});
+			this.navigateToPartIndex(0);
 		},
 
 		onPartPressed: function (oEvent) {

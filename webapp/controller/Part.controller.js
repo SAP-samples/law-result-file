@@ -26,7 +26,7 @@ sap.ui.define([
 				ResourceBundle, Label, Panel, Link, CodeEditor, List, ListItemBase, HorizontalLayout, CustomListItem, VerticalLayout, Title) {
 	"use strict";
 	
-	var _firstLinesToShow = 2;
+	var _firstLinesToShow = 5;
 
 	var _i18nBundle; // holds the resource bundle for text translation
 	// var _translatableTags;	// holds the set of tags with 'tag' and 'trans' attributes from the tagsTranslation.json file;
@@ -77,26 +77,40 @@ sap.ui.define([
 			this.route.attachMatched(this._onRouteMatched, this);
 			
 			this.iPartsCount = this._oModel.getData().children[0]._tagMeasurementPartsHook.childElementCount;
-			this.iSystemsCount = this._oModel.getData().children[0]._tagMeasurementSystemsHook.childElementCount;
-
-			var ddList = this.oView.byId("drop");
-			ddList = this._getCodeSelector(ddList);
-			ddList.setSelectedKey("header");
-
-			this.getView().addEventDelegate({
-				onAfterShow : jQuery.proxy(function(evt) {
-					  this.onAfterShow(evt);
-				 }, this)
-			});
+			this.iSystemsCount = this._oModel.getData().children[0]._tagMeasurementSystemsHook.childElementCount;						
    		},
    
-		onAfterShow : function(evt) {
-			this._buildResultList(false);
-			var busyInd = this.oView.byId("busyInd");
-			busyInd.setVisible(false);	
-   		},
+		showAllResults: function() {											
+			var resultPanel = this.oView.byId("resultList");	
+			resultPanel.setBusy(true);	
+			
+			// register to resultList.onAfterRendering event to release busy indicatore when (time consuming) rendering is done
+			resultPanel.onAfterRendering = function() {
+				if (sap.ui.layout.VerticalLayout.prototype.onAfterRendering) {
+					sap.ui.layout.VerticalLayout.prototype.onAfterRendering.apply(this);
+				}				
+				resultPanel.setBusy(false);					
+			};
+			
+			var eventBus = sap.ui.getCore().getEventBus();
+			eventBus.subscribe("ch1", "loadMore", this.loadMore, this);
 
-		_onRouteMatched: function (oEvent) {	
+			var moreButton = this.oView.byId("moreButton");	
+			moreButton.setVisible(false);
+
+			var _timeout = jQuery.sap.delayedCall(1000, this, function () {				
+				eventBus.publish("ch1", "loadMore");								
+			});
+		},   
+
+		loadMore: function() {
+			// console.log("load more data called");				
+			this._buildResultList(false);
+			// console.log("load more data completed");
+		},
+
+		_onRouteMatched: function (oEvent) {
+			// console.log("onRouteMatched");	
 			// initialize variables	
 			_i18nBundle = this.getView().getModel("i18n").getResourceBundle();
 			_engineModules = this.getView().getModel("tuapp").getData().modules;
@@ -116,13 +130,15 @@ sap.ui.define([
 			
 			// render <Result>'s property block
 			var resultList = this.oView.byId("resultList");			
-			this._buildResultList(true);			
+			this._buildResultList(true);	
 		},
 
 		/* Build the upper section with the <parts> properties */ 
 		_buildPartPropertiesUi: function(oEvent) {						
 			this.sysIdx = this.oArgs.sysIndex;
 			this.partIdx = this.oArgs.partIndex;
+			// var resultIdx = this._getCorrespondingResultIndex(this.partIdx);
+
 			this.systPath = "/Systems/System/" + this.sysIdx;
 
 			// To enable the back button: bind system object to page so it is accessable when needed/the back button is pressed
@@ -140,6 +156,30 @@ sap.ui.define([
 				}
 			});
 
+			// i18n - get resource bundle 	
+			var iSysText = _i18nBundle.getText("model.systems.System.text");
+			var iClientText = _i18nBundle.getText("part.page.client.text");
+
+			// bind part properties	
+			/* var oForm = this.oView.byId("selectedPart");
+			oForm.bindElement( { 
+				path: iPartsPath, 
+				events : {
+					change: this._onBindingChange.bind(this),
+					dataRequested: function (oEvent) {
+						this.oView.setBusy(true);
+					},
+					dataReceived: function (oEvent) {
+						this.oView.setBusy(false);
+					}
+				}
+			}); */ 
+
+			var _propertiesArea = this.oView.byId("partProperties");
+
+			// If there is a <Result> block corresponding to the part, render properties
+
+
 			// Build title for Result page, e.g. "Results for System C31, Client 100"
 			var sysLabel = "(unknown)";
 			var partLabel = sysLabel;
@@ -155,11 +195,6 @@ sap.ui.define([
 				var _iSystemNo = this._translate("i18n>all.na"); // =n.a.
 			}
 			var _oSys = this._oModel.getProperty(this.systPath);
-			
-
-			// i18n - get resource bundle 	
-			var iSysText = _i18nBundle.getText("model.systems.System.text");
-			var iClientText = _i18nBundle.getText("part.page.client.text");
 
 			if (_oSys) {
 				if (_iSAP_SID) {
@@ -172,8 +207,16 @@ sap.ui.define([
 				}
 			}
 
+			// breadcrumb - update SID and client number
+			if (_iSAP_SID != this._translate("i18n>all.na")) {
+				this.oView.byId("bcSid").setText(_iSAP_SID);
+			} else {
+				this.oView.byId("bcSid").setText(_iSystemNo);
+			}	
+
 			// get client number; use part index as a fall back if no client number exist		
 			var iPartsPath = "/Parts/Part/" + this.partIdx;
+
 			var _sSAP_CLIENT = this._oModel.getProperty(iPartsPath + "/SAP_CLIENT");
 			var _sGenId = this._oModel.getProperty(iPartsPath + "/GenericId");
 			
@@ -181,33 +224,11 @@ sap.ui.define([
 			var partClientName = this._oModel.getProperty(iPartsPath + "/Name");
 			
 			if (partClientName && partClientName !== "") {
-				oForm.setTitle(sysLabel + " - " + partClientText + " / " + partClientName);
+				oForm.setTitle(partClientText + " / " + partClientName + " (" + sysLabel + ")");
 			} else {
-				oForm.setTitle(sysLabel + " - " + partClientText);
+				oForm.setTitle(partClientText + " (" + sysLabel + ")");
 			}
-			
-			// breadcrumb - update SID and client number
-			if (_iSAP_SID != this._translate("i18n>all.na")) {
-				this.oView.byId("bcSid").setText(_iSAP_SID);
-			} else {
-				this.oView.byId("bcSid").setText(_iSystemNo);
-			}						
-
-			// bind part properties	
-			var oForm = this.oView.byId("selectedPart");
-			oForm.bindElement( { 
-				path: iPartsPath, 
-				events : {
-					change: this._onBindingChange.bind(this),
-					dataRequested: function (oEvent) {
-						this.oView.setBusy(true);
-					},
-					dataReceived: function (oEvent) {
-						this.oView.setBusy(false);
-					}
-				}
-			}); 
-			
+		
 			var _mainModelRaw = this._oModel.getData().children[0];
 			// navigate to part branch and extract data
 			var _rawSystemData = _mainModelRaw._tagMeasurementPartsHook.children[this.partIdx];			
@@ -216,10 +237,31 @@ sap.ui.define([
 			// build editor context
 			this.buildEditorContext(_rawSystemData, _oSysCodeEditor);			
 			
-			// --- build properties list
-			var _propertiesArea = this.oView.byId("partProperties");
+			// --- build properties list				
 			_propertiesArea.destroyContent();
 			this._writeAllPropertyLines(_propertiesArea, _rawSystemData);
+
+			// --- disable "next" XML block for the last result
+			var nextBlockBt = this.oView.byId("nextBlock");			
+			if (this._resultSelected) {
+				var resIndx = Number.parseInt(this._resultSelected.substr("resultid/".length, this._resultSelected.length));
+				if (resIndx < this._oModel.getData().children[0]._tagMeasurementResultsHook.childElementCount - 1) {
+					nextBlockBt.setEnabled(true);
+					nextBlockBt.setTooltip("");
+				} else {
+					nextBlockBt.setEnabled(false);
+					nextBlockBt.setTooltip(this._translate("i18n>xml.button.bottom"));
+				}
+			} else {			
+				//if (this.partIdx < this._oModel.getData().children[0]._tagMeasurementPartsHook.childElementCount - 1) {					
+					nextBlockBt.setTooltip("");
+					nextBlockBt.setEnabled(true);
+				/* } else {
+					nextBlockBt.setTooltip(this._translate("i18n>xml.button.bottom"));
+					nextBlockBt.setEnabled(false);
+				} */
+			}
+			// console.log("Part index = " + this.partIdx + ", Part count = " +  this._oModel.getData().children[0]._tagMeasurementPartsHook.childElementCount);
 		},
 
 		_getTuuntText: function (engine, metric) {
@@ -442,23 +484,30 @@ sap.ui.define([
 			var resLine = 0;
 			var labelUiText;
 
-			while (resLine < _result.children.length) {
-				var curResult = _result.children[resLine];
-				if (curResult) {
-					labelUiText = this._getTagTranslation(curResult.tagName, curResult.textContent);
-					if (typeof labelUiText !== "string") {
-						labelUiText = curResult.tagName;
+			if (_result && _result.childElementCount > 0) {
+				while (resLine < _result.children.length) {
+					var curResult = _result.children[resLine];
+					if (curResult) {
+						labelUiText = this._getTagTranslation(curResult.tagName, curResult.textContent);
+						if (typeof labelUiText !== "string") {
+							labelUiText = curResult.tagName;
+						}
+						labelUiText = this._translate(labelUiText);
+						mainArea.addContent(
+							new ResultLine ({
+								// title: labelUiText,
+								label: labelUiText,
+								tag: curResult.tagName,
+								text: curResult.innerHTML,
+								skipTopMargin: true }) );
 					}
-					labelUiText = this._translate(labelUiText);
-					mainArea.addContent(
-						new ResultLine ({
-							// title: labelUiText,
-							label: labelUiText,
-							tag: curResult.tagName,
-							text: curResult.innerHTML,
-							skipTopMargin: true }) );
+					resLine++;
 				}
-				resLine++;
+			} else {
+				mainArea.removeAllContent();
+				mainArea.addContent(
+					new Label ({ text: this._translate("i18n>model.result.noData.text") })
+				);
 			}
 		},
 		
@@ -550,8 +599,14 @@ sap.ui.define([
 			return resVal;
 		},
 
-		_buildResultList: function (isFirstBlock) {			
+		_buildResultList: function (isFirstBlock) {
+			// console.log("Called buildResultList, isFirstBock=" + isFirstBlock);
+			// console.trace();			
 			var resultIdx = this._getCorrespondingResultIndex(this.partIdx);
+
+			// drop down selector
+			var ddList = this.oView.byId("drop");
+			ddList = this._getCodeSelector(ddList, "part/" + this.partIdx, "resultid/" + resultIdx);			
 
 			// navigate to part branch and extract data
 			var _mainModelRaw = this._oModel.getData().children[0];
@@ -613,11 +668,11 @@ sap.ui.define([
 				if (curResult.childElementCount == 0) {
 					// handle <PartId>1</PartId>
 					resType = _RESULT_TYPES.PartId;
-					
-					title = new Title ({ text: this._translate("i18n>model.parts.part.partId.text"), level: "H3" });
-					title.addStyleClass(_TITLE_CSS);
+
+					title = new Label ({ text: this._translate("i18n>model.parts.part.partId.text"), design: sap.m.LabelDesign.Bold, wrapping: true });
+					// title.addStyleClass(_TITLE_CSS);
 					title.addStyleClass("sapUiTinyMarginTop");
-					displayedElements.push(title);
+					displayedElements.push(title); 
 					
 					displayedElements.push(
 						new ResultLine ({
@@ -948,7 +1003,7 @@ sap.ui.define([
 							displayedElements.push(title);
 						} 
 
-						// Do we have a new ENGC .... XXXX block? If so, render a headline with the engine number
+						// Do we have a new ENGS .... XXXX block? If so, render a headline with the engine number
 						if (curResVal[_POS_RES_VAL.GenId] !== prevResVal[_POS_RES_VAL.GenId] ) {
 							title = new ClearLine({ style: "elxCL1" }); 
 							displayedElements.push(title);			
@@ -1880,17 +1935,33 @@ sap.ui.define([
 				area.destroyContent(); 
 			}
 
+			var moreButton = this.oView.byId("moreButton");				
 			if (!resultArray || resultArray.length == 0) {
+				area.removeAllContent();
 				// there are no results
 				var hlTitle = new Title ({ text:  this._translate("i18n>result.noData.text"), level: "H4"  });
 				hlTitle.addStyleClass("results");
 				area.addContent(hlTitle);
+				moreButton.setVisible(false);
+				moreButton.setText("Ich bin eigentlich unsichtbar :-("); 
 				return;
 			} else {
 				if (isFirstBlock) {
-					var hlTitle = new Title ({ text:  this._translate("i18n>model.results.text"), level: "H2"  });
+					var hlTitle = new Title ({ text:  this._translate("i18n>part.page.title.text") });
 					hlTitle.addStyleClass("results");
-					area.addContent(hlTitle);			
+					area.addContent(hlTitle);		
+					
+					var moreButton = this.oView.byId("moreButton");						
+					if (resultArray.length > _firstLinesToShow) {
+						moreButton.setVisible(true);												
+						moreButton.setText(this._formatTranslation(
+												this._translate("i18n>result.more.button.text.N"),
+												_firstLinesToShow,
+												resultArray.length	
+						));
+					} else {
+						moreButton.setVisible(false);
+					}
 				} 
 			}
 	
@@ -1932,18 +2003,6 @@ sap.ui.define([
 					resItemIdx++;
 				}
 			}
-
-			if (resItemIdx < resultArray) {
-				area.addEventListener("moreItems", this.addItems, false);
-			}
-
-			/* 
-			var oList = new List( { id: "dList", width: "100%", growing: true, growingScrollToLoad: true, growingThreshold: 20 } );
-			oList.setGrowing(true);
-			oList.setGrowingScrollToLoad(true);
-			oList.setGrowingThreshold(20); */
-
-			// console.log("Finished building UI ");
 		},
 	
 		backToSystem: function (oEvent) {
@@ -1955,37 +2014,76 @@ sap.ui.define([
 		},
 
 		navToPrevBlock: function() {
-			var _iPartIndex = parseInt(this.partIdx) - 1;
-			var _iSysIndex = this._getCorrespondingSystem(_iPartIndex);
-			if (_iPartIndex >= 0) {				
-				// navigate to part with current index - 1
-				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);		
-				oRouter.navTo("resultid", {
-					resultId: _iPartIndex
-				});
+			if (this._resultSelected) {
+				// next result, not next part (as it may have no results)!
+				var resIndx = Number.parseInt(this._resultSelected.substr("resultid/".length, this._resultSelected.length));
+				if (resIndx > 0) {
+					// navigate to previous result
+					resIndx = resIndx - 1;
+					this._resultSelected = "resultid/" + resIndx;
+					this.navigateToResultIndex(resIndx);
+				} else {
+					// navigate to last part and reset result selection
+					this.resetResultSelection();
+					var _iPartIndex = this._oModel.getData().children[0]._tagMeasurementResultsHook.childElementCount;
+					this.navigateToPartIndex(_iPartIndex);
+				}
 			} else {
-				// navigate to system with highest index
-				var systemCount = this.iSystemsCount - 1;
-				this.oRouter.navTo("system", {
-					sysIndex: systemCount
-				});
+				var _iPartIndex = parseInt(this.partIdx) - 1;
+				// var _iSysIndex = this._getCorrespondingSystem(_iPartIndex);
+				if (_iPartIndex >= 0) {								
+					// navigate to part with current index - 1				
+					var address = this.navigateToPartIndex(_iPartIndex);	
+				} else {
+					this.resetResultSelection();
+					// navigate to system with highest index
+					var systemCount = this.iSystemsCount - 1;
+					this.oRouter.navTo("system", {
+						sysIndex: systemCount
+					});
+				}
+			}
+		},
+		
+		navToNextBlock: function() {	
+			if (this._resultSelected) {
+				// next result, not next part (as it may have no results)!
+				var resIndx = Number.parseInt(this._resultSelected.substr("resultid/".length, this._resultSelected.length));
+				if (resIndx < this._oModel.getData().children[0]._tagMeasurementResultsHook.childElementCount -1) {
+					this._resultSelected = "resultid/" + (resIndx + 1);
+					this.navigateToResultIndex(resIndx + 1);
+				}
+			} else {			
+				var _iPartIndex = parseInt(this.partIdx) + 1;
+				if (_iPartIndex >= this._oModel.getData().children[0]._tagMeasurementPartsHook.childElementCount) {
+					// first result
+					this._resultSelected = "resultid/0";
+					this.navigateToResultIndex(0);
+				} else {
+					// next part
+					var address = this.navigateToPartIndex(_iPartIndex);
+				}
 			}
 		},
 
 		onNavLoad: function() {
+			this.resetResultSelection();
 			this.oRouter.navTo("intro");
 		},
 
 		onNavAll: function() {
+			this.resetResultSelection();
 			this.oRouter.navTo("elements");
 		},
 
 		onNavSystemList: function() {
+			this.resetResultSelection();
 			this.oRouter.navTo("systems");
 
 		},
 
 		onNavSystem: function() {
+			this.resetResultSelection();
 			this.oRouter.navTo("system", {
 				sysIndex: this.sysIdx 
 			});

@@ -24,32 +24,29 @@
 						</Breadcrumbs>										
 
 						<ToolbarSpacer />						
-						<Label text="{i18n>part.button.label.text}"/>
-						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextBlock" id="nextBlock" />
+						<Label text="{i18n>part.button.label.text}"/>												
+						<Select id="drop" width="18rem" change="onDropDownSelect"/>
 						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevBlock" />	
-						<Select id="drop" width="18rem"/>
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextBlock" id="nextBlock" />						
 					</OverflowToolbar>
 				</subHeader>
 				<content>
 					<!-- Properties Part -->
 						<cols:EqualWidthColumns id="selectedPart">
 							<cols:content>	
-								<Panel>
-									<Title text="{i18n>properties.propsSection.title}" level="H2" class="results" />
+								<Panel headerText="{i18n>properties.propsSection.title}" width="100%">
 									<l:VerticalLayout id="partProperties" width="100%"></l:VerticalLayout>
 								</Panel>
 							</cols:content>
 							<cols:content>
-								<Panel>													
-									<Title text="{i18n>xml.headerText}" level="H2" class="results" />
+								<Panel headerText="{i18n>xml.headerText}">
 									<ce:CodeEditor id="propertiesCE" type="xml" class="wattEditorContainer"/>							 	
 								</Panel>
 							</cols:content>
 						</cols:EqualWidthColumns>
 
 						<l:VerticalLayout id="resultList" width="100%" class="sapUiSmallMargin" />
-
-						<BusyIndicator size="1.5rem" id="busyInd"/>														
+						<Button text="{i18n>result.more.button.text}" id="moreButton" press="showAllResults" class="moreButton"/>
 				</content>									
 			</Page>
 		</pages>

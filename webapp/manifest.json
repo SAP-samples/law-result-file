@@ -223,17 +223,19 @@
 					"viewType": "XML",
 					"viewName": "Results",
 					"viewId": "results",
-					"viewLevel": 5
+					"viewLevel": 4
 				},
 				"Resultid": {
 					"viewType": "XML",
 					"viewName": "Resultid",
 					"viewId": "resultid",
-					"viewLevel": 5
+					"viewLevel": 4
 				},
 				"XmlCode": {
 					"viewType": "XML",
-					"viewName": "XmlCode"
+					"viewName": "XmlCode",
+					"transition": "slide",
+					"viewLevel": 3
 				}
 			}
 		}
