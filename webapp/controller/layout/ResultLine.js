@@ -10,6 +10,7 @@ sap.ui.define("controller/layout/ResultLine", [
 	var _renderStyle = 1;	// space at the edges: render left column with right alignment and right column with left alignment
 	
 	/* This Control will render a headline and the corresponding tags */
+	// LC = left column, RC = right column, LA = left align, RA = right align
 	
 	var ResultLine = Control.extend("controller/layout/ResultLine", {
 		
@@ -287,8 +288,9 @@ sap.ui.define("controller/layout/ResultLine", [
 		        if (oTag && oTag !== "") {
 					if (_isDebugMode) { oArea.write("<!-- (2.2) -->"); }
 			// HTML line 7					
-			        oArea.write("<div class='elxRlTxt sapMStdTileInfoError'"); 
-		            oArea.addStyle("flex", "none");
+			        oArea.write("<div class='elxRlTxt'"); // .ace_meta.ace_tag'"); 
+					oArea.addStyle("flex", "none");
+					oArea.addStyle("color", "rgb(28, 2, 255)");					
 			        oArea.writeStyles();
 					oArea.write(">");
 					oArea.writeEscaped("<");
@@ -308,8 +310,9 @@ sap.ui.define("controller/layout/ResultLine", [
 					if (_isDebugMode) { oArea.write("<!-- (2.4) -->"); }
 			// HTML line 9						
 			        //oArea.write("<div class='elxRlTxt sapMOnePersonNowMarker'");
-			        oArea.write("<div class='elxRlTxt sapMStdTileInfoError'");
-		            oArea.addStyle("flex", ".5");
+			        oArea.write("<div class='elxRlTxt'"); // .ace_meta.ace_tag'");
+					oArea.addStyle("flex", ".5");
+					oArea.addStyle("color", "rgb(28, 2, 255)");
 		            oArea.addStyle("text-align", "left");
 			        oArea.writeStyles();
 					oArea.write(">");
@@ -337,11 +340,6 @@ sap.ui.define("controller/layout/ResultLine", [
 	    }
 
 	}); // end renderer
-	
-	
-	// MUST be a public variable: STYLE!
-	// LC = left column, RC = right column, LA = left align, RA = right align
-	ResultLine.STYLES = "HALLO"; // { "LC_Label_L3_LA": "elxSrlDivL", "LC_Label_L3_LA": "elxSrlDivB" };
-	
+
 	return ResultLine;
 });
