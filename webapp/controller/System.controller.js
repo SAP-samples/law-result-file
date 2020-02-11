@@ -32,6 +32,11 @@ sap.ui.define([
 			// if any condition fails route back to start
 			var oArgs = oEvent.getParameter("arguments");
 			this._sysIndex = oEvent.getParameter("arguments").sysIndex;
+
+			// console.log("onRouteMatched system index=" + this._sysIndex);
+			var ddList = this.oView.byId("drop");
+			ddList = this._getCodeSelector(ddList, "system/" + this._sysIndex);	
+
 			this._sBindingPath = "/Systems/System/" + this._sysIndex;
 			// get raw data from model
 			var _mainModelRaw = this._oModel.getData().children[0];
@@ -84,11 +89,7 @@ sap.ui.define([
 			_exportTable.bindItems({
 				path: sComponentBindingPath,
 				template: exportTableTemplate
-			});
-
-			var ddList = this.oView.byId("drop");
-			ddList = this._getCodeSelector(ddList);
-			ddList.setSelectedKey("header");
+			});		
 		},
 		
 		resultCount: function (sPartId) {
@@ -135,7 +136,7 @@ sap.ui.define([
 			});
 		},
 
-		navToNextBlock: function() {
+		navToNextBlock: function() {			
 			var _iSysTarget = parseInt(this._sysIndex) + 1;
 			if (_iSysTarget <= (this.iSystemsCount - 1)) {
 				// next system
@@ -144,15 +145,11 @@ sap.ui.define([
 				});
 			} else {
 				// first part
-				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-				var resultId  = "0";			
-				oRouter.navTo("resultid", {
-					resultId: resultId				
-				});
+				this.navigateToPartIndex(0);
 			}
 		}, 
 
-		navToPrevBlock: function() {
+		navToPrevBlock: function() {			
 			var _iSysTarget = parseInt(this._sysIndex) - 1;
 			if (_iSysTarget >= 0) {
 				this.oRouter.navTo("system", {

@@ -133,4 +133,9 @@ END TEST ONLY -- */
 	flex-grow: 1;
 }
 
+.moreButton {
+	padding-left: 10rem;
+	padding-bottom: 5rem;
+}
+
 /* --- END --- ACE Editor related setting */
