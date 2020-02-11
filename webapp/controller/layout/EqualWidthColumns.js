@@ -5,7 +5,7 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 	"use strict";
 	
 	// if _isDebugMode is true, additional HTML comments are written to facilitate the analysis of the generated HMTL code
-	var _isDebugMode = false;
+	var _isDebugMode = true;
 	
 	/* This Control will render <div> tags for two or multiple columns with equal width. The rendered HTML/CSS is this (example)
 	// root:
