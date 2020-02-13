@@ -21,7 +21,7 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 		
 	    metadata : {
 	    	properties: { 
-	    		use		: { type: "string" } // use = 'text' results in a padding of 1 em to the right, otherwise 0
+	    		// use		: { type: "string" } // use = 'text' results in a padding of 1 em to the right, otherwise 0
 	    	},
 	        // example: could have  "boxColor" : "string"  // the color to use for ... 
 	      
@@ -57,22 +57,17 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 		            } else {
 						oRm.addStyle("flex", "3");
 						oRm.addStyle("overflow", "hidden");
-		            }
+		            }					
 					oRm.addStyle("padding", "0em");
-					try {					
-						if (oControl.getUse() && oControl.getUse().toLowerCase() === "text") {
-							oRm.addStyle("margin-right", "1em");
-							// console.log("Found usecase for use-property");
-						}
-					} catch (err) {
-						// no property use available; ok
-					}
 					oRm.addClass("EWC_L2");
 		            // oRm.addStyle("border", "1px solid black"); // specify the border around the child - for development only
 		            oRm.writeStyles();
-		            oRm.write(">");
-		            oRm.renderControl(aChildren[i]);   // render the child Control
-		                                               // (could even be a big Control tree, but you don't need to care)
+					oRm.write("><!-- ok child " + i + " -->");
+					try {
+		            	oRm.renderControl(aChildren[i]);   // render the child Control
+					} catch (err) {
+						// we saw some exceptions "Assertion failed: Method 'class' must be called with exactly one class name"
+					}
 					if (_isDebugMode) { oRm.write("<!-- EWC 3. (Lev 2 close), child " + i + " -->"); }
 		            oRm.write("</div>"); // end of the box around the respective child
 		        }
