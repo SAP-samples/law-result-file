@@ -72,7 +72,9 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 		            oRm.write("</div>"); // end of the box around the respective child
 		        }
 		        
-		        if (_isDebugMode) { oRm.write("<!-- EWC 4. (Lev 1 close), child " + i + " -->"); }
+		        if (_isDebugMode) { 
+					oRm.write("<!-- EWC 4. (Lev 1 close), child " + i + " -->"); 
+				}
 		        oRm.write("</div>"); // end of the complete Control
 		    }
 	    }, 
