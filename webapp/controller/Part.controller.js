@@ -1986,12 +1986,12 @@ sap.ui.define([
 					var panR = new VerticalLayout( { width: "100%" });
 					panR.addStyleClass("sapUiTinyMargin");
 					
-					var plh = new Label( { text: resultArray[resItemIdx][2] });
-					panR.addContent(plh);
+					/* var plh = new Label( { text: resultArray[resItemIdx][2] });
+					panR.addContent(plh); */
 
-					/* var codeEditor = new CodeEditor(); 
+					var codeEditor = new CodeEditor(); 
 					this.buildEditor (codeStr, codeEditor, resultArray[resItemIdx][2]);
-					panR.addContent(codeEditor); */					
+					panR.addContent(codeEditor); 
 
 					// var twoCol = new HorizontalLayout();
 					var twoCol = new EqualWidthColumns();					

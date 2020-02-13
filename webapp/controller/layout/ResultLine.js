@@ -125,7 +125,11 @@ sap.ui.define("controller/layout/ResultLine", [
 			        // oResLine.addContent(oLabel);
 				} else {
 					// empty cell
-					if (_isDebugMode) { oArea.write("<div>.</div><!-- 1.3 has no title/label -->"); }
+					if (_isDebugMode) { 
+						oArea.write("<div");
+						oArea.writeControlData(oResLine);
+						oArea.write(">.</div><!-- 1.3 has no title/label -->"); 
+					}
 				}
 			
 			// HMTL line 4
@@ -227,6 +231,7 @@ sap.ui.define("controller/layout/ResultLine", [
 					if (_isDebugMode) { oArea.write("<!-- (1.3) -->");	}
 			// HMTL line 3					
 					oArea.write("<div class='elxRlCol1' ");
+					//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 					oArea.addStyle("flex", "1"); // flex: 1 causes an align right as this cell uses all empty space
 					oArea.writeStyles();
 					oArea.write(">"); 
@@ -240,12 +245,11 @@ sap.ui.define("controller/layout/ResultLine", [
 			        	if (_isDebugMode) { oArea.write("<!-- (1.4 > Start Child " + i + ") -->"); }
 					// HMTL line 4 > Child Start
 			            // render the colored box around them
-			            oArea.write("<div "); // id='" + oResLine.getId() + "-sub-" + i + "'");
+						oArea.write("<div "); // id='" + oResLine.getId() + "-sub-" + i + "'");
+						//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 			            oArea.addStyle("flex", "1"); // flex: 1 causes an align right as this cell uses all empty space
 			            oArea.addStyle("padding-right", "1em");
-	
-			            		// oArea.addStyle("background-color", "#2196F3");
-			            
+	            		// oArea.addStyle("background-color", "#2196F3");         
 			            // oArea.addStyle("border", "1px solid black"); // specify the border around the child - for development only
 			            oArea.writeStyles();
 			            oArea.write(">");
@@ -275,6 +279,7 @@ sap.ui.define("controller/layout/ResultLine", [
 				if (_isDebugMode) { oArea.write("<!-- (2.1) -->"); }
 			// HMTL line 6
 				oArea.write("<div class='" + oDivClass + "' ");
+				//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 	
 	        	//  oArea.write("<div ");
 	            oArea.addStyle("flex", "none");
@@ -288,7 +293,8 @@ sap.ui.define("controller/layout/ResultLine", [
 		        if (oTag && oTag !== "") {
 					if (_isDebugMode) { oArea.write("<!-- (2.2) -->"); }
 			// HTML line 7					
-			        oArea.write("<div class='elxRlTxt'"); // .ace_meta.ace_tag'"); 
+					oArea.write("<div class='elxRlTxt'"); // .ace_meta.ace_tag'"); 
+					//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 					oArea.addStyle("flex", "none");
 					oArea.addStyle("color", "rgb(28, 2, 255)");					
 			        oArea.writeStyles();
@@ -301,6 +307,7 @@ sap.ui.define("controller/layout/ResultLine", [
 					if (_isDebugMode) { oArea.write("<!-- (2.3) -->"); }
 			// HTML line 8					
 					oArea.write("<div class='elxRlTxt' ");
+					//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 		            oArea.addStyle("flex", "none");
 			        oArea.writeStyles();
 					oArea.write(">");
@@ -310,7 +317,8 @@ sap.ui.define("controller/layout/ResultLine", [
 					if (_isDebugMode) { oArea.write("<!-- (2.4) -->"); }
 			// HTML line 9						
 			        //oArea.write("<div class='elxRlTxt sapMOnePersonNowMarker'");
-			        oArea.write("<div class='elxRlTxt'"); // .ace_meta.ace_tag'");
+					oArea.write("<div class='elxRlTxt'"); // .ace_meta.ace_tag'");
+					//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 					oArea.addStyle("flex", ".5");
 					oArea.addStyle("color", "rgb(28, 2, 255)");
 		            oArea.addStyle("text-align", "left");
@@ -324,6 +332,7 @@ sap.ui.define("controller/layout/ResultLine", [
 						if (_isDebugMode) { oArea.write("<!-- (2.5) -->"); }
 			// HTML line 8					
 						oArea.write("<div class='elxRlTxt' ");
+						//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 			            oArea.addStyle("flex", "none");
 				        oArea.writeStyles();
 						oArea.write(">");

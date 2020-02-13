@@ -50,7 +50,8 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 					if (_isDebugMode) { 
 						oRm.write("<!-- EWC 2. (Lev 2 open), child " + i + " -->"); 						
 					}
-					oRm.write("<div");					
+					oRm.write("<div");	
+					oRm.writeControlData(oControl);				
 		            if (i === 0) {
 						oRm.addStyle("flex", "4");
 						oRm.addStyle("overflow", "hidden");						
