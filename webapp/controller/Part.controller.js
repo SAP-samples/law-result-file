@@ -680,9 +680,7 @@ sap.ui.define([
 							tag: curResult.nodeName,
 							text: curResult.innerHTML,
 							skipTopMargin: true}) );	
-					resultElement = new Array (displayedElements, // codeStr, 
-						this._translate("i18n>model.parts.part.partId.text"),
-						resBlockStartLine, resType);
+					resultElement = new Array (displayedElements, codeStr, resBlockStartLine, resType);
 					resultArray.push(resultElement);
 					
 					// reset 
@@ -1933,9 +1931,8 @@ sap.ui.define([
 			var items = new ListItemBase(); */
 			
 			var area = this.oView.byId("resultList");
-			if (isFirstBlock) {
-				area.destroyContent(); 
-			}
+			area.destroyContent(); 
+			
 
 			var moreButton = this.oView.byId("moreButton");				
 			if (!resultArray || resultArray.length == 0) {
@@ -1968,12 +1965,8 @@ sap.ui.define([
 			}
 	
 			var resItemIdx;
-			if (isFirstBlock) {
-				resItemIdx = 0;
-			} else {
-				resItemIdx = _firstLinesToShow;
-			}
-
+			resItemIdx = 0;
+			
 			while (resItemIdx < resultArray.length) {
 				if (isFirstBlock && resItemIdx >= _firstLinesToShow) {
 					break;
@@ -1996,7 +1989,9 @@ sap.ui.define([
 					this.buildEditor (codeStr, codeEditor, resultArray[resItemIdx][2]);
 					panR.addContent(codeEditor);
 					
-					var twoCol = new EqualWidthColumns();
+
+					// var twoCol = new HorizontalLayout();
+					var twoCol = new EqualWidthColumns();					
 					twoCol.addContent(panL);
 					twoCol.addContent(panR);
 					/* var nextItem = new CustomListItem (resItemIdx);
