@@ -680,7 +680,9 @@ sap.ui.define([
 							tag: curResult.nodeName,
 							text: curResult.innerHTML,
 							skipTopMargin: true}) );	
-					resultElement = new Array (displayedElements, codeStr, resBlockStartLine, resType);
+					resultElement = new Array (displayedElements, // codeStr, 
+						this._translate("i18n>model.parts.part.partId.text"),
+						resBlockStartLine, resType);
 					resultArray.push(resultElement);
 					
 					// reset 
