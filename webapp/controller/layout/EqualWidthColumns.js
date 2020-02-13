@@ -58,9 +58,14 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 						oRm.addStyle("flex", "3");
 						oRm.addStyle("overflow", "hidden");
 		            }
-		            oRm.addStyle("padding", "0em");
-		            if (oControl.getUse() && oControl.getUse().toLowerCase() === "text") {
-		            	oRm.addStyle("margin-right", "1em");
+					oRm.addStyle("padding", "0em");
+					try {					
+						if (oControl.getUse() && oControl.getUse().toLowerCase() === "text") {
+							oRm.addStyle("margin-right", "1em");
+							// console.log("Found usecase for use-property");
+						}
+					} catch (err) {
+						// no property use available; ok
 					}
 					oRm.addClass("EWC_L2");
 		            // oRm.addStyle("border", "1px solid black"); // specify the border around the child - for development only
