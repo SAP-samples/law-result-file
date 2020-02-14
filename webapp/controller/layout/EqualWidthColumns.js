@@ -5,7 +5,7 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 	"use strict";
 	
 	// if _isDebugMode is true, additional HTML comments are written to facilitate the analysis of the generated HMTL code
-	var _isDebugMode = true;
+	var _isDebugMode = false;
 	
 	/* This Control will render <div> tags for two or multiple columns with equal width. The rendered HTML/CSS is this (example)
 	// root:
@@ -36,7 +36,7 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 		        // instead of "this" in the renderer function
 		        if (_isDebugMode) { oRm.write("<!-- EWC 1. (Lev 1 open) -->"); }
 		        oRm.write("<div");
-				oRm.writeControlData(oControl);  // writes the Control ID and enables event handling - important!
+				// oRm.writeControlData(oControl);  // writes the Control ID and enables event handling - important!
 				oRm.addClass("EWC_L1");
 		        oRm.writeClasses();              // there is no class to write, but this enables
 		                                         // support for ColorBoxContainer.addStyleClass(...)
@@ -51,7 +51,7 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 						oRm.write("<!-- EWC 2. (Lev 2 open), child " + i + " -->"); 						
 					}
 					oRm.write("<div");	
-					oRm.writeControlData(oControl);				
+					// oRm.writeControlData(oControl);				
 		            if (i === 0) {
 						oRm.addStyle("flex", "4");
 						oRm.addStyle("overflow", "hidden");						
