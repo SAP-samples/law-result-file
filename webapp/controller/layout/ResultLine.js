@@ -83,7 +83,7 @@ sap.ui.define("controller/layout/ResultLine", [
 			// -------------- left column part ('labels') --------------------------------------------------------
 			
 			// HMTL line 1
-				if (_isDebugMode) { oArea.write("<!-- (1.1) -->"); }
+				if (_isDebugMode) { oArea.write("<!-- (L1 open div |1.1) -->"); }
 				oArea.write("<div class='elxSrlDivL' ");
 				if (!oResLine.getSkipTopMargin() || oResLine.getSkipTopMargin() == false) {
 	        		oArea.addStyle("padding-top", "1em");
@@ -95,16 +95,16 @@ sap.ui.define("controller/layout/ResultLine", [
 		        oArea.write(">");
 		        
 			 // HMTL line 2
-				if (_isDebugMode) { oArea.write("<!-- (1.2) -->"); }
+				if (_isDebugMode) { oArea.write("<!-- (L2 open span |1.2) -->"); }
 				
 				oArea.write("<span class='elxSrlSpanL" + styleSuffix + "' ");
 	        	oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 				oArea.writeStyles();
 		        oArea.write(">");			
 		        
-		     // HMTL line 3
-		    	if (_isDebugMode) { oArea.write("<!-- (1.3) -->"); }
+		     // HMTL line 3		    	
 				if (oResLine.getTitle() && oResLine.getTitle() !== "") {
+					if (_isDebugMode) { oArea.write("<!-- (L3 Title |1.3) -->"); }
 			        // write title as a ui5 title element
 					// Originally generated HMTL:
 					// <div id="__title0" data-sap-ui="__title0" role="heading" class="sapMTitle sapMTitleStyleAuto sapMTitleNoWrap sapUiSelectable sapMTitleMaxWidth"><span id="__title0-inner">Deleted Users</span></div>
@@ -120,11 +120,13 @@ sap.ui.define("controller/layout/ResultLine", [
 			        oArea.renderControl(oTitle);
 			        //oResLine.addContent(oTitle);
 				} else if (oResLine.getLabel() && oResLine.getLabel() !== "") {
+					if (_isDebugMode) { oArea.write("<!-- (L3 Label |1.3) -->"); }
 					var oLabel = new sap.m.Label({ text : oResLine.getLabel(), wrapping: true });
 					oArea.renderControl(oLabel);
 			        // oResLine.addContent(oLabel);
 				} else {
 					// empty cell
+					if (_isDebugMode) { oArea.write("<!-- (L3 Empty |1.3) -->"); }
 					if (_isDebugMode) { 
 						oArea.write("<div");
 						oArea.writeControlData(oResLine);
@@ -133,12 +135,12 @@ sap.ui.define("controller/layout/ResultLine", [
 				}
 			
 			// HMTL line 4
-				if (_isDebugMode) { oArea.write("<!-- (1.4) -->"); }
+				if (_isDebugMode) { oArea.write("<!-- (L1+2 close |1.4) -->"); }
 				oArea.write("</span></div>");		
 
 			// -------------- right column part ('tabs/values') --------------------------------------------------------
 			// HMTL line 5
-				if (_isDebugMode) { oArea.write("<!-- (1.5) -->"); }
+				if (_isDebugMode) { oArea.write("<!-- (L1 open div |1.5) -->"); }
 				oArea.write("<div class='elxSrlDivR' ");
 				if (!oResLine.getSkipTopMargin() || oResLine.getSkipTopMargin() == false) {
 	        		oArea.addStyle("padding-top", "1em");
@@ -150,7 +152,7 @@ sap.ui.define("controller/layout/ResultLine", [
 		        oArea.write(">");
 		        
 		    // HMTL line 6
-				if (_isDebugMode) { oArea.write("<!-- (1.6) -->"); }
+				if (_isDebugMode) { oArea.write("<!-- (L2 open span |1.6) -->"); }
 				oArea.write("<span class='elxSrlSpanR" + styleSuffix + "' ");	
 	        	oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 				oArea.writeStyles();
@@ -160,7 +162,7 @@ sap.ui.define("controller/layout/ResultLine", [
 				this.writeTag("elxRlCol2", oResLine.getTag(), oResLine.getText(), oArea) ;
 
 			// HMTL line 8
-				if (_isDebugMode) { oArea.write("<!-- (1.7) -->"); }
+				if (_isDebugMode) { oArea.write("<!-- (L1+2 close |1.7) -->"); }
 				oArea.write("</span></div>");	
 	    	},
 	    	
@@ -276,7 +278,7 @@ sap.ui.define("controller/layout/ResultLine", [
 		    }, 
 
 			writeTag: function (oDivClass, oTag, oText, oArea) {
-				if (_isDebugMode) { oArea.write("<!-- (2.1) -->"); }
+				if (_isDebugMode) { oArea.write("<!-- (L3 open div |2.1) -->"); }
 			// HMTL line 6
 				oArea.write("<div class='" + oDivClass + "' ");
 				//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
@@ -291,7 +293,7 @@ sap.ui.define("controller/layout/ResultLine", [
 					
 				// write TAG with content (and closing tag)
 		        if (oTag && oTag !== "") {
-					if (_isDebugMode) { oArea.write("<!-- (2.2) -->"); }
+					if (_isDebugMode) { oArea.write("<!-- (L4 open div |2.2) -->"); }
 			// HTML line 7					
 					oArea.write("<div class='elxRlTxt'"); // .ace_meta.ace_tag'"); 
 					//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
@@ -301,11 +303,12 @@ sap.ui.define("controller/layout/ResultLine", [
 					oArea.write(">");
 					oArea.writeEscaped("<");
 					oArea.writeEscaped(oTag);
-					oArea.writeEscaped(">");
+					oArea.writeEscaped(">");					
 					oArea.write("</div>");
-	
-					if (_isDebugMode) { oArea.write("<!-- (2.3) -->"); }
+					if (_isDebugMode) { oArea.write("<!-- (L4 close div |2.3) -->"); }					
+						
 			// HTML line 8					
+					if (_isDebugMode) { oArea.write("<!-- (L4 open div |2.4) -->"); }
 					oArea.write("<div class='elxRlTxt' ");
 					//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 		            oArea.addStyle("flex", "none");
@@ -313,9 +316,10 @@ sap.ui.define("controller/layout/ResultLine", [
 					oArea.write(">");
 					oArea.writeEscaped("" + oText);
 					oArea.write("</div>");
-	
-					if (_isDebugMode) { oArea.write("<!-- (2.4) -->"); }
+					if (_isDebugMode) { oArea.write("<!-- (L4 close div |2.5) -->"); }						
+					
 			// HTML line 9						
+					if (_isDebugMode) { oArea.write("<!-- (L4 open div |2.6) -->"); }
 			        //oArea.write("<div class='elxRlTxt sapMOnePersonNowMarker'");
 					oArea.write("<div class='elxRlTxt'"); // .ace_meta.ace_tag'");
 					//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
@@ -327,9 +331,10 @@ sap.ui.define("controller/layout/ResultLine", [
 					// oArea.write("&lt;/" + oResLine.getTag() + "&gt;");
 					oArea.write("&lt;/&gt;");
 					oArea.write("</div>");
+					if (_isDebugMode) { oArea.write("<!-- (L4 close div |2.7) -->"); }					
 				} else {
 					if (oText && oText !== "") {
-						if (_isDebugMode) { oArea.write("<!-- (2.5) -->"); }
+						if (_isDebugMode) { oArea.write("<!-- (L4 open div |2.8) -->"); }
 			// HTML line 8					
 						oArea.write("<div class='elxRlTxt' ");
 						//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
@@ -338,13 +343,14 @@ sap.ui.define("controller/layout/ResultLine", [
 						oArea.write(">");
 						oArea.writeEscaped("" + oText);
 						oArea.write("</div>");
+						if (_isDebugMode) { oArea.write("<!-- (L4 close div |2.9) -->"); }					
 					}
 					
 				}
-				
-				if (_isDebugMode) { oArea.write("<!-- (2.6) -->"); }
+								
 			// HTML line 10						
 				oArea.write("</div>");
+				if (_isDebugMode) { oArea.write("<!-- (L3 close div |2.10) -->"); }	
 			} // end method write>Tag 
 	    }
 

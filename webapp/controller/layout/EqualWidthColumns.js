@@ -5,7 +5,7 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 	"use strict";
 	
 	// if _isDebugMode is true, additional HTML comments are written to facilitate the analysis of the generated HMTL code
-	var _isDebugMode = false;
+	var _isDebugMode = true;
 	
 	/* This Control will render <div> tags for two or multiple columns with equal width. The rendered HTML/CSS is this (example)
 	// root:
@@ -67,16 +67,18 @@ sap.ui.define("controller/layout/EqualWidthColumns", [
 					try {
 		            	oRm.renderControl(aChildren[i]);   // render the child Control
 					} catch (err) {
+						oRm.write("<!-- ");
+						oRm.writeEscaped(err.name + ": " + err.message);
+						oRm.write(" -->");
 						// we saw some exceptions "Assertion failed: Method 'class' must be called with exactly one class name"
-					}
+					}					
+					oRm.write("</div>"); // end of the box around the respective child
 					if (_isDebugMode) { oRm.write("<!-- EWC 3. (Lev 2 close), child " + i + " -->"); }
-		            oRm.write("</div>"); // end of the box around the respective child
 		        }
 		        
-		        if (_isDebugMode) { 
-					oRm.write("<!-- EWC 4. (Lev 1 close), child " + i + " -->"); 
-				}
-		        oRm.write("</div>"); // end of the complete Control
+		        
+				oRm.write("</div>"); // end of the complete Control
+				if (_isDebugMode) { oRm.write("<!-- EWC 4. (Lev 1 close), child " + i + " -->"); }
 		    }
 	    }, 
 	    
