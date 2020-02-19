@@ -1931,25 +1931,22 @@ sap.ui.define([
 			var items = new ListItemBase(); */
 			
 			var area = this.oView.byId("resultList");
-			area.destroyContent(); 
-			
+			// area.destroyContent(); 
+			area.removeAllContent();			
 
 			var moreButton = this.oView.byId("moreButton");				
-			if (!resultArray || resultArray.length == 0) {
-				area.removeAllContent();
+			if (!resultArray || resultArray.length == 0) {				
 				// there are no results
 				var hlTitle = new Title ({ text:  this._translate("i18n>result.noData.text"), level: "H4"  });
 				hlTitle.addStyleClass("results");
 				area.addContent(hlTitle);
-				moreButton.setVisible(false);
-				moreButton.setText("Ich bin eigentlich unsichtbar :-("); 
+				moreButton.setVisible(false);				
 				return;
 			} else {
-				if (isFirstBlock) {
-					var hlTitle = new Title ({ text:  this._translate("i18n>part.page.title.text") });
-					hlTitle.addStyleClass("results");
-					area.addContent(hlTitle);		
-					
+				var hlTitle = new Title ({ text:  this._translate("i18n>part.page.title.text") });
+				hlTitle.addStyleClass("results");
+				area.addContent(hlTitle);		
+				if (isFirstBlock) {	
 					var moreButton = this.oView.byId("moreButton");						
 					if (resultArray.length > _firstLinesToShow) {
 						moreButton.setVisible(true);												
