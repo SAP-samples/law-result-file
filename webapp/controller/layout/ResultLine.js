@@ -5,7 +5,7 @@ sap.ui.define("controller/layout/ResultLine", [
 	"use strict";
 	
 	// if _isDebugMode is true, additional HTML comments are written to facilitate the analysis of the generated HMTL code
-	var _isDebugMode = true;
+	var _isDebugMode = false;
 	// var _renderStyle = 0;	// space in the middle: render left column with left alignment and right column with right alignment
 	var _renderStyle = 1;	// space at the edges: render left column with right alignment and right column with left alignment
 	
