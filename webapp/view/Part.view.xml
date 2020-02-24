@@ -40,7 +40,7 @@
 							</cols:content>
 							<cols:content>
 								<Panel headerText="{i18n>xml.headerText}">
-									<ce:CodeEditor id="propertiesCE" type="xml" class="wattEditorContainer"/>							 	
+									<ce:CodeEditor id="propertiesCE" type="xml" class="wattEditorContainer" colorTheme="tomorrow"/>							 	
 								</Panel>
 							</cols:content>
 						</cols:EqualWidthColumns>

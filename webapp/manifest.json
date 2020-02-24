@@ -210,7 +210,7 @@
 				"System": {
 					"viewType": "XML",
 					"viewId": "System",
-					"viewName": "System",
+					"viewName": "system",
 					"viewLevel": 4
 				},
 				"Part": {

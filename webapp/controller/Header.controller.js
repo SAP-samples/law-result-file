@@ -27,7 +27,24 @@ sap.ui.define([
 			var _rawSystemData = _mainModelRaw._tagMeasurementHeaderHook;
 			var _oCodeEditor = this.byId("headerCodeEditor");
 			this.buildEditorContext(_rawSystemData, _oCodeEditor);
-			
+
+			/* for CodeEditor theme testing only
+			var testArea = this.oView.byId("test");	
+			var styles = [ "dreamweaver", "crimson_editor", "iplastic", "sqlserver", "textmate", "dawn",
+						"tomorrow", "theme-ambiance", "default", "github", "chrome", "xcode", "katzenmilch", "kuroir", "eclipse", "solarized_light", "clouds", 
+						"hcb", "hcb_bright", "hcb_blue", "chaos",  "clouds_midnight", "cobalt",   "gob", "gruvbox", "idle_fingers",  "kr_theme","merbivore", "merbivore_soft", "mono_industrial", "monokai", 
+						"pastel_on_dark", "solarized_dark", "terminal",  "tomorrow_night", "tomorrow_night_blue", "tomorrow_night_bright", "tomorrow_night_eighties", "twilight" ];
+			for (var i = 0; i < styles.length; i++) {
+				var vBox = new sap.m.CustomListItem();		
+
+				var newLb = new sap.m.Label( { text: styles[i]});
+				vBox.addContent(newLb);
+				var newEd = new sap.ui.codeeditor.CodeEditor( { id: styles[i], colorTheme: styles[i], type: "xml", editable: false, width: "400px" });
+				this.buildEditorContext(_rawSystemData, newEd);
+				vBox.addContent(newEd);
+				testArea.addItem(vBox);
+			} */
+
 			var porpPanel = this.oView.byId("propSec");			
 			var panL = new sap.ui.layout.VerticalLayout( { width: "100%" }); 
 			
@@ -79,8 +96,7 @@ sap.ui.define([
 
 			while (resLine < _result.children.length) {
 				var curResult = _result.children[resLine];
-				if (curResult) {
-					labelUiText = this._getTagTranslation(curResult.tagName, curResult.textContent);
+				if (curResult) {					labelUiText = this._getTagTranslation(curResult.tagName, curResult.textContent);
 					if (typeof labelUiText !== "string") {
 						labelUiText = curResult.tagName;
 					}

@@ -298,7 +298,8 @@ sap.ui.define("controller/layout/ResultLine", [
 					oArea.write("<div class='elxRlTxt'"); // .ace_meta.ace_tag'"); 
 					//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 					oArea.addStyle("flex", "none");
-					oArea.addStyle("color", "rgb(28, 2, 255)");					
+					// oArea.addStyle("color", "rgb(28, 2, 255)");					
+					oArea.addStyle("color", "#C82829");					
 			        oArea.writeStyles();
 					oArea.write(">");
 					oArea.writeEscaped("<");
@@ -324,7 +325,8 @@ sap.ui.define("controller/layout/ResultLine", [
 					oArea.write("<div class='elxRlTxt'"); // .ace_meta.ace_tag'");
 					//XX// oArea.writeControlData(oResLine);  // writes the Control ID and enables event handling - important!
 					oArea.addStyle("flex", ".5");
-					oArea.addStyle("color", "rgb(28, 2, 255)");
+					// oArea.addStyle("color", "rgb(28, 2, 255)");
+					oArea.addStyle("color", "#C82829");	
 		            oArea.addStyle("text-align", "left");
 			        oArea.writeStyles();
 					oArea.write(">");

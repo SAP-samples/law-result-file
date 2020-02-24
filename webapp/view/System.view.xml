@@ -101,7 +101,7 @@
 														value1: 'placeholder' }] 
 												}" width="100%" >
 												<f:customLayout> 
-													<grid:GridBoxLayout boxMinWidth="11rem" />
+													<grid:GridBoxLayout boxMinWidth="11rem" boxWidth="14rem" />
 												</f:customLayout>
 												<!-- <CustomListItem class="sapContrast noBreak " type="Navigation" press="onPartPressed"> -->
 												<CustomListItem class="sapContrast noBreak lawItem" type="Navigation" press="onPartPressed">
@@ -156,7 +156,7 @@
 							</l:VerticalLayout>
 
 							<Panel headerText="{i18n>xml.headerText}" class="column2">
-									<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="systemCodeEditor" />
+									<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="systemCodeEditor" colorTheme="tomorrow" />
 							 </Panel>
 						</cols:content>
 					</cols:EqualWidthColumns>							

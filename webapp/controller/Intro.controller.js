@@ -14,7 +14,9 @@ sap.ui.define([
 			this.getView().setModel(i18nModel, "i18n");
 		},
 
-		onUseExampleFile: function () {
+		onUseExampleFile: function () {			
+			// this.resetXmlBlockSelectors();
+
 			// load sample XML file and process it
 			var sampleModel = this.getOwnerComponent().getModel("sampleXML");
 			var _oModel = this.getOwnerComponent().getModel("userXML");
@@ -26,7 +28,9 @@ sap.ui.define([
 			oRouter.navTo("elements");
 		},
 
-		handleSelectXMLFile: function (oEvent) {
+		handleSelectXMLFile: function (oEvent) {		
+			// this.resetXmlBlockSelectors();
+
 			// select file 
 			if (oEvent.getParameter("files") && oEvent.getParameter("files")[0]) {
 				this._oFile = oEvent.getParameter("files")[0];
@@ -48,6 +52,30 @@ sap.ui.define([
 				};
 				oFileReader.readAsText(this._oFile);
 			}
-		}
+		},
+		
+		/* resetXmlBlockSelectors: function () {	
+			// this._selectorResetFlag = true;
+			
+			try {	
+				var drop = this.getView("header").byId("drop");				
+				drop.removeAllItems(); 
+				console.log("Cleaned drop-down selector of Header-View");
+			} catch (err) {
+				console.log("Can't clean drop-down selector of Header-View:" + err.message);				
+			}
+			try {	
+				this.getView("part").byId("drop").removeAllItems(); 
+				console.log("Cleaned drop-down selector of Part-View");
+			} catch (err) {				
+				console.log("Can't clean drop-down selector of Header-View:" + err.message);
+			}
+			try {	
+				this.getView("system").byId("drop").removeAllItems(); 
+				console.log("Cleaned drop-down selector of System-View");
+			} catch (err) {				
+				console.log("Can't clean drop-down selector of System-View:" + err.message);
+			} 
+		} */
 	});
 });

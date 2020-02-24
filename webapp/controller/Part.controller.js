@@ -871,6 +871,58 @@ sap.ui.define([
 							displayedElements = new Array();
 							resBlockStartLine = codeLine;	
 						} 						
+					} else if ("USRN" === curResVal[_POS_RES_VAL.GenId_F4]) {
+						hasMore	= ("USRN" === nextResVal[_POS_RES_VAL.GenId_F4]);
+
+						// render a general intro line on special user type/names
+						if ("USRN" !== prevResVal[_POS_RES_VAL.GenId_F4]) {		
+							title = new ClearLine({ style: "elxCL1" }); 
+							displayedElements.push(title);			
+
+							displayTxt = this._translate("i18n>result.usrn.txt");							
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							displayedElements.push(title);
+						} 
+
+						displayTxt = this._formatTranslation(
+										this._translate("i18n>result.usrn.id"),
+												curResVal[_POS_RES_VAL.GenId_L2]
+									);										
+						displayedElements.push(
+							new ResultLine ({
+								label: displayTxt,
+								tag: _KNOWN_TAGS.GenericId,
+								text: curResVal[_POS_RES_VAL.GenId],
+								skipTopMargin: false,
+								styleSuffix: "3" })  
+						);	
+
+						displayTxt = this._formatTranslation(
+							this._translate("i18n>result.usrn.name"),
+									curResVal[_POS_RES_VAL.GenId_L2],
+									curResVal[_POS_RES_VAL.At2]
+						);										
+						displayedElements.push(
+							new ResultLine ({
+								label: displayTxt,
+								tag: _KNOWN_TAGS.At2,
+								text: curResVal[_POS_RES_VAL.At2],
+								skipTopMargin: true,
+								styleSuffix: "3" })  
+						);	
+
+						prevResVal = curResVal;
+						if (hasMore) {							
+							codeStr = codeStr + "\n";
+						} else {							
+							// end result block handling
+							resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
+							resultArray.push(resultElement);
+							// reset 
+							codeStr = "";
+							displayedElements = new Array();
+							resBlockStartLine = codeLine;	
+						} 
 					} else if ("ENGC" === curResVal[_POS_RES_VAL.GenId_F4]) {
 						// is there a next item?
 						hasMore	= false; 
@@ -1986,7 +2038,7 @@ sap.ui.define([
 					/* var plh = new Label( { text: resultArray[resItemIdx][2] });
 					panR.addContent(plh); */
 
-					var codeEditor = new CodeEditor(); 
+					var codeEditor = new CodeEditor( { colorTheme: "tomorrow" }); 
 					this.buildEditor (codeStr, codeEditor, resultArray[resItemIdx][2]);
 					panR.addContent(codeEditor); 
 

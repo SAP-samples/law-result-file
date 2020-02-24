@@ -35,10 +35,19 @@
 						<cols:content>				
 							<Panel headerText="{i18n>header.propsSection.title.text}" id="propSec"/>
 							<Panel headerText="{i18n>xml.headerText}">
-								<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="headerCodeEditor" />
+								<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="headerCodeEditor" colorTheme="tomorrow"/>
 							 </Panel>
 						</cols:content>
-					</cols:EqualWidthColumns>									 
+					</cols:EqualWidthColumns>	
+
+					<!--  for CodeEditor theme testing only
+					<f:GridList  class="sapUxAPObjectPageSubSectionAlignContent" id="test" >			
+						<f:customLayout>
+							<grid:GridBoxLayout boxMinWidth="20rem"  />
+						</f:customLayout>
+					</f:GridList>
+					-->
+
 				</content>
 			</Page>
 		</pages>

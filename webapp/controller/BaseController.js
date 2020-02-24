@@ -311,7 +311,12 @@ sap.ui.define([
 			_oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 			var _mainModelRaw = this._oModel.getData().children[0];
 			
-			try {
+			if (oBlockSelector != null && oBlockSelector.getItems() != null && oBlockSelector.getItems().length > 0) {			
+				oBlockSelector.removeAllItems();
+			}
+
+			//  do not use this caching as it failed to be reseted in the Intro.controller method resetXmlBlockSelectors
+			/* try {
 				if (oBlockSelector != null && oBlockSelector.getItems() != null && oBlockSelector.getItems().length > 0) {							
 					if (selectedKey && selectedKey != "") {
 						oBlockSelector.setSelectedKey(selectedKey);
@@ -328,10 +333,10 @@ sap.ui.define([
 				}
 			} catch (err) {
 				// not properly initialized, will be done now
-			}
+			} */
 
 			// oBlockSelector = new sap.m.Select("blockSelector");
-			oBlockSelector.setShowSecondaryValues(true);
+			oBlockSelector.setShowSecondaryValues(true);			
 			
 			var nextItem, mainText, addText, i;
 
