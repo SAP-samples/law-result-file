@@ -209,30 +209,31 @@
 				},
 				"System": {
 					"viewType": "XML",
-					"viewId": "System",
-					"viewName": "system",
+					"viewId": "system",
+					"viewName": "System",
 					"viewLevel": 4
 				},
 				"Part": {
 					"viewType": "XML",
-					"viewName": "Part",
 					"viewId": "part",
+					"viewName": "Part",					
 					"viewLevel": 5
 				},
 				"Results": {
 					"viewType": "XML",
-					"viewName": "Results",
 					"viewId": "results",
+					"viewName": "Results",
 					"viewLevel": 4
 				},
 				"Resultid": {
 					"viewType": "XML",
-					"viewName": "Resultid",
 					"viewId": "resultid",
+					"viewName": "Resultid",
 					"viewLevel": 4
 				},
 				"XmlCode": {
 					"viewType": "XML",
+					"viewId": "xmlcode",
 					"viewName": "XmlCode",
 					"transition": "slide",
 					"viewLevel": 3
