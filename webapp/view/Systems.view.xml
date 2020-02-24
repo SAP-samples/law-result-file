@@ -20,7 +20,8 @@
 							<Toolbar>
 								<content>
 									<Title text="{i18n>systems.syslist.title}"/>
-									<Button text="{i18n>systems.button.lawCons.text}" press="onConsButton" class="sapContrast" />
+									<ToolbarSpacer/>
+									<Button text="{i18n>systems.button.lawCons.text}" press="onConsButton" class="sapContrast" id="consButton" />
 									<ToolbarSpacer/>
 									<SearchField width="15rem" liveChange="onLiveChange"/>
 								</content>
@@ -29,7 +30,7 @@
 								items="{ path: '/Systems/System', sorter: { path: 'InstallationNo', descending: false, group: true } }" growingThreshold="25"
 								growingScrollToLoad="true" updateFinished=".onSystemUpdate">
                                 <f:customLayout>
-									<grid:GridBoxLayout boxMinWidth="10rem"  />
+									<grid:GridBoxLayout boxMinWidth="11rem"  />
 								</f:customLayout>
 								<CustomListItem class="sapContrast noBreak lawItem" type="Navigation" press="onSystemPressed">
 									<HBox>

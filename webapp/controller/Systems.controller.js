@@ -34,6 +34,8 @@ sap.ui.define([
 			for (var index in items) {
 				items[index].addStyleClass("lineBreak");
 			}
+
+			this.prepareConsButton();
 		},
 
 		onSystemUpdate: function () {
@@ -67,6 +69,49 @@ sap.ui.define([
 			// update list binding
 			var oBinding = this.getView().byId("systemList").getBinding("items");
 			oBinding.filter(aFilters);
+		},
+
+		/* Hides the "Access consolidation" button if no consolidation part is found;
+		   Shows the button and stores the index of the part if a consolidation part is found */
+		prepareConsButton: function() {
+			
+			// search part for a <name>LAW-Consolidation</name> entry
+			var _mainModelRaw = this.getOwnerComponent().getModel("userXML").getData().children[0];
+			var curPartNode, curName;
+			if (_mainModelRaw._tagMeasurementPartsHook) {
+				for (var i = _mainModelRaw._tagMeasurementPartsHook.childElementCount -1; i >= 0 ; i--) {
+					curPartNode = _mainModelRaw._tagMeasurementPartsHook.children[i];
+					for (var c = 0; c < curPartNode.childElementCount; c++) {
+						if (curPartNode.children[c].tagName === "Name") {
+							if (curPartNode.children[c].innerHTML.trim().toUpperCase() === "LAW-CONSOLIDATION" ) {
+								// console.log("Found consolidation in part " +  c);
+								this.byId("consButton").setVisible(true);	
+								this._consPart = i;
+								return;
+							} else {
+								// console.log("Ignroe Part with name " + curPartNode.children[c].innerHTML);
+							}
+						}
+					}						
+				}
+			} 
+			// no consolidation part found -> disable button			
+			this.byId("consButton").setVisible(false);				
+			
+		},
+
+		onConsButton: function() {
+			// console.log("Navigate to part" + this._consPart);		
+			var target = this._getIdsForPartIndex(this._consPart);
+			if (target[0] != -1 &&  target[1] != -1) {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("part", {					
+					sysIndex: target[0],
+					partIndex: target[1],
+				});
+			} else {
+				// navigate to an error page with the option to navigate to the Elements.view
+			}
 		}
 	});
 });

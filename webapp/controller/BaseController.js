@@ -559,7 +559,7 @@ sap.ui.define([
 
 		/* Calls getIdsForPartIndex and navigates to Part.view to show the corresponding part (and result if available) */
 		navigateToPartIndex: function (partIndx) {
-			var target = this.getIdsForPartIndex(partIndx);
+			var target = this._getIdsForPartIndex(partIndx);
 			if (target[0] != -1 &&  target[1] != -1) {
 				this.oRouter.navTo("part", {					
 					sysIndex: target[0],
@@ -577,7 +577,7 @@ sap.ui.define([
 		
 		returns an int array [sysIndex, partIndex]; -1 indicates that a value was not found
 		*/		
-		getIdsForPartIndex: function (partIndx) {						
+		_getIdsForPartIndex: function (partIndx) {						
 			if (!this.isValidPartIndx || !this.getOwnerComponent().getModel("userXML")) {
 				return [-1, -1];
 			}
