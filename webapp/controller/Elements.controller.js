@@ -117,7 +117,7 @@ sap.ui.define([
 
 		onFirstSystem: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);			
-			var sysIdx = "1";
+			var sysIdx = "0";
 			oRouter.navTo("system", {
 				sysIndex: sysIdx
 			});
@@ -129,8 +129,8 @@ sap.ui.define([
 
 		onPartPressed: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			var partIdx = "1";
-			var sysIdx = "1";
+			var partIdx = "0";
+			var sysIdx = "0";
 			oRouter.navTo("part", {
 				sysIndex: sysIdx,
 				partIndex: partIdx
