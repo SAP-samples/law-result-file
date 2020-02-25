@@ -346,10 +346,29 @@ sap.ui.define([
 			xml.dropdown.result.text=Result {0}
 			xml.dropdown.line.text=Line {0} */
 
+
+			// get numeric value of selectedKey (if there is such one, otherwise -1)
+			var selectedKeyNumber = -1;
+			try {
+				selectedKeyNumber = parseInt (selectedKey.substring(selectedKey.indexOf("/") + 1, selectedKey.length));
+			} catch (err) {
+				// if no number is contained, an exception is raised which can be ignored 
+			}	
+			var selectedResultNumber = -1;
+			try {
+				selectedResultNumber = parseInt (selectedResult.substring(selectedResult.indexOf("/") + 1, selectedResult.length));
+			} catch (err) {
+				// if no number is contained, an exception is raised which can be ignored 
+			}	
+
 			// build Header entry
 			mainText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.line.text"), _mainModelRaw._tagMeasurementHeaderHook._tagLineStart);
 			addText = _oBundle.getText("xml.dropdown.header.text");
-			nextItem = new sap.ui.core.ListItem( { key: "header", text: mainText, additionalText: addText } );
+			if (selectedKey === "header") {
+				nextItem = new sap.ui.core.ListItem( { key: "header", text: mainText + " / " +  addText, additionalText: addText} );
+			} else {
+				nextItem = new sap.ui.core.ListItem( { key: "header", text: mainText, additionalText: addText } );
+			}			
 			oBlockSelector.addItem(nextItem);
 
 			// build System entries
@@ -357,7 +376,11 @@ sap.ui.define([
 				for (i = 0; i < _mainModelRaw._tagMeasurementSystemsHook.childElementCount; i++) {
 					mainText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.line.text"), _mainModelRaw._tagMeasurementSystemsHook.children[i]._tagLineStart);
 					addText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.system.text"), i);
-					nextItem = new sap.ui.core.ListItem( { key: "system/" + i, text: mainText, additionalText: addText } );
+					if (selectedKey.startsWith("system") &&  selectedKeyNumber == i) {
+						nextItem = new sap.ui.core.ListItem( { key: "system/" + i, text: mainText + " / " + addText, additionalText: addText } );
+					} else {
+						nextItem = new sap.ui.core.ListItem( { key: "system/" + i, text: mainText, additionalText: addText } );
+					}
 					oBlockSelector.addItem(nextItem);
 				}
 			}
@@ -367,7 +390,11 @@ sap.ui.define([
 				for (i = 0; i < _mainModelRaw._tagMeasurementPartsHook.childElementCount; i++) {
 					mainText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.line.text"), _mainModelRaw._tagMeasurementPartsHook.children[i]._tagLineStart);
 					addText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.part.text"), i);
-					nextItem = new sap.ui.core.ListItem( { key: "part/" + i, text: mainText, additionalText: addText } );
+					if (selectedKey.startsWith("part") &&  selectedKeyNumber == i) {
+						nextItem = new sap.ui.core.ListItem( { key: "part/" + i, text: mainText + " / " + addText, additionalText: addText } );
+					} else {
+						nextItem = new sap.ui.core.ListItem( { key: "part/" + i, text: mainText, additionalText: addText } );
+					}					
 					oBlockSelector.addItem(nextItem);
 				}
 			}
@@ -377,13 +404,23 @@ sap.ui.define([
 				for (i = 0; i < _mainModelRaw._tagMeasurementResultsHook.childElementCount; i++) {
 					mainText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.line.text"), _mainModelRaw._tagMeasurementResultsHook.children[i]._tagLineStart);
 					addText = jQuery.sap.formatMessage(_oBundle.getText("xml.dropdown.result.text"), i);
-					nextItem = new sap.ui.core.ListItem( { key: "resultid/" + i, text: mainText, additionalText: addText } );
+					if (this._resultSelected &&  selectedResultNumber == i) {
+						nextItem = new sap.ui.core.ListItem( { key: "resultid/" + i, text: mainText + " / " + addText, additionalText: addText } );
+					} else {
+						nextItem = new sap.ui.core.ListItem( { key: "resultid/" + i, text: mainText, additionalText: addText } );
+					}	
 					oBlockSelector.addItem(nextItem);
 				}
 			}
 
 			if (selectedKey && selectedKey != "") {
 				oBlockSelector.setSelectedKey(selectedKey);
+				if (this._resultSelected && selectedResult !== "resultid/-1") {
+					oBlockSelector.setSelectedKey(selectedResult);
+					// console.log("Selected existing, selected result " + selectedResult);
+				} else {
+					// console.log("Selected existing, selected " + selectedKey);
+				}	
 				// console.log("Selected " + selectedKey);
 			} else {
 				// console.log("No selected dropdown key");

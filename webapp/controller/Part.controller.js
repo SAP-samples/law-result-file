@@ -2074,7 +2074,7 @@ sap.ui.define([
 				} else {
 					// navigate to last part and reset result selection
 					this.resetResultSelection();
-					var _iPartIndex = this._oModel.getData().children[0]._tagMeasurementResultsHook.childElementCount;
+					var _iPartIndex = this._oModel.getData().children[0]._tagMeasurementPartsHook.childElementCount - 1;					
 					this.navigateToPartIndex(_iPartIndex);
 				}
 			} else {
