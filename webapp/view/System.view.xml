@@ -25,7 +25,7 @@
 
 						<ToolbarSpacer />						
 						<Label text="{i18n>part.button.label.text}"/>												
-						<Select id="drop" width="15rem" change="onDropDownSelect"/>
+						<Select id="drop" width="18rem" change="onDropDownSelect"/>
 						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevBlock"/>	
 						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextBlock" />						
 					</OverflowToolbar>
