@@ -171,6 +171,16 @@ sap.ui.define([
 			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			oStorage.put("xmlLocalStorage", oData);
 		},
+		
+		checkCurrentBrowser: function (){
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var bBrowserCheck = sap.ui.Device.browser.msie === true;
+			if (bBrowserCheck) {
+				oRouter.navTo("errorpage");
+			} else{
+				oRouter.navTo("intro");
+			}
+		},
 
 		_processXML: function (node) {
 			var that = this;

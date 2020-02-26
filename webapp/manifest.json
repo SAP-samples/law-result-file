@@ -141,6 +141,12 @@
 					"target": "Elements"
 				},
 				{
+					"name": "errorpage",
+					"pattern": "ErrorPage",
+					"greedy": false,
+					"target": "ErrorPage"
+				},
+				{
 					"name": "systems",
 					"pattern": "Systems",
 					"greedy": false,
@@ -169,7 +175,7 @@
 					"pattern": "Resultid/{resultId}",
 					"greedy": false,
 					"target": "Resultid"
-				}, 
+				},
 				{
 					"name": "xmlcode",
 					"pattern": "Xml",
@@ -190,6 +196,13 @@
 					"viewType": "XML",
 					"viewId": "elements",
 					"viewName": "Elements",
+					"transition": "slide",
+					"viewLevel": 2
+				},
+				"ErrorPage": {
+					"viewType": "XML",
+					"viewId": "errorpage",
+					"viewName": "ErrorPage",
 					"transition": "slide",
 					"viewLevel": 2
 				},
@@ -216,7 +229,7 @@
 				"Part": {
 					"viewType": "XML",
 					"viewId": "part",
-					"viewName": "Part",					
+					"viewName": "Part",
 					"viewLevel": 5
 				},
 				"Results": {

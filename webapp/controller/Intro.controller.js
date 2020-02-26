@@ -7,6 +7,7 @@ sap.ui.define([
 
 	return BaseController.extend("sap.support.zglacelx.controller.Intro", {
 		onInit: function () {
+			this.checkCurrentBrowser();
 			// set i18n model on view
 			var i18nModel = new ResourceModel({
 				bundleName: "sap.support.zglacelx.i18n.i18n"
@@ -14,7 +15,10 @@ sap.ui.define([
 			this.getView().setModel(i18nModel, "i18n");
 		},
 
-		onUseExampleFile: function () {			
+		onAfterRendering: function () {
+
+		},
+		onUseExampleFile: function () {
 			// this.resetXmlBlockSelectors();
 
 			// load sample XML file and process it
@@ -28,7 +32,7 @@ sap.ui.define([
 			oRouter.navTo("elements");
 		},
 
-		handleSelectXMLFile: function (oEvent) {		
+		handleSelectXMLFile: function (oEvent) {
 			// this.resetXmlBlockSelectors();
 
 			// select file 
@@ -53,7 +57,7 @@ sap.ui.define([
 				oFileReader.readAsText(this._oFile);
 			}
 		},
-		
+
 		/* resetXmlBlockSelectors: function () {	
 			// this._selectorResetFlag = true;
 			

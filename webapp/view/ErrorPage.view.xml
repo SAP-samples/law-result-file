@@ -1,0 +1,10 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="sap.support.zglacelx.controller.ErrorPage"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="p_Error" enableScrolling="false" backgroundDesign="Solid" showHeader="true" title="{i18n>errorpage.notSupported.title}">
+		<VBox height="100%" justifyContent="Center" alignItems="Center">
+			<core:Icon src="sap-icon://message-warning" size="6rem" class="sapUiMediumMargin"/>
+			<Title titleStyle="H1" text="{i18n>errorpage.notSupported.text}"/>
+			<FormattedText width="550px" htmlText="{i18n>errorpage.notSupported.description}"/>
+		</VBox>
+	</Page>
+</mvc:View>
