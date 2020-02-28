@@ -142,9 +142,9 @@
 				},
 				{
 					"name": "errorpage",
-					"pattern": "ErrorPage",
+					"pattern": "IE_ErrorPage",
 					"greedy": false,
-					"target": "ErrorPage"
+					"target": "IE_ErrorPage"
 				},
 				{
 					"name": "systems",
@@ -199,10 +199,10 @@
 					"transition": "slide",
 					"viewLevel": 2
 				},
-				"ErrorPage": {
+				"IE_ErrorPage": {
 					"viewType": "XML",
-					"viewId": "errorpage",
-					"viewName": "ErrorPage",
+					"viewId": "ie_errorpage",
+					"viewName": "IE_ErrorPage",
 					"transition": "slide",
 					"viewLevel": 2
 				},

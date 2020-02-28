@@ -14,6 +14,14 @@ sap.ui.define([
 			});
 			this.getView().setModel(i18nModel, "i18n");
 		},
+		
+		checkCurrentBrowser: function () {
+			var bBrowserCheck = sap.ui.Device.browser.msie === true;
+			if (bBrowserCheck) {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("errorpage");
+			} 
+		},
 
 		onAfterRendering: function () {
 
