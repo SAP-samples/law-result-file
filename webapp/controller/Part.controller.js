@@ -2005,7 +2005,7 @@ sap.ui.define([
 						moreButton.setText(this._formatTranslation(
 												this._translate("i18n>result.more.button.text.N"),
 												_firstLinesToShow,
-												resultArray.length	
+												(resultArray.length - 1)	
 						));
 					} else {
 						moreButton.setVisible(false);

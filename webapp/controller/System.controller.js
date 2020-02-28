@@ -93,20 +93,23 @@ sap.ui.define([
 		},
 		
 		resultCount: function (sPartId) {
+			var _mainModelRaw = this._oModel.getData().children[0];
+			var _results = _mainModelRaw._tagMeasurementResultsHook.children;
+			
 			if (sPartId) {
 				sPartId = sPartId.trim();
-				var _mainModelRaw = this._oModel.getData().children[0];
-				var _results = _mainModelRaw._tagMeasurementResultsHook.children;
 				for (var i = 0; i < _results.length; ++i) {
 					var resPartId = _results[i].children[0].textContent.trim();
 					if (resPartId === sPartId) {
 						var count = _results[i].children.length - 1; // first line is the PartId, all other lines are Results
-						return count + " " +   this.getView().getModel("i18n").getResourceBundle().getText("result.ResultLines.text");
+						return jQuery.sap.formatMessage(this.getView().getModel("i18n").getResourceBundle().getText("result.ResultLines.text"),
+														count);
+						// return this.getView().getModel("i18n").getResourceBundle().getText("result.ResultLines.text");
 					}
 				}
 			}	
-			// if no result was found (can happen), so return -1
-			return "No results";
+			// no results 
+			return this.getView().getModel("i18n").getResourceBundle().getText("result.ResultLinesNone.text");
 		},
 
 		_onBindingChange: function (oEvent) {
