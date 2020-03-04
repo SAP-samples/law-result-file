@@ -640,6 +640,7 @@ sap.ui.define([
 								childLine,		// iterator variable for child elements
 				displayTxt, 	// text shown in a result line;
 				hasMore,		// does the next result block also belong to this result block;
+				hadMore,		// did the previous item had more items belonging to the same result block;
 				// hasTemplate, 	// flag: Most templates render the result in a specific way (hasTemplate = true);
 								//  there might be cases where no template appies and a default rendering of the result blockend should take place (hasTemplate = false)
 				title,			// temporary variable to hold a title element which needs additional style class
@@ -647,7 +648,8 @@ sap.ui.define([
 				mlpkStack,		// array that holds entries/lines of MLPK entries which is an array of [0] Attr1, [1] curResVal, //// no longer: [2] codeStr, [3] codeLine
 				curMlStackLine,	// temporary var to create/read a stack line for MLOG/MLPK
 				oHBox,			// temporary HBox item to have multi segment headline
-				oControl		// temporary Control
+				oControl,		// temporary Control
+				helpText		// text of the (optional) help text paragraph after the last tag
 				;
 				
 			prevResVal = this._getResultValueArray(null); // initialize empty 
@@ -699,6 +701,7 @@ sap.ui.define([
 					// handle various special cases, otherwise default case
 					// is it a User Type block?					
 					if ("USRC" === curResVal[_POS_RES_VAL.GenId_F4] || "USRS" === curResVal[_POS_RES_VAL.GenId_F4]) {
+						hadMore = hasMore;
 						// is there a next item?
 						hasMore = ( curResVal[_POS_RES_VAL.GenId_F4] === nextResVal[_POS_RES_VAL.GenId_F4] && curResVal[_POS_RES_VAL.At2] === nextResVal[_POS_RES_VAL.At2] );
 
@@ -802,6 +805,16 @@ sap.ui.define([
 										skipTopMargin: true}) 
 								);	
 							}
+							if (hadMore) {
+								// render comment	
+								title = new ClearLine({ style: "elxCL1" }); 
+								displayedElements.push(title);	
+								title = new Label ({	text: this._translate("i18n>result.USRC.comment.text"),
+														wrapping: true}); 
+								title.addStyleClass("elxSrlSpanL3");
+								displayedElements.push(title);
+							}
+
 							// end result block handling
 							resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
 							resultArray.push(resultElement);
@@ -821,13 +834,21 @@ sap.ui.define([
 												href: _cis_defaults.userPage	});
 							title.addStyleClass(_TITLE_CSS);							
 							title.addStyleClass("sapUiTinyMarginTop");
-							displayedElements.push(title);					
+
+							oControl = new Label ( { text: this._translate("i18n>result.cis.user.desc") }); // 
+							oControl.addStyleClass("sapUiTinyMarginTop");
+
+							oHBox = new sap.m.HBox ();
+							oHBox.addStyleClass("sapUiNoMargin");
+							oHBox.addItem(title);							
+							oHBox.addItem(oControl);
+							displayedElements.push(oHBox);					
 							
 							title = new ClearLine({ style: "elxCL1" }); 
 							displayedElements.push(title);			
 
 							displayTxt = this._translate("i18n>result.usri.txt");							
-							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold }); 
+							title = new Label ({ text: displayTxt, design: sap.m.LabelDesign.Bold, wrapping: true }); 
 							displayedElements.push(title);
 						} 
 
@@ -1328,7 +1349,19 @@ sap.ui.define([
 										skipTopMargin: true,
 										styleSuffix: "3"})
 								);
-							}									
+							}			
+							
+							// render help text for FUTU
+							if (!hasMore) {
+								helpText = new sap.m.Text ({
+									wrappingType:	"Hyphenated",
+									wrapping:		true,
+									text:			this._translate("i18n>result.chkp.FUTU.helptext")									
+								});							
+								helpText.addStyleClass("sapUiSmallMargin");
+								// helpText.addStyleClass("sapMLabel"); // to have a grey ink color --> doesn't work as style class sapMText is used with higher priority
+								displayedElements.push(helpText);								
+							}
 							
 						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000LLOG") {		
 							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000LLOG");
@@ -1509,6 +1542,16 @@ sap.ui.define([
 													styleSuffix: "3"}) );	
 										} 										 
 									}
+									
+									// render help text for MLOG/
+									helpText = new sap.m.Text ({
+										wrappingType:	"Hyphenated",
+										wrapping:		true,
+										text:			this._translate("i18n>result.chkp.MLOG.helptext")									
+									});							
+									helpText.addStyleClass("sapUiSmallMargin");
+									// helpText.addStyleClass("sapMLabel"); // to have a grey ink color --> doesn't work as style class sapMText is used with higher priority
+									displayedElements.push(helpText);								
 
 								} else {
 									// @TODO unlikly/potential case: why should there be only MLPK entries?
@@ -1545,6 +1588,16 @@ sap.ui.define([
 									skipTopMargin: true,
 									styleSuffix: "2"})  
 							);			
+							
+							// render help text for BPRL/
+							helpText = new sap.m.Text ({
+								wrappingType:	"Hyphenated",
+								wrapping:		true,
+								text:			this._translate("i18n>result.chkp.BPRL.helptext")									
+							});							
+							helpText.addStyleClass("sapUiSmallMargin");
+							// helpText.addStyleClass("sapMLabel"); // to have a grey ink color --> doesn't work as style class sapMText is used with higher priority
+							displayedElements.push(helpText);	
 
 						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000EXCU") {
 							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000EXCU");
@@ -1571,7 +1624,24 @@ sap.ui.define([
 									text: curResVal[_POS_RES_VAL.At1],
 									skipTopMargin: true,
 									styleSuffix: "2"})  
-							);		
+							);	
+							
+							if (!hasMore) {
+								// render blank line 
+								title = new ClearLine({ style: "elxCL1" }); 
+								displayedElements.push(title);	
+								
+								// render help text for EXCU
+								helpText = new sap.m.Text ({
+									wrappingType:	"Hyphenated",
+									wrapping:		true,
+									text:			this._translate("i18n>result.chkp.EXCU.helptext")									
+								});							
+								helpText.addStyleClass("sapUiSmallMargin");
+								// helpText.addStyleClass("sapMLabel"); // to have a grey ink color --> doesn't work as style class sapMText is used with higher priority
+								displayedElements.push(helpText);
+							}
+							
 						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000USRD") {
 							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000USRD");
 
@@ -1611,7 +1681,19 @@ sap.ui.define([
 									text: curResVal[_POS_RES_VAL.Counter],
 									skipTopMargin: true,
 									styleSuffix: "3"})  
-							);		
+							);	
+							
+							if (!hasMore) {
+								// render help text for USRD/
+								helpText = new sap.m.Text ({
+									wrappingType:	"Hyphenated",
+									wrapping:		true,
+									text:			this._translate("i18n>result.chkp.USRD.helptext")									
+								});							
+								helpText.addStyleClass("sapUiSmallMargin");
+								// helpText.addStyleClass("sapMLabel"); // to have a grey ink color --> doesn't work as style class sapMText is used with higher priority
+								displayedElements.push(helpText);
+							}
 
 						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000NCTU") {	
 							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000NCTU");
@@ -1654,7 +1736,7 @@ sap.ui.define([
 									styleSuffix: "3"})  
 							);	
 
-							// render help text for LLOG
+							// render help text for NCTU
 							if (!hasMore) {
 								var helpText = new sap.m.Text ({
 									wrappingType:	"Hyphenated",
@@ -1690,6 +1772,18 @@ sap.ui.define([
 									skipTopMargin: true,
 									styleSuffix: "2"})  
 							);
+							
+							if (!hasMore) {
+								// render help text for MUGP/MUG2
+								helpText = new sap.m.Text ({
+									wrappingType:	"Hyphenated",
+									wrapping:		true,
+									text:			this._translate("i18n>result.chkp.MUGP.helptext")									
+								});							
+								helpText.addStyleClass("sapUiSmallMargin");
+								// helpText.addStyleClass("sapMLabel"); // to have a grey ink color --> doesn't work as style class sapMText is used with higher priority
+								displayedElements.push(helpText);
+							}
 
 						} else if 	(curResVal[_POS_RES_VAL.GenId] === "CHKP000000MUG2") {
 							hasMore = (nextResVal[_POS_RES_VAL.GenId] === "CHKP000000MUG2");
@@ -1706,6 +1800,19 @@ sap.ui.define([
 									skipTopMargin: true,
 									styleSuffix: "3"})  
 							);
+														
+							if (!hasMore) {
+								// render help text for MUGP/MUG2
+								helpText = new sap.m.Text ({
+									wrappingType:	"Hyphenated",
+									wrapping:		true,
+									text:			this._translate("i18n>result.chkp.MUGP.helptext")									
+								});							
+								helpText.addStyleClass("sapUiSmallMargin");
+								// helpText.addStyleClass("sapMLabel"); // to have a grey ink color --> doesn't work as style class sapMText is used with higher priority
+								displayedElements.push(helpText);
+							}
+							
 						} else {
 							// no template applied, so simply render the tags and values							
 							childLine = 0;
@@ -1830,6 +1937,31 @@ sap.ui.define([
 							);
 						}
 
+						// render comment if this is the last entry
+						if (nextResVal[_POS_RES_VAL.GenId_F4] !== "CHKC" || curResVal[_POS_RES_VAL.Unit] !== nextResVal[_POS_RES_VAL.Unit]) {
+							// render blank line 
+							title = new ClearLine({ style: "elxCL1" }); 
+							displayedElements.push(title);	
+							
+							if (curResVal[_POS_RES_VAL.Unit] === "CHKC000000") {
+								// Check for (Ltd.) Professional Users
+								displayTxt = this._translate("i18n>result.chkc.desc00.text"); 	// Check for (Ltd.) Professional Users
+							} else if (curResVal[_POS_RES_VAL.Unit] === "CHKC000001") {
+								// Check for developers 
+								displayTxt = this._translate("i18n>result.chkc.desc01.text"); 	// Check for developers 
+							} else if (curResVal[_POS_RES_VAL.Unit] === "CHKC000002") {
+								// Check for developers 
+								displayTxt = this._translate("i18n>result.chkc.desc02.text"); 	// Check for developers 
+							}
+							title = new Label ({ text: displayTxt, wrapping: true }); 
+							title.addStyleClass("elxSrlSpanL2");
+							displayedElements.push(title);	
+							
+							// render blank line 
+							title = new ClearLine({ style: "elxCL1" }); 
+							displayedElements.push(title);	
+						}	
+
 						if (!hasMore) {
 							// end result block handling
 							resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
@@ -1911,6 +2043,14 @@ sap.ui.define([
 						);
 
 						if (!hasMore) {
+							// render comment	
+							title = new ClearLine({ style: "elxCL1" }); 
+							displayedElements.push(title);	
+							title = new Label ({	text: this._translate("i18n>result.chka.desc"),
+													wrapping: true}); 
+							title.addStyleClass("elxSrlSpanL3");
+							displayedElements.push(title);
+							
 							// end result block handling
 							resultElement = new Array (displayedElements, codeStr, resBlockStartLine, null);
 							resultArray.push(resultElement);
