@@ -53,11 +53,13 @@ sap.ui.define([
 			if (this._oFile && window.FileReader) {
 				var oFileReader = new FileReader();
 				var _oModel = this.getOwnerComponent().getModel("userXML");
+				_oModel.destroy();
 				oFileReader.onload = function (loadEvent) {
 					var sRawXML = loadEvent.target.result;
 					that.storeLocalRawXML(sRawXML);
 					_oModel.setXML(sRawXML);
 					that._processXML(_oModel.getData());
+					_oModel.refresh();
 					var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
 					oRouter.navTo("elements");
 					that.oView.byId("fileSelector").clear();

@@ -60,9 +60,6 @@
 					"bundleName": "sap.support.zglacelx.i18n.i18n"
 				}
 			},
-			"userXML": {
-				"type": "sap.ui.model.xml.XMLModel"
-			},
 			"sampleXML": {
 				"type": "sap.ui.model.xml.XMLModel",
 				"uri": "./model/example.law",
