@@ -28,7 +28,7 @@
 							</Toolbar>							
 							<f:GridList id="systemList" growing="true" class="sapUxAPObjectPageSubSectionAlignContent"
 								items="{ path: '/Systems/System', sorter: { path: 'InstallationNo', descending: false, group: true } }" growingThreshold="25"
-								growingScrollToLoad="true" updateFinished=".onSystemUpdate">
+								growingScrollToLoad="true" updateFinished="onSystemUpdate">
                                 <f:customLayout>
 									<grid:GridBoxLayout boxMinWidth="11rem"  />
 								</f:customLayout>
