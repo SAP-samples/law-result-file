@@ -22,7 +22,7 @@ sap.ui.define([
 			this._oModel = this.getOwnerComponent().getModel("userXML");
 			this.oView = this.getView();
 			this.iSystemsCount = this._oModel.getData().children[0]._tagMeasurementSystemsHook.childElementCount;
-			this.oView.setModel(this._oModel);
+            this.oView.setModel(this._oModel);
 			this.oRoute.attachMatched(this._onRouteMatched, this);			
 		},
 
@@ -36,16 +36,36 @@ sap.ui.define([
 			// console.log("onRouteMatched system index=" + this._sysIndex);
 			var ddList = this.oView.byId("drop");
 			ddList = this._getCodeSelector(ddList, "system/" + this._sysIndex);	
+            
+            this.oView = this.getView();
+            this._checkInitialModel();
+			var oEmptyModel = new sap.ui.model.json.JSONModel();
+			this._oModel = oEmptyModel;			
+			this._oModel = this.getOwnerComponent().getModel("userXML");			
+			this.iSystemsCount = this._oModel.getData().children[0]._tagMeasurementSystemsHook.childElementCount;
 
 			this._sBindingPath = "/Systems/System/" + this._sysIndex;
 			// get raw data from model
 			var _mainModelRaw = this._oModel.getData().children[0];
+	
 			// navigate to system branch and extract data
 			var _rawSystemData = _mainModelRaw._tagMeasurementSystemsHook.children[this._sysIndex];
 
 			// bind system context to page (this is needed for displaying the title)
 			var _oPage = this.oView.byId("SystemView");
-			_oPage.bindElement(this._sBindingPath);
+			var systemSid = "";
+			// _oPage.bindElement(this._sBindingPath); // causes exception on second system cycle
+			if (_rawSystemData && _rawSystemData.childElementCount) {
+				for (var i=0; i < _rawSystemData.childElementCount; i++) {
+					if (_rawSystemData.children[i].tagName.toUpperCase() === "SAP_SID") {
+						systemSid = _rawSystemData.children[i].textContent;
+						break;
+					}
+				}
+			}
+			_oPage.setTitle(
+				jQuery.sap.formatMessage(this.getView().getModel("i18n").getResourceBundle().getText("system.page.title"),
+				systemSid));
 
 			// set context binding for dataForm
 			var _oAttributeForm = this.getView().byId("dataForm");
@@ -88,6 +108,7 @@ sap.ui.define([
 			});
 			_exportTable.bindItems({
 				path: sComponentBindingPath,
+				// length: 15,
 				template: exportTableTemplate
 			});		
 		},

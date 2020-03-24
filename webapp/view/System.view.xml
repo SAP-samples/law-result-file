@@ -129,13 +129,14 @@
 
 								<Panel />
 										
-								<Panel headerText="{i18n>system.compSection.table.headerText}" expandable="true" expanded="true" width="100%">
+								<Panel headerText="{i18n>system.compSection.table.headerText}" expandable="false" width="100%">
 									<content>	
 										
 											<Table id="exportTable" 
 												inset="false" 
-												growing="false" 
+												growing="true" 
 												growingScrollToLoad="false"
+												
 												noDataText="{i18n>system.compSection.table.noData.text}"
 												class="sapUiTinyMargin">
 												<columns>
