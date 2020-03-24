@@ -660,11 +660,16 @@ sap.ui.define([
 				// hasTemplate = true; // default setting
 				
 				// write code lines into codeStr variable for XML editor				
-				codeStr = codeStr + "\t\t\t" + curResult.outerHTML; 
 				if (curResult.childElementCount > 0) {
 					codeLine = codeLine + 2 + curResult.childElementCount;
+					codeStr = codeStr + "\t\t\t<" + curResult.tagName + ">\n";
+					for (var i=0; i<curResult.childElementCount; i++) {
+						codeStr = codeStr + "\t\t\t\t" + curResult.children[i].outerHTML + "\n";
+					}
+					codeStr = codeStr + "\t\t\t</" + curResult.tagName + ">";
 				} else {
 					codeLine = codeLine + 1;
+					codeStr = codeStr + "\t\t\t" + curResult.outerHTML + "";
 				}
 
 				if (curResult.childElementCount == 0) {
