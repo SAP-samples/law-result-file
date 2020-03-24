@@ -659,7 +659,7 @@ sap.ui.define([
 				curResult = _result.children[resElem];
 				// hasTemplate = true; // default setting
 				
-				// write code lines into codeStr variable for XML editor
+				// write code lines into codeStr variable for XML editor				
 				codeStr = codeStr + "\t\t\t" + curResult.outerHTML; 
 				if (curResult.childElementCount > 0) {
 					codeLine = codeLine + 2 + curResult.childElementCount;
@@ -805,7 +805,7 @@ sap.ui.define([
 										skipTopMargin: true}) 
 								);	
 							}
-							if (hadMore) {
+							if (hadMore && "USRC" === curResVal[_POS_RES_VAL.GenId_F4]) {
 								// render comment	
 								title = new ClearLine({ style: "elxCL1" }); 
 								displayedElements.push(title);	
