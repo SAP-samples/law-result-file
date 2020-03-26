@@ -121,7 +121,10 @@ sap.ui.define([
 			_tul_acttc = this.getView().getModel("tul_acttc").getData().tnames;
 			// _translatableTags = this.getView().getModel("tags").getData().tags; 
 			// _translatableTexts = this.getView().getModel("trans").getData().trans;
-			// _engineNames = this.getView().getModel("engineNames").getData().units; 
+			// _engineNames = this.getView().getModel("engineNames").getData().units;
+			
+			this.iPartsCount = this._oModel.getData().children[0]._tagMeasurementPartsHook.childElementCount;
+			this.iSystemsCount = this._oModel.getData().children[0]._tagMeasurementSystemsHook.childElementCount;						
 
 			// render <Part>'s property block
 			this.oView.setModel(this._oModel);
@@ -826,7 +829,8 @@ sap.ui.define([
 							// reset 
 							codeStr = "";
 							displayedElements = new Array();
-							resBlockStartLine = codeLine;	
+							resBlockStartLine = codeLine;
+							prevResVal = curResVal;
 						} 						
 					} else if ("USRI" === curResVal[_POS_RES_VAL.GenId_F4]) {
 						// is there a next item belonging to this rule?
