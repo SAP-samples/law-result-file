@@ -14,7 +14,6 @@
 		<pages>
 			<Page title="{parts:['i18n>system.page.title', 'SAP_SID/text()'], formatter: 'jQuery.sap.formatMessage'}" 
 					showNavButton="true" navButtonPress="onSystemList" id="SystemView">
-
 				<subHeader>
 					<OverflowToolbar >
 						<Breadcrumbs currentLocationText="{i18n>header.breadcrumb.system.text}">
@@ -29,33 +28,18 @@
 						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevBlock"/>	
 						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextBlock" />						
 					</OverflowToolbar>
-
 				</subHeader>
 
 				<content> 
 					<cols:EqualWidthColumns>
 						<cols:content>
 							<l:VerticalLayout class="sapUiNoMargin" width="100%">
+								
 								<Panel headerText="{i18n>system.propsSection.title.text}" width="100%">
 									<content>
-										<!--  <l:VerticalLayout class="sapUiNoMargin">
-											<cols:ResultLine	label="{i18n>system.page.index.text}" 
-																tag="" 
-																text="{i18n>dummyNo8}"/>
-											<cols:ResultLine	label="{i18n>model.systems.SystemNo.text}" 
-																tag="{i18n>model.systems.SystemNo.tag}" 
-																text="{SystemNo}"/>
-										</l:VerticalLayout> -->
-										
-										<fo:SimpleForm 
-												id="dataForm"
-												editable="false"
-												layout="ResponsiveGridLayout"
-												labelSpanXL="6" 
-												labelSpanL="6"	
-												labelSpanM="4"	
-												labelSpanS="3"
-												singleContainerFullSize="false">
+
+										<fo:SimpleForm id="dataForm" editable="false" layout="ResponsiveGridLayout" labelSpanXL="6" labelSpanL="6" labelSpanM="4"	
+												labelSpanS="3" singleContainerFullSize="false">
 											<fo:content>
 												<Label text="{i18n>system.page.index.text}"/>
 												<Text id="systemIdx" />
@@ -86,46 +70,14 @@
 									</content>
 								</Panel>										
 
-
-										<l:VerticalLayout class="sapUiContentPadding" width="100%">										
-											<Title text="{i18n>system.partsSection.title.text}" />					
-											<f:GridList	id="partsList" 
-												items="{
-													path: '/Parts/Part',
-													sorter: {
-														path: 'PartId'
-													},
-													filters: [{
-														path: 'SystemNo/text()', 
-														operator: 'EQ',
-														value1: 'placeholder' }] 
-												}" width="100%" >
-												<f:customLayout> 
-													<grid:GridBoxLayout boxMinWidth="11rem" boxWidth="14rem" />
-												</f:customLayout>
-												<!-- <CustomListItem class="sapContrast noBreak " type="Navigation" press="onPartPressed"> -->
-												<CustomListItem class="sapContrast noBreak lawItem" type="Navigation" press="onPartPressed">
-													<VBox class="sapUiTinyMargin sapUiNoMarginEnd">
-														<HBox class="sapUiNoMargin">
-															<c:Icon src="sap-icon://it-instance" size="2.3rem" class="sapUiTinyMargin"/>	
-															<VBox class="sapUiTinyMargin sapUiNoMarginBottom sapUiNoMarginEnd">
-																<Label text="{
-																		parts: [ {path: 'SAP_CLIENT/text()'}, {path: 'GenericId/text()'}, {path: 'PartId/text()'} ],
-																		formatter: '.formatter.formatClient'
-																	}" 
-																		wrapping="true"/>
-																<!-- <Label text="{PartId}" wrapping="true" />	-->
-																<Label text="{
-																		parts: [ {path: 'PartId'} ],
-																		formatter: '.resultCount'
-																		}" />
-															</VBox>
-														</HBox>
-														<Label text="{ parts: [ {path: 'Name'} ] }" class="sapUiNoMarginEnd" />
-													</VBox>													
-												</CustomListItem>
-											</f:GridList>
-										</l:VerticalLayout>	
+								<l:VerticalLayout class="sapUiContentPadding" width="100%">										
+									<Title text="{i18n>system.partsSection.title.text}" />					
+									<f:GridList	id="partsList">
+										<f:customLayout> 
+											<grid:GridBoxLayout boxMinWidth="11rem" boxWidth="14rem" />
+										</f:customLayout> 
+									</f:GridList> 
+								</l:VerticalLayout>	
 
 								<Panel />
 										
@@ -154,11 +106,14 @@
 																	
 									</content>
 								</Panel>
+								
+								
 							</l:VerticalLayout>
-
+							
 							<Panel headerText="{i18n>xml.headerText}" class="column2">
 									<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="systemCodeEditor" colorTheme="tomorrow" />
 							 </Panel>
+							 
 						</cols:content>
 					</cols:EqualWidthColumns>							
 				</content>

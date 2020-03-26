@@ -54,7 +54,7 @@ sap.ui.define([
 			// bind system context to page (this is needed for displaying the title)
 			var _oPage = this.oView.byId("SystemView");
 			var systemSid = "";
-			// _oPage.bindElement(this._sBindingPath); // causes exception on second system cycle
+			_oPage.bindElement(this._sBindingPath); // causes exception on second system cycle
 			if (_rawSystemData && _rawSystemData.childElementCount) {
 				for (var i=0; i < _rawSystemData.childElementCount; i++) {
 					if (_rawSystemData.children[i].tagName.toUpperCase() === "SAP_SID") {
@@ -80,14 +80,73 @@ sap.ui.define([
 
 			// get partsList binding and apply filter
 			var _partsList = this.oView.byId("partsList");
-			var _partsListBinding = _partsList.getBinding("items");
+			_partsList.removeAllItems();
 			var _systemNo = this._oModel.getProperty(this._sBindingPath + "/SystemNo");
-			var oPartTableFilter = new Filter({
-				path: "SystemNo",
-				operator: FilterOperator.EQ,
-				value1: _systemNo
-			});
-			_partsListBinding.filter(oPartTableFilter);
+			var allParts = this._oModel.getData().children[0]._tagMeasurementPartsHook;
+			for (var i=allParts.childElementCount - 1; i >=0 ; i--) {
+				var nextPart = allParts.children[i];
+				var npPartId = "";
+				var npGenericId = "";
+				var npSystemNo = "";
+				var npSAP_CLIENT = "";
+				var npPartName = ""; // "[" + i + "]";
+				// read attribute values of the part
+				for (var a=0; a < nextPart.childElementCount; a++) {
+					var npAttrName = nextPart.children[a].tagName.toUpperCase();
+					var npAttrVal  = nextPart.children[a].textContent;
+					if (npAttrName === "PARTID")		{ npPartId = npAttrVal; }
+					if (npAttrName === "GENERICID")		{ npGenericId = npAttrVal; }
+					if (npAttrName === "SYSTEMNO")		{ npSystemNo = npAttrVal; }
+					if (npAttrName === "SAP_CLIENT")	{ npSAP_CLIENT = npAttrVal; }
+					if (npAttrName === "NAME")			{ npPartName = npPartName + npAttrVal; }
+				}
+				if (npSystemNo === _systemNo) {
+
+					// this part belongs to the current system, so render it
+					var npCustomListItem = new sap.m.CustomListItem({
+															type: sap.m.ListType.Navigation,
+															press: this.onDynPartPressed.bind(this, i) });
+					npCustomListItem.addStyleClass("sapContrast");
+					npCustomListItem.addStyleClass("noBreak");
+					npCustomListItem.addStyleClass("lawItem");
+					
+					var npVBoxOuter = new sap.m.VBox();
+					npVBoxOuter.addStyleClass("sapUiTinyMargin");
+					npVBoxOuter.addStyleClass("sapUiNoMarginEnd");
+					
+					var npHBox = new sap.m.HBox();
+					npHBox.addStyleClass("sapUiNoMargin");
+					
+					var npIcon = new sap.ui.core.Icon({
+													src: "sap-icon://it-instance",
+													size: "2.3rem" });
+					npIcon.addStyleClass("sapUiTinyMargin");
+					
+					var npVBoxInner = new sap.m.VBox();
+					npVBoxInner.addStyleClass("sapUiTinyMargin");
+					npVBoxInner.addStyleClass("sapUiNoMarginBottom");
+					npVBoxInner.addStyleClass("sapUiNoMarginEnd");
+													
+					var npLabel1 = new sap.m.Label({
+												text: formatter.formatClientRb(npSAP_CLIENT, npGenericId, npPartId, 
+																				this.getView().getModel("i18n").getResourceBundle()),
+												wrapping: true});
+					var npLabel2 = new sap.m.Label({
+												text: this.resultCount(npPartId) });
+					var npLabel3 = new sap.m.Label({
+												text: npPartName });
+					
+					// assamble UI
+					npVBoxInner.addItem(npLabel1);
+					npVBoxInner.addItem(npLabel2);
+					npHBox.addItem(npIcon);
+					npHBox.addItem(npVBoxInner);
+					npVBoxOuter.addItem(npHBox);
+					npVBoxOuter.addItem(npLabel3);
+					npCustomListItem.addContent(npVBoxOuter);
+					_partsList.addItem(npCustomListItem);
+				}
+			}
 
 			// bind exportTable
 			var _exportTable = this.oView.byId("exportTable");
@@ -128,7 +187,7 @@ sap.ui.define([
 						// return this.getView().getModel("i18n").getResourceBundle().getText("result.ResultLines.text");
 					}
 				}
-			}	
+			}
 			// no results 
 			return this.getView().getModel("i18n").getResourceBundle().getText("result.ResultLinesNone.text");
 		},
@@ -145,17 +204,10 @@ sap.ui.define([
 			this.oRouter.navTo("systems");
 		},
 
-		onPartPressed: function (oEvent) {
+		onDynPartPressed: function (oEvent) {
 			this.getView().setBusy();
-			var oItem = oEvent.getSource();
-			var oContextPath = oItem.getBindingContextPath();
-			// var sysIdx = oContext.getPath();
-			var indexInPartsBlock = oContextPath.substr("/Parts/Part/".length);
-			
-			// could select System with properties like SAP_SID, SystemNo, ...
-			// var selectedSyst = oCtx.getObject();
 			this.oRouter.navTo("part", {
-				partIndex: indexInPartsBlock,
+				partIndex: oEvent,
 				sysIndex: this._sysIndex
 			});
 		},
