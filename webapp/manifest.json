@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "sap.support.zglacelx.Component",
+		"id": "sap.support.zglacelx",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -36,7 +36,7 @@
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "sap.support.zglacelx.Component.view.Intro",
+			"viewName": "sap.support.zglacelx.view.Intro",
 			"type": "XML",
 			"async": true,
 			"id": "Intro"
@@ -57,7 +57,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "sap.support.zglacelx.Component.i18n.i18n"
+					"bundleName": "sap.support.zglacelx.i18n.i18n"
 				}
 			},
 			"sampleXML": {
@@ -114,7 +114,7 @@
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
 				"async": true,
-				"viewPath": "sap.support.zglacelx.Component.view",
+				"viewPath": "sap.support.zglacelx.view",
 				"controlAggregation": "pages",
 				"controlId": "IntroView",
 				"clearControlAggregation": false

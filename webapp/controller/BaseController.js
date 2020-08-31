@@ -13,7 +13,7 @@ sap.ui.define([
 	var _translatableTexts;	// holds the set of texts where either 'tag' should  match a tag or a provided text should start with 'innerHTML', or both.
 	var _i18nBundle; // holds the resource bundle for text translation
 
-	return Controller.extend("sap.support.zglacelx.Component.controller.BaseController", {
+	return Controller.extend("sap.support.zglacelx.controller.BaseController", {
 		onInit: function () {
 
 		},

@@ -1,4 +1,4 @@
-<mvc:View controllerName="sap.support.zglacelx.Component.controller.Elements"
+<mvc:View controllerName="sap.support.zglacelx.controller.Elements"
 	xmlns:core="sap.ui.core" 
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:l="sap.ui.layout"
@@ -9,7 +9,7 @@
 	xmlns:grid="sap.ui.layout.cssgrid">
 	<App id="Intro">
 		<pages>
-			<Page id="overview" title="{i18n>elements.col.right.title}" class="sapUiStdPage" showNavButton="true" navButtonText="Back" navButtonPress="onToIntro">
+			<Page id="overview" title="{i18n>elements.col.right.title}" class="sapUiStdPage" showNavButton="true" navButtonPress="onToIntro">
 				<content>
 					<grid:CSSGrid gridTemplateColumns="1fr 2fr" gridGap="1rem">
 						<VBox>
