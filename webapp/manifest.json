@@ -62,7 +62,7 @@
 			},
 			"sampleXML": {
 				"type": "sap.ui.model.xml.XMLModel",
-				"uri": "./model/example.law",
+				"uri": "./model/examplelaw.xml",
 				"preload": true
 			},
 			"trans": {
