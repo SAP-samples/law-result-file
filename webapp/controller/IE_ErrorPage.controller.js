@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
 	"use strict";
 
-	return BaseController.extend("sap.support.zglacelx.controller.IE_ErrorPage", {
+	return BaseController.extend("sap.support.zglacelx.Component.controller.IE_ErrorPage", {
 		onInit: function () {
 			this.checkCurrentBrowser();
 		},

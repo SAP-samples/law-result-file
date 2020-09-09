@@ -1,4 +1,4 @@
-<mvc:View controllerName="sap.support.zglacelx.controller.Systems" 
+<mvc:View controllerName="sap.support.zglacelx.Component.controller.Systems" 
 	xmlns="sap.m" 
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:ce="sap.ui.codeeditor" 
