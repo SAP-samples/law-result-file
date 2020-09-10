@@ -100,7 +100,6 @@ sap.ui.define([
 
 			// remove last line break (otherwise we are left with an empty last line)
 			_sXMAS = _sXMAS.slice(0, -1);
-			oCodeEditor.setMaxLines(100000000);
 			this.buildEditorSized(_sXMAS, oCodeEditor, node._tagLineStart, setSize);
 		},
 

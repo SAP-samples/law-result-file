@@ -76,6 +76,7 @@ sap.ui.define([
 
 			// set editor context
 			var _sysCodeEditor = this.byId("systemCodeEditor");
+			_sysCodeEditor.setMaxLines(100000000);
 			this.buildEditorContext(_rawSystemData, _sysCodeEditor);
 
 			// get partsList binding and apply filter
