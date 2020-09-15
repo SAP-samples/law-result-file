@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "sap.support.zglacelx.Component",
+		"id": "sap.support.zglacelx",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -36,7 +36,7 @@
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "sap.support.zglacelx.Component.view.Intro",
+			"viewName": "sap.support.zglacelx.view.Intro",
 			"type": "XML",
 			"async": true,
 			"id": "Intro"
@@ -57,7 +57,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "sap.support.zglacelx.Component.i18n.i18n"
+					"bundleName": "sap.support.zglacelx.i18n.i18n"
 				}
 			},
 			"sampleXML": {
@@ -114,7 +114,7 @@
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
 				"async": true,
-				"viewPath": "sap.support.zglacelx.Component.view",
+				"viewPath": "sap.support.zglacelx.view",
 				"controlAggregation": "pages",
 				"controlId": "IntroView",
 				"clearControlAggregation": false
@@ -122,60 +122,60 @@
 			"routes": [
 				{
 					"name": "intro",
-					"pattern": "license/explainresult",
+					"pattern": "",
 					"target": "Intro"
 				},
 				{
 					"name": "header",
-					"pattern": "license/explainresult/Header",
+					"pattern": "Header",
 					"greedy": false,
 					"target": "Header"
 				},
 				{
 					"name": "elements",
-					"pattern": "license/explainresult/Elements",
+					"pattern": "Elements",
 					"greedy": false,
 					"target": "Elements"
 				},
 				{
 					"name": "errorpage",
-					"pattern": "license/explainresult/IE_ErrorPage",
+					"pattern": "IE_ErrorPage",
 					"greedy": false,
 					"target": "IE_ErrorPage"
 				},
 				{
 					"name": "systems",
-					"pattern": "license/explainresult/Systems",
+					"pattern": "Systems",
 					"greedy": false,
 					"target": "Systems"
 				},
 				{
 					"name": "system",
-					"pattern": "license/explainresult/System/{sysIndex}",
+					"pattern": "System/{sysIndex}",
 					"greedy": false,
 					"target": "System"
 				},
 				{
 					"name": "part",
-					"pattern": "license/explainresult/Part/{sysIndex}/{partIndex}",
+					"pattern": "Part/{sysIndex}/{partIndex}",
 					"greedy": false,
 					"target": "Part"
 				},
 				{
 					"name": "results",
-					"pattern": "license/explainresult/Results/{sysIndex}/{partIndex}",
+					"pattern": "Results/{sysIndex}/{partIndex}",
 					"greedy": false,
 					"target": "Results"
 				},
 				{
 					"name": "resultid",
-					"pattern": "license/explainresult/Resultid/{resultId}",
+					"pattern": "Resultid/{resultId}",
 					"greedy": false,
 					"target": "Resultid"
 				},
 				{
 					"name": "xmlcode",
-					"pattern": "license/explainresult/Xml",
+					"pattern": "Xml",
 					"greedy": false,
 					"target": "XmlCode"
 				}

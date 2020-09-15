@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (BaseController, Log) {
 	"use strict";
 
-	return BaseController.extend("sap.support.zglacelx.Component.controller.Systems", {
+	return BaseController.extend("sap.support.zglacelx.controller.Systems", {
 
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);

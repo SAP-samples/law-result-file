@@ -1,4 +1,4 @@
-<mvc:View controllerName="sap.support.zglacelx.Component.controller.Elements"
+<mvc:View controllerName="sap.support.zglacelx.controller.Elements"
 	xmlns:core="sap.ui.core" 
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:l="sap.ui.layout"
@@ -9,7 +9,7 @@
 	xmlns:grid="sap.ui.layout.cssgrid">
 	<App id="Intro">
 		<pages>
-			<Page id="overview" title="{i18n>elements.col.right.title}" class="sapUiStdPage" showNavButton="true" navButtonPress="onToIntro">
+			<Page id="overview" title="{i18n>elements.col.right.title}" class="sapUiStdPage" showNavButton="true" navButtonText="Back" navButtonPress="onToIntro">
 				<content>
 					<grid:CSSGrid gridTemplateColumns="1fr 2fr" gridGap="1rem">
 						<VBox>
@@ -25,7 +25,7 @@
 									headerImage="sap-icon://letter"
 									frameType="TwoByOne" 
 									press="onToHeader"
-									backgroundImage="img/nav_header.png">
+									backgroundImage="/webapp/css/nav_header.png">
 									<TileContent footer="{i18n>elements.tiles.header.info}" />															
 								</GenericTile>
 
@@ -36,7 +36,7 @@
 									headerImage="sap-icon://it-system" 
 									frameType="TwoByOne" 
 									press="onSystemList"									
-									backgroundImage="img/nav_systems.png">
+									backgroundImage="/webapp/css/nav_systems.png">
 									<TileContent footer="{i18n>elements.tiles.systems.info}" />															
 								</GenericTile>
 
@@ -47,7 +47,7 @@
 									headerImage="sap-icon://it-instance"
 									frameType="TwoByOne" 
 									press="onFirstSystem"
-									backgroundImage="img/nav_part.png">
+									backgroundImage="/webapp/css/nav_part.png">
 									<TileContent footer="{i18n>elements.tiles.parts.info}" />
 								</GenericTile>
 
@@ -58,7 +58,7 @@
 									headerImage="sap-icon://survey"
 									frameType="TwoByOne" 
 									press="onFirstPart"
-									backgroundImage="img/nav_result.png">
+									backgroundImage="/webapp/css/nav_result.png">
 									<TileContent footer="{i18n>elements.tiles.results.info}" />
 								</GenericTile>
 
@@ -86,7 +86,7 @@
 						<VBox>	
 							<l:VerticalLayout class="sapUiSmallMargin sapUiNoMarginBottom">												
 								<Title text="{i18n>elements.page.title}" level="H2" class="results" />										
-								<Image src="img/law_xml_structure.png" densityAware="false" class="sapUiNoMargin" />
+								<Image src="/webapp/css/law_xml_structure.png" densityAware="false" class="sapUiNoMargin" />
 							</l:VerticalLayout>									
 						</VBox>
 				

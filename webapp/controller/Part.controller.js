@@ -104,7 +104,7 @@ sap.ui.define([
 	}; // List of (case sensitive) tags used in the application and (potentially) used in the tagTranslation.json file
 	var _TITLE_CSS = "results"; // style class for titles
 
-	return BaseController.extend("sap.support.zglacelx.Component.controller.Part", {
+	return BaseController.extend("sap.support.zglacelx.controller.Part", {
 
 		onInit: function () {
 			this._checkInitialModel();
@@ -276,6 +276,7 @@ sap.ui.define([
 			// set code editor context
 			var _oSysCodeEditor = this.oView.byId("propertiesCE");
 			_oSysCodeEditor.setMaxLines(100000000);
+			// build editor context
 			this.buildEditorContext(_rawSystemData, _oSysCodeEditor);
 
 			// --- build properties list				

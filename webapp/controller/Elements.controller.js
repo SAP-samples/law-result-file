@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
 	"use strict";
 
-	return BaseController.extend("sap.support.zglacelx.Component.controller.Elements", {
+	return BaseController.extend("sap.support.zglacelx.controller.Elements", {
 
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -103,7 +103,7 @@ sap.ui.define([
 		},
 		
 		onShowXML: function () {
-			var sapMLib = sap.m.URLHelper.redirect(	"#/license/explainresult/Xml", /* use pattern "Xml" defined in the route section of the manifest.json */
+			var sapMLib = sap.m.URLHelper.redirect(	"#/Xml", /* use pattern "Xml" defined in the route section of the manifest.json */
 													true); /* true: open in new windows */
 			sap.ui.require(	[ "sap/m/library" ], sapMLib);
 			// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
