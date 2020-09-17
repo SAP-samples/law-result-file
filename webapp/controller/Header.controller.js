@@ -26,6 +26,7 @@ sap.ui.define([
 			var _mainModelRaw = this._oModel.getData().children[0];
 			var _rawSystemData = _mainModelRaw._tagMeasurementHeaderHook;
 			var _oCodeEditor = this.byId("headerCodeEditor");
+			_oCodeEditor.setMaxLines(100000000);
 			this.buildEditorContext(_rawSystemData, _oCodeEditor);
 
 			/* for CodeEditor theme testing only
