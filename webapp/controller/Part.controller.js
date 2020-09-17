@@ -2366,6 +2366,7 @@ sap.ui.define([
 			area.removeAllContent();
 
 			var moreButton = this.oView.byId("moreButton");
+			var hlTitle;
 			if (!resultArray || resultArray.length == 0) {
 				// there are no results
 				var hlTitle = new Title({
@@ -2377,13 +2378,14 @@ sap.ui.define([
 				moreButton.setVisible(false);
 				return;
 			} else {
-				var hlTitle = new Title({
-					text: this._translate("i18n>part.page.title.text")
+				hlTitle = new Title({
+					text: this._translate("i18n>part.page.title.text"),
+					level: "H2"
 				});
 				hlTitle.addStyleClass("results");
 				area.addContent(hlTitle);
 				if (isFirstBlock) {
-					var moreButton = this.oView.byId("moreButton");
+					moreButton = this.oView.byId("moreButton");
 					if (resultArray.length > _firstLinesToShow) {
 						moreButton.setVisible(true);
 						moreButton.setText(this._formatTranslation(
