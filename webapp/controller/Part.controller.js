@@ -2427,8 +2427,11 @@ sap.ui.define([
 					panR.addContent(plh); */
 
 					var codeEditor = new CodeEditor({
-						colorTheme: "tomorrow"
+						colorTheme: "tomorrow",
+						type: "xml"
 					});
+					codeEditor.setMaxLines(100000000);
+
 					this.buildEditor(codeStr, codeEditor, resultArray[resItemIdx][2]);
 					panR.addContent(codeEditor);
 
