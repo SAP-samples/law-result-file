@@ -2072,6 +2072,24 @@ sap.ui.define([
 						displayedElements.push(title);
 
 						// render headline if this is the first entry
+						if (prevResVal[_POS_RES_VAL.GenId_F4] !== "CHKC") {
+                        	var cisData = this._getCustInfoSheetData("CHKC");
+							// Render a link to the developer check documentation
+							title = new Link({
+								text: cisData[_CIS_DATA.Title], // =Workbench User / Developer Check  
+								target: "_blank",
+								wrapping: true,
+								href: cisData[_CIS_DATA.URL]
+							});
+							title.addStyleClass(_TITLE_CSS);
+							displayedElements.push(title);
+							
+							title = new ClearLine({
+								style: "elxCL1"
+							});
+							displayedElements.push(title);
+						}
+						
 						if (prevResVal[_POS_RES_VAL.GenId_F4] !== "CHKC" || curResVal[_POS_RES_VAL.Unit] !== prevResVal[_POS_RES_VAL.Unit]) {
 							if (curResVal[_POS_RES_VAL.Unit] === "CHKC000000") {
 								displayTxt = this._translate("i18n>result.chkc.headline.prof"); // =Indicator: Classification checks for (Ltd.) Professional users

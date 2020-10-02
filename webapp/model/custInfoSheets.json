@@ -849,7 +849,11 @@
 			"units":    [ "H071" ], 
 			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/H071-sap-hana-innovation-management.pdf",
 			"title": "SAP HANA Innovation Management "
-		 }   
-
+		 }, { 
+			"units":    [ "CHKC" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/information-about-sap-system-measurement/Classification-Help-Workbench-User-Developer-Check.pdf",
+			"title": "Workbench User / Developer Check"
+		 }      
+		 
 	]
 }
