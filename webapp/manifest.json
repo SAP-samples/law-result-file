@@ -1,0 +1,254 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "sap.support.zglacelx",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"ach": "ach",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"fullWidth": true,
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "sap.support.zglacelx.view.Intro",
+			"type": "XML",
+			"async": true,
+			"id": "Intro"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60.1",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "sap.support.zglacelx.i18n.i18n"
+				}
+			},
+			"sampleXML": {
+				"type": "sap.ui.model.xml.XMLModel",
+				"uri": "./model/example.law",
+				"preload": true
+			},
+			"trans": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "./model/tagsTranslations.json",
+				"preload": true
+			},
+			"custInfos": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "./model/custInfoSheets.json",
+				"preload": true
+			},
+			"tu_untt": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "./model/tu_untt.json",
+				"preload": true
+			},
+			"tutyp": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "./model/tutyp.json",
+				"preload": true
+			},
+			"tuapp": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "./model/tuapp.json",
+				"preload": true
+			},
+			"tul_acttc": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "./model/tul_acttc.json",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "sap.support.zglacelx.view",
+				"controlAggregation": "pages",
+				"controlId": "IntroView",
+				"clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"name": "intro",
+					"pattern": "",
+					"target": "Intro"
+				},
+				{
+					"name": "header",
+					"pattern": "Header",
+					"greedy": false,
+					"target": "Header"
+				},
+				{
+					"name": "elements",
+					"pattern": "Elements",
+					"greedy": false,
+					"target": "Elements"
+				},
+				{
+					"name": "errorpage",
+					"pattern": "IE_ErrorPage",
+					"greedy": false,
+					"target": "IE_ErrorPage"
+				},
+				{
+					"name": "systems",
+					"pattern": "Systems",
+					"greedy": false,
+					"target": "Systems"
+				},
+				{
+					"name": "system",
+					"pattern": "System/{sysIndex}",
+					"greedy": false,
+					"target": "System"
+				},
+				{
+					"name": "part",
+					"pattern": "Part/{sysIndex}/{partIndex}",
+					"greedy": false,
+					"target": "Part"
+				},
+				{
+					"name": "results",
+					"pattern": "Results/{sysIndex}/{partIndex}",
+					"greedy": false,
+					"target": "Results"
+				},
+				{
+					"name": "resultid",
+					"pattern": "Resultid/{resultId}",
+					"greedy": false,
+					"target": "Resultid"
+				},
+				{
+					"name": "xmlcode",
+					"pattern": "Xml",
+					"greedy": false,
+					"target": "XmlCode"
+				}
+			],
+			"targets": {
+				"Intro": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "intro",
+					"viewName": "Intro",
+					"viewLevel": 1
+				},
+				"Elements": {
+					"viewType": "XML",
+					"viewId": "elements",
+					"viewName": "Elements",
+					"transition": "slide",
+					"viewLevel": 2
+				},
+				"IE_ErrorPage": {
+					"viewType": "XML",
+					"viewId": "ie_errorpage",
+					"viewName": "IE_ErrorPage",
+					"transition": "slide",
+					"viewLevel": 2
+				},
+				"Header": {
+					"viewType": "XML",
+					"viewId": "header",
+					"viewName": "Header",
+					"transition": "slide",
+					"viewLevel": 3
+				},
+				"Systems": {
+					"viewType": "XML",
+					"viewId": "systems",
+					"viewName": "Systems",
+					"viewLevel": 3,
+					"transition": "slide"
+				},
+				"System": {
+					"viewType": "XML",
+					"viewId": "system",
+					"viewName": "System",
+					"viewLevel": 4
+				},
+				"Part": {
+					"viewType": "XML",
+					"viewId": "part",
+					"viewName": "Part",
+					"viewLevel": 5
+				},
+				"Results": {
+					"viewType": "XML",
+					"viewId": "results",
+					"viewName": "Results",
+					"viewLevel": 4
+				},
+				"Resultid": {
+					"viewType": "XML",
+					"viewId": "resultid",
+					"viewName": "Resultid",
+					"viewLevel": 4
+				},
+				"XmlCode": {
+					"viewType": "XML",
+					"viewId": "xmlcode",
+					"viewName": "XmlCode",
+					"transition": "slide",
+					"viewLevel": 3
+				}
+			}
+		}
+	}
+}

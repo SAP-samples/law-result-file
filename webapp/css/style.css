@@ -1,0 +1,142 @@
+/* used in Systems.xml to have system list via Systes.controller.js. Results in a line break for the sorter (installation number) and no line break for system list */
+.lineBreak {
+	grid-column-start: 1;
+	grid-column-end: -1;  
+}
+/* used in Systems.xml and System.xml to have no line break for system/part list */
+.noBreak {
+	grid-column-start: auto;
+	grid-column-end: auto;
+	border: 2px solid;
+	border-radius: 8px;
+}
+
+.lineBefore {
+	border-top: solid 1px lightgrey;
+}
+
+H2.results {
+	font-size: large;
+}
+
+H3.results {
+	padding-left: 2rem;
+	font-size: medium;
+}
+
+H4.results {
+	padding-left: 4rem;
+	font-size: smaller;
+}
+
+/* for button line above XML code editor */
+.navButton5 {
+	padding-left: 0.2rem;
+}
+.navTitle {
+	padding-top: 0.8rem;
+}
+
+.elxCL1 {
+	clear: both;
+	padding-top: 0.7rem;
+}
+
+.elxCL2 {
+	clear: both;
+	padding-top: 0.4rem;
+}
+
+/* ---- DIV --- settings -------------- */
+.elxSrlDivL, .elxSrlDivR {
+	box-sizing: border-box;
+	display: block;
+	float: left;
+	width: 50%;
+}
+.elxSrlDivL {
+	clear: both;
+	padding-right: 1rem;
+}
+
+/* ---- SPAN --- settings -------------- */
+.elxSrlSpanL, .elxSrlSpanR, .elxSrlSpanL2, .elxSrlSpanL3 {
+	display: inline-block;
+	float: none;
+	position: relative;
+	white-space: pre-line;
+	text-overflow: ellipsis;
+	cursor: text;
+}
+
+.elxSrlSpanL {
+	float: right;
+	text-align: end;
+}
+
+.elxSrlSpanR, .elxSrlSpanR2, .elxSrlSpanR3 {
+	text-align: left;
+}
+
+.elxSrlSpanL2 {
+	float: left;
+	padding-left: 1rem;
+	padding-right: 0.5rem;
+} 
+
+.elxSrlSpanL3  {
+	float: left;
+	padding-left: 2rem;
+}
+
+/*  ---- further settings --- */
+.lawItem  {
+	border: 3px solid;
+	border-radius: 6px;
+}
+
+.elxRlTxt {
+	font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+	margin-top: 0px;
+	height: 14px;
+	max-width: 15rem;
+}
+
+/* Styles for the ResultLine control */
+.elxRlTitle, .elxRlLabel {
+	display: flex;
+}
+
+.elxRlTitle {
+	padding-top: 1em;
+}
+
+.elxRlLabel { }
+
+/* START TEST ONLY -- 
+.grid-container {
+  display: grid;
+  grid: 150px / auto auto auto;
+  grid-gap: 10px;  
+  padding: 10px;
+}
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+  }
+END TEST ONLY -- */
+
+
+/* --- START --- ACE Editor related setting */
+/* -----------------------------------------*/
+
+.wattEditorContainer {
+	flex-grow: 1;
+}
+
+.moreButton {
+	padding-left: 10rem;
+	padding-bottom: 5rem;
+}
+
+/* --- END --- ACE Editor related setting */

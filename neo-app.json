@@ -1,0 +1,29 @@
+{
+	"welcomeFile": "index.html",
+	"routes": [{
+		"path": "/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources"
+		},
+		"description": "SAPUI5 Test Resources"
+	}, {
+		"path": "/services/odata",
+		"target": {
+			"type": "destination",
+			"name": "SMP_NG_WEB",
+			"entryPath": "/odata"
+		},
+		"description": "Gateway to I7D (CCOE)"
+	}],
+	"sendWelcomeFileRedirect": false
+}

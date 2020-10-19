@@ -1,0 +1,54 @@
+<mvc:View controllerName="sap.support.zglacelx.controller.Part"
+	xmlns:c="sap.ui.core"
+	xmlns:ce="sap.ui.codeeditor"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:fo="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:cols="controller.layout">
+	<App>
+		<pages>
+			<Page title="{i18n>part.page.client.text}" showNavButton="true" enableScrolling="true" navButtonPress="backToSystem" id="resultPage">
+				<subHeader>
+					<OverflowToolbar >
+						<Breadcrumbs currentLocationText="{i18n>properties.breadcrumb.title}">
+							<Link press="onNavLoad" text="{i18n>header.breadcrumb.load.text}"/>
+							<Link press="onNavAll" text="{i18n>header.breadcrumb.all.text}"/>
+							<Link press="onNavSystemList" text="{i18n>header.breadcrumb.systems.text}"/>
+							<Link press="onNavSystem" text="{i18n>part.breadcrumb.sid.placeholder.text}" id="bcSid" />														
+						</Breadcrumbs>										
+
+						<ToolbarSpacer />						
+						<Label text="{i18n>part.button.label.text}"/>												
+						<Select id="drop" width="18rem" change="onDropDownSelect"/>
+						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" press="navToPrevBlock" />	
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToNextBlock" id="nextBlock" />						
+					</OverflowToolbar>
+				</subHeader>
+				<content>
+					<!-- Properties Part -->
+						<cols:EqualWidthColumns id="selectedPart">
+							<cols:content>	
+								<Panel headerText="{i18n>properties.propsSection.title}" width="100%">
+									<l:VerticalLayout id="partProperties" width="100%"></l:VerticalLayout>
+								</Panel>
+							</cols:content>
+							<cols:content>
+								<Panel headerText="{i18n>xml.headerText}">
+									<ce:CodeEditor id="propertiesCE" type="xml" class="wattEditorContainer" colorTheme="tomorrow"/>							 	
+								</Panel>
+							</cols:content>
+						</cols:EqualWidthColumns>
+
+						<l:VerticalLayout id="resultList" width="100%" class="sapUiSmallMargin" />
+						<Button text="{i18n>result.more.button.text}" id="moreButton" press="showAllResults" class="moreButton"/>
+				</content>									
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

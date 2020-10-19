@@ -1,0 +1,859 @@
+{	"documentation": [
+		" Each entry should have two lines, a 'units' line and a 'url' which references the customer information sheet",
+		" The 'units' array should list all metrics that are handled in the customer information sheet.", 
+		" 'units' don't need, but may have a leading 0 (will be cut off)."
+	], 
+   	
+   	"defaults":  {
+			"enginePage": "https://support.sap.com/en/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement.html",		   	
+			"userPage":	  "https://support.sap.com/en/my-support/systems-installations/system-measurement/system-measurement-information.html#section_1908747832"			
+   	},
+	
+	"cis":
+	[
+   		{	
+   			"units": [	"100", "110", "120"],
+   			"url":		"https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0100-0120-sap-human-resource-management-hr-pd-en.pdf",
+			"title": "Human Resource Management Engine Measurement (100-120)"   			
+   		}, {	
+   			"units": [ "150", "151", "152", "153", "160", "170", "175"],
+   			"url":		"https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0150-0175-sap-human-resource-management-hr-pa-en.pdf", 
+   			"title": "Human Resource Management Engine Measurement (150-175)"
+   		}, {	
+   			"units":	[	"157" ],
+   			"url":		"https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0157-sap-human-resource-management-payroll-processing-en.pdf", 
+   			"title": "Human Resource Management (HR) - Payroll"
+		   }, 
+	
+		{ 
+			"units":    [ "0180-", "0183" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0180-0182-sap-e-recruiting-en.pdf",
+			"title": "SAP e-Recruiting "
+		 }, { 
+			"units":    [ "0190" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0190-hr-bav-en.pdf",
+			"title": "HR-Pension Fund (BAV) Germany "
+		 }, { 
+			"units":    [ "0191-", "0193" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0191-0193-hr-bav-europe-en.pdf",
+			"title": "HR-Pension Fund Switzerland, Netherlands, Belgium "
+		 }, { 
+			"units":    [ "0195-", "0196" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0195-0196-hr-vadm-pension-administration-en.pdf",
+			"title": "HR-VADM Pension Administration "
+		 }, { 
+			"units":    [ "0200-", "0235" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0200-0235-sap-for-banking-sem-en.pdf",
+			"title": "Banking SEM "
+		 }, { 
+			"units":    [ "0240-", "0241" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0240-0241-bca-deposits-management-for-banking-en.pdf",
+			"title": "Bank Customer Accounting / Deposits Management for Banking, Suite Edition "
+		 }, { 
+			"units":    [ "0250-", "0255" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0250-0255-sap-loans-management-for-banking-suite-edition-en.pdf",
+			"title": "SAP Loans Management for Banking, Suite Edition "
+		 }, { 
+			"units":    [ "0260" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0260-sap-limit-management-en.pdf",
+			"title": "SAP Limit Management "
+		 }, { 
+			"units":    [ "0265" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0265-sap-collateral-management-for-banking-suite-edition-en.pdf",
+			"title": "SAP Collateral Management for Banking, Suite Edition "
+		 }, { 
+			"units":    [ "0290-", "0292" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0290-0292-sap-funding-management-en.pdf",
+			"title": "SAP Funding Management "
+		 }, { 
+			"units":    [ "0300" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0300-sap-for-healthcare-sap-patient-management-en.pdf",
+			"title": "SAP Patient Management  "
+		 }, { 
+			"units":    [ "0310-", "0311" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0310-sap-ambulatory-care-en.pdf",
+			"title": "SAP Ambulatory Care Management "
+		 }, { 
+			"units":    [ "0330" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0330-sap-bill-to-cash-and-sap-customer-financials-management-en.pdf",
+			"title": "SAP Bill-to-Cash and SAP Customer Financials Management (FI-CAX) "
+		 }, { 
+			"units":    [ "0340" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0340-sap-global-batch-traceability-en.pdf",
+			"title": "SAP Global Batch Traceability (GBT) "
+		 }, { 
+			"units":    [ "0350-", "0354" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0350-0354-sap-landscape-transformation-en.pdf",
+			"title": "SAP Landscape Transformation "
+		 }, { 
+			"units":    [ "0370-", "0372" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0370-0372-sap-netweaver-gateway-2.0-en.pdf",
+			"title": "SAP NetWeaver Gateway 2.0 "
+		 }, { 
+			"units":    [ "0380-", "0382" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0380-0381-sap-hana-planning-en.pdf",
+			"title": "SAP Business Planning & Cons, Lic for PAK only, SAP NW (SAP HANA Planning) "
+		 }, { 
+			"units":    [ "0395-", "0397" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0395-0396-sap-production-planning-and-detailed-scheduling-en.pdf",
+			"title": "SAP Production Planning and Detailed Scheduling "
+		 }, { 
+			"units":    [ "0402-", "0480" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0402-0480-sap-utilities-ica-en.pdf",
+			"title": "SAP Utilities Billing, Invoicing & Contract Accounting, Energy Data Management (older Pricelists)  "
+		 }, { 
+			"units":    [ "0416", "0436" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0416-0436-sap-utilities-waste-management-billing-en.pdf",
+			"title": "SAP Waste Billing, Invoicing & Contract Accouting (older Pricelists) "
+		 }, { 
+			"units":    [ "0420" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0420-sap-energy-portfolio-management-en.pdf",
+			"title": "SAP Utilities Energy Portfolio Management (older Pricelists)  "
+		 }, { 
+			"units":    [ "0480" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0480-sap-utilities-waste-management-logistics-en.pdf",
+			"title": "SAP Utilities Logistic (older Pricelists)  "
+		 }, { 
+			"units":    [ "0490" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0490-sap-financial-closing-cockpit-en.pdf",
+			"title": "SAP Financial Closing Cockpit, Classic & S/4HANA "
+		 }, { 
+			"units":    [ "0500" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0500-sap-customer-financials-management-for-telecommunications-en.pdf",
+			"title": "SAP Customer Financials Management for Telecommunications/ formerly: Revenue Management Contract Accounting "
+		 }, { 
+			"units":    [ "0506-", "0568" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0506-0568-is-utilities-en.pdf",
+			"title": "SAP IS Utilities/ SAP Utilities Matrix "
+		 }, { 
+			"units":    [ "0570-", "0571" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0570-0571-sap-work-clearance-management-en.pdf",
+			"title": "SAP Work Clearance Management  "
+		 }, { 
+			"units":    [ "0580" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0580-is-t-convergent-invoicing-en.pdf",
+			"title": "SAP Convergent Invoicing IS-T  "
+		 }, { 
+			"units":    [ "0585-", "0586" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0585-0586-sap-convergent-invoicing-en.pdf",
+			"title": "SAP Convergent Invoicing "
+		 }, { 
+			"units":    [ "0590" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0590-sap-convergent-charging.pdf",
+			"title": "SAP Convergent Charging "
+		 }, { 
+			"units":    [ "0600" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0600-sap-collections-and-disbursements-for-insurance-en.pdf",
+			"title": "SAP Collections and Disbursements for Insurance "
+		 }, { 
+			"units":    [ "0606" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0606-sap-policy-management-en.pdf",
+			"title": "SAP Policy Management "
+		 }, { 
+			"units":    [ "0615-", "0617" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0615-sap-fraud-management-en.pdf",
+			"title": "SAP Fraud Management  "
+		 }, { 
+			"units":    [ "0620-", "0622" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0620-0622-insurance-claims-management-en.pdf",
+			"title": "Insurance Claims Management FS-CM "
+		 }, { 
+			"units":    [ "0650" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0650-sap-sustainability-performance-management-en.pdf",
+			"title": "Sustainability Performance Management 2.0  "
+		 }, { 
+			"units":    [ "0670" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0670-sap-hana-main-memory-en.pdf",
+			"title": "SAP HANA Main Memory  "
+		 }, { 
+			"units":    [ "0672-", "0673", "H010-", "H011" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0672-0673andH010-H011-sap-hana-main-memory-en.pdf",
+			"title": "SAP HANA Main Memory "
+		 }, { 
+			"units":    [ "0680" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0680-sap-quality-issue-management-en.pdf",
+			"title": "SAP Quality Issue Management (QIM)  "
+		 }, { 
+			"units":    [ "0690-", "0696" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0690-0696-sap-charging-and-billing-en.pdf",
+			"title": "SAP Charging and Billing "
+		 }, { 
+			"units":    [ "0700-", "0704" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0700-0703-sap-public-sector-contract-accounting-en.pdf",
+			"title": "SAP Public Sector Contract Accounting (Classic & S/4HANA)/ formerly: Tax & Revenue Management "
+		 }, { 
+			"units":    [ "0710-", "0711" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0710-0711-sap-electronic-toll-collection-en.pdf",
+			"title": "SAP Electronic Toll Collection  "
+		 }, { 
+			"units":    [ "0720-", "0721" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0720-0721-sap-business-objects-nota-fiscal-eletronica-en.pdf",
+			"title": "SAP BusinessObjects Nota Fiscal Eletrônica 10.0 "
+		 }, { 
+			"units":    [ "0730-", "0736" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0730-0736-sap-eductional-services-for-higher-education-and-research-campus-management-en.pdf",
+			"title": "SAP Educational Services for Higher Education & Research (Campus Management) "
+		 }, { 
+			"units":    [ "0740" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0740-sap-aro-asset-retirement-obligation-management-en.pdf",
+			"title": "SAP ARO: Asset Retirement Obligation Management  "
+		 }, { 
+			"units":    [ "0745" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0745-sap-forecasting-and-replenishment-en.pdf",
+			"title": "SAP Forecasting and Replenishment (for use with SAP Merchandising Software) "
+		 }, { 
+			"units":    [ "0755" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0755-sap-management-of-change-en.pdf",
+			"title": "SAP Management of Change  "
+		 }, { 
+			"units":    [ "0760" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0760-sap-bill-to-cash-management-for-electromobility-en.pdf",
+			"title": "Bill-to-Cash Management for Electromobility  "
+		 }, { 
+			"units":    [ "0765" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0765-sap-recycling-administration-rea-en.pdf",
+			"title": "SAP Recycling Administration (REA)  "
+		 }, { 
+			"units":    [ "0770-", "0771" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0770-0771-sap-sales-and-order-management-telco-postpaid-and-prepaid-en.pdf",
+			"title": "SAP Sales and Order Management (Telco Postpaid and Prepaid)  "
+		 }, { 
+			"units":    [ "0780" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0780-sap-liquidity-risk-management-en.pdf",
+			"title": "SAP Liquidity Risk Management "
+		 }, { 
+			"units":    [ "0790" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0790-sap-erp-option-for-edocument-processing-en.pdf",
+			"title": "SAP ERP, Option for eDocument Processing "
+		 }, { 
+			"units":    [ "0800" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0800-sap-for-oil-and-gas-service-station-retailing-en.pdf",
+			"title": "Service Station Retailing for Oil and Gas "
+		 }, { 
+			"units":    [ "0810-", "0813" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0810-0813-sap-oil-and-gas-secondary-distribution-en.pdf",
+			"title": "Oil & Gas Secondary Distribution "
+		 }, { 
+			"units":    [ "0815" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0815-sap-fuel-supply-chain-management-for-utilities-en.pdf",
+			"title": "SAP Fuel Supply Chain Management for Utilities "
+		 }, { 
+			"units":    [ "0820" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0820-sap-netweaver-single-sign-on-en.pdf",
+			"title": "SAP NetWeaver Single Sign-On  "
+		 }, { 
+			"units":    [ "0830-", "0832" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0830-0832-sap-bulk-secondary-logistics-management-en.pdf",
+			"title": "SAP Bulk Secondary Logistics Management "
+		 }, { 
+			"units":    [ "0840" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0840-sap-business-partner-screening-en.pdf",
+			"title": "SAP Business Partner Screening "
+		 }, { 
+			"units":    [ "0900" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0900-sap-equipment-and-tools-management-en.pdf",
+			"title": "SAP Equipment & Tools Management (Formerly SAP Engineering & Construction Management)  "
+		 }, { 
+			"units":    [ "0920" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0920-sap-hybris-billing%2c-pricing-simuation-en.pdf",
+			"title": "SAP Hybris Billing, Pricing Simulation (Formerly SAP Convergent Pricing Simulation)  "
+		 }, { 
+			"units":    [ "0930-", "0933" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0930-0933-sap-deposits-management-for-banking-suite-edition-en.pdf",
+			"title": "SAP Deposits Management for Banking, Suite Edition / Transactional Banking (as of price list 2014)  "
+		 }, { 
+			"units":    [ "0940-", "0945" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0940-0945-sap-loans-management-for-banking-suite-edition-en.pdf",
+			"title": "SAP Loans Management for Banking, Suite Edition / Transactional Banking (as of price list 2014) "
+		 }, { 
+			"units":    [ "0950-", "0953" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0950-0953-sap-collateral-management-system-for-banking-suite-edition-en.pdf",
+			"title": "SAP Collateral Management System for Banking Suite Edition (as of price list 2014)  "
+		 }, { 
+			"units":    [ "0960-", "0963" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0960-0963-sap-collateral-management-system-for-banking-on-banking-services-en.pdf",
+			"title": "SAP Collateral Management System for Banking on Banking Services (as of price list 2014)  "
+		 }, { 
+			"units":    [ "0970" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0970-sap-incentives-and-paybacks-by-vistex-en.pdf",
+			"title": "SAP Incentives and Paybacks by Vistex "
+		 }, { 
+			"units":    [ "0972" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0972-sap-data-maint-for-erp-by-vistex-pricing-en.pdf",
+			"title": "SAP Data Maintenance for ERP by Vistex-Pricing "
+		 }, { 
+			"units":    [ "0974" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/0974-sap-data-maint-for-erp-by-vistex-resources-en.pdf",
+			"title": "SAP Data Maintenance for ERP by Vistex-Resources  "
+		 }, { 
+			"units":    [ "1000" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1000-sap-aerospace-and-defense-en.pdf",
+			"title": "SAP Aerospace and Defense-SPEC 2000  "
+		 }, { 
+			"units":    [ "1100-", "1101" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1100-1101-sap-for-automotive-jit-en.pdf",
+			"title": "SAP Automotive (Just-in-time process for suppliers)  "
+		 }, { 
+			"units":    [ "1111-", "1113" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1111-1113-sap-automotive-vehicle-management-en.pdf",
+			"title": "SAP Automotive Vehicle Management "
+		 }, { 
+			"units":    [ "1140-", "1141" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1140-1141-sap-archiving-by-open-text-en.pdf",
+			"title": "SAP Archiving by OpenText  "
+		 }, { 
+			"units":    [ "1144-", "1145" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1144-1145-sap-document-access-by-open-text-en.pdf",
+			"title": "SAP Document Access by OpenText "
+		 }, { 
+			"units":    [ "1150-", "1151", "1175-", "1176" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1150-1151-sap-invoice-management-by-open-text-en.pdf",
+			"title": "SAP Invoice Management by OpenText "
+		 }, { 
+			"units":    [ "1152-", "1154" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1152-1154-sap-extended-ecm-by-open-text-en.pdf",
+			"title": "SAP Extended ECM by OpenText  "
+		 }, { 
+			"units":    [ "1156-", "1157" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1156-1157-sap-employee-file-management-by-open-text-en.pdf",
+			"title": "SAP Employee File Management by OpenText "
+		 }, { 
+			"units":    [ "1200-", "1206" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1200-1206-sap-fscm-biller-direct-en.pdf",
+			"title": "FSCM-SAP Biller Direct  "
+		 }, { 
+			"units":    [ "1210-", "1212", "1230" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1210-1230-sap-dispute-management-en.pdf",
+			"title": "FSCM-SAP Dispute Management  "
+		 }, { 
+			"units":    [ "1215" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1215-sap-credit-management-en.pdf",
+			"title": "SAP Credit Management  "
+		 }, { 
+			"units":    [ "1240" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1240-sap-collections-management-en.pdf",
+			"title": "FSCM-SAP Collections Management  "
+		 }, { 
+			"units":    [ "1250" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1250-sap-allocation-management-add-on-for-sap-customer-activity-repository.pdf",
+			"title": "SAP Allocation Management, add-on for SAP Customer Activity Repository "
+		 }, { 
+			"units":    [ "1300-", "1304" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1300-1304-sap-warehouse-management.pdf",
+			"title": "SAP Warehouse Management "
+		 }, { 
+			"units":    [ "1310-", "1312", "1480-", "1482" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1310-1312-sap-extended-warehousing-en.pdf",
+			"title": "SAP Extended Warehouse Management "
+		 }, { 
+			"units":    [ "1318" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1318-sap-material-flow-system-control-en.pdf",
+			"title": "SAP Material Flow System Control  "
+		 }, { 
+			"units":    [ "1320-", "1322" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1320-1322-sap-dock-appointment-scheduling-en.pdf",
+			"title": "SAP Dock Appointment Scheduling "
+		 }, { 
+			"units":    [ "1330" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1330-sap-account-intelligence-en.pdf",
+			"title": "SAP Account Intelligence  "
+		 }, { 
+			"units":    [ "1340" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1340-sap-assortment-planning-en.pdf",
+			"title": "SAP Assortment Planning for Retail  "
+		 }, { 
+			"units":    [ "1345" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1345-sap-customer-activity-repository-en.pdf",
+			"title": "SAP Customer Activity Repository  "
+		 }, { 
+			"units":    [ "1360" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1360-sap-promotion-management-retail-en.pdf",
+			"title": "SAP Promotion Management for Retail  "
+		 }, { 
+			"units":    [ "1401-", "1402" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1401-1402-sap-bank-relationship-and-communication-management-en.pdf",
+			"title": "SAP Bank Relationship/Communication Management (initial measurement functionality) "
+		 }, { 
+			"units":    [ "1405-", "1406" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1405-1406-sap-bank-relationship-and-communication-management-en.pdf",
+			"title": "SAP Bank Relationship/Communication Management (revised measurement functionality) "
+		 }, { 
+			"units":    [ "1450-", "1451" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1450-sap-supplier-relationship-management-extended-procurement-en.pdf",
+			"title": "SAP Extended Procurement (Formerly SAP Supplier Relationship Management) "
+		 }, { 
+			"units":    [ "1455" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1455-sap-supplier-relationship-management-sus-supplier-self-services-en.pdf",
+			"title": "SAP Supplier Relationship Management-SUS (Supplier Self Services) "
+		 }, { 
+			"units":    [ "1470-", "1472" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1470-sap-extended-warehouse-management-en.pdf",
+			"title": "SAP Extended Warehouse Management "
+		 }, { 
+			"units":    [ "1495" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1495-sap-cross-channel-order-management-for-retail-en.pdf",
+			"title": "SAP Cross-Channel Order Management for Retail  "
+		 }, { 
+			"units":    [ "1520-", "1530" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1520-1530-sap-for-retail-en.pdf",
+			"title": "Retail "
+		 }, { 
+			"units":    [ "1535" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1535-sap-merchandising-for-retail-en.pdf",
+			"title": "SAP Merchandising for Retail  "
+		 }, { 
+			"units":    [ "1550-", "1552" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1550-1552-sap-bi-bw-accelerator-en.pdf",
+			"title": "Business Intelligence (BI) Accelerator  "
+		 }, { 
+			"units":    [ "1570-", "1571" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1570-1571-bi-open-hub-service-and-destination-en.pdf",
+			"title": "BI Open Hub Service "
+		 }, { 
+			"units":    [ "1601" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1601-sap-interactive-form-by-adobe-en.pdf",
+			"title": "SAP Interactive Forms by Adobe  "
+		 }, { 
+			"units":    [ "1630" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1630-sap-supplier-lifecycle-management-en.pdf",
+			"title": "SAP Supplier Lifecycle Management  "
+		 }, { 
+			"units":    [ "1650" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1650-sap-audit-management-en.pdf",
+			"title": "SAP Audit Management "
+		 }, { 
+			"units":    [ "1670" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1670-sap-enhanced-maintenance-and-service-planning-en.pdf",
+			"title": "Enhanced Maintenance and Service Planning  "
+		 }, { 
+			"units":    [ "1720" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1720-cerner-i-s-h-med.pdf",
+			"title": "CERNER i.s.h. med "
+		 }, { 
+			"units":    [ "1740-", "1745" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1740-1745-sap-banking-bank-analyzer-en.pdf",
+			"title": "SAP Banking-Bank Analyzer "
+		 }, { 
+			"units":    [ "1800-", "1885" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1800-sap-for-utilities-auditing-guide.pdf",
+			"title": "SAP for Utilities-Auditing Guideline (as of Pricelist 2013)/ SAP Utilites Matrix/ SAP S/4HANA for Utilities-Auditing Guide/ SAP S/4HANA for Utilities Matrix "
+		 }, { 
+			"units":    [ "1848-", "1849" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/1848-1849-sap-energy-demand-side-management-for-utilities-en.pdf",
+			"title": "SAP Energy Demand-Side Management for Utilities "
+		 }, { 
+			"units":    [ "2001-", "2002" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2001-2002-sap-event-management-en.pdf",
+			"title": "SAP Event Management "
+		 }, { 
+			"units":    [ "2101-", "2108" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2101-2108-sap-nw-folders-management-en.pdf",
+			"title": "SAP NetWeaver Folders Management (formerly Records Management) "
+		 }, { 
+			"units":    [ "2130" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2130-sap-file-lifecycle-management-en.pdf",
+			"title": "SAP File Lifecycle Management "
+		 }, { 
+			"units":    [ "2201-", "2205" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2201-2205-sap-incentive-and-commission-management-en.pdf",
+			"title": "Incentive & Commissions Management (ICM) "
+		 }, { 
+			"units":    [ "2320" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2320-sap-exchange-infrastructure-basis-sap-process-integration-java-stack.pdf",
+			"title": "SAP XI/PI Base Engine (JAVA Stack)/  "
+		 }, { 
+			"units":    [ "2320-", "2323" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2320-2323-sap-exchange-infrastructure-basis-sap-process-integration-en.pdf",
+			"title": "SAP XI/PI Base Engine "
+		 }, { 
+			"units":    [ "2405-", "2406" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2405-2406-sap-multi-resource-scheduling-en.pdf",
+			"title": "SAP Multiresource Scheduling "
+		 }, { 
+			"units":    [ "2410" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2410-sap-s4hana-asset-for-resource-scheduling.pdf",
+			"title": "SAP S/4HANA Asset for Resource Scheduling   "
+		 }, { 
+			"units":    [ "2420-", "2423" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2420-2423-sap-intellectual-property-management-en.pdf",
+			"title": "SAP Intellectual Property Management "
+		 }, { 
+			"units":    [ "2600-", "2666" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2600-2666-sap-netweaver-exchange-infrastructure-process-integration-adapter-en.pdf",
+			"title": "SAP XI/PI Adapters "
+		 }, { 
+			"units":    [ "2700" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2700-sap-netweaver-enterprise-search-en.pdf",
+			"title": "SAP NetWeaver Enterprise Search  "
+		 }, { 
+			"units":    [ "2850" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2850-sap-lt-replication-server-en.pdf",
+			"title": "SAP LT Replication Server  "
+		 }, { 
+			"units":    [ "2955" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/2955-sap-netweaver-application-server-add-on-for-code-vulnerability-analysis-en.pdf",
+			"title": "SAP NetWeaver Application Server, Add-On for Code Vulnerability Analysis  "
+		 }, { 
+			"units":    [ "3001" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3001-sap-xrpm-en.pdf",
+			"title": "SAP xRPM "
+		 }, { 
+			"units":    [ "3002" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3002-sap-portfolio-and-project-management-en.pdf",
+			"title": "SAP Portfolio and Project Management "
+		 }, { 
+			"units":    [ "3100-", "3103" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3100-3103-demand-and-supply-planning-en.pdf",
+			"title": "SAP Demand and Supply Planning "
+		 }, { 
+			"units":    [ "3110-", "3114" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3110-3112-sap-information-lifecycle-management-en.pdf",
+			"title": "SAP Information Lifecycle Management "
+		 }, { 
+			"units":    [ "3120-", "3129" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3120-3129-sap-transportation-management-en.pdf",
+			"title": "SAP Transportation Management "
+		 }, { 
+			"units":    [ "3140" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3140-sap-collaborative-product-development-en.pdf",
+			"title": "SAP Collaborative Product Development "
+		 }, { 
+			"units":    [ "3145" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3145-sap-epe-enterprise-product-engineering-and-epf-enterprise-product-formulation.pdf",
+			"title": "SAP EPE Enterprise Product Engineering and EPF Enterprise Product Formulation "
+		 }, { 
+			"units":    [ "3150" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3150-sap-business-objects-planning-and-consolidation-en.pdf",
+			"title": "SAP BusinessObjects Planning and Consolidation (BPC 10.0)  "
+		 }, { 
+			"units":    [ "3151-", "3158" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3152-3158-sap-businessobjects-planning-and-consolidation-measurement-en-external.pdf",
+			"title": "SAP BusinessObjects Planning and Consolidation (BPC 10.1) "
+		 }, { 
+			"units":    [ "3165-", "3167" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3165-3167-sap-governance-risk-and-compliance-access-control-abap-version-en.pdf",
+			"title": "SAP Governance Risk and Compliance (GRC) Access Control (AC)-ABAP Version  "
+		 }, { 
+			"units":    [ "3170-", "3200" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3170-3200-crm-marketing-crm-sales-crm-service-and-crm-interaction-center-en.pdf",
+			"title": "SAP CRM "
+		 }, { 
+			"units":    [ "3210-", "3226" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3210-3220-sap-global-trade-services-en.pdf",
+			"title": "SAP Global Trade Services "
+		 }, { 
+			"units":    [ "3230" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3230-sap-desktop-connection-for-sap-crm-2-enterprise-edition-en.pdf",
+			"title": "Desktop Connection for SAP CRM 2.0 Enterprise Edition  "
+		 }, { 
+			"units":    [ "3250-", "3252" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3250-3252-sap-application-interface-framework-en.pdf",
+			"title": "SAP Application Interface Framework  "
+		 }, { 
+			"units":    [ "3300-", "3302" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3300-3302-sap-treasury-and-risk-management-financial-risk-management-for-commodities-en.pdf",
+			"title": "SAP Treasury and Risk Management, Financial Risk Management for Commodities  "
+		 }, { 
+			"units":    [ "3305-", "3306" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3305-3306-sap-commodity-procurement-en.pdf",
+			"title": "SAP Commodity Procurement  "
+		 }, { 
+			"units":    [ "3310-", "3311" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3310-3311-sap-commodity-sales.pdf",
+			"title": "SAP Commodity Sales (Classic)/ SAP Commodity Sales and Procurement (S/4HANA) "
+		 }, { 
+			"units":    [ "3315" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3315-sap-commercial-project-management-en.pdf",
+			"title": "SAP Commercial Project Management "
+		 }, { 
+			"units":    [ "3319" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3319-sap-flexible-solution-billing-en.pdf",
+			"title": "SAP Flexible Solution Billing  "
+		 }, { 
+			"units":    [ "3321-", "3327" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3321-3327-sap-hybris-marketing-en.pdf",
+			"title": "SAP hybris Marketing "
+		 }, { 
+			"units":    [ "3331-", "3333" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3331-3333-sap-treasury-and-risk-management-en.pdf",
+			"title": "SAP Treasury and Risk Management  "
+		 }, { 
+			"units":    [ "3350-", "3358" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3350-3358-sap-crm-sales-service-en.pdf",
+			"title": "SAP CRM Sales and SAP CRM Service/ Please note: A revised version of the measurement functionality is currently in process. "
+		 }, { 
+			"units":    [ "3390-", "3391" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3390-3391-sap-hybris-marketing-planning-option-en.pdf",
+			"title": "SAP hybris Marketing Planning Option  "
+		 }, { 
+			"units":    [ "3395" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3395-sap-merchandise-planning-for-retail-en.pdf",
+			"title": "SAP Merchandise Planning for Retail "
+		 }, { 
+			"units":    [ "3400" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3400-sap-post-copy-automation-en.pdf",
+			"title": "Post Copy Automation / Landscape Virtualization Management "
+		 }, { 
+			"units":    [ "3403-", "3405" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3403-3405-sap-tax-declaration-framework-en.pdf",
+			"title": "SAP Tax Declaration Framework  "
+		 }, { 
+			"units":    [ "3406-", "3407" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3406-sap-geographical-enablement-framework-en.pdf",
+			"title": "SAP Geographical Enablement Framework "
+		 }, { 
+			"units":    [ "3408" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3408-sap-geographical-framework-extension-for-sap-eam-en.pdf",
+			"title": "SAP Geographical Framework Extension for SAP EAM  "
+		 }, { 
+			"units":    [ "3415-", "3416" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3415-sap-advanced-track-and-trace-for-pharmaceuticals-en.pdf",
+			"title": "SAP Advanced Track and Trace for Pharmaceuticals "
+		 }, { 
+			"units":    [ "3421" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3421-advanced-available-to-promise-en.pdf",
+			"title": "SAP S/4HANA Advanced Available-to-Promise "
+		 }, { 
+			"units":    [ "3424-", "3425" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3424-3425-demand-driven-replenishment.pdf",
+			"title": "SAP S/4HANA for Extended Planning "
+		 }, { 
+			"units":    [ "3427" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3427-sap-direct-store-delivery.pdf",
+			"title": "SAP Direct Store Delivery "
+		 }, { 
+			"units":    [ "3600" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/3600-focused-run-for-sap-solution-manager.pdf",
+			"title": "Focused Run for SAP Solution Manager 1.0 "
+		 }, { 
+			"units":    [ "4003" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/4003-sap-bw4hana.pdf",
+			"title": "SAP BW4/HANA "
+		 }, { 
+			"units":    [ "4006-", "4007" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/4006-4007-sap-portfolio-and-project-management-user.pdf",
+			"title": "SAP Portfolio and Project Management User "
+		 }, { 
+			"units":    [ "4010" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/4010-sap-s4hana-manufacturing-for-production-engineering-and-operations.pdf",
+			"title": "SAP S/4HANA Manufacturing for Production Engineering and Operations "
+		 }, { 
+			"units":    [ "4014" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/4014-sap-trm-impairment-accounting-extension-for-expected-losses.pdf",
+			"title": "SAP Treasury & Risk Management, Impairment Accounting Extension for Expected Losses "
+		 }, { 
+			"units":    [ "4018" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/4018-sap-dairy-management-by-msg.pdf",
+			"title": "SAP Dairy Management by msg (Classic & S/4HANA) "
+		 }, { 
+			"units":    [ "4022" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/4022-sap-meat-management.pdf",
+			"title": "SAP Meat & Fish Management "
+		 }, { 
+			"units":    [ "4400" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/4400-sap-commodity-management-option-for-deal-capture-for-SAP-S4HANA.pdf",
+			"title": "SAP Commodity Management, Option for Deal Capture for SAP S/4HANA   "
+		 }, { 
+			"units":    [ "4410" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/4410-sap-s4hana-for-goods-and-invoice-receipt-reconciliation.pdf",
+			"title": "SAP S/4HANA for Goods and Invoice Receipt Reconciliation "
+		 }, { 
+			"units":    [ "4415" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/4415-sap-s4hana-finance-for-group-reporting.pdf",
+			"title": "SAP S/4HANA Finance for Group Reporting "
+		 }, { 
+			"units":    [ "5000-", "5003" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5000-5003-sap-purchase-order-processing-en.pdf",
+			"title": "Purchase Order Processing "
+		 }, { 
+			"units":    [ "5100-", "5110", "5200-", "5201" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5100-5110%2C5200-5201-sap-sales-and-service-order-processing-640-en.pdf",
+			"title": "Sales/Service Order Processing for SAP_BASIS Releases ≤ 6.40 "
+		 }, { 
+			"units":    [ "5210-", "5241" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5210-5214-sap-sales-and-service-order-processing-en.pdf",
+			"title": "Sales/Service Order Processing for SAP_BASIS Releases ≥ 7.00 "
+		 }, { 
+			"units":    [ "5250-", "5262" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5250-5262-sap-sales-and-service-order-processing.pdf",
+			"title": "SAP Sales and Service Order Processing (Classic & S/4HANA) "
+		 }, { 
+			"units":    [ "5310" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5310-sap-erp-cash-and-liquidity-management-for-china.pdf",
+			"title": "SAP ERP Cash and Liquidity Management for China "
+		 }, { 
+			"units":    [ "5314" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5314-sap-enterprise-integration-for-crm.pdf",
+			"title": "SAP Enterprise Integration for CRM   "
+		 }, { 
+			"units":    [ "5322" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5322-sap-s4hana-cloud-for-central-finance-foundation.pdf",
+			"title": "SAP S/4HANA Cloud for Central Finance Foundation   "
+		 }, { 
+			"units":    [ "5326-", "5327" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5326-5327-sap-s4hana-for-advanced-variant-configuration.pdf",
+			"title": "SAP S/4HANA for Advanced Variant Configuration "
+		 }, { 
+			"units":    [ "5340" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5340-sap-s4hana-finance-for-cash-management-version-for-china.pdf",
+			"title": "SAP S/4HANA Finance for Cash Management, Version for China "
+		 }, { 
+			"units":    [ "5344" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5344-sap-yard-logistics.pdf",
+			"title": "SAP Yard Logistics "
+		 }, { 
+			"units":    [ "5348", "5350" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5348-sap-s4hana-retail-for-merchandise-management.pdf",
+			"title": "SAP S/4HANA Retail for Merchandise Management "
+		 }, { 
+			"units":    [ "5349" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5349-sap-s4hana-fashion-and-vertical-business.pdf",
+			"title": "SAP S/4HANA Fashion and Vertical Business "
+		 }, { 
+			"units":    [ "5352" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/5352-sap-remote-logistics-management-for-oil-and-gas.pdf",
+			"title": "SAP Remote Logistics Management for O&G "
+		 }, { 
+			"units":    [ "6000-", "6008" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/6000-6008-sap-real-estate-management-for-residential-and-commercial-use-en.pdf",
+			"title": "SAP Real Estate Management for Residential and Commercial Use "
+		 }, { 
+			"units":    [ "6020" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/6020-sap-cloud-for-demand-signal-management-single-tenant-edition.pdf",
+			"title": "SAP Cloud for Demand Signal Management, single tenant edition "
+		 }, { 
+			"units":    [ "7100" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/7100-sap-in-house-cash-en.pdf",
+			"title": "SAP In-house Cash  "
+		 }, { 
+			"units":    [ "7500-", "7524", "7580-", "7594", "7610-", "7612" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/7500-7523-7580-7592-integration-of-third-party-cad-products-en.pdf",
+			"title": "Integration of Third-Party CAD Products "
+		 }, { 
+			"units":    [ "7551-", "7554" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/7551-7554-sap-learning-solution-sap-enterprise-learning-en.pdf",
+			"title": "SAP Learning Solution / SAP Enterprise Learning "
+		 }, { 
+			"units":    [ "7985-", "7986" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/7985-7986-sap-ehs-management-global-label-management-en.pdf",
+			"title": "SAP EHS Management-Global Label Management "
+		 }, { 
+			"units":    [ "7990" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/7990-sap-ehs-management-incident-reporter-en.pdf",
+			"title": "Environment, Health & Safety-Incident Reporter  "
+		 }, { 
+			"units":    [ "7995" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/7995-sap-ehs-management-risk-assessment-en.pdf",
+			"title": "Environment, Health & Safety Management – Risk Assessment  "
+		 }, { 
+			"units":    [ "7998" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/7998-sap-ehsm-product-and-reach-compliance-en.pdf",
+			"title": "SAP EHSM Product and REACH Compliance "
+		 }, { 
+			"units":    [ "8000-", "8005" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8000-8005-sap-ehs-en.pdf",
+			"title": "SAP Environment, Health & Safety "
+		 }, { 
+			"units":    [ "8010-", "8011" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8010-8011-sap-product-and-reach-compliance-2-en.pdf",
+			"title": "SAP EHS: Product and REACH Compliance  "
+		 }, { 
+			"units":    [ "8021" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8021-sap-recipe-management-en.pdf",
+			"title": "Recipe Management "
+		 }, { 
+			"units":    [ "8030" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8030-sap-catch-weight-management-en.pdf",
+			"title": "Catch Weight Management "
+		 }, { 
+			"units":    [ "8040-", "8042" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8040-8042-reserve-for-bad-debts-en.pdf",
+			"title": "Reserve for Bad Debts (RBD)  "
+		 }, { 
+			"units":    [ "8050-", "8051" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8050-8051-sap-business-explorer-bex-broadcaster-en.pdf",
+			"title": "SAP Business Explorer (BEX) Broadcaster "
+		 }, { 
+			"units":    [ "8060" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8060-private-health-insurance-data-exchange-en.pdf",
+			"title": "SAP Private Health Insurance Germany "
+		 }, { 
+			"units":    [ "8070-", "8072" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8070-8072-sap-test-data-migration-server-en.pdf",
+			"title": "Test Data Migration Server (TDMS) "
+		 }, { 
+			"units":    [ "8080-", "8081" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8080-8081-sap-loans-management-for-banking-en.pdf",
+			"title": "SAP Loans Management for Banking "
+		 }, { 
+			"units":    [ "8082-", "8083" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8082-8083-sap-deposits-management-for-banking-en.pdf",
+			"title": "SAP Deposits Management for Banking  "
+		 }, { 
+			"units":    [ "8084" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8084-sap-collateral-management-for-banking-en.pdf",
+			"title": "SAP Collateral Management for Banking "
+		 }, { 
+			"units":    [ "8086-", "8087" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8086-8087-sap-leasing-for-banking-en.pdf",
+			"title": "SAP Leasing for Banking "
+		 }, { 
+			"units":    [ "8088-", "8089", "8093" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8088-8089,8093-sap-marketing-sales-and-service-en.pdf",
+			"title": "SAP Marketing, Sales and Service   "
+		 }, { 
+			"units":    [ "8090-", "8094" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8090-8094-sap-capital-yield-tax-management-en.pdf",
+			"title": "SAP Capital Yield Tax Management "
+		 }, { 
+			"units":    [ "8100-", "8104" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8100-8104-crm-shared-services-center-en.pdf",
+			"title": "SAP SAP CRM Shared Service Center (Framework) "
+		 }, { 
+			"units":    [ "8110-", "8113" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8110-8113-sap-loans-management-for-banking-en.pdf",
+			"title": "SAP Loans Management for Banking / Transactional Banking (as of Pricelist 2014) "
+		 }, { 
+			"units":    [ "8114-", "8115" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8114-8115-sap-mortgage-loans-management-for-banking-en.pdf",
+			"title": "SAP Loans Management for Banking, German Mortgage Loans (as of Pricelist 2014) "
+		 }, { 
+			"units":    [ "8120-", "8123" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8120-8123-sap-deposits-management-for-banking-en.pdf",
+			"title": "SAP Deposits Management for Banking / Transactional Banking (as of Pricelist 2014) "
+		 }, { 
+			"units":    [ "8150" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8150-sap-business-objects-explorer-en.pdf",
+			"title": "SAP BusinessObjects Explorer "
+		 }, { 
+			"units":    [ "8160" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8160-sap-payment-en.pdf",
+			"title": "SAP Payment Engine "
+		 }, { 
+			"units":    [ "8170" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8170-sap-loss-prevention-analytics-for-retail-en.pdf",
+			"title": "SAP Loss Prevention Analytics for Retail "
+		 }, { 
+			"units":    [ "8180-", "8189" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8180-8185-sap-master-data-governance-en.pdf",
+			"title": "SAP Master Data Governance "
+		 }, { 
+			"units":    [ "H035" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/H035-sap-hana-active-active-read-enabled-option.pdf",
+			"title": "SAP HANA Active/Active Read-Enabled Option "
+		 }, { 
+			"units":    [ "H061" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/H061-sap-hana-dynamic-tiering-option.pdf",
+			"title": "SAP HANA Dynamic Tiering Option "
+		 }, { 
+			"units":    [ "H071" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/H071-sap-hana-innovation-management.pdf",
+			"title": "SAP HANA Innovation Management "
+		 }, { 
+			"units":    [ "CHKC" ], 
+			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/information-about-sap-system-measurement/Classification-Help-Workbench-User-Developer-Check.pdf",
+			"title": "Workbench User / Developer Check"
+		 }      
+		 
+	]
+}

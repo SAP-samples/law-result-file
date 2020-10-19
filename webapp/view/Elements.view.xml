@@ -1,0 +1,98 @@
+<mvc:View controllerName="sap.support.zglacelx.controller.Elements"
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:comm="sap.suite.ui.commons"
+	xmlns="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:cols="controller.layout"
+	xmlns:grid="sap.ui.layout.cssgrid">
+	<App id="Intro">
+		<pages>
+			<Page id="overview" title="{i18n>elements.col.right.title}" class="sapUiStdPage" showNavButton="true" navButtonText="Back" navButtonPress="onToIntro">
+				<content>
+					<grid:CSSGrid gridTemplateColumns="1fr 2fr" gridGap="1rem">
+						<VBox>
+							<l:VerticalLayout class="sapUiSmallMargin sapUiNoMarginBottom">
+								<Title text="{i18n>elements.col.left.title}" level="H2" class="results" />	
+							</l:VerticalLayout>
+							<l:VerticalLayout class="sapUiNoMargin sapUiContentPadding">
+																															
+								<GenericTile
+									id="tileHeader"
+									header="{i18n>elements.tiles.header.title}"
+									subheader="{i18n>elements.tiles.header.subheader}"
+									headerImage="sap-icon://letter"
+									frameType="TwoByOne" 
+									press="onToHeader"
+									backgroundImage="/webapp/css/nav_header.png">
+									<TileContent footer="{i18n>elements.tiles.header.info}" />															
+								</GenericTile>
+
+								<GenericTile
+									id="tileSystems"
+									header="{i18n>elements.tiles.systems.title}"
+
+									headerImage="sap-icon://it-system" 
+									frameType="TwoByOne" 
+									press="onSystemList"									
+									backgroundImage="/webapp/css/nav_systems.png">
+									<TileContent footer="{i18n>elements.tiles.systems.info}" />															
+								</GenericTile>
+
+								<GenericTile
+									id="tileParts"																
+									header="{i18n>elements.tiles.parts.title}"
+									subheader="{i18n>elements.tiles.parts.subheader}"
+									headerImage="sap-icon://it-instance"
+									frameType="TwoByOne" 
+									press="onFirstSystem"
+									backgroundImage="/webapp/css/nav_part.png">
+									<TileContent footer="{i18n>elements.tiles.parts.info}" />
+								</GenericTile>
+
+								<GenericTile
+									id="tileResults"	
+									header="{i18n>elements.tiles.results.title}"
+									subheader="{i18n>elements.tiles.results.subheader}"
+									headerImage="sap-icon://survey"
+									frameType="TwoByOne" 
+									press="onFirstPart"
+									backgroundImage="/webapp/css/nav_result.png">
+									<TileContent footer="{i18n>elements.tiles.results.info}" />
+								</GenericTile>
+
+								<GenericTile
+									id="tileXml"									
+									header="{i18n>elements.tiles.xml.blocks.title}"
+									subheader="{i18n>elements.tiles.xml.blocks.subheader}"
+									headerImage="sap-icon://syntax"
+									frameType="TwoByOne" 
+									press="onToHeader">
+									<TileContent footer="{i18n>elements.tiles.xml.blocks.info}" />
+								</GenericTile>
+
+								<GenericTile
+									header="{i18n>elements.tiles.xml.code.title}"
+									subheader="{i18n>elements.tiles.xml.code.subheader}"
+									headerImage="sap-icon://syntax"
+									frameType="TwoByOne" 
+									press="onShowXML">
+									<TileContent footer="{i18n>elements.tiles.xml.code.info}" />
+								</GenericTile>
+								
+							</l:VerticalLayout>
+						</VBox>
+						<VBox>	
+							<l:VerticalLayout class="sapUiSmallMargin sapUiNoMarginBottom">												
+								<Title text="{i18n>elements.page.title}" level="H2" class="results" />										
+								<Image src="/webapp/css/law_xml_structure.png" densityAware="false" class="sapUiNoMargin" />
+							</l:VerticalLayout>									
+						</VBox>
+				
+					</grid:CSSGrid>	
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,55 @@
+<mvc:View controllerName="sap.support.zglacelx.controller.Header"
+	xmlns:c="sap.ui.core"
+	xmlns:ce="sap.ui.codeeditor"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:fo="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:grid="sap.ui.layout.cssgrid"
+
+    xmlns:cols="controller.layout">
+	<App>
+		<pages>
+			<Page title="{i18n>header.page.title}" showNavButton="true" navButtonPress="onElements" id="headerPage">
+				<subHeader>
+					<OverflowToolbar >
+						<Breadcrumbs currentLocationText="{i18n>elements.tiles.header.title}">
+							<Link press="onNavLoad" text="{i18n>header.breadcrumb.load.text}"/>
+							<Link press="onNavAll" text="{i18n>header.breadcrumb.all.text}"/>							
+						</Breadcrumbs>				
+
+						<ToolbarSpacer />						
+						<Label text="{i18n>part.button.label.text}"/>										
+						<Select id="drop" width="18rem" change="onDropDownSelect"/>
+						<Button text="{i18n>part.button.previous.text}" icon="sap-icon://sys-prev-page" class="navButton" enabled="false" tooltip="{i18n>xml.button.top}" />	
+						<Button text="{i18n>part.button.next.text}" icon="sap-icon://sys-next-page" class="navButton" press="navToFirstSystem" />
+					</OverflowToolbar>
+				</subHeader>
+
+				<content> 
+					<cols:EqualWidthColumns>
+						<cols:content>				
+							<Panel headerText="{i18n>header.propsSection.title.text}" id="propSec"/>
+							<Panel headerText="{i18n>xml.headerText}">
+								<ce:CodeEditor type="xml" class="wattEditorContainer" editable="false" id="headerCodeEditor" colorTheme="tomorrow"/>
+							 </Panel>
+						</cols:content>
+					</cols:EqualWidthColumns>	
+
+					<!--  for CodeEditor theme testing only
+					<f:GridList  class="sapUxAPObjectPageSubSectionAlignContent" id="test" >			
+						<f:customLayout>
+							<grid:GridBoxLayout boxMinWidth="20rem"  />
+						</f:customLayout>
+					</f:GridList>
+					-->
+
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

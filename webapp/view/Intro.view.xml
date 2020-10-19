@@ -1,0 +1,51 @@
+<mvc:View controllerName="sap.support.zglacelx.controller.Intro" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+	xmlns:ce="sap.ui.codeeditor"
+	xmlns:l="sap.ui.layout" 
+	xmlns:tnt="sap.tnt" 
+	xmlns:u="sap.ui.unified"
+	xmlns:uit="sap.ui.table"
+	xmlns:f="sap.f"
+	xmlns:c="sap.ui.core"
+	xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns="sap.m"
+	displayBlock="true">
+	<Shell id="shell">
+		<App id="IntroView">
+			<pages>
+				<Page id="page" title="{i18n>intro.page.title}">
+					<content>
+						<grid:CSSGrid gridAutoFlow="Column" gridTemplateColumns="1fr 1fr" gridAutoRows="10rem" gridGap="2rem">
+							<VBox>
+								<layoutData>
+									<grid:GridItemLayoutData gridRow="span 2" />
+								</layoutData>
+								<Panel id="howTo"  headerText="{i18n>intro.panel_processDescription.headerText}"  width="100%" height="100%">
+									<content>
+										<FormattedText id="text1" htmlText="{i18n>intro.description.Formated.text}" />
+									</content>
+								</Panel>	
+							</VBox>
+
+							<Panel id="sampleFile"  headerText="{i18n>intro.sampleSection.headerText}">
+								<!-- <layoutData>
+									<grid:GridItemLayoutData gridColumn= "1 / 2"/>
+								</layoutData> -->
+								<Button text="{i18n>intro.sampleSection.button.start.text}" press="onUseExampleFile"/>			
+							</Panel>
+							<Panel id="uploadSection"  headerText="{i18n>intro.uploadSection.panel.headerText}">
+								<!-- <layoutData>
+									<grid:GridItemLayoutData gridColumn= "3 / 6"/>
+								</layoutData> -->
+								<u:FileUploader id="fileSelector" name="lawFileUpload" buttonText="{i18n>intro.uploadSection.button.filePicker.text}" uploadUrl="upload/" 
+									tooltip="{i18n>intro.uploadSection.button.filePicker.toolTip}"
+									change="handleSelectXMLFile" fileType="xml" width="100%"/>									
+							</Panel>																
+						</grid:CSSGrid>										
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

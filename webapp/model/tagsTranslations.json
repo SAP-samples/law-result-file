@@ -1,0 +1,265 @@
+{
+	"documentation": [
+		" 'tags' will be translated into its 'uiText' field, which may be a i18n value - if provided tag matches",
+		" 'innerHTML' will be translated into its 'uiText' field, which may be a i18n value - if provided text starts with innerHMTL",	
+		" 'tag' + 'innerHTML' will be translated into its 'utText' field, which may be a i18n value - if both provided text and tag match"
+	], 
+	"trans": [
+		{
+			"tag":			"GenericId",
+			"innerHTML":	"USRC00000000",
+			"uiText":		"{0}",
+			"uiTextMulti":	"{0}",
+			"number":		"useHtml"
+		}, {
+			"tag":			"GenericId",
+			"innerHTML":	"USRS00000000",
+			"uiText":		"{0}",
+			"uiTextMulti":	"{0}",
+			"number":		"useHtml"
+		}, {
+			"tag":			"GenericId",
+			"innerHTML":	"PRTC",
+			"uiText":		"Internal Consolidation"
+		},  {
+			"tag":			"GenericId",
+			"innerHTML":	"PRTX",
+			"uiText":		"Cross Client"
+		}, {
+			"tag":			"GenericId",
+			"innerHTML":	"PRTP",
+			"uiText":		"Consolidation Client"
+		}, {
+			"tag":			"GenericId",
+			"innerHTML":	"CONM0000000000",
+			"uiText":		"i18n>result.conm.text"
+		}, {
+			"tag":			"Unit",
+			"innerHTML":	"CONM_CONS",
+			"uiText":		"i18n>result.conm_cons.text"
+		}, {
+			"tag":			"Unit",
+			"innerHTML":	"CONM_NMP",
+			"uiText":		"i18n>result.conm_nmp.text"
+		}, {
+			"tag":			"Unit",
+			"innerHTML":	"CONM_USMM",
+			"uiText":		"i18n>result.conm_usmm.text"
+		}, {
+			"tag":			"Counter",
+			"uiText":		[
+				{		
+					"context":		"USRC",
+					"uiText":		"{0} users, classified as",
+					"uiTextMulti":	"{0} users, classified as a combination of"
+				}, {		
+					"context":		"USRS",
+					"uiText":		"{0} users, classified as",
+					"uiTextMulti":	"{0} users, classified as a combination of"
+				}, {	
+						"context":		"ENGC",
+						"uiText":		"{0} units counted"
+				}, {	
+						"context":		"ENGS",
+						"uiText":		"(obsolete)"
+				}, {	
+						"uiText":		"{0} units"
+				}
+							]
+		}, {
+			"tag":			"Date",
+			"innerHTML":	"Transfer",
+			"uiText":		"i18n>header.props.transfer.date.text"
+		}, {
+			"tag":			"Time",
+			"innerHTML":	"Transfer",
+			"uiText":		"i18n>header.props.transfer.time.text",
+			"number":		"formatTime"
+		}, {
+			"tag":			"Name",
+			"innerHTML":	"Transfer",
+			"uiText":		"i18n>header.props.transfer.name.text"
+		}, {
+			"tag":			"Version",
+			"innerHTML":	"Transfer",
+			"uiText":		"i18n>header.props.transfer.version.text"
+		}, {
+			"tag":			"Program",
+			"innerHTML":	"Transfer",
+			"uiText":		"i18n>header.props.transfer.program.text"
+		}, {
+			"tag":			"Type",
+			"innerHTML":	"Transfer",
+			"uiText":		"i18n>header.props.transfer.type.text"
+		}, {
+			"tag":			"Name",
+			"innerHTML":	"Sender",
+			"uiText":		"i18n>header.props.sender.text"
+		}, {
+			"tag":			"Address2",
+			"innerHTML":	"Sender",
+			"uiText":		"i18n>header.props.sender.adr2.text"
+		}, {
+			"tag":			"Address3",
+			"innerHTML":	"Sender",
+			"uiText":		"i18n>header.props.sender.adr3.text"
+		}, {
+			"tag":			"Address4",
+			"innerHTML":	"Sender",
+			"uiText":		"i18n>header.props.sender.adr4.text"
+		}, {
+			"tag":			"Address5",
+			"innerHTML":	"Sender",
+			"uiText":		"i18n>header.props.sender.adr5.text"
+		}, {
+			"tag":			"EMail",
+			"innerHTML":	"Sender",
+			"uiText":		"i18n>header.props.sender.email.text"
+		}, {
+			"tag":			"Name",
+			"innerHTML":	"Receiver",
+			"uiText":		"i18n>header.props.receiver.name.text"
+		}, {
+			"tag":			"Address1",
+			"innerHTML":	"Receiver",
+			"uiText":		"i18n>header.props.receiver.adr1.text"
+		}, {
+			"tag":			"Address2",
+			"innerHTML":	"Receiver",
+			"uiText":		"i18n>header.props.receiver.adr2.text"
+		},  {
+			"tag":			"Address3",
+			"innerHTML":	"Receiver",
+			"uiText":		"i18n>header.props.receiver.adr3.text"
+		}, {
+			"tag":			"Address4",
+			"innerHTML":	"Receiver",
+			"uiText":		"i18n>header.props.receiver.adr4.text"
+		},  {
+			"tag":			"Address5",
+			"innerHTML":	"Receiver",
+			"uiText":		"i18n>header.props.receiver.adr5.text"
+		}, {	
+   			"tag":			"PartId",
+   			"uiText":		"Part Id"
+   		}, {
+   			"tag":			"PerStart",
+			"uiText":		"From"
+		}, {
+			"tag":			"PerEnd",
+			"uiText":		"To"
+		}, {
+			"tag":			"Result",
+			"uiText":		"Result information"
+		}, {
+			"tag":			"Attribute1",
+			"uiText":		[
+				{		
+					"context":		"CONM0000000000",
+					"uiText":		"Comment (text)"				
+				} 			]
+		}, {
+			"tag":			"Attribute2",
+			"uiText":		[
+				{
+						"context":		"USRC",
+						"uiText":		"Block #{0} of associated <Result>s",
+						"number":		"useValue"
+				}, {
+						"context":		"ENGS",
+						"uiText":		"Batchjob runtime ~{0} sec",
+						"number":		"useValue"
+				}
+							]
+		}, {
+			"tag":			"Name",
+   			"uiText":		"i18n>model.parts.part.name.text"
+		}, {
+			"tag":			"Status",
+   			"uiText":		"i18n>model.parts.part.status.text"
+		}, {
+			"tag":			"SystemNo",
+   			"uiText":		"i18n>model.parts.part.sysNo.text"
+		}, {
+			"tag":			"SAP_CLIENT",
+   			"uiText":		"i18n>model.parts.part.client.text"
+		}, {
+			"tag":			"DefUtype",
+   			"uiText":		"i18n>model.parts.part.DefUtype.text"
+		}, {
+			"tag":			"Productive",
+   			"uiText":		"i18n>model.parts.part.Productive.text"
+		}, {
+			"tag":			"MeasNo",
+   			"uiText":		"i18n>model.parts.part.MeasNo.text"
+		}, {
+			"tag":			"Executor",
+   			"uiText":		"i18n>model.parts.part.Executor.text"
+		}, {
+			"tag":			"Date",
+   			"uiText":		"i18n>model.parts.part.Date.text"
+		}, {
+			"tag":			"Excluded",
+   			"uiText":		"i18n>model.parts.part.Excluded.text"
+		},
+		{	
+   	    	"innerHTML":		"CHKP000000DELU", 
+    		"uiText":			"i18n>result.chkp.DELU"
+    	}, {	
+   	    	"innerHTML":		"CHKP000000USRD", 
+    		"uiText":			"i18n>result.chkp.USRD"
+    	}, {
+    		"innerHTML":		"PERW0000000012",
+    		"uiText":			"In the 12 weeks before the measurement"
+    	}, {
+			"innerHTML": 		"CHKP000000EXPU",
+			"uiText":			"Expired Users"
+		}, {
+			"innerHTML":		"ENGC000000",
+			"uiText":			"Engine {0}",
+			"number":			"useHtml"
+		}, {
+			"innerHTML":		"UNT000",
+			"uiText":			"Metric {0}",
+			"number":			"useHtml"
+		}
+   	],
+   	
+   	"NO_LONGER_USED" : [
+   		{
+			"tag":			"Counter",
+			"uiText":		[
+				{		
+						"firstHTML":		"USRC",
+						"uiText":			"{0} users classified as"
+				}, {	
+						"firstHTML":		"ENGC",
+						"uiText":			"{0} units counted"
+				}
+							],
+			"number":			"useValue"
+		}, {
+			"tag":			"GenericId",
+			"uiText":		[
+				{		
+						"firstHTML":		"USRC00000000",
+						"uiText":			"{0} users classified as"
+				}, {	
+						"firstHTML":		"ENGC000000",
+						"uiText":			"{0} units counted"
+				}, {		
+						"firstHTML":		"PRTC",
+						"uiText":			"Internal Consolidation"
+				}, {	
+						"firstHTML":		"PRTX",
+						"uiText":			"Cross Client"
+				}, {	
+						"firstHTML":		"PRTP",
+						"uiText":			"Consolidation Client"
+				}
+							],
+			"number":			"useValue"
+		} 
+   		
+   		]
+}
