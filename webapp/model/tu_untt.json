@@ -1313,7 +1313,7 @@
             { "unit": "8187", "unitName": "MDG: Retail and Fashion Objects" }, 
             { "unit": "8188", "unitName": "MDG: Asset Information Workbench" }] 
 }, 
- { "engine": "8502",    "units": [ 
+ { "engine": "",    "units": [ 
             { "unit": "8501", "unitName": "SBOP LEG Desktop Intelligence (NUL)" }, 
             { "unit": "8502", "unitName": "SBOP LEG BOE Prof. Premium (NUL)" }, 
             { "unit": "8504", "unitName": "SBOP LEG WebI Interactive (NUL)" }, 
@@ -1353,16 +1353,16 @@
             { "unit": "8686", "unitName": "SBOP LEG Web Intelligence (NUL)" }, 
             { "unit": "8688", "unitName": "SBOP LEG Web Intelligence (CPU)" }] 
 }, 
- { "engine": "8679",    "units": [ 
+ { "engine": "",    "units": [ 
             { "unit": "8679", "unitName": "SBOP BIP BI Package (NUL)" }, 
             { "unit": "8680", "unitName": "SBOP BIP BI Package (CPU)" }, 
             { "unit": "8684", "unitName": "SBOP BIP BI Starter Package" }] 
 }, 
- { "engine": "8681",    "units": [ 
+ { "engine": "",    "units": [ 
             { "unit": "8681", "unitName": "SBOP BIS BI Suite (NUL)" }, 
             { "unit": "8682", "unitName": "SBOP BIS BI Suite (CS)" }] 
 }, 
- { "engine": "8694",    "units": [ 
+ { "engine": "",    "units": [ 
             { "unit": "8685", "unitName": "SBOP ALC Web Intelligence (NUL)" }, 
             { "unit": "8689", "unitName": "SBOP ALC BOE Prof. for ER (CPU)" }, 
             { "unit": "8690", "unitName": "SBOP ALC BOE Prof. for ER (NUL)" }, 
@@ -1376,7 +1376,7 @@
             { "unit": "8699", "unitName": "SBOP ALC Desktop Intelligence (CPU)" }, 
             { "unit": "8700", "unitName": "SBOP ALC Desktop Intelligence (NUL)" }] 
 }, 
- { "engine": "8704",    "units": [ 
+ { "engine": "",    "units": [ 
             { "unit": "8701", "unitName": "SBOP COM BA&T Web Intelligence (CS)" }, 
             { "unit": "8702", "unitName": "SBOP COM BA&T Web Intelligence (NUL)" }, 
             { "unit": "8703", "unitName": "SBOP COM BA&T BI Platform (CS)" }, 

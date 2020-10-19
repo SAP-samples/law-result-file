@@ -45,7 +45,7 @@ sap.ui.define([
 	}, */
 	var _engineModules; // holds a copy of the table TUAPP;
 	var _custInfos; // lists units and the corresponding customer information sheets
-	var _tuuntTexts; // holds a copy of the table TUUNT
+	var _tuunttTexts; // holds a copy of the table TUUNTT
 	var _tutypTexts; // holds a copy of the table TUTYP
 	var _tul_acttc; // holds a copy of the table TUL_ACTTC
 	var _cis_defaults; // holds the generic URL for the engine page & a title; 
@@ -155,7 +155,7 @@ sap.ui.define([
 			_engineModules = this.getView().getModel("tuapp").getData().modules;
 			_custInfos = this.getView().getModel("custInfos").getData().cis;
 			_cis_defaults = this.getView().getModel("custInfos").getData().defaults;
-			_tuuntTexts = this.getView().getModel("tu_untt").getData().unitsList;
+			_tuunttTexts = this.getView().getModel("tu_untt").getData().unitsList;
 			_tutypTexts = this.getView().getModel("tutyp").getData().types;
 			_tul_acttc = this.getView().getModel("tul_acttc").getData().tnames;
 			// _translatableTags = this.getView().getModel("tags").getData().tags; 
@@ -327,20 +327,20 @@ sap.ui.define([
 				}
 
 				var units, curEngine, curUnit;
-				for (var i = 0; i < _tuuntTexts.length; i++) {
-					curEngine = _tuuntTexts[i].engine;
-					if (engine === curEngine) {
-						units = _tuuntTexts[i].units;
+				for (var i = 0; i < _tuunttTexts.length; i++) {
+					curEngine = _tuunttTexts[i].engine;
+					if (engine === curEngine || "" === curEngine) {
+						units = _tuunttTexts[i].units;
 						for (var j = 0; j < units.length; j++) {
-							curUnit = _tuuntTexts[i].units[j].unit;
+							curUnit = _tuunttTexts[i].units[j].unit;
 							if (curUnit === metric) {
-								return metric + ": " + _tuuntTexts[i].units[j].unitName;
+								return metric + ": " + _tuunttTexts[i].units[j].unitName;
 							}
 						}
 						// engine matched, but no corresponding metric entry. There won't be any further engine match, so return and use default text	
 						// debugger;
 						break;
-					}
+					} 
 				}
 			}
 			// No entry found, use default text	
