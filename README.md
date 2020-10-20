@@ -1,7 +1,7 @@
 # LAW result file app
 
 ## Description
-When you've completed an SAP license audit, this project helps you to understand the XML content of the result file created by the SAP License Administration Workbench (LAW). You can run this sample code either online in the SAP ONE Support Launchpad (https://zglacelx-supportportal.dispatcher.hana.ondemand.com/, S-user required) or download and run it locally in your own UI5 environment.
+When you've completed an [SAP system measurement](https://support.sap.com/en/my-support/systems-installations/system-measurement.html), this project helps you to understand the XML content of the result file created by the SAP License Administration Workbench (LAW). You can run this sample code either online in the SAP ONE Support Launchpad (https://zglacelx-supportportal.dispatcher.hana.ondemand.com/, S-user required) or download and run it locally in your own UI5 environment.
 
 ## Requirements
 To run the app, you need a HTTP webserver, UI5 (either SAP UI5 or openUI5) and a copy of this sample code.
@@ -54,6 +54,7 @@ There are no known issues at this time.
 
 ## How to obtain support
 This project is provided "as-is": there is no guarantee that raised issues will be answered or addressed in future releases. If you have any topics, you may discuss them with your SAP license audit contact or you can create a [ticket](https://github.com/SAP-samples/law-result-file/issues/new).
+Further information is available at https://support.sap.com/en/my-support/systems-installations/system-measurement.html.
 
 ## Contributing
 Currently this project is only being updated and maintained by SAP employees.
