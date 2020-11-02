@@ -13,7 +13,7 @@
 	<App>
 		<pages>
 			<Page title="{parts:['i18n>system.page.title', 'SAP_SID/text()'], formatter: 'jQuery.sap.formatMessage'}" 
-					showNavButton="true" navButtonPress="onSystemList" id="SystemView">
+					showNavButton="true" navButtonPress="back" id="SystemView">
 				<subHeader>
 					<OverflowToolbar >
 						<Breadcrumbs currentLocationText="{i18n>header.breadcrumb.system.text}">

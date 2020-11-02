@@ -20,10 +20,11 @@ sap.ui.define([
 	"sap/ui/layout/HorizontalLayout",
 	"sap/m/CustomListItem",
 	"sap/ui/layout/VerticalLayout",
-	"sap/m/Title"
+	"sap/m/Title",
+	"sap/ui/core/routing/History"
 ], function (BaseController, JSONModel, XMLView, ResourceModel, Log, formatter, Filter, FilterOperator, ResultLine,
 	EqualWidthColumns, ClearLine,
-	ResourceBundle, Label, Panel, Link, CodeEditor, List, ListItemBase, HorizontalLayout, CustomListItem, VerticalLayout, Title) {
+	ResourceBundle, Label, Panel, Link, CodeEditor, List, ListItemBase, HorizontalLayout, CustomListItem, VerticalLayout, Title, History) {
 	"use strict";
 
 	var _firstLinesToShow = 5;
@@ -2467,9 +2468,17 @@ sap.ui.define([
 			}
 		},
 
+		back: function (oEvent) {
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				this.oRouter.navTo("elements");
+			}
+		},
+
 		backToSystem: function (oEvent) {
-			var sy = this.sysIdx;
-			// debugger;
 			this.oRouter.navTo("system", {
 				sysIndex: this.sysIdx
 			});

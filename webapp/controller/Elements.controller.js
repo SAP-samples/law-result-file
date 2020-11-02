@@ -90,6 +90,44 @@ sap.ui.define([
 			oResultsTile.setPressEnabled(resLen > 0 && partLen > 0);
 
 			oXmlTile.setVisible(headerLen > 0 && systemLen > 0);
+			this.prepareConsButton();
+		},
+		
+		/* Get the index of the consolidation result */
+		prepareConsButton: function () {
+			var oConsTile = this.byId("accCons");
+			var resourceBundle = this.getView().getModel("i18n").getResourceBundle();
+			// search part for a <name>LAW-Consolidation</name> entry
+			var _mainModelRaw = this.getOwnerComponent().getModel("userXML").getData().children[0];
+			var curPartNode;
+			if (_mainModelRaw._tagMeasurementPartsHook) {
+				for (var i = _mainModelRaw._tagMeasurementPartsHook.childElementCount - 1; i >= 0; i--) {
+					curPartNode = _mainModelRaw._tagMeasurementPartsHook.children[i];
+					for (var c = 0; c < curPartNode.childElementCount; c++) {
+						if (curPartNode.children[c].tagName === "Name") {
+							if (curPartNode.children[c].innerHTML.trim().toUpperCase() === "LAW-CONSOLIDATION") {
+								// console.log("Found consolidation in part " +  c);
+								this._consPart = i;
+								oConsTile.setHeader(jQuery.sap.formatMessage(
+									resourceBundle.getText("elements.tiles.cons.title.N"),
+									"1"));
+								oConsTile.setState("Loaded");
+								oConsTile.setPressEnabled(true);
+								return;
+							} else {
+								// console.log("Ignroe Part with name " + curPartNode.children[c].innerHTML);
+							}
+						}
+					}
+				}
+			}
+			// no consolidation part found -> disable button			
+			oConsTile.setHeader(jQuery.sap.formatMessage(
+				resourceBundle.getText("elements.tiles.cons.title.N"),
+				"0"));
+			oConsTile.setState("Failed");					
+			oConsTile.setFailedText(resourceBundle.getText("elements.tiles.cons.na.info"));
+			oConsTile.setPressEnabled(false);
 		},
 
 		onToHeader: function () {
@@ -135,6 +173,21 @@ sap.ui.define([
 				sysIndex: sysIdx,
 				partIndex: partIdx
 			});
+		},
+
+		onConsButton: function () {
+			// console.log("Navigate to part" + this._consPart);		
+			var target = this._getIdsForPartIndex(this._consPart);
+			if (target[0] != -1 && target[1] != -1) {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("part", {
+					sysIndex: target[0],
+					partIndex: target[1],
+				});
+			} else {
+				// navigate to an error page with the option to navigate to the Elements.view
+			}
 		}
+		
 	});
 });

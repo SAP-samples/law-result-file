@@ -1,8 +1,9 @@
 sap.ui.define([
 	"./BaseController",
 	"sap/base/Log",
+	"sap/ui/core/routing/History"
 
-], function (BaseController, Log) {
+], function (BaseController, Log, History) {
 	"use strict";
 
 	return BaseController.extend("sap.support.zglacelx.controller.Systems", {
@@ -83,10 +84,9 @@ sap.ui.define([
 		/* Hides the "Access consolidation" button if no consolidation part is found;
 		   Shows the button and stores the index of the part if a consolidation part is found */
 		prepareConsButton: function () {
-
 			// search part for a <name>LAW-Consolidation</name> entry
 			var _mainModelRaw = this.getOwnerComponent().getModel("userXML").getData().children[0];
-			var curPartNode, curName;
+			var curPartNode;
 			if (_mainModelRaw._tagMeasurementPartsHook) {
 				for (var i = _mainModelRaw._tagMeasurementPartsHook.childElementCount - 1; i >= 0; i--) {
 					curPartNode = _mainModelRaw._tagMeasurementPartsHook.children[i];
@@ -94,7 +94,7 @@ sap.ui.define([
 						if (curPartNode.children[c].tagName === "Name") {
 							if (curPartNode.children[c].innerHTML.trim().toUpperCase() === "LAW-CONSOLIDATION") {
 								// console.log("Found consolidation in part " +  c);
-								this.byId("consButton").setVisible(true);
+								this.byId("consButton").setEnabled(true);
 								this._consPart = i;
 								return;
 							} else {
@@ -105,8 +105,7 @@ sap.ui.define([
 				}
 			}
 			// no consolidation part found -> disable button			
-			this.byId("consButton").setVisible(false);
-
+			this.byId("consButton").setEnabled(false);
 		},
 
 		onConsButton: function () {
@@ -120,6 +119,16 @@ sap.ui.define([
 				});
 			} else {
 				// navigate to an error page with the option to navigate to the Elements.view
+			}
+		},
+		
+		back: function (oEvent) {
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				this.oRouter.navTo("elements");
 			}
 		}
 	});

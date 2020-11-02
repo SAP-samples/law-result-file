@@ -61,26 +61,7 @@
 									backgroundImage="/webapp/css/nav_result.png">
 									<TileContent footer="{i18n>elements.tiles.results.info}" />
 								</GenericTile>
-
-								<GenericTile
-									id="tileXml"									
-									header="{i18n>elements.tiles.xml.blocks.title}"
-									subheader="{i18n>elements.tiles.xml.blocks.subheader}"
-									headerImage="sap-icon://syntax"
-									frameType="TwoByOne" 
-									press="onToHeader">
-									<TileContent footer="{i18n>elements.tiles.xml.blocks.info}" />
-								</GenericTile>
-
-								<GenericTile
-									header="{i18n>elements.tiles.xml.code.title}"
-									subheader="{i18n>elements.tiles.xml.code.subheader}"
-									headerImage="sap-icon://syntax"
-									frameType="TwoByOne" 
-									press="onShowXML">
-									<TileContent footer="{i18n>elements.tiles.xml.code.info}" />
-								</GenericTile>
-								
+							
 							</l:VerticalLayout>
 						</VBox>
 						<VBox>	
@@ -91,6 +72,38 @@
 						</VBox>
 				
 					</grid:CSSGrid>	
+					
+					<l:HorizontalLayout class="sapUiNoMargin sapUiContentPadding">
+						<GenericTile
+							id="accCons"	
+							header="{i18n>elements.tiles.cons.title}"
+							subheader="{i18n>elements.tiles.cons.subheader}"
+							headerImage="sap-icon://survey"
+							frameType="TwoByOne" 
+							press="onConsButton"
+							backgroundImage="/webapp/css/nav_result.png">
+							<TileContent footer="{i18n>elements.tiles.cons.info}" />
+						</GenericTile>									
+
+						<GenericTile
+							id="tileXml"									
+							header="{i18n>elements.tiles.xml.blocks.title}"
+							subheader="{i18n>elements.tiles.xml.blocks.subheader}"
+							headerImage="sap-icon://syntax"
+							frameType="TwoByOne" 
+							press="onToHeader">
+							<TileContent footer="{i18n>elements.tiles.xml.blocks.info}" />
+						</GenericTile>
+
+						<GenericTile
+							header="{i18n>elements.tiles.xml.code.title}"
+							subheader="{i18n>elements.tiles.xml.code.subheader}"
+							headerImage="sap-icon://syntax"
+							frameType="TwoByOne" 
+							press="onShowXML">
+							<TileContent footer="{i18n>elements.tiles.xml.code.info}" />
+						</GenericTile>
+					</l:HorizontalLayout>
 				</content>
 			</Page>
 		</pages>

@@ -14,7 +14,7 @@
     xmlns:cols="controller.layout">
 	<App>
 		<pages>
-			<Page title="{i18n>header.page.title}" showNavButton="true" navButtonPress="onElements" id="headerPage">
+			<Page title="{i18n>header.page.title}" showNavButton="true" navButtonPress="back" id="headerPage">
 				<subHeader>
 					<OverflowToolbar >
 						<Breadcrumbs currentLocationText="{i18n>elements.tiles.header.title}">
