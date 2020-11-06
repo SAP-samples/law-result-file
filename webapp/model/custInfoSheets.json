@@ -838,6 +838,10 @@
 			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/8180-8185-sap-master-data-governance-en.pdf",
 			"title": "SAP Master Data Governance "
 		 }, { 
+			"units":    [ "8500-", "8799" ], 
+			"url" : "https://support.sap.com/en/my-support/systems-installations/system-measurement/businessobjects-bi-measurement.html",
+			"title": "SAP BusinessObjects Business Intelligence"
+		 }, { 
 			"units":    [ "H035" ], 
 			"url" : "https://support.sap.com/content/dam/support/en_us/library/ssp/my-support/systems-installations/system-measurement/engine-self-declaration-product-measurement/H035-sap-hana-active-active-read-enabled-option.pdf",
 			"title": "SAP HANA Active/Active Read-Enabled Option "

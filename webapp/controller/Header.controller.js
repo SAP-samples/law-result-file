@@ -5,9 +5,10 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"./layout/EqualWidthColumns",
 	"./layout/ResultLine",
-	"./layout/ClearLine"
+	"./layout/ClearLine",
+	"sap/ui/core/routing/History"
 
-], function (BaseController, formatter, Filter, FilterOperator, EqualWidthColumns, ResultLine, ClearLine) {
+], function (BaseController, formatter, Filter, FilterOperator, EqualWidthColumns, ResultLine, ClearLine, History) {
 	"use strict";
 
 	return BaseController.extend("sap.support.zglacelx.controller.Header", {
@@ -140,6 +141,16 @@ sap.ui.define([
 		onNavAll: function() {
 			this.oRouter.navTo("elements");
 		},
+		
+		back: function (oEvent) {
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				this.oRouter.navTo("elements");
+			}
+		}
 
 	});
 });

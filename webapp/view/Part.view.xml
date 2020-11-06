@@ -13,7 +13,7 @@
 	xmlns:cols="controller.layout">
 	<App>
 		<pages>
-			<Page title="{i18n>part.page.client.text}" showNavButton="true" enableScrolling="true" navButtonPress="backToSystem" id="resultPage">
+			<Page title="{i18n>part.page.client.text}" showNavButton="true" enableScrolling="true" navButtonPress="back" id="resultPage">
 				<subHeader>
 					<OverflowToolbar >
 						<Breadcrumbs currentLocationText="{i18n>properties.breadcrumb.title}">
