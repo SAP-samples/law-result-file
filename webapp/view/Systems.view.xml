@@ -12,7 +12,7 @@
 	displayBlock="true">
 	<App id="systemListApp">
 		<pages>
-			<Page id="SystemTiles" title="{i18n>model.systems.text}" showNavButton="true" navButtonPress="onToAll">	
+			<Page id="SystemTiles" title="{i18n>model.systems.text}" showNavButton="true" navButtonPress="back">	
 				<content>
 					<!-- <Text text="{path: 'lawFile>/Systems', formatter: '.formatter.setStyle'}" /> -->
 					<Panel id="panelForGridList2">
@@ -21,7 +21,7 @@
 								<content>
 									<Title text="{i18n>systems.syslist.title}"/>
 									<ToolbarSpacer/>
-									<Button text="{i18n>systems.button.lawCons.text}" press="onConsButton" class="sapContrast" id="consButton" />
+									<Button text="{i18n>systems.button.lawCons.text}" press="onConsButton" class="sapContrast" id="consButton" icon="sap-icon://survey" />
 									<ToolbarSpacer/>
 									<SearchField width="15rem" liveChange="onLiveChange"/>
 								</content>
