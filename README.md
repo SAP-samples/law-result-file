@@ -1,4 +1,6 @@
-# LAW result file app
+# LAW Result File App
+
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/law-result-file)](https://api.reuse.software/info/github.com/SAP-samples/law-result-file)
 
 ## Description
 When you've completed an [SAP system measurement](https://support.sap.com/en/my-support/systems-installations/system-measurement.html), this project helps you to understand the XML content of the result file created by the SAP License Administration Workbench (LAW). You can run this sample code either online in the SAP ONE Support Launchpad (https://zglacelx-supportportal.dispatcher.hana.ondemand.com/, S-user required) or download and run it locally in your own UI5 environment.
@@ -53,7 +55,7 @@ To run the app, open the **_index.html_** file from the **_webapps_** subfolder.
 There are no known issues at this time.
 
 ## How to obtain support
-This project is provided "as-is": there is no guarantee that raised issues will be answered or addressed in future releases. If you have any topics, you may discuss them with your SAP license audit contact or you can create a [ticket](https://github.com/SAP-samples/law-result-file/issues/new).
+This project is provided "as-is": there is no guarantee that raised issues will be answered or addressed in future releases. If you have any topics, you may discuss them with your SAP license audit contact or you can create an [issue](https://github.com/SAP-samples/law-result-file/issues/new).
 Further information is available at https://support.sap.com/en/my-support/systems-installations/system-measurement.html.
 
 ## Contributing
@@ -61,6 +63,3 @@ Currently this project is only being updated and maintained by SAP employees.
 
 ## License
 Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
-
-## REUSE Badge
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/law-result-file)](https://api.reuse.software/info/github.com/SAP-samples/law-result-file)
